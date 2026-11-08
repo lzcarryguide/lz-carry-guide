@@ -115,3 +115,8 @@ The dataset is no longer empty. It now contains community-sourced cost rows for 
 ### Last-Z.net row-index caveat
 
 The [Last-Z.net HQ table](https://last-z.net/tables/hq-upgrade-requirements/) is retained as a legitimate independent reference. Its early cost labels appear shifted relative to the "HQ level reached" labels in Last Z Guides and LZ Exchange: Last-Z.net row 1 lists 10.4K Food, close to the HQ2 upgrade in the other table, while row 4 lists 46.7K Food, close to the HQ5 upgrade. Its building column at row 4 says City Walls, which matches the HQ4 prerequisite in LZ Exchange. This mixed alignment means we must not silently map its row numbers to target HQ levels. For example, Last-Z.net row 35 lists 2.93B Food/Wood, 573M Zent and 9.08M Steel, but that is a source row labelled 35—not a confirmed target-HQ35 value. Keep the original label and source intact until the indexing convention is clarified.
+
+
+## LZ Carry original-content and attribution policy — November 8, 2026
+
+Community websites are research inputs only. Their wording, page structure, tables, graphics, and presentation must not be copied or closely reproduced in public LZ Carry content. Public planner screens use LZ Carry-authored labels and explanations and do not link visitors to external guide websites. Preserve source names, URLs, checked dates, reported values, and discrepancy notes in this internal research record and structured source data. Clearly distinguish community-reported observations from in-game verification; do not promote a candidate to verified without direct, recorded game evidence.

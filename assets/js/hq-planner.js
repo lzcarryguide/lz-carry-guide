@@ -11,7 +11,7 @@
   const fmt=n=>new Intl.NumberFormat("en-US",{maximumFractionDigits:3}).format(n);
   const money=(n)=>n===0?"0":fmt(n)+"M";
   const keyFor=(target,i)=>target+":"+i;
-  const sourceLink=s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.name)+'</a>';
+  const sourceLink=s=>'<span>'+esc(s.name)+'</span>';
   const setOptions=()=>{
     currentSelect.innerHTML=Array.from({length:35},(_,i)=>'<option value="'+(i+1)+'">HQ '+(i+1)+'</option>').join("");
     targetSelect.innerHTML=currentSelect.innerHTML; currentSelect.value="1"; targetSelect.value="10";

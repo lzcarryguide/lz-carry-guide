@@ -8,50 +8,6 @@
     "research": "Tier 10 is associated with Unit Special Training. Community sources agree on Laboratory 30 as the prerequisite; exact badge and resource costs differ by source and are omitted.",
     "marchCapacity": "Capacity depends on hero effects, research and other account systems. No single universal number is published here."
   },
-  "sources": [
-    {
-      "id": "lastznet-assaulter",
-      "url": "https://last-z.net/buildings/assaulter-camp/",
-      "checked": "2026-11-08",
-      "supports": "Assaulter tier stats, camp levels and names."
-    },
-    {
-      "id": "lastznet-shooter",
-      "url": "https://last-z.net/buildings/shooter-camp/",
-      "checked": "2026-11-08",
-      "supports": "Shooter tier stats, camp levels and names."
-    },
-    {
-      "id": "lastznet-rider",
-      "url": "https://last-z.net/buildings/rider-camp/",
-      "checked": "2026-11-08",
-      "supports": "Rider tier stats, camp levels and names."
-    },
-    {
-      "id": "lastzguide-assaulter",
-      "url": "https://lastzguide.com/assaulter-camp/",
-      "checked": "2026-11-08",
-      "supports": "Independent Assaulter progression, camp unlock and T10 research notes."
-    },
-    {
-      "id": "lastzguide-shooter",
-      "url": "https://lastzguide.com/shooter-camp/",
-      "checked": "2026-11-08",
-      "supports": "Independent Shooter progression, camp unlock and tier names."
-    },
-    {
-      "id": "lastzguide-rider",
-      "url": "https://lastzguide.com/rider-camp/",
-      "checked": "2026-11-08",
-      "supports": "Independent Rider progression and camp prerequisites."
-    },
-    {
-      "id": "unit-special-training",
-      "url": "https://lastzguide.com/unit-special-training/",
-      "checked": "2026-11-08",
-      "supports": "T10 research structure; total badge readings conflict."
-    }
-  ],
   "tierUnlocks": [
     {
       "tier": 1,

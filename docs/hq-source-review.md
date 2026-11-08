@@ -76,3 +76,37 @@ To promote a target level to verified:
 5. Keep the row unpublished until the discrepancy is explained or independently reproduced.
 
 The source pages above are community references, not official publisher documentation.
+
+
+## Source-attributed dataset update — November 8, 2026
+
+The earlier decision to leave all numeric data out was too conservative. The cited community references are legitimate research sources and are now used as attributed planning references, with differences preserved rather than silently choosing a winner.
+
+### Imported per-level HQ construction table
+
+The planner now includes HQ2–HQ35 costs and base durations transcribed from [Last Z Guides — HQ Construction Cost Table](https://lastzguides.com/hq-construction-cost.html), whose table is labelled in millions and states it was checked with server 403 players. Values retain the table's published decimal precision. This is a community-published reference, not a universal official value.
+
+[Last Z Exchange — HQ upgrade costs, level by level](https://lzexchange.net/guides/hq-upgrade-costs) is stored as an alternate source on each row. Its values are displayed in rounded K/M/B units, so they are not converted into false-precision integer quantities. The article also publishes cumulative milestone totals and explains its base-cost methodology.
+
+Prerequisite building names and levels are retained as community-reported candidates from the LZ Exchange prerequisite table. They are separately labelled from the HQ cost table.
+
+### Known source differences (examples)
+
+- HQ12 Food/Wood: Last Z Guides lists 3.6M; Last Z Exchange lists about 3.7M; Last-Z.net lists 4.02M.
+- HQ31 Steel: Last Z Guides lists 2.2M; Last Z Exchange lists about 2.7M.
+- HQ35 Steel: Last Z Guides lists 6.4M; Last Z Exchange lists about 7.6M.
+- HQ35 Food/Wood: Last Z Guides lists 2.3B; Last Z Exchange lists about 2.8B; Last-Z.net's table should be retained as a third comparison where its exact row is transcribed.
+
+These differences are recorded as source differences, not evidence that any reference is false. They may reflect cost reductions, server/version, rounding, or different base assumptions. Do not silently merge values from different sources.
+
+### Planner calculation policy
+
+- Per-step costs display the Last Z Guides table as the selected base reference, with source links and a visible community-sourced status.
+- Range totals sum only the complete per-level values from that one selected table; they are labelled published-source estimates and inherit its precision.
+- Alternate source values are not blended into the total.
+- Prerequisite building upgrade costs are not included in HQ construction totals.
+- The live in-game upgrade screen remains the best check for the player's current account/server. The planner does not call community values official or guaranteed.
+
+### Corrections to earlier notes
+
+The dataset is no longer empty. It now contains community-sourced cost rows for HQ2–HQ35 and community-reported prerequisite candidates. It is not yet an in-game verified dataset.

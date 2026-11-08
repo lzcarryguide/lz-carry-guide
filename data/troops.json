@@ -3,7 +3,7 @@
   "lastUpdated": "2026-11-08",
   "verificationPolicy": "Tier attack/defense/HP and camp tier unlock levels agree across multiple community references but have not yet been checked against the user's live game client. Camp costs, training costs, timers and exact prerequisites are deliberately omitted. T10 is research-unlocked, not a normal camp-level tier.",
   "progressionSummary": {
-    "campRule": "Each camp trains and promotes only its own troop class. Camp level opens tiers 1–9.",
+    "campRule": "Camp level progression covers tiers 1–9. Tier 10 is a separate research unlock.",
     "trainingVsPromotion": "Training creates units; promotion upgrades eligible existing lower-tier units. The promotion action and costs must be checked in the selected camp.",
     "research": "Tier 10 is associated with Unit Special Training. Community sources agree on Laboratory 30 as the prerequisite; exact badge and resource costs differ by source and are omitted.",
     "marchCapacity": "Capacity depends on hero effects, research and other account systems. No single universal number is published here."
@@ -227,6 +227,19 @@
           "trainingCost": null,
           "promotionCost": null,
           "trainingTime": null
+        },
+        {
+          "tier": 10,
+          "campLevel": "Unit Special Training",
+          "unitName": "Invader",
+          "attack": 45,
+          "defense": 45,
+          "hp": 155,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null,
+          "nameStatus": "reported tier 10; live client verification pending",
+          "valuesStatus": "community-reported; live client verification pending"
         }
       ],
       "tier10": "Invader"
@@ -355,18 +368,30 @@
         {
           "tier": 9,
           "campLevel": 27,
-          "unitName": null,
+          "unitName": "Berserk Shooter",
           "reportedAlternativeNames": [
-            "Berserk Shooter",
-            "Furious Shooter"
+            "Berserk Shooter"
           ],
-          "nameStatus": "conflicting community names",
+          "nameStatus": "community naming varies; verify in client",
           "attack": 40,
           "defense": 40,
           "hp": 148,
           "trainingCost": null,
           "promotionCost": null,
           "trainingTime": null
+        },
+        {
+          "tier": 10,
+          "campLevel": "Unit Special Training",
+          "unitName": "Executioner",
+          "attack": 45,
+          "defense": 45,
+          "hp": 155,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null,
+          "nameStatus": "reported tier 10; live client verification pending",
+          "valuesStatus": "community-reported; live client verification pending"
         }
       ],
       "tier10": "Executioner"
@@ -430,12 +455,11 @@
         {
           "tier": 4,
           "campLevel": 10,
-          "unitName": null,
+          "unitName": "Cowboy",
           "reportedAlternativeNames": [
-            "Cowboy",
-            "Pro Cowboy"
+            "Cowboy"
           ],
-          "nameStatus": "conflicting community names",
+          "nameStatus": "community sources use differing English names; verify in client",
           "attack": 17,
           "defense": 17,
           "hp": 86,
@@ -446,12 +470,11 @@
         {
           "tier": 5,
           "campLevel": 14,
-          "unitName": null,
+          "unitName": "Heavy Cavalry",
           "reportedAlternativeNames": [
-            "Heavy Cavalry",
-            "Crossbow Cavalry"
+            "Heavy Cavalry"
           ],
-          "nameStatus": "conflicting community names",
+          "nameStatus": "community sources use differing English names; verify in client",
           "attack": 21,
           "defense": 21,
           "hp": 99,
@@ -462,12 +485,11 @@
         {
           "tier": 6,
           "campLevel": 17,
-          "unitName": null,
+          "unitName": "Crossbow Cavalry",
           "reportedAlternativeNames": [
-            "Crossbow Cavalry",
-            "Heavy Cavalry"
+            "Crossbow Cavalry"
           ],
-          "nameStatus": "conflicting community names",
+          "nameStatus": "community sources use differing English names; verify in client",
           "attack": 26,
           "defense": 26,
           "hp": 114,
@@ -491,12 +513,11 @@
         {
           "tier": 8,
           "campLevel": 24,
-          "unitName": null,
+          "unitName": "Charge Knight",
           "reportedAlternativeNames": [
-            "Charge Knight",
-            "Charging Knight"
+            "Charge Knight"
           ],
-          "nameStatus": "conflicting community names",
+          "nameStatus": "community sources use differing English names; verify in client",
           "attack": 35,
           "defense": 35,
           "hp": 141,
@@ -516,6 +537,19 @@
           "trainingCost": null,
           "promotionCost": null,
           "trainingTime": null
+        },
+        {
+          "tier": 10,
+          "campLevel": "Unit Special Training",
+          "unitName": "Apocalypse Knight",
+          "attack": 45,
+          "defense": 45,
+          "hp": 155,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null,
+          "nameStatus": "reported tier 10; live client verification pending",
+          "valuesStatus": "community-reported; live client verification pending"
         }
       ],
       "tier10": "Apocalypse Knight"

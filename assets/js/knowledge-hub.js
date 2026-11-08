@@ -21,7 +21,7 @@
   const heroRoot=document.getElementById("hero-results");
   if(heroRoot) load("data/heroes.json","heroes").then(records=>bindDirectory({
     searchId:"hero-search",filterId:"hero-faction",countId:"hero-count",resultsId:"hero-results",records,filterField:"faction",
-    card:r=>'<article class="card knowledge-card"><span class="pill">'+escapeHtml(r.faction || 'Faction pending')+'</span><h3>'+escapeHtml(r.name)+'</h3><p>'+escapeHtml(r.troopType || 'Troop type pending')</p><p class="small muted">'+escapeHtml(r.note)+'</p></article>'
+    card:r=>'<article class="card knowledge-card"><span class="pill">'+escapeHtml(r.faction || "Faction pending")+'</span><h3>'+escapeHtml(r.name)+'</h3><p>'+escapeHtml(r.troopType || "Troop type pending")</p><p class="small muted">'+escapeHtml(r.note)+'</p></article>'
   })).catch(()=>{heroRoot.innerHTML='<div class="card"><h3>Hero index unavailable</h3><p>Please refresh to reload the local database.</p></div>';});
   const troopRoot=document.getElementById("troop-results");
   if(troopRoot) load("data/troops.json","troops").then(records=>bindDirectory({

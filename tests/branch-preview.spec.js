@@ -84,7 +84,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
 });
 
 test("public knowledge data contains no external source URLs or unverified numeric claims", async ({ request }) => {
-  for (const [file,key] of [["heroes","heroes"],["troops","troops"],["events","events"]]) {
+  for (const [file,key] of [["heroes","heroes"],["troops","classes"],["events","events"]]) {
     const response=await request.get("/data/"+file+".json");
     expect(response.ok()).toBeTruthy();
     const data=await response.json();

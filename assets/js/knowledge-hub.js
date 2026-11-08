@@ -1,97 +1,82 @@
 (function () {
-  function makeText(tag, className, value) {
-    var element = document.createElement(tag);
-    if (className) element.className = className;
-    element.textContent = value == null ? "" : String(value);
-    return element;
+  function node(tag, cls, value) {
+    var el = document.createElement(tag);
+    if (cls) el.className = cls;
+    el.textContent = value == null ? "" : String(value);
+    return el;
   }
-
-  function makeCard(record, kind) {
-    var article = makeText("article", "card knowledge-card", "");
+  function addList(card, heading, values) {
+    if (!Array.isArray(values) || !values.length) return;
+    card.appendChild(node("h4", "", heading));
+    var ul = document.createElement("ul");
+    values.forEach(function (v) { ul.appendChild(node("li", "", v)); });
+    card.appendChild(ul);
+  }
+  function makeCard(r, kind) {
+    var card = node("article", "card knowledge-card", "");
     if (kind === "hero") {
-      article.appendChild(makeText("span", "pill", record.faction || "Faction pending"));
-      article.appendChild(makeText("h3", "", record.name));
-      article.appendChild(makeText("p", "", record.troopType || "Troop type pending"));
-      article.appendChild(makeText("p", "small muted", record.note));
+      card.appendChild(node("span", "pill", [r.rarity, r.faction, r.season != null ? "Season " + r.season : ""].filter(Boolean).join(" · ") || "Details pending"));
+      card.appendChild(node("h3", "", r.name));
+      card.appendChild(node("p", "", [r.role, r.troopType].filter(Boolean).join(" · ") || "Role and troop line pending verification"));
+      card.appendChild(node("p", "small muted", r.dataStatus || "Verification pending"));
+      if (r.skills && r.skills.length) addList(card, "Skills", r.skills.map(function (s) { return s.name + ": " + s.effect; }));
+      if (r.exclusiveEquipment) card.appendChild(node("p", "", "Exclusive Equipment: " + r.exclusiveEquipment));
+      card.appendChild(node("p", "small muted", r.investmentNote || ""));
     } else if (kind === "troop") {
-      article.appendChild(makeText("span", "pill", record.faction));
-      article.appendChild(makeText("h3", "", record.name));
-      article.appendChild(makeText("p", "", "Camp: " + record.camp));
-      article.appendChild(makeText("p", "", record.summary));
-      article.appendChild(makeText("p", "small muted", record.note));
+      card.appendChild(node("span", "pill", r.faction));
+      card.appendChild(node("h3", "", r.name));
+      card.appendChild(node("p", "", "Camp: " + r.camp));
+      card.appendChild(node("p", "", r.summary));
+      var table = document.createElement("div");
+      table.className = "troop-tier-list";
+      (r.tiers || []).forEach(function (t) {
+        var line = [ "T" + t.tier, t.unitName || "Name pending", "Camp " + t.campLevel, "ATK " + t.attack, "DEF " + t.defense, "HP " + t.hp ].join(" · ");
+        table.appendChild(node("p", "small", line));
+        if (t.reportedAlternativeNames && t.reportedAlternativeNames.length) table.appendChild(node("p", "small muted", "Alternative community names: " + t.reportedAlternativeNames.join(", ")));
+      });
+      card.appendChild(table);
+      card.appendChild(node("p", "small muted", r.note || ""));
     } else {
-      article.appendChild(makeText("span", "pill", record.type));
-      article.appendChild(makeText("h3", "", record.name));
-      article.appendChild(makeText("p", "", record.summary));
-      article.appendChild(makeText("p", "", "Preparation: " + record.preparation));
-      article.appendChild(makeText("p", "small muted", "Schedule and rewards: check current in-game event details."));
+      card.appendChild(node("span", "pill", r.type + (r.frequency ? " · " + r.frequency : "")));
+      card.appendChild(node("h3", "", r.name));
+      card.appendChild(node("p", "", r.objective || r.summary || ""));
+      addList(card, "How it works", r.mechanics || []);
+      addList(card, "Preparation", r.preparation || []);
+      if (r.scoring) card.appendChild(node("p", "", "Scoring: " + r.scoring));
+      if (r.rewards) card.appendChild(node("p", "", "Rewards: " + r.rewards));
+      if (r.conflicts && r.conflicts.length) addList(card, "Source discrepancies", r.conflicts);
+      card.appendChild(node("p", "small muted", r.verification || "Confirm current rules in-game."));
     }
-    return article;
+    return card;
   }
-
-  function setupDirectory(config) {
-    var search = document.getElementById(config.searchId);
-    var filter = document.getElementById(config.filterId);
-    var count = document.getElementById(config.countId);
-    var results = document.getElementById(config.resultsId);
+  function setup(cfg) {
+    var search = document.getElementById(cfg.searchId), filter = document.getElementById(cfg.filterId);
+    var count = document.getElementById(cfg.countId), results = document.getElementById(cfg.resultsId);
     if (!search || !count || !results) return;
-
     function render() {
-      var term = search.value.trim().toLowerCase();
-      var selected = filter ? filter.value : "";
-      var visible = config.records.filter(function (record) {
-        var text = [record.name, record.title, record.faction, record.troopType, record.camp, record.summary, record.role, record.type, (record.tags || []).join(" ")].filter(Boolean).join(" ").toLowerCase();
-        return (!selected || record[config.filterField] === selected) && (!term || text.indexOf(term) !== -1);
+      var term = search.value.trim().toLowerCase(), selected = filter ? filter.value : "";
+      var visible = cfg.records.filter(function (r) {
+        var hay = [r.name,r.faction,r.troopType,r.camp,r.role,r.type,r.rarity,r.objective,r.summary,(r.tags||[]).join(" ")].filter(Boolean).join(" ").toLowerCase();
+        return (!selected || r[cfg.filterField] === selected) && (!term || hay.indexOf(term) !== -1);
       });
       count.textContent = visible.length + (visible.length === 1 ? " record" : " records");
       results.replaceChildren();
-      if (!visible.length) {
-        var empty = makeText("div", "card knowledge-empty", "");
-        empty.appendChild(makeText("h3", "", "No matching records"));
-        empty.appendChild(makeText("p", "", "Try a different search term or filter."));
-        results.appendChild(empty);
-        return;
-      }
-      visible.forEach(function (record) { results.appendChild(makeCard(record, config.kind)); });
+      if (!visible.length) { results.appendChild(node("p","card","No matching records. Try another search or filter.")); return; }
+      visible.forEach(function (r) { results.appendChild(makeCard(r,cfg.kind)); });
     }
-
-    search.addEventListener("input", render);
-    if (filter) filter.addEventListener("change", render);
+    search.addEventListener("input",render);
+    if (filter) filter.addEventListener("change",render);
     render();
   }
-
-  function loadDirectory(url, key, config, root) {
-    fetch(url).then(function (response) {
-      if (!response.ok) throw new Error("Database request failed");
-      return response.json();
-    }).then(function (data) {
-      if (!data || data.schemaVersion !== 1 || !Array.isArray(data[key])) throw new Error("Database format invalid");
-      config.records = data[key];
-      setupDirectory(config);
-    }).catch(function () {
-      root.replaceChildren();
-      var message = makeText("div", "card", "");
-      message.appendChild(makeText("h3", "", "Directory unavailable"));
-      message.appendChild(makeText("p", "", "Please refresh to reload the local database."));
-      root.appendChild(message);
-    });
+  function load(url,key,cfg,root) {
+    fetch(url).then(function(r){if(!r.ok)throw new Error("Database unavailable");return r.json();})
+      .then(function(data){if(!data||data.schemaVersion!==2||!Array.isArray(data[key]))throw new Error("Invalid database");cfg.records=data[key];setup(cfg);})
+      .catch(function(){root.replaceChildren(node("div","card","Directory unavailable. Please refresh to reload the local database."));});
   }
-
-  var heroRoot = document.getElementById("hero-results");
-  if (heroRoot) loadDirectory("data/heroes.json", "heroes", {
-    kind: "hero", searchId: "hero-search", filterId: "hero-faction",
-    countId: "hero-count", resultsId: "hero-results", filterField: "faction"
-  }, heroRoot);
-
-  var troopRoot = document.getElementById("troop-results");
-  if (troopRoot) loadDirectory("data/troops.json", "troops", {
-    kind: "troop", searchId: "troop-search", filterId: "troop-faction",
-    countId: "troop-count", resultsId: "troop-results", filterField: "faction"
-  }, troopRoot);
-
-  var eventRoot = document.getElementById("event-results");
-  if (eventRoot) loadDirectory("data/events.json", "events", {
-    kind: "event", searchId: "event-search", filterId: "event-type",
-    countId: "event-count", resultsId: "event-results", filterField: "type"
-  }, eventRoot);
+  var root=document.getElementById("hero-results");
+  if(root)load("data/heroes.json","heroes",{kind:"hero",searchId:"hero-search",filterId:"hero-faction",countId:"hero-count",resultsId:"hero-results",filterField:"faction"},root);
+  root=document.getElementById("troop-results");
+  if(root)load("data/troops.json","classes",{kind:"troop",searchId:"troop-search",filterId:"troop-faction",countId:"troop-count",resultsId:"troop-results",filterField:"faction"},root);
+  root=document.getElementById("event-results");
+  if(root)load("data/events.json","events",{kind:"event",searchId:"event-search",filterId:"event-type",countId:"event-count",resultsId:"event-results",filterField:"type"},root);
 })();

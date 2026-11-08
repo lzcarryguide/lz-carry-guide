@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "lastUpdated": "2026-11-08",
+  "verificationPolicy": "Class names, faction alignment, and camp association are included as reference information. Tier stats, costs, unlock levels, prerequisites, training times, promotion costs, and march capacity values are withheld pending direct in-game verification.",
+  "troops": [
+    {"id":"assaulters","name":"Assaulters","faction":"Blood Rose","camp":"Assaulter Camp","summary":"The troop line associated with Blood Rose heroes. Review hero skill descriptions for troop-type restrictions before building a march.","note":"No tier, cost, timer, or camp-level figures are published."},
+    {"id":"riders","name":"Riders","faction":"Guard of Order","camp":"Rider Camp","summary":"The troop line associated with Guard of Order heroes. Check the current camp and research screens for available progression options.","note":"No tier, cost, timer, or camp-level figures are published."},
+    {"id":"shooters","name":"Shooters","faction":"Wings of Dawn","camp":"Shooter Camp","summary":"The troop line associated with Wings of Dawn heroes. Confirm the selected hero bonuses and current troop details in-game.","note":"No tier, cost, timer, or camp-level figures are published."}
+  ]
+}

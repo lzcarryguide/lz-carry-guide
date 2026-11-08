@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "lastUpdated": "2026-11-08",
+  "scope": "Selected reference entries only; not a complete or season-universal roster.",
+  "verificationPolicy": "Faction mapping is cross-referenced in the internal source review. Individual names are community-roster references. Skill text, skill values, rarity, release season, and investment costs are intentionally not included.",
+  "heroes": [
+    {"id":"angelina","name":"Angelina","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"athena","name":"Athena","faction":"Guard of Order","troopType":"Riders","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"audrey","name":"Audrey","faction":"Blood Rose","troopType":"Assaulters","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"giselle","name":"Giselle","faction":"Blood Rose","troopType":"Assaulters","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"natalie","name":"Natalie","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"william","name":"William","faction":"Guard of Order","troopType":"Riders","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"ava","name":"Ava","faction":"Blood Rose","troopType":"Assaulters","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"christina","name":"Christina","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"elizabeth","name":"Elizabeth","faction":"Guard of Order","troopType":"Riders","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"fiona","name":"Fiona","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"isabella","name":"Isabella","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
+    {"id":"leah","name":"Leah","faction":"Guard of Order","troopType":"Riders","note":"Selected community roster entry; no skill values or rarity published."}
+  ]
+}

@@ -2,7 +2,7 @@ name: Isolated branch preview
 on:
   push:
     branches: [lz-carry-knowledge-hub]
-  workflow_dispatch:
+  pull_request:\n    branches: [main]\n  workflow_dispatch:
 permissions:
   contents: read
 jobs:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22

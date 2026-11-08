@@ -59,6 +59,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   console.log("HERO_COUNT_TEXT",await page.locator("#hero-count").textContent());
   console.log("PAGE_ERRORS",JSON.stringify(pageErrors));
   await expect(page.getByText("22 records")).toBeVisible();
+  await expect(page.getByText(/PARTIAL ROSTER — 22 indexed entries only/)).toBeVisible();
   await page.getByLabel("Search heroes").fill("angelina");
   await expect(page.getByRole("heading",{name:"Angelina"})).toBeVisible();
   await page.getByLabel("Search heroes").fill("no-such-hero");
@@ -95,7 +96,8 @@ test("public knowledge data contains no external source URLs or unverified numer
   const troopData=await (await request.get("/data/troops.json")).json();
   expect(troopData.classes).toHaveLength(3);
   expect(troopData.classes.every(c=>c.tiers.length===10)).toBeTruthy();
-  expect(troopData.classes.every(c=>c.tiers.every(t=>t.trainingCost===null && t.promotionCost===null && t.trainingTime===null))).toBeTruthy();
+  expect(troopData.classes.every(c=>c.tiers.every(t=>t.trainingCost===undefined && t.promotionCost===undefined && t.trainingTime===undefined && t.campLevel===undefined && t.attack===undefined && t.defense===undefined && t.hp===undefined && t.power===undefined && t.load===undefined))).toBeTruthy();
+  expect(troopData.tierUnlocks).toEqual([]);
   const eventData=await (await request.get("/data/events.json")).json();
   expect(eventData.events).toHaveLength(10);
 });

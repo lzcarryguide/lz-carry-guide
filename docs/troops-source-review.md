@@ -6,7 +6,7 @@ Checked: 2026-11-08
 
 - Three troop classes and faction alignment are consistently described: Assaulters / Blood Rose, Shooters / Wings of Dawn, Riders / Guard of Order.
 - The Last-Z.net camp tables (June 2026) and LastZGuide camp tables (October 2026) agree on tier 1–10 attack, defense and HP progression, camp unlocks for tiers 1–9, and the Unit Special Training route for tier 10.
-- The tables also publish Power and Load. The public dataset includes these as community-reported values; current-client confirmation is still needed.
+- The tables also publish Power and Load. These values are retained only in this internal research note. They are excluded from the public database until current-client confirmation.
 - English unit names conflict in some entries: Assaulter T5 (Dread Warrior / Ghastly Warrior), Shooter T9 (Berserk Shooter / Furious Shooter), Rider T4 (Cowboy / Pro Cowboy), Rider T5/T6 (Heavy Cavalry / Crossbow Cavalry order differs), and Rider T8 (Charge Knight / Charging Knight). Those names are left blank in the database with alternatives retained.
 - Camp level progression opens tiers 1–9. T10 is Unit Special Training, not a camp-level unlock.
 - Shooter Camp is introduced through New Home research; Rider Camp has a separate New Home unlock and an HQ gate. Exact prerequisites must be captured from the live research panel before publication.

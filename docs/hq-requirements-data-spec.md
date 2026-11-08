@@ -68,3 +68,15 @@ The sample above documents field types only; it is not a real level record and m
 7. The in-game upgrade screen is the primary reference for the account/server being checked. Community databases can corroborate but must be labeled as community sources.
 8. A planner must distinguish "unknown/not yet verified" from "not required".
 9. Do not calculate total target costs from an incomplete range. Only sum levels for which all required cost fields are verified.
+
+
+## Current schema version 4
+
+The live file now contains HQ2–HQ35 community research records. Each record separates:
+- `resources`: displayed values in millions, plus base duration and precision note.
+- `resourceSource`: attribution for the selected per-level cost table.
+- `alternateResourceSources`: other legitimate references whose values may differ.
+- `requiredBuildings`: community-reported prerequisite candidates, including levels where the source supplies them.
+- `verificationStatus`: community-candidate, not in-game verified.
+
+The planner may calculate an explicitly labelled source-based estimate when every selected level has all four resource fields. It must sum only one source's values at a time. Do not combine or average alternate references. Do not treat an absent field as zero; zero is valid only where the cited table explicitly shows a dash/zero requirement. HQ construction totals exclude prerequisite-building upgrade costs.

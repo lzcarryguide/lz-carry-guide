@@ -57,7 +57,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "10.4K",
+            "wood": "0",
+            "zent": "0",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -110,7 +116,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "15.6K",
+            "wood": "0",
+            "zent": "0",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -169,7 +181,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "23.3K",
+            "wood": "0",
+            "zent": "0",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -233,7 +251,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "46.7K",
+            "wood": "0",
+            "zent": "0",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -297,7 +321,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "140K",
+            "wood": "140K",
+            "zent": "27.4K",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -361,7 +391,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "279.9K",
+            "wood": "279.9K",
+            "zent": "54.8K",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -425,7 +461,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "447.9K",
+            "wood": "447.9K",
+            "zent": "87.8K",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -489,7 +531,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "716.7K",
+            "wood": "716.7K",
+            "zent": "140K",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -553,7 +601,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "860K",
+            "wood": "860K",
+            "zent": "168K",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -617,7 +671,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "2.15M",
+            "wood": "2.15M",
+            "zent": "421K",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -681,7 +741,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "3.7M",
+            "wood": "3.7M",
+            "zent": "716K",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -745,7 +811,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "4M",
+            "wood": "4M",
+            "zent": "788K",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -809,7 +881,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "5.6M",
+            "wood": "5.6M",
+            "zent": "1.1M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -873,7 +951,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "7.9M",
+            "wood": "7.9M",
+            "zent": "1.5M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -937,7 +1021,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "14M",
+            "wood": "14M",
+            "zent": "2.8M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1001,7 +1091,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "18.2M",
+            "wood": "18.2M",
+            "zent": "3.6M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1065,7 +1161,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "31.9M",
+            "wood": "31.9M",
+            "zent": "6.3M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1129,7 +1231,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "38.3M",
+            "wood": "38.3M",
+            "zent": "7.5M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1193,7 +1301,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "68.9M",
+            "wood": "68.9M",
+            "zent": "13.5M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1257,7 +1371,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "96.5M",
+            "wood": "96.5M",
+            "zent": "18.9M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1321,7 +1441,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "125.4M",
+            "wood": "125.4M",
+            "zent": "24.6M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1385,7 +1511,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "156.8M",
+            "wood": "156.8M",
+            "zent": "30.7M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1449,7 +1581,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "196M",
+            "wood": "196M",
+            "zent": "38.4M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1513,7 +1651,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "333.2M",
+            "wood": "333.2M",
+            "zent": "65.3M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1577,7 +1721,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "466.5M",
+            "wood": "466.5M",
+            "zent": "91.4M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1641,7 +1791,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "606.5M",
+            "wood": "606.5M",
+            "zent": "119M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1705,7 +1861,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "849M",
+            "wood": "849M",
+            "zent": "166M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1769,7 +1931,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "1.2B",
+            "wood": "1.2B",
+            "zent": "233M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1833,7 +2001,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "1.7B",
+            "wood": "1.7B",
+            "zent": "326M",
+            "steel": "0"
+          }
         }
       ]
     },
@@ -1897,7 +2071,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "1.4B",
+            "wood": "1.4B",
+            "zent": "284M",
+            "steel": "2.7M"
+          }
         }
       ]
     },
@@ -1961,7 +2141,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "1.7B",
+            "wood": "1.7B",
+            "zent": "341M",
+            "steel": "3.7M"
+          }
         }
       ]
     },
@@ -2025,7 +2211,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "2.1B",
+            "wood": "2.1B",
+            "zent": "409M",
+            "steel": "4.8M"
+          }
         }
       ]
     },
@@ -2089,7 +2281,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "2.4B",
+            "wood": "2.4B",
+            "zent": "470M",
+            "steel": "6.3M"
+          }
         }
       ]
     },
@@ -2153,7 +2351,13 @@
           "type": "community",
           "published": "2026-10-26",
           "checkedAt": "2026-11-08",
-          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers."
+          "note": "Independent published comparison; values are rounded display amounts (K/M/B), so retained as source text rather than converted to exact integers.",
+          "displayedResources": {
+            "food": "2.8B",
+            "wood": "2.8B",
+            "zent": "541M",
+            "steel": "7.56M"
+          }
         }
       ]
     }

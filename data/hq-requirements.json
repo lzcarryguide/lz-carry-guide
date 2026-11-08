@@ -1,17 +1,24 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "game": "Last Z: Survival Shooter",
   "scope": {
     "minimumHqLevel": 1,
     "maximumHqLevel": 35
   },
-  "lastUpdated": null,
-  "publicationStatus": "community-research-only",
+  "lastUpdated": "2026-11-08",
+  "publicationStatus": "community-sourced-comparison-not-official",
   "levels": [
     {
       "targetHq": 2,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 0,
+        "food": 10300,
+        "zent": 0,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "3s"
+      },
       "requiredBuildings": [],
       "source": {
         "name": "LZ Exchange — HQ upgrade costs and prerequisites",
@@ -34,12 +41,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 10370,
+            "wood": 10370,
+            "zent": 0,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 3,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 0,
+        "food": 15500,
+        "zent": 0,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "5s"
+      },
       "requiredBuildings": [],
       "source": {
         "name": "LZ Exchange — HQ upgrade costs and prerequisites",
@@ -62,12 +101,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 15600,
+            "wood": 15600,
+            "zent": 0,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 4,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 0,
+        "food": 23300,
+        "zent": 0,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "1m57s"
+      },
       "requiredBuildings": [
         {
           "name": "City Walls",
@@ -96,12 +167,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 23330,
+            "wood": 23330,
+            "zent": 0,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 5,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 0,
+        "food": 46600,
+        "zent": 0,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "13m20s"
+      },
       "requiredBuildings": [
         {
           "name": "Radar",
@@ -135,12 +238,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 46660,
+            "wood": 46660,
+            "zent": 0,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 6,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 139900,
+        "food": 139900,
+        "zent": 27400,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "19m43s"
+      },
       "requiredBuildings": [
         {
           "name": "Alliance Center",
@@ -174,12 +309,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 139970,
+            "wood": 139970,
+            "zent": 27400,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 7,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 279900,
+        "food": 279900,
+        "zent": 54800,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "40m38s"
+      },
       "requiredBuildings": [
         {
           "name": "Alliance Center",
@@ -213,12 +380,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 279940,
+            "wood": 279940,
+            "zent": 54800,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 8,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 447900,
+        "food": 447900,
+        "zent": 87800,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "1h15m53s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -252,12 +451,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 447900,
+            "wood": 447900,
+            "zent": 87800,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 9,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 716600,
+        "food": 716600,
+        "zent": 140000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "1h50m14s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -291,12 +522,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 716700,
+            "wood": 716700,
+            "zent": 140000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 10,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 859900,
+        "food": 859900,
+        "zent": 168000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "2h45m22s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -330,12 +593,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 860000,
+            "wood": 860000,
+            "zent": 168000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 11,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 2100000,
+        "food": 2100000,
+        "zent": 421000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "3h53m03s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -369,12 +664,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 2150000,
+            "wood": 2150000,
+            "zent": 421000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 12,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 3600000,
+        "food": 3600000,
+        "zent": 716000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "5h00m53s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -408,12 +735,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 3655000,
+            "wood": 3655000,
+            "zent": 716000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 13,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 4000000,
+        "food": 4000000,
+        "zent": 788000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "8h01m47s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -447,12 +806,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 4020000,
+            "wood": 4020000,
+            "zent": 788000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 14,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 5600000,
+        "food": 5600000,
+        "zent": 1100000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "12h51m13s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -486,12 +877,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 5629000,
+            "wood": 5629000,
+            "zent": 1100000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 15,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 7800000,
+        "food": 7800000,
+        "zent": 1500000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "18h16m50s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -525,12 +948,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 7880000,
+            "wood": 7880000,
+            "zent": 1500000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 16,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 14000000,
+        "food": 14000000,
+        "zent": 2700000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "1d03h25m15s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -564,12 +1019,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 14000000,
+            "wood": 14000000,
+            "zent": 2800000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 17,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 18200000,
+        "food": 18200000,
+        "zent": 3500000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "1d15h37m52s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -603,12 +1090,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 18200000,
+            "wood": 18200000,
+            "zent": 3600000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 18,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 31900000,
+        "food": 31900000,
+        "zent": 6200000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "2d"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -642,12 +1161,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 31900000,
+            "wood": 31900000,
+            "zent": 6300000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 19,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 38200000,
+        "food": 38200000,
+        "zent": 7500000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "3d07h55m33s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -681,12 +1232,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 38300000,
+            "wood": 38300000,
+            "zent": 7500000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 20,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 68900000,
+        "food": 68900000,
+        "zent": 13500000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "5d09h55m39s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -720,12 +1303,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 68900000,
+            "wood": 68900000,
+            "zent": 13500000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 21,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 96400000,
+        "food": 96400000,
+        "zent": 18900000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "3d01h23m29s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -759,12 +1374,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 96500000,
+            "wood": 96500000,
+            "zent": 18900000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 22,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 125400000,
+        "food": 125400000,
+        "zent": 24600000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "12d"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -798,12 +1445,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 125400000,
+            "wood": 125400000,
+            "zent": 24600000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 23,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 156800000,
+        "food": 156800000,
+        "zent": 30700000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "18d"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -837,12 +1516,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 156800000,
+            "wood": 156800000,
+            "zent": 30700000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 24,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 196000000,
+        "food": 196000000,
+        "zent": 38400000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "25d03h44m00s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -876,12 +1587,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 196000000,
+            "wood": 196000000,
+            "zent": 38400000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 25,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 333200000,
+        "food": 333200000,
+        "zent": 65300000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "35d03h37m36s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -915,12 +1658,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 333200000,
+            "wood": 333200000,
+            "zent": 65300000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 26,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 466500000,
+        "food": 466500000,
+        "zent": 91400000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "49d03h28m39s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -954,12 +1729,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 466500000,
+            "wood": 466500000,
+            "zent": 91400000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 27,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 606400000,
+        "food": 606400000,
+        "zent": 119000000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "63d20h07m14s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -993,12 +1800,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 606500000,
+            "wood": 606500000,
+            "zent": 119000000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 28,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 806500000,
+        "food": 806500000,
+        "zent": 157700000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "82d22h33m25s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -1032,12 +1871,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 849000000,
+            "wood": 849000000,
+            "zent": 166000000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 29,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 1100000000,
+        "food": 1100000000,
+        "zent": 221300000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "107d18h31m27s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -1071,12 +1942,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 1200000000,
+            "wood": 1200000000,
+            "zent": 233000000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 30,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 1400000000,
+        "food": 1400000000,
+        "zent": 277100000,
+        "steel": 0,
+        "unit": "resources",
+        "duration": "140d01h16m53s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -1110,12 +2013,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 1700000000,
+            "wood": 1700000000,
+            "zent": 326000000,
+            "steel": 0
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 31,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 1200000000,
+        "food": 1200000000,
+        "zent": 241400000,
+        "steel": 2200000,
+        "unit": "resources",
+        "duration": "136d22h58m16s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -1149,12 +2084,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 1400000000,
+            "wood": 1400000000,
+            "zent": 284000000,
+            "steel": 2700000
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 32,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 1400000000,
+        "food": 1400000000,
+        "zent": 289800000,
+        "steel": 3100000,
+        "unit": "resources",
+        "duration": "164d08h21m55s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -1188,12 +2155,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 1700000000,
+            "wood": 1700000000,
+            "zent": 341000000,
+            "steel": 3700000
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 33,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 1700000000,
+        "food": 1700000000,
+        "zent": 347600000,
+        "steel": 4100000,
+        "unit": "resources",
+        "duration": "197d05h14m19s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -1227,12 +2226,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 2100000000,
+            "wood": 2100000000,
+            "zent": 409000000,
+            "steel": 4800000
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 34,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 2000000000,
+        "food": 2000000000,
+        "zent": 399500000,
+        "steel": 5300000,
+        "unit": "resources",
+        "duration": "226d19h13m28s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -1266,12 +2297,44 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 2400000000,
+            "wood": 2400000000,
+            "zent": 470000000,
+            "steel": 6300000
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     },
     {
       "targetHq": 35,
       "verificationStatus": "community-candidate",
-      "resources": null,
+      "resources": {
+        "wood": 2300000000,
+        "food": 2300000000,
+        "zent": 459800000,
+        "steel": 6400000,
+        "unit": "resources",
+        "duration": "260d19h42m29s"
+      },
       "requiredBuildings": [
         {
           "name": "Laboratory",
@@ -1305,7 +2368,32 @@
           "checkedAt": "2026-11-08"
         }
       ],
-      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist."
+      "notes": "Community cross-check only. Prerequisite building levels and costs require in-game confirmation for the player's server and version. Do not use as a verified upgrade checklist.",
+      "resourceSource": {
+        "name": "Last Z Guides — HQ Construction Cost Table",
+        "url": "https://lastzguides.com/hq-construction-cost.html",
+        "type": "community",
+        "checkedAt": "2026-11-08",
+        "published": "2026-01-26",
+        "units": "exact integer values transcribed from M columns"
+      },
+      "resourceVerificationStatus": "community-published",
+      "alternateResourceSources": [
+        {
+          "name": "Last Z Exchange — HQ upgrade costs, level by level",
+          "url": "https://lzexchange.net/guides/hq-upgrade-costs",
+          "type": "community",
+          "checkedAt": "2026-11-08",
+          "published": "2026-10-26",
+          "resources": {
+            "food": 2800000000,
+            "wood": 2800000000,
+            "zent": 541000000,
+            "steel": 7560000
+          },
+          "units": "exact integer values transcribed from displayed K/M/B amounts; some rounded"
+        }
+      ]
     }
   ]
 }

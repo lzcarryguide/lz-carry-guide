@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Beginner-friendly Last Z guides for account setup, HQ growth, daily tasks, and resources.">
-  <title>Beginner's Guide | Last Z Pilot</title>
+  <title>Beginner's Guide | LZ Carry</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header><div class="wrap nav">
-  <a class="brand" href="index.html">LAST Z <span>PILOT</span></a>
+  <a class="brand" href="index.html">LAST Z <span>CARRY</span></a>
   <nav aria-label="Main navigation">
     <a href="index.html">Home</a>
     <a href="guides.html">All Guides</a>
@@ -17,30 +17,44 @@
     <a href="research.html">Research</a>
     <a href="heroes.html">Heroes & Troops</a>
     <a href="events.html">Events</a>
-    <a href="pilot.html">Book a Pilot</a>
+    <a href="pilot.html">LZ Carry Service</a>
   </nav>
 </div></header>
 <main>
 
-<section class="hero"><div class="wrap"><p class="eyebrow">Category 01</p><h1>Beginner's Guide</h1><p class="lead">Learn the basics, build a steady routine, and avoid wasting resources on upgrades that don't fit your goals.</p><a class="btn" href="pilot.html">Book Last Z Pilot</a></div></section>
+<section class="hero"><div class="wrap"><p class="eyebrow">Category 01</p><h1>Beginner's Guide</h1><p class="lead">Learn the basics, build a steady routine, and avoid wasting resources on upgrades that don't fit your goals.</p><a class="btn" href="pilot.html">LZ Carry Service</a></div></section>
 <section><div class="wrap"><div class="grid">
 <article class="card">
-<h3>Getting Started</h3><p>Add your introduction video and explain the first priorities for a new account.</p><div class="video-placeholder"><p>VIDEO SLOT<br><span class="small">Add your YouTube video here when ready.</span></p></div>
-<p class="small muted">To add a video: open your YouTube video → Share → Embed, then replace this placeholder with YouTube's iframe embed code.</p>
+<h3>Getting Started</h3><p>Account setup, core game systems, first priorities, and a practical early-game routine.</p>
 </article>
 <article class="card">
-<h3>HQ Progression Basics</h3><p>Add your HQ upgrade checklist, prerequisites, and resource-planning video.</p><div class="video-placeholder"><p>VIDEO SLOT<br><span class="small">Add your YouTube video here when ready.</span></p></div>
-<p class="small muted">To add a video: open your YouTube video → Share → Embed, then replace this placeholder with YouTube's iframe embed code.</p>
+<h3>HQ Progression Basics</h3><p>HQ level progression, prerequisite buildings, upgrade costs, and a target-level planning checklist. LZ Carry’s planning tool presents researched figures with clear uncertainty notes; always confirm live costs in your own game.</p>
 </article>
 <article class="card">
-<h3>Daily Tasks & Resource Routine</h3><p>Explain your recommended daily routine and what to prioritize when time is limited.</p><div class="video-placeholder"><p>VIDEO SLOT<br><span class="small">Add your YouTube video here when ready.</span></p></div>
-<p class="small muted">To add a video: open your YouTube video → Share → Embed, then replace this placeholder with YouTube's iframe embed code.</p>
+<h3>Daily Tasks & Resource Routine</h3><p>Daily and weekly task priorities, resource collection, stamina use, and time-efficient account maintenance.</p>
 </article>
-</div><p class="notice">These are starter topic slots, not published tutorials yet. Replace the descriptions and add your own videos before promoting the page.</p></div></section>
+</div><p class="notice">These sections introduce planned topics; they are not yet complete step-by-step guides. The HQ planner is an original LZ Carry tool informed by internally recorded research references. Values can differ by source, server, version, or account discounts; the live in-game upgrade panel remains the final check.</p></div></section>
 
+<section id="hq-planner-section">
+<div class="wrap">
+  <p class="eyebrow">Interactive tool · HQ1–35</p>
+  <h2>Headquarters Progression Planner</h2>
+  <p class="lead">Choose your current HQ and goal. Compare source-attributed costs and prerequisites, view estimated totals from one selected table, and track your checklist locally.</p>
+  <div class="notice hq-data-notice"><strong>Accuracy notice:</strong> The costs and prerequisites below are published community research, not official universal values. Research references and alternate figures are retained in LZ Carry’s internal records; differences are preserved, not averaged. Differences are preserved, not averaged. Totals use only the selected Last Z Guides table and exclude prerequisite-building upgrade costs. Confirm your live upgrade panel for account-specific costs.</div>
+  <div class="card hq-controls">
+    <label for="hq-current">Current HQ level<select id="hq-current"></select></label>
+    <label for="hq-target">Target HQ level<select id="hq-target"></select></label>
+    <div class="hq-progress-summary"><strong>Checklist progress</strong><span id="hq-progress" aria-live="polite">Loading HQ data…</span></div>
+  </div>
+  <div id="hq-totals" class="card hq-totals" aria-live="polite"><h3>Resource totals</h3><p>Loading…</p></div>
+  <div id="hq-steps" class="hq-steps" aria-live="polite"><div class="card"><p>Loading HQ requirements…</p></div></div>
+  <p class="small muted">Progress is saved in this browser only. Clearing site data or changing browsers/devices may remove it. Source notes and verification history are maintained in LZ Carry’s internal research records.</p>
+</div>
+</section>
+<script src="assets/js/hq-planner.js" defer></script>
 </main>
 <footer><div class="wrap">
-  <strong>LAST Z PILOT</strong>
+  <strong>LZ CARRY</strong>
   <p>Independent community guide and gaming assistance service. Not affiliated with or endorsed by the game's publisher.</p>
   <p class="small">Always follow the game's rules and protect your account. Never publish passwords, verification codes, or recovery information.</p>
 </div></footer>

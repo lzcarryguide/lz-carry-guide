@@ -4,7 +4,7 @@ const path = require("node:path");
 const artifacts = path.join(process.cwd(), "artifacts");
 fs.mkdirSync(artifacts, { recursive: true });
 
-test("HQ planner shows candidate prerequisites and withholds unverified costs", async ({ page }) => {
+test("HQ planner displays sourced costs, prerequisites and saves progress", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/beginner.html#hq-planner-section");
   await expect(page.getByRole("heading", { name: "Headquarters Progression Planner" })).toBeVisible();
@@ -20,7 +20,7 @@ test("HQ planner shows candidate prerequisites and withholds unverified costs", 
   await expect(page.getByText("Community-reported").first()).toBeVisible();
   await expect(page.locator("#hq-totals")).toContainText("Estimated published-source totals");
   await page.locator("#hq-target").selectOption("6");
-  await expect(page.getByRole("heading", { name: "HQ 6" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "HQ 6", exact: true })).toBeVisible();
   await expect(page.getByText("Military Center", { exact: true })).toBeVisible();
   await expect(page.getByText("Required level: 5")).toBeVisible();
   const firstCheck = page.locator('.hq-check input[type="checkbox"]').first();

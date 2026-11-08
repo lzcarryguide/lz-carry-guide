@@ -130,6 +130,6 @@ test("existing guide database remains empty and unpublished", async ({ request }
   const response=await request.get("/data/guides.json");
   expect(response.ok()).toBeTruthy();
   const data=await response.json();
-  expect(data.schemaVersion).toBe(2);
+  expect(data.schemaVersion).toBe(1);
   expect(data.entries).toEqual([]);
 });

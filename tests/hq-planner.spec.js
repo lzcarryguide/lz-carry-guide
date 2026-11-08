@@ -11,7 +11,7 @@ test("HQ planner displays sourced costs, prerequisites and saves progress", asyn
   await expect(page.getByText("HQ upgrade resources").first()).toBeVisible();
   await expect(page.locator("#hq-totals")).toContainText("Estimated published-source totals");
   await page.screenshot({ path: path.join(artifacts, "hq-planner-desktop.png"), fullPage: true });
-  await expect(page.getByText(/published community research/i)).toBeVisible();
+  await expect(page.getByText(/research references and comparison notes are retained internally/i).first()).toBeVisible();
   await expect(page.locator("#hq-current")).toHaveValue("1");
   await expect(page.locator("#hq-target")).toHaveValue("10");
   await expect(page.getByRole("heading", { name: "HQ 4" })).toBeVisible();

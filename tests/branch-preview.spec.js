@@ -77,6 +77,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByLabel("Search events").fill("canyon");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toBeVisible();
   await page.getByLabel("Event type").selectOption("Rewards");
+  await page.getByLabel("Search events").fill("");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toHaveCount(0);
   await expect(page.getByRole("heading",{name:"Shooting Loot"})).toBeVisible();
   await page.getByLabel("Search events").fill("");

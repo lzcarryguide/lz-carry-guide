@@ -14,6 +14,14 @@ test("all primary navigation destinations resolve", async ({ page, request }) =>
     const response = await request.get("/" + href);
     expect(response.status(), href).toBe(200);
   }
+  for (const target of pages) {
+    await page.goto("/" + target);
+    const localLinks = await page.locator("a[href]").evaluateAll(as => as.map(a => a.getAttribute("href")).filter(h => h && !h.startsWith("#") && !/^(https?:|mailto:|tel:|javascript:)/i.test(h)).map(h => h.split("#")[0] || target));
+    for (const href of localLinks) {
+      const response = await request.get("/" + href);
+      expect(response.status(), target + " -> " + href).toBe(200);
+    }
+  }
 });
 
 test("homepage and separate video library render", async ({ page }) => {
@@ -21,6 +29,9 @@ test("homepage and separate video library render", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /your ultimate/i })).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "homepage-desktop.png"), fullPage: true });
+  await page.goto("/guides.html");
+  await expect(page.getByRole("heading", { name: "All Guides" })).toBeVisible();
+  await page.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
   await page.goto("/videos.html");
   await expect(page.getByRole("heading", { name: "Video Library" })).toBeVisible();
   await expect(page.getByText(/No videos published yet/)).toBeVisible();

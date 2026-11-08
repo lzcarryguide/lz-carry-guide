@@ -64,9 +64,9 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByLabel("Search heroes").fill("no-such-hero");
   await expect(page.getByText("No matching records")).toBeVisible();
   await page.getByLabel("Search heroes").fill("");
-  await page.getByLabel("Faction").selectOption("Blood Rose");
+  await page.locator("#hero-faction").selectOption("Blood Rose");
   await expect(page.getByText("0 records")).toBeVisible();
-  await page.getByLabel("Faction").selectOption("");
+  await page.locator("#hero-faction").selectOption("");
   await page.getByLabel("Search troop classes").fill("rider");
   await expect(page.getByRole("heading",{name:"Riders"})).toBeVisible();
   await page.getByLabel("Search troop classes").fill("");

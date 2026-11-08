@@ -11,7 +11,6 @@
   const fmt=n=>new Intl.NumberFormat("en-US",{maximumFractionDigits:3}).format(n);
   const money=(n)=>n===0?"0":fmt(n)+"M";
   const keyFor=(target,i)=>target+":"+i;
-  const sourceLink=s=>'<span>'+esc(s.name)+'</span>';
   const setOptions=()=>{
     currentSelect.innerHTML=Array.from({length:35},(_,i)=>'<option value="'+(i+1)+'">HQ '+(i+1)+'</option>').join("");
     targetSelect.innerHTML=currentSelect.innerHTML; currentSelect.value="1"; targetSelect.value="10";
@@ -32,8 +31,6 @@
       const costHtml=hasCosts?'<dl class="hq-cost-list"><div><dt>Food</dt><dd>'+money(x.foodMillions)+'</dd></div><div><dt>Wood</dt><dd>'+money(x.woodMillions)+'</dd></div><div><dt>Zent</dt><dd>'+money(x.zentMillions)+'</dd></div><div><dt>Steel</dt><dd>'+money(x.steelMillions)+'</dd></div></dl><p class="small muted">Base HQ construction cost. Source precision: '+esc(x.sourcePrecision||"as published")+'</p><p class="small muted">Base build time: <strong>'+esc(x.duration||"Not listed")+'</strong></p>':'<p class="hq-unknown">Cost not listed in the selected source.</p>';
       const alt=(r.alternateResourceSources||[]).find(s=>s.displayedResources);
       const comparison=alt?'<section class="hq-source-comparison"><h4>Alternate published figures</h4><p class="small muted">'+esc(alt.name)+'</p><dl class="hq-cost-list"><div><dt>Food</dt><dd>'+esc(alt.displayedResources.food)+'</dd></div><div><dt>Wood</dt><dd>'+esc(alt.displayedResources.wood)+'</dd></div><div><dt>Zent</dt><dd>'+esc(alt.displayedResources.zent)+'</dd></div><div><dt>Steel</dt><dd>'+esc(alt.displayedResources.steel)+'</dd></div></dl><p class="small muted">Shown as published (K/M/B); do not combine with the selected source total.</p></section>':'';
-      const sources=[r.resourceSource,r.source,...(r.corroboratingSources||[]),...(r.alternateResourceSources||[])].filter(Boolean);
-      const unique=[...new Map(sources.map(s=>[s.url,s])).values()];
       return '<article class="card hq-step"><div class="hq-step-head"><div><p class="eyebrow">Upgrade step</p><h3>HQ '+r.targetHq+'</h3></div><span class="pill">Community sourced</span></div><div class="hq-step-grid"><section><h4>Prerequisite buildings</h4>'+buildingHtml+'</section><section><h4>HQ upgrade resources</h4>'+costHtml+comparison+'</section></div><p class="small muted">Sources: '+unique.map(sourceLink).join(" · ")+'</p><p class="small muted">'+esc(r.notes||"Community reference; compare values and confirm account-specific costs in game.")+'</p></article>';
     }).join("");
     stepsNode.innerHTML=cards||'<div class="card"><h3>Choose a higher target HQ</h3><p>Select a target above your current level to see its upgrade steps.</p></div>';

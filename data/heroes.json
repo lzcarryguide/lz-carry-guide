@@ -1,20 +1,92 @@
 {
   "schemaVersion": 1,
   "lastUpdated": "2026-11-08",
-  "scope": "Selected reference entries only; not a complete or season-universal roster.",
-  "verificationPolicy": "Faction mapping is cross-referenced in the internal source review. Individual names are community-roster references. Skill text, skill values, rarity, release season, and investment costs are intentionally not included.",
+  "scope": "Selected name references only; faction assignments are intentionally withheld until reconciled against current in-game hero profiles.",
+  "verificationPolicy": "Names are a non-exhaustive community roster reference. No hero-specific faction, troop type, skill text, skill values, rarity, season, or investment costs are published.",
   "heroes": [
-    {"id":"angelina","name":"Angelina","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"athena","name":"Athena","faction":"Guard of Order","troopType":"Riders","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"audrey","name":"Audrey","faction":"Blood Rose","troopType":"Assaulters","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"giselle","name":"Giselle","faction":"Blood Rose","troopType":"Assaulters","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"natalie","name":"Natalie","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"william","name":"William","faction":"Guard of Order","troopType":"Riders","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"ava","name":"Ava","faction":"Blood Rose","troopType":"Assaulters","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"christina","name":"Christina","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"elizabeth","name":"Elizabeth","faction":"Guard of Order","troopType":"Riders","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"fiona","name":"Fiona","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"isabella","name":"Isabella","faction":"Wings of Dawn","troopType":"Shooters","note":"Selected community roster entry; no skill values or rarity published."},
-    {"id":"leah","name":"Leah","faction":"Guard of Order","troopType":"Riders","note":"Selected community roster entry; no skill values or rarity published."}
+    {
+      "id": "angelina",
+      "name": "Angelina",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "athena",
+      "name": "Athena",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "audrey",
+      "name": "Audrey",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "giselle",
+      "name": "Giselle",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "natalie",
+      "name": "Natalie",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "william",
+      "name": "William",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "ava",
+      "name": "Ava",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "christina",
+      "name": "Christina",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "elizabeth",
+      "name": "Elizabeth",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "fiona",
+      "name": "Fiona",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "isabella",
+      "name": "Isabella",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    },
+    {
+      "id": "leah",
+      "name": "Leah",
+      "faction": null,
+      "troopType": null,
+      "note": "Selected community roster name; hero-specific details require current in-game verification."
+    }
   ]
 }

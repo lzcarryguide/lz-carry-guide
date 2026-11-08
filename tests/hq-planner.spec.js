@@ -1,0 +1,31 @@
+const { test, expect } = require("@playwright/test");
+
+test("HQ planner shows candidate prerequisites and withholds unverified costs", async ({ page }) => {
+  await page.goto("/beginner.html#hq-planner-section");
+  await expect(page.getByRole("heading", { name: "Headquarters Progression Planner" })).toBeVisible();
+  await expect(page.getByText(/community research candidates/i)).toBeVisible();
+  await expect(page.locator("#hq-current")).toHaveValue("1");
+  await expect(page.locator("#hq-target")).toHaveValue("10");
+  await expect(page.getByRole("heading", { name: "HQ 4" })).toBeVisible();
+  await expect(page.getByText("City Walls", { exact: true })).toBeVisible();
+  await expect(page.getByText("Required level: 3")).toBeVisible();
+  await expect(page.getByText("Not verified for your server/version").first()).toBeVisible();
+  await expect(page.locator("#hq-totals")).toContainText("Unavailable — costs are not verified");
+  await page.locator("#hq-target").selectOption("6");
+  await expect(page.getByRole("heading", { name: "HQ 6" })).toBeVisible();
+  await expect(page.getByText("Military Center", { exact: true })).toBeVisible();
+  await expect(page.getByText("Required level: 5")).toBeVisible();
+  const firstCheck = page.locator('.hq-check input[type="checkbox"]').first();
+  await firstCheck.check();
+  await expect(page.locator("#hq-progress")).toContainText("1 of");
+  await page.reload();
+  await expect(page.locator('.hq-check input[type="checkbox"]').first()).toBeChecked();
+});
+
+test("HQ planner restricts target to above current level", async ({ page }) => {
+  await page.goto("/beginner.html#hq-planner-section");
+  await page.locator("#hq-current").selectOption("20");
+  await expect(page.locator("#hq-target")).toHaveValue("21");
+  const disabled = await page.locator("#hq-target option:disabled").count();
+  expect(disabled).toBe(20);
+});

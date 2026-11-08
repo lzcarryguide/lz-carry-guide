@@ -58,13 +58,13 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.waitForTimeout(250);
   console.log("HERO_COUNT_TEXT",await page.locator("#hero-count").textContent());
   console.log("PAGE_ERRORS",JSON.stringify(pageErrors));
-  await expect(page.getByText("12 records")).toBeVisible();
+  await expect(page.getByText("22 records")).toBeVisible();
   await page.getByLabel("Search heroes").fill("angelina");
   await expect(page.getByRole("heading",{name:"Angelina"})).toBeVisible();
   await page.getByLabel("Search heroes").fill("no-such-hero");
   await expect(page.getByText("No matching records")).toBeVisible();
   await page.getByLabel("Search heroes").fill("");
-  await expect(page.getByText(/Faction and troop-type tags will appear/)).toBeVisible();
+  await expect(page.getByText(/Profiles marked for verification/)).toBeVisible();
   await page.getByLabel("Search troop classes").fill("rider");
   await expect(page.getByRole("heading",{name:"Riders"})).toBeVisible();
   await page.getByLabel("Search troop classes").fill("");
@@ -88,12 +88,14 @@ test("public knowledge data contains no external source URLs or unverified numer
     const response=await request.get("/data/"+file+".json");
     expect(response.ok()).toBeTruthy();
     const data=await response.json();
-    expect(data.schemaVersion).toBe(1);
+    expect(data.schemaVersion).toBe(2);
     expect(Array.isArray(data[key])).toBeTruthy();
     expect(JSON.stringify(data)).not.toMatch(/https?:\/\//i);
   }
   const troopData=await (await request.get("/data/troops.json")).json();
-  expect(troopData.troops).toHaveLength(3);
+  expect(troopData.classes).toHaveLength(3);
+  expect(troopData.classes.every(c=>c.tiers.length===10)).toBeTruthy();
+  expect(troopData.classes.every(c=>c.tiers.every(t=>t.trainingCost===null && t.promotionCost===null && t.trainingTime===null))).toBeTruthy();
   const eventData=await (await request.get("/data/events.json")).json();
   expect(eventData.events).toHaveLength(10);
 });
@@ -128,6 +130,6 @@ test("existing guide database remains empty and unpublished", async ({ request }
   const response=await request.get("/data/guides.json");
   expect(response.ok()).toBeTruthy();
   const data=await response.json();
-  expect(data.schemaVersion).toBe(1);
+  expect(data.schemaVersion).toBe(2);
   expect(data.entries).toEqual([]);
 });

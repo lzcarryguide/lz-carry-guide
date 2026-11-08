@@ -43,3 +43,36 @@ This is a source-quality review, not an approved requirements dataset. The publi
 - Transparency: visible data scope, last-verified date, source links, and a warning if the chosen range includes an unverified level.
 
 **Current status:** `data/hq-requirements.json` intentionally has an empty `levels` array. No HQ cost or prerequisite is currently published by the new LZ Carry planner.
+
+
+## November 8, 2026 follow-up review
+
+A newer community article was found: [LZ Exchange — HQ upgrade costs](https://lzexchange.net/guides/hq-upgrade-costs), published October 26, 2026. It provides a full level-by-level resource table, base construction times, and explicit prerequisite building levels for HQ2–HQ35. It also explains that some other published costs reflect a base with cost reductions. Its HQ35 base cost is listed as approximately 2.8B Food, 2.8B Wood, 541M Zent and 7.6M Steel.
+
+This does not resolve the discrepancies. For example:
+- The Last Z Guide page lists HQ35 at 2.3G Wood, 2.3G Food, 459.8M Zent and 6.4M Steel.
+- Last-Z.net lists HQ35 at 2.93G Wood, 2.93G Food, 573M Zent and 9.08M Steel.
+- LZ Exchange lists higher base figures than both.
+
+These figures may reflect cost reductions, server/season differences, or data methodology. Without a controlled in-game observation, the planner must not treat any one value as universal.
+
+### What is now in the planner dataset
+
+The data file contains **community research candidates only** for HQ2–HQ35:
+- Building names and levels transcribed from LZ Exchange's published prerequisite table.
+- The source article and two independent community cross-check links.
+- No resource cost values.
+- Each record is explicitly tagged `community-candidate`; each building is tagged `community-reported`.
+
+The planner displays these candidate prerequisites with a visible warning, allows local checklist tracking, and withholds resource totals. This is an intermediate research view, not a verified requirements database.
+
+### In-game verification needed
+
+To promote a target level to verified:
+1. Capture the upgrade panel on the actual server/account.
+2. Record exact resource quantities, required building names and levels, and displayed base duration.
+3. Record game version, server/season and any discounts or buffs affecting the displayed cost.
+4. Compare against the community candidate and investigate any mismatch.
+5. Keep the row unpublished until the discrepancy is explained or independently reproduced.
+
+The source pages above are community references, not official publisher documentation.

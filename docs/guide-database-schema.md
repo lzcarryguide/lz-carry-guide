@@ -1,6 +1,6 @@
 # Guide database format
 
-The public guide directory reads `data/guides.json`. Keep content data separate from page markup.
+The public guide directory reads `data/guides.json`. Keep original LZ Carry writing and content data separate from page markup. External sites may inform fact-checking, but their prose, layouts, graphics, and guide structures must not be copied or closely reproduced.
 
 ## Top-level fields
 
@@ -36,14 +36,16 @@ The public guide directory reads `data/guides.json`. Keep content data separate 
 }
 ```
 
-## Publication rules
+## Research and publication rules
 
 1. The directory renders only `status: published` records.
-2. A published guide must have a stable URL and at least one usable source record.
-3. Distinguish official game information from community observations.
-4. Record game version, server, or season scope where relevant. Use `null` when unknown; never imply universal coverage.
-5. Never fill missing requirements, costs, prerequisites, or rewards with estimates.
-6. Re-check time-sensitive information and update `verifiedAt`; remove publication status if it cannot be re-verified.
-7. Use ISO dates (`YYYY-MM-DD`) and descriptive units in the guide itself.
+2. Write public explanations, tables, examples, and tools in LZ Carry’s own voice and format. Do not place external guide-site links in visitor-facing guide content.
+3. Keep source URLs, research notes, comparisons, and verification history in repository research records; show source names/status only when useful to explain confidence.
+4. A published guide must have a stable URL and at least one usable source record.
+5. Distinguish official game information from community observations.
+6. Record game version, server, or season scope where relevant. Use `null` when unknown; never imply universal coverage.
+7. Never fill missing requirements, costs, prerequisites, or rewards with estimates.
+8. Re-check time-sensitive information and update `verifiedAt`; remove publication status if it cannot be re-verified.
+9. Use ISO dates (`YYYY-MM-DD`) and descriptive units in the guide itself.
 
 The starter database intentionally contains no guide records. Existing topic cards are navigation/planning prompts, not verified reference data.

@@ -95,7 +95,7 @@ Prerequisite building names and levels are retained as community-reported candid
 - HQ12 Food/Wood: Last Z Guides lists 3.6M; Last Z Exchange lists about 3.7M; Last-Z.net lists 4.02M.
 - HQ31 Steel: Last Z Guides lists 2.2M; Last Z Exchange lists about 2.7M.
 - HQ35 Steel: Last Z Guides lists 6.4M; Last Z Exchange lists about 7.6M.
-- HQ35 Food/Wood: Last Z Guides lists 2.3B; Last Z Exchange lists about 2.8B; Last-Z.net's table should be retained as a third comparison where its exact row is transcribed.
+- HQ35 Food/Wood: Last Z Guides lists 2.3B; LZ Exchange lists about 2.8B. Last-Z.net's row labelled 35 lists 2.93B, but its level labels appear offset from the target-HQ labels used by the other tables (for example, its row 1 cost resembles the HQ2 upgrade). Its row 34 lists 2.76B and 7.56M Steel. Until its row semantics are confirmed, these figures are preserved as source-level observations and are not mapped to a target HQ in planner totals.
 
 These differences are recorded as source differences, not evidence that any reference is false. They may reflect cost reductions, server/version, rounding, or different base assumptions. Do not silently merge values from different sources.
 
@@ -110,3 +110,8 @@ These differences are recorded as source differences, not evidence that any refe
 ### Corrections to earlier notes
 
 The dataset is no longer empty. It now contains community-sourced cost rows for HQ2–HQ35 and community-reported prerequisite candidates. It is not yet an in-game verified dataset.
+
+
+### Last-Z.net row-index caveat
+
+The [Last-Z.net HQ table](https://last-z.net/tables/hq-upgrade-requirements/) is retained as a legitimate independent reference. Its early cost labels appear shifted relative to the "HQ level reached" labels in Last Z Guides and LZ Exchange: Last-Z.net row 1 lists 10.4K Food, close to the HQ2 upgrade in the other table, while row 4 lists 46.7K Food, close to the HQ5 upgrade. Its building column at row 4 says City Walls, which matches the HQ4 prerequisite in LZ Exchange. This mixed alignment means we must not silently map its row numbers to target HQ levels. For example, Last-Z.net row 35 lists 2.93B Food/Wood, 573M Zent and 9.08M Steel, but that is a source row labelled 35—not a confirmed target-HQ35 value. Keep the original label and source intact until the indexing convention is clarified.

@@ -3,32 +3,6 @@
   "lastUpdated": "2026-11-08",
   "rosterStatus": "Community-indexed roster; not yet certified as complete for every current server/season. Source counts conflict (31, 36, and 30).",
   "verificationPolicy": "Faction, troop type, rarity, role and season below are secondary-source index fields. Season 4 faction/type and all skill text, per-star values, acquisition and exclusive-equipment effects require current in-game confirmation. Do not treat null as none.",
-  "sources": [
-    {
-      "id": "sin-hero-database",
-      "url": "https://www.lastz.guide/heroes/hero-database/",
-      "checked": "2026-11-08",
-      "supports": "36 roster entries with faction, troop type, rarity, role and season; some Season 4 entries explicitly marked Verify."
-    },
-    {
-      "id": "lastzdata-hero-database",
-      "url": "https://www.lastzdata.com/basics/heroes",
-      "checked": "2026-11-08",
-      "supports": "Independent partial hero database; cross-checks selected names and faction/role categories."
-    },
-    {
-      "id": "sin-hero-skills",
-      "url": "https://www.lastz.guide/heroes/skills/",
-      "checked": "2026-11-08",
-      "supports": "Skill framework and selected hero signature/exclusive-skill summaries; exact values may be stale."
-    },
-    {
-      "id": "lastzwiki-hero-roster",
-      "url": "https://lastzwiki.com/en/heroes.html",
-      "checked": "2026-11-08",
-      "supports": "Alternative roster list; differs in count and spelling."
-    }
-  ],
   "developmentGuidance": [
     "Choose heroes for the role, faction synergy, troop type and formation position rather than power score alone.",
     "Concentrate scarce fragments, EXP, skill books and equipment on heroes actually deployed in the primary formation.",

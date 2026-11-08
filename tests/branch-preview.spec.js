@@ -51,7 +51,7 @@ test("mobile layouts fit viewport without page-level horizontal overflow", async
 test("heroes, troops and events databases load and search", async ({ page }) => {
   await page.setViewportSize({width:1440,height:1000});
   const pageErrors=[];
-  page.on("pageerror",error=>pageErrors.push(error.message));
+  page.on("pageerror",error=>pageErrors.push(error.stack || error.message));
   page.on("console",message=>{if(message.type()==="error") console.log("BROWSER_CONSOLE_ERROR",message.text());});
   await page.goto("/heroes.html");
   await expect(page.getByRole("heading",{name:"Heroes & Troops"})).toBeVisible();

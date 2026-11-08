@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "game": "Last Z",
+  "scope": {
+    "minimumHqLevel": 1,
+    "maximumHqLevel": 35
+  },
+  "lastUpdated": null,
+  "levels": []
+}

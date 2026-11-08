@@ -35,7 +35,7 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
   await page.goto("/guides.html");
   await expect(page.getByRole("heading", { name: "All Guides" })).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
-  const watch = page.getByRole("heading", { name: "Watch Our Videos" });
+  const watch = page.getByText("Watch Our Videos", { exact: true });
   await expect(watch).toBeVisible();
   const channel = page.getByRole("link", { name: /Visit Our YouTube Channel/ });
   await expect(channel).toHaveAttribute("href", "https://www.youtube.com/@Queen_WANGEL");

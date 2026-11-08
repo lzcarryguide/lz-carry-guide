@@ -2,31 +2,13 @@
   "schemaVersion": 2,
   "lastUpdated": "2026-11-08",
   "rosterStatus": "22 indexed entries currently published: 19 profiles with community faction/role metadata plus three Season 4 entries explicitly flagged Verify. The structured source lists 36 heroes; the remaining 14 have not yet been reconciled into this database. This is not a complete roster.",
-  "verificationPolicy": "Faction, troop type, rarity, role and season below are secondary-source index fields. Season 4 faction/type and all skill text, per-star values, acquisition and exclusive-equipment effects require current in-game confirmation. Do not treat null as none.",
+  "verificationPolicy": "Faction, troop type, rarity, role and season are secondary-source index fields, not verified current-client facts. All hero skill text, skill values, star-up costs, acquisition routes and exclusive-equipment effects are withheld pending in-game confirmation. Do not treat null as none.",
   "developmentGuidance": [
     "Choose heroes for the role, faction synergy, troop type and formation position rather than power score alone.",
     "Concentrate scarce fragments, EXP, skill books and equipment on heroes actually deployed in the primary formation.",
     "Check whether a skill is global, march-only, deployment-only or faction-count dependent before investing.",
     "Treat 4-star and 5-star fragment breakpoints as planning checkpoints, not universal upgrade instructions; verify the live hero screen."
   ],
-  "starProgression": {
-    "status": "community-cross-checked; confirm current client",
-    "fragmentsPerStar": [
-      25,
-      50,
-      100,
-      300,
-      500
-    ],
-    "cumulative": [
-      25,
-      75,
-      175,
-      475,
-      975
-    ],
-    "notes": "Reported standard orange hero star-up costs. Recruitment fragments are separate and are not included in this star-up total."
-  },
   "skillFramework": [
     {
       "slot": 1,

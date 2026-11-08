@@ -3,38 +3,6 @@
   "lastUpdated": "2026-11-08",
   "scope": "Event mechanics reference. Only stable mechanics with multiple-source support are described; dates, times, score values, thresholds and reward quantities remain omitted where sources conflict or live client verification is unavailable.",
   "verificationPolicy": "Event schedule and scoring are server-, season- and version-sensitive. Check the in-game event panel and alliance mail before acting.",
-  "sources": [
-    {
-      "id": "sin-full-prep",
-      "url": "https://lastz.guide/events/full-preparedness/",
-      "checked": "2026-11-08",
-      "supports": "Six daily four-hour Full Preparedness rotations and overlap concept."
-    },
-    {
-      "id": "ztools-full-prep",
-      "url": "https://ztools.co.uk/wiki/full-preparedness/",
-      "checked": "2026-11-08",
-      "supports": "Independent Full Preparedness activity and theme summary."
-    },
-    {
-      "id": "lastzgg-alliance-duel",
-      "url": "https://lastz.gg/guides/alliance-duel",
-      "checked": "2026-11-08",
-      "supports": "Alliance Duel day themes and preparation context; live point tables not copied."
-    },
-    {
-      "id": "lastzwiki-events",
-      "url": "https://lastzwiki.com/en/events.html",
-      "checked": "2026-11-08",
-      "supports": "Canyon Clash, Capital, Zombie Tyrant, SvS and Alliance Versus mechanics."
-    },
-    {
-      "id": "lastz-qyjoy-events",
-      "url": "https://lz.qyjoy.vip/event",
-      "checked": "2026-11-08",
-      "supports": "Independent Canyon Clash structure; conflicts with alternate participant limits and duration."
-    }
-  ],
   "events": [
     {
       "id": "alliance-duel",

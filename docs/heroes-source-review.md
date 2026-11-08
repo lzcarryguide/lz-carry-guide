@@ -21,11 +21,11 @@
 - SIN Command — Hero database: https://www.lastz.guide/heroes/hero-database/
   - Search-indexed roster shows faction, troop type, rarity, season, and broad combat-role fields for named heroes.
   - Checked 2026-11-08. Roster count and seasonal labels differ from other community databases.
-- GAMIDES — Heroes: https://gamides.com/heroes/
-  - Independently corroborates the three faction-to-troop mappings and reports a different roster count.
+- Last Z Wiki — Heroes: https://lastzwiki.com/en/heroes.html
+  - Additional community roster and hero reference; its roster scope differs from other databases.
   - Checked 2026-11-08.
-- LastZ.GG — Hero guide: https://lastz.gg/basics/heroes
-  - Additional faction alignment and hero-name reference; role recommendations are opinionated and not copied into public data.
+- Last Z Hub: https://lastz-hub.com/
+  - Additional season/roster reference. Its coverage is treated as a dated community snapshot, not a definitive live roster.
   - Checked 2026-11-08.
 
 ## Conflicts and exclusions

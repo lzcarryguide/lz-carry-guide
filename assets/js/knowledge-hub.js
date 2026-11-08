@@ -34,11 +34,11 @@
     var filter = document.getElementById(config.filterId);
     var count = document.getElementById(config.countId);
     var results = document.getElementById(config.resultsId);
-    if (!search || !filter || !count || !results) return;
+    if (!search || !count || !results) return;
 
     function render() {
       var term = search.value.trim().toLowerCase();
-      var selected = filter.value;
+      var selected = filter ? filter.value : "";
       var visible = config.records.filter(function (record) {
         var text = [record.name, record.title, record.faction, record.troopType, record.camp, record.summary, record.role, record.type, (record.tags || []).join(" ")].filter(Boolean).join(" ").toLowerCase();
         return (!selected || record[config.filterField] === selected) && (!term || text.indexOf(term) !== -1);
@@ -56,7 +56,7 @@
     }
 
     search.addEventListener("input", render);
-    filter.addEventListener("change", render);
+    if (filter) filter.addEventListener("change", render);
     render();
   }
 

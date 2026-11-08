@@ -20,10 +20,11 @@
 
 <section id="hero-database"><div class="wrap">
   <p class="eyebrow">Hero reference</p><h2>Find a hero</h2>
-  <p class="section-intro">A curated starting index of selected hero names. This is not a complete roster, and individual faction assignments are withheld until confirmed against current in-game profiles. Skill text, exact values, rarity, and seasonal availability are withheld until they can be checked against current in-game records.</p>
+  <p class="section-intro">A searchable roster index with faction, troop line, rarity and role fields from current community references. The roster is not yet certified complete for every server or season. Skill descriptions and exclusive-equipment effects remain unpublished until checked against current in-game profiles.</p>
   <div class="knowledge-tools">
-    <label>Search heroes<input id="hero-search" type="search" placeholder="Name or faction…" autocomplete="off"></label>
-    <p class="small muted">Faction and troop-type tags will appear as individual hero profiles are verified in-game.</p>
+    <label>Search heroes<input id="hero-search" type="search" placeholder="Name, role, faction or troop line…" autocomplete="off"></label>
+    <label>Faction<select id="hero-faction"><option value="">All factions</option><option>Blood Rose</option><option>Wings of Dawn</option><option>Guard of Order</option></select></label>
+    <p class="small muted">Profiles marked for verification are not treated as confirmed current-client data.</p>
   </div>
   <p class="small muted" id="hero-count" aria-live="polite">Loading hero records…</p>
   <div class="knowledge-grid" id="hero-results" aria-live="polite"><div class="card"><p>Loading the hero index…</p></div></div>
@@ -35,11 +36,11 @@
     <article class="card faction-card"><span class="pill">Riders</span><h3>Guard of Order</h3><p>Guard of Order heroes are aligned with the Rider troop line. Check each hero's actual skill text before assuming a bonus applies to every troop type.</p></article>
     <article class="card faction-card"><span class="pill">Shooters</span><h3>Wings of Dawn</h3><p>Wings of Dawn heroes are aligned with the Shooter troop line. Build around the effects shown on your own hero skill screens.</p></article>
   </div>
-  <p class="notice">Faction-to-troop alignment is supported by multiple community references. Exact skill effects, counters, and bonus percentages are not published here because the current in-game descriptions have not been supplied for verification.</p>
+  <p class="notice">Faction alignment is cross-referenced in community databases. Hero-specific skill effects, counters and bonus percentages still require current in-game profile verification.</p>
 </div></section>
 
 <section id="troop-database"><div class="wrap"><p class="eyebrow">Troop reference</p><h2>Choose your troop line</h2>
-  <p class="section-intro">Use this index to understand the three troop classes and the camp associated with each. Numerical tier stats, training costs, promotion costs, timers, and building requirements are intentionally omitted pending in-game verification.</p>
+  <p class="section-intro">Compare the reported tier progression, camp levels and base troop statistics for each class. Camp upgrade costs, training and promotion costs, timers and detailed research prerequisites remain withheld pending current in-game verification.</p>
   <div class="knowledge-tools">
     <label>Search troop classes<input id="troop-search" type="search" placeholder="Search class, faction, or camp…" autocomplete="off"></label>
     <label>Faction<select id="troop-faction"><option value="">All factions</option><option>Blood Rose</option><option>Guard of Order</option><option>Wings of Dawn</option></select></label>

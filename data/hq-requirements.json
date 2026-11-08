@@ -12,9 +12,9 @@
       "targetHq": 2,
       "verificationStatus": "community-candidate",
       "resources": {
-        "woodMillions": null,
+        "woodMillions": 0,
         "foodMillions": 0.0103,
-        "zentMillions": null,
+        "zentMillions": 0,
         "steelMillions": 0,
         "duration": "3s",
         "sourcePrecision": "Displayed in millions (M); values retain the table's published decimal precision."
@@ -65,9 +65,9 @@
       "targetHq": 3,
       "verificationStatus": "community-candidate",
       "resources": {
-        "woodMillions": null,
+        "woodMillions": 0,
         "foodMillions": 0.0155,
-        "zentMillions": null,
+        "zentMillions": 0,
         "steelMillions": 0,
         "duration": "5s",
         "sourcePrecision": "Displayed in millions (M); values retain the table's published decimal precision."
@@ -118,9 +118,9 @@
       "targetHq": 4,
       "verificationStatus": "community-candidate",
       "resources": {
-        "woodMillions": null,
+        "woodMillions": 0,
         "foodMillions": 0.0233,
-        "zentMillions": null,
+        "zentMillions": 0,
         "steelMillions": 0,
         "duration": "1m57s",
         "sourcePrecision": "Displayed in millions (M); values retain the table's published decimal precision."
@@ -177,9 +177,9 @@
       "targetHq": 5,
       "verificationStatus": "community-candidate",
       "resources": {
-        "woodMillions": null,
+        "woodMillions": 0,
         "foodMillions": 0.0466,
-        "zentMillions": null,
+        "zentMillions": 0,
         "steelMillions": 0,
         "duration": "13m20s",
         "sourcePrecision": "Displayed in millions (M); values retain the table's published decimal precision."

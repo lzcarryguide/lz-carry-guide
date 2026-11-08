@@ -30,11 +30,12 @@
       var table = document.createElement("div");
       table.className = "troop-tier-list";
       (r.tiers || []).forEach(function (t) {
-        var line = [ "T" + t.tier, t.unitName || "Name pending", "Camp " + t.campLevel, "Power " + t.power, "ATK " + t.attack, "DEF " + t.defense, "HP " + t.hp, "Load " + t.load ].join(" · ");
+        var line = [ "T" + t.tier, t.unitName || "Name pending" ].join(" · ");
         table.appendChild(node("p", "small", line));
         if (t.reportedAlternativeNames && t.reportedAlternativeNames.length) table.appendChild(node("p", "small muted", "Alternative community names: " + t.reportedAlternativeNames.join(", ")));
       });
       card.appendChild(table);
+      card.appendChild(node("p", "small muted", "Tier statistics and camp unlock levels are provisional community research and are withheld until verified in-game."));
       card.appendChild(node("p", "small muted", r.note || ""));
     } else {
       card.appendChild(node("span", "pill", r.type + (r.frequency ? " · " + r.frequency : "")));

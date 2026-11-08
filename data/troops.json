@@ -1,98 +1,14 @@
 {
   "schemaVersion": 2,
   "lastUpdated": "2026-11-08",
-  "verificationPolicy": "Tier attack/defense/HP and camp tier unlock levels agree across multiple community references but have not yet been checked against the user's live game client. Camp costs, training costs, timers and exact prerequisites are deliberately omitted. T10 is research-unlocked, not a normal camp-level tier.",
+  "verificationPolicy": "Tier names, statistics, camp unlock levels and research gates are provisional community references only. Numeric troop stats, power, load, camp levels and T10 prerequisites are intentionally excluded from this public database until verified with current in-game screenshots. Costs and timers are also withheld.",
   "progressionSummary": {
-    "campRule": "Camp level progression covers tiers 1–9. Tier 10 is a separate research unlock.",
+    "campRule": "Camp tier unlock levels are not published here pending in-game verification.",
     "trainingVsPromotion": "Training creates units; promotion upgrades eligible existing lower-tier units. The promotion action and costs must be checked in the selected camp.",
-    "research": "Tier 10 is associated with Unit Special Training. Community sources agree on Laboratory 30 as the prerequisite; exact badge and resource costs differ by source and are omitted.",
+    "research": "T10 research route is described in internal research notes only; current-client prerequisite verification is pending.",
     "marchCapacity": "Capacity depends on hero effects, research and other account systems. No single universal number is published here."
   },
-  "tierUnlocks": [
-    {
-      "tier": 1,
-      "campLevel": 1,
-      "attack": 5,
-      "defense": 7,
-      "hp": 50,
-      "valuesStatus": "cross-source agreement; in-game capture pending"
-    },
-    {
-      "tier": 2,
-      "campLevel": 3,
-      "attack": 10,
-      "defense": 10,
-      "hp": 60,
-      "valuesStatus": "cross-source agreement; in-game capture pending"
-    },
-    {
-      "tier": 3,
-      "campLevel": 6,
-      "attack": 13,
-      "defense": 13,
-      "hp": 72,
-      "valuesStatus": "cross-source agreement; in-game capture pending"
-    },
-    {
-      "tier": 4,
-      "campLevel": 10,
-      "attack": 17,
-      "defense": 17,
-      "hp": 86,
-      "valuesStatus": "cross-source agreement; in-game capture pending"
-    },
-    {
-      "tier": 5,
-      "campLevel": 14,
-      "attack": 21,
-      "defense": 21,
-      "hp": 99,
-      "valuesStatus": "cross-source agreement; in-game capture pending"
-    },
-    {
-      "tier": 6,
-      "campLevel": 17,
-      "attack": 26,
-      "defense": 26,
-      "hp": 114,
-      "valuesStatus": "cross-source agreement; in-game capture pending"
-    },
-    {
-      "tier": 7,
-      "campLevel": 20,
-      "attack": 30,
-      "defense": 30,
-      "hp": 128,
-      "valuesStatus": "cross-source agreement; in-game capture pending"
-    },
-    {
-      "tier": 8,
-      "campLevel": 24,
-      "attack": 35,
-      "defense": 35,
-      "hp": 141,
-      "valuesStatus": "cross-source agreement; in-game capture pending"
-    },
-    {
-      "tier": 9,
-      "campLevel": 27,
-      "attack": 40,
-      "defense": 40,
-      "hp": 148,
-      "valuesStatus": "cross-source agreement; in-game capture pending"
-    }
-  ],
-  "tier10": {
-    "tier": 10,
-    "unlock": "Unit Special Training research",
-    "laboratoryLevel": 30,
-    "units": {
-      "assaulters": "Invader",
-      "shooters": "Executioner",
-      "riders": "Apocalypse Knight"
-    },
-    "status": "research-unlock corroborated by multiple sources; live research panel required for costs and exact prerequisites"
-  },
+  "tierUnlocks": [],
   "classes": [
     {
       "id": "assaulters",
@@ -113,165 +29,85 @@
       "tiers": [
         {
           "tier": 1,
-          "campLevel": 1,
           "unitName": "Thug",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 5,
-          "defense": 7,
-          "hp": 50,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 160,
-          "load": 1200,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 2,
-          "campLevel": 3,
           "unitName": "Axe Fighter",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 10,
-          "defense": 10,
-          "hp": 60,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 330,
-          "load": 1320,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 3,
-          "campLevel": 6,
           "unitName": "Hammer Fighter",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 13,
-          "defense": 13,
-          "hp": 72,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 490,
-          "load": 1450,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 4,
-          "campLevel": 10,
           "unitName": "Chainsaw Fighter",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 17,
-          "defense": 17,
-          "hp": 86,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 940,
-          "load": 1600,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 5,
-          "campLevel": 14,
           "unitName": "Dread Warrior",
           "reportedAlternativeNames": [
             "Dread Warrior",
             "Ghastly Warrior"
           ],
           "nameStatus": "conflicting community sources; verify in client",
-          "attack": 21,
-          "defense": 21,
-          "hp": 99,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 1430,
-          "load": 1800,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 6,
-          "campLevel": 17,
           "unitName": "Brutal Warrior",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 26,
-          "defense": 26,
-          "hp": 114,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 2130,
-          "load": 1900,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 7,
-          "campLevel": 20,
           "unitName": "Pillager",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 30,
-          "defense": 30,
-          "hp": 128,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 2600,
-          "load": 2000,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 8,
-          "campLevel": 24,
           "unitName": "Striker",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 35,
-          "defense": 35,
-          "hp": 141,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 3530,
-          "load": 2000,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 9,
-          "campLevel": 27,
           "unitName": "Destroyer",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 40,
-          "defense": 40,
-          "hp": 148,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 4340,
-          "load": 2000,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 10,
-          "campLevel": "Unit Special Training",
           "unitName": "Invader",
-          "attack": 45,
-          "defense": 45,
-          "hp": 155,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
           "nameStatus": "reported tier 10; live client verification pending",
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client",
-          "power": 5640,
-          "load": 2000
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         }
       ],
       "tier10": "Invader"
@@ -289,171 +125,90 @@
         "Sniper",
         "Gunner",
         "Artilleryman",
-        "Mercenary",
-        null
+        "Mercenary"
       ],
       "tiers": [
         {
           "tier": 1,
-          "campLevel": 1,
           "unitName": "Archer",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 5,
-          "defense": 7,
-          "hp": 50,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 160,
-          "load": 1200,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 2,
-          "campLevel": 3,
           "unitName": "Hunter",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 10,
-          "defense": 10,
-          "hp": 60,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 330,
-          "load": 1320,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 3,
-          "campLevel": 6,
           "unitName": "Crossbowman",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 13,
-          "defense": 13,
-          "hp": 72,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 490,
-          "load": 1450,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 4,
-          "campLevel": 10,
           "unitName": "Rifleman",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 17,
-          "defense": 17,
-          "hp": 86,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 940,
-          "load": 1600,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 5,
-          "campLevel": 14,
           "unitName": "Sniper",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 21,
-          "defense": 21,
-          "hp": 99,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 1430,
-          "load": 1800,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 6,
-          "campLevel": 17,
           "unitName": "Gunner",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 26,
-          "defense": 26,
-          "hp": 114,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 2130,
-          "load": 1900,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 7,
-          "campLevel": 20,
           "unitName": "Artilleryman",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 30,
-          "defense": 30,
-          "hp": 128,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 2600,
-          "load": 2000,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 8,
-          "campLevel": 24,
           "unitName": "Mercenary",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 35,
-          "defense": 35,
-          "hp": 141,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 3530,
-          "load": 2000,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 9,
-          "campLevel": 27,
           "unitName": null,
           "reportedAlternativeNames": [
             "Berserk Shooter",
             "Furious Shooter"
           ],
           "nameStatus": "conflicting community sources; verify in client",
-          "attack": 40,
-          "defense": 40,
-          "hp": 148,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 4340,
-          "load": 2000,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 10,
-          "campLevel": "Unit Special Training",
           "unitName": "Executioner",
-          "attack": 45,
-          "defense": 45,
-          "hp": 155,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
           "nameStatus": "reported tier 10; live client verification pending",
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client",
-          "power": 5640,
-          "load": 2000
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         }
       ],
       "tier10": "Executioner"
@@ -467,184 +222,100 @@
         "Light Cavalry",
         "Knight",
         "Iron Cavalry",
-        null,
-        null,
-        null,
         "Shock Cavalry",
-        null,
         "Dauntless Knight"
       ],
       "tiers": [
         {
           "tier": 1,
-          "campLevel": 1,
           "unitName": "Light Cavalry",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 5,
-          "defense": 7,
-          "hp": 50,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 160,
-          "load": 1200,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 2,
-          "campLevel": 3,
           "unitName": "Knight",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 10,
-          "defense": 10,
-          "hp": 60,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 330,
-          "load": 1320,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 3,
-          "campLevel": 6,
           "unitName": "Iron Cavalry",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 13,
-          "defense": 13,
-          "hp": 72,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 490,
-          "load": 1450,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 4,
-          "campLevel": 10,
           "unitName": null,
           "reportedAlternativeNames": [
             "Cowboy",
             "Pro Cowboy"
           ],
           "nameStatus": "conflicting community sources; verify in client",
-          "attack": 17,
-          "defense": 17,
-          "hp": 86,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 940,
-          "load": 1600,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 5,
-          "campLevel": 14,
           "unitName": null,
           "reportedAlternativeNames": [
             "Heavy Cavalry",
             "Crossbow Cavalry"
           ],
           "nameStatus": "conflicting community sources; verify in client",
-          "attack": 21,
-          "defense": 21,
-          "hp": 99,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 1430,
-          "load": 1800,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 6,
-          "campLevel": 17,
           "unitName": null,
           "reportedAlternativeNames": [
             "Crossbow Cavalry",
             "Heavy Cavalry"
           ],
           "nameStatus": "conflicting community sources; verify in client",
-          "attack": 26,
-          "defense": 26,
-          "hp": 114,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 2130,
-          "load": 1900,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 7,
-          "campLevel": 20,
           "unitName": "Shock Cavalry",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 30,
-          "defense": 30,
-          "hp": 128,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 2600,
-          "load": 2000,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 8,
-          "campLevel": 24,
           "unitName": null,
           "reportedAlternativeNames": [
             "Charge Knight",
             "Charging Knight"
           ],
           "nameStatus": "conflicting community sources; verify in client",
-          "attack": 35,
-          "defense": 35,
-          "hp": 141,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 3530,
-          "load": 2000,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 9,
-          "campLevel": 27,
           "unitName": "Dauntless Knight",
           "reportedAlternativeNames": [],
           "nameStatus": "cross-source agreement",
-          "attack": 40,
-          "defense": 40,
-          "hp": 148,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
-          "power": 4340,
-          "load": 2000,
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client"
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         },
         {
           "tier": 10,
-          "campLevel": "Unit Special Training",
           "unitName": "Apocalypse Knight",
-          "attack": 45,
-          "defense": 45,
-          "hp": 155,
-          "trainingCost": null,
-          "promotionCost": null,
-          "trainingTime": null,
           "nameStatus": "reported tier 10; live client verification pending",
-          "valuesStatus": "cross-source community agreement; not yet checked against current in-game client",
-          "power": 5640,
-          "load": 2000
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
         }
       ],
       "tier10": "Apocalypse Knight"

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "lastUpdated": "2026-11-08",
-  "rosterStatus": "22 named profiles from the structured community index plus three Season 4 entries explicitly flagged Verify. This is not the complete 36-entry index: remaining entries require extraction and client verification.",
+  "rosterStatus": "22 indexed entries currently published: 19 profiles with community faction/role metadata plus three Season 4 entries explicitly flagged Verify. The structured source lists 36 heroes; the remaining 14 have not yet been reconciled into this database. This is not a complete roster.",
   "verificationPolicy": "Faction, troop type, rarity, role and season below are secondary-source index fields. Season 4 faction/type and all skill text, per-star values, acquisition and exclusive-equipment effects require current in-game confirmation. Do not treat null as none.",
   "developmentGuidance": [
     "Choose heroes for the role, faction synergy, troop type and formation position rather than power score alone.",

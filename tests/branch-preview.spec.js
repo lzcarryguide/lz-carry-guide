@@ -60,8 +60,10 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByLabel("Search heroes").fill("");
   await page.getByLabel("Faction").selectOption("Blood Rose");
   await expect(page.getByText("0 records")).toBeVisible();
+  await page.getByLabel("Faction").selectOption("");
   await page.getByLabel("Search troop classes").fill("rider");
   await expect(page.getByRole("heading",{name:"Riders"})).toBeVisible();
+  await page.getByLabel("Search troop classes").fill("");
   await page.screenshot({path:path.join(artifacts,"heroes-desktop.png"),fullPage:true});
   await page.goto("/events.html");
   await expect(page.getByRole("heading",{name:"Events & Rewards"})).toBeVisible();
@@ -71,6 +73,8 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByLabel("Event type").selectOption("Rewards");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toHaveCount(0);
   await expect(page.getByRole("heading",{name:"Shooting Loot"})).toBeVisible();
+  await page.getByLabel("Search events").fill("");
+  await page.getByLabel("Event type").selectOption("");
   await page.screenshot({path:path.join(artifacts,"events-desktop.png"),fullPage:true});
 });
 

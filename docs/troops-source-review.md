@@ -4,22 +4,28 @@ Checked: 2026-11-08
 
 ## Cross-source findings
 
-- Three troop classes and their faction alignment are consistently described: Assaulters / Blood Rose, Shooters / Wings of Dawn, Riders / Guard of Order.
-- Community camp references publish a shared tier progression for tiers 1–9 with camp levels and attack/defense/HP values. These values are included as community-cross-checked references but are not represented as officially verified until compared with the live client.
-- Several unit names differ between community sources, especially higher Rider tiers and Shooter tier 9. The database retains alternate reported names and flags those entries.
-- Tier 10 is unlocked through Unit Special Training research rather than a normal camp level. Last Z Planner currently shows Laboratory 30 and HQ 24 prerequisites, 22 nodes / 246 levels, and a 1,488,100 badge total. Another previously reviewed source reports a different badge total; therefore only the unlock route is public, not the exact cost.
-- Camp upgrade costs, troop training costs, promotion costs and durations, and march capacity formula remain unpublished.
+- Three troop classes and faction alignment are consistently described: Assaulters / Blood Rose, Shooters / Wings of Dawn, Riders / Guard of Order.
+- The Last-Z.net camp tables (June 2026) and LastZGuide camp tables (October 2026) agree on tier 1–10 attack, defense and HP progression, camp unlocks for tiers 1–9, and the Unit Special Training route for tier 10.
+- The tables also publish Power and Load. The public dataset includes these as community-reported values; current-client confirmation is still needed.
+- English unit names conflict in some entries: Assaulter T5 (Dread Warrior / Ghastly Warrior), Shooter T9 (Berserk Shooter / Furious Shooter), Rider T4 (Cowboy / Pro Cowboy), Rider T5/T6 (Heavy Cavalry / Crossbow Cavalry order differs), and Rider T8 (Charge Knight / Charging Knight). Those names are left blank in the database with alternatives retained.
+- Camp level progression opens tiers 1–9. T10 is Unit Special Training, not a camp-level unlock.
+- Shooter Camp is introduced through New Home research; Rider Camp has a separate New Home unlock and an HQ gate. Exact prerequisites must be captured from the live research panel before publication.
+- Promotion is unlocked through New Home research. The selected class camp is used to promote existing lower-tier units.
+- Camp upgrade costs are not troop training costs. Troop training costs, promotion costs, durations and capacity formula remain unpublished.
+- Last Z Planner currently reports Unit Special Training at Laboratory 30 and HQ 24, 22 nodes / 246 levels and 1,488,100 badges. Another earlier source reported a different total; the badge total is intentionally withheld.
 
 ## Sources (internal research only)
 
-- https://last-z.net/buildings/assaulter-camp/ — checked 2026-11-08.
-- https://last-z.net/buildings/shooter-camp/ — checked 2026-11-08.
-- https://last-z.net/buildings/rider-camp/ — checked 2026-11-08.
-- https://lastzguide.com/assaulter-camp/ — checked 2026-11-08.
-- https://lastzguide.com/shooter-camp/ — checked 2026-11-08.
-- https://lastzguide.com/rider-camp/ — checked 2026-11-08.
-- https://www.lastzplanner.com/en/research/unit_special_training/ — checked 2026-11-08; interactive research calculator currently reports 1,488,100 badges, Lab 30, HQ 24, 22 nodes / 246 levels. Conflicts with another source's total; verify live.
-- https://mmediamreza.com/en/last-z/troop-capacity-march-size-guide — checked 2026-11-08; broad march capacity factors, not a verified formula.
+- https://last-z.net/buildings/assaulter-camp/ — checked 2026-11-08; published June 13, 2026; tier names/stats/camp levels.
+- https://last-z.net/buildings/shooter-camp/ — checked 2026-11-08; published June 13, 2026; tier names/stats/camp levels.
+- https://last-z.net/buildings/rider-camp/ — checked 2026-11-08; published June 13, 2026; tier names/stats/camp levels.
+- https://lastzguide.com/assaulter-camp/ — checked 2026-11-08; published October 2026; camp progression, training/promotion, tier table.
+- https://lastzguide.com/shooter-camp/ — checked 2026-11-08; published October 2026; tier table and alternate T9 name.
+- https://lastzguide.com/rider-camp/ — checked 2026-11-08; published October 2026; conflicting English names at T4/T5/T6/T8.
+- https://www.lastzplanner.com/en/research/unit_special_training/ — checked 2026-11-08; interactive research calculator reports 1,488,100 badges, Lab 30, HQ 24, 22 nodes / 246 levels.
+- https://lastzguide.com/research/ — checked 2026-11-08; research trees and unlock notes.
+- https://www.lastzdata.com/basics/heroes — checked 2026-11-08; faction/class context.
+- https://mmediamreza.com/en/last-z/troop-capacity-march-size-guide — checked 2026-11-08; community-described march capacity factors, not a verified complete formula.
 
 ## Required in-game evidence
 

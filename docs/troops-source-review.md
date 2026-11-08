@@ -1,50 +1,31 @@
-# Troops reference — source and publication review
+# Troops source review
 
-**Review date:** 2026-11-08  
-**Public data:** `data/troops.json`  
-**Status:** Class and faction overview only.
+Checked: 2026-11-08
 
-## What is safe to publish now
+## Cross-source findings
 
-- Three troop lines are named: Assaulters, Riders, and Shooters.
-- Their faction alignment is cross-referenced:
-  - Blood Rose → Assaulters
-  - Guard of Order → Riders
-  - Wings of Dawn → Shooters
-- Each troop line is associated with its corresponding camp name: Assaulter Camp, Rider Camp, and Shooter Camp.
-- The public page explains the distinction between training and promotion in general terms.
+- Three troop classes and their faction alignment are consistently described: Assaulters / Blood Rose, Shooters / Wings of Dawn, Riders / Guard of Order.
+- Community camp references publish a shared tier progression for tiers 1–9 with camp levels and attack/defense/HP values. These values are included as community-cross-checked references but are not represented as officially verified until compared with the live client.
+- Several unit names differ between community sources, especially higher Rider tiers and Shooter tier 9. The database retains alternate reported names and flags those entries.
+- Tier 10 is unlocked through Unit Special Training research rather than a normal camp level. Last Z Planner currently shows Laboratory 30 and HQ 24 prerequisites, 22 nodes / 246 levels, and a 1,488,100 badge total. Another previously reviewed source reports a different badge total; therefore only the unlock route is public, not the exact cost.
+- Camp upgrade costs, troop training costs, promotion costs and durations, and march capacity formula remain unpublished.
 
-## Sources reviewed
+## Sources (internal research only)
 
-- Last Z Guides — Assaulter Camp: https://lastzguide.com/assaulter-camp/
-  - Reports camp functions, tier names, camp levels, and Unit Special Training relationship.
-  - Checked 2026-11-08. Community source; some columns are reported from a specific state and later readings.
-- Last Z Guides — Shooter Camp: https://lastzguide.com/shooter-camp/
-  - Reports Shooter Camp progression and New Home research relationship.
-  - Checked 2026-11-08.
-- Last Z Planner — Unit Special Training: https://www.lastzplanner.com/en/research/unit_special_training/
-  - Reports the T10 research tree and published research requirements. Totals are excluded from public content pending direct target-server confirmation.
-  - Checked 2026-11-08.
-- Last-Z.net — Camp references: https://last-z.net/buildings/assaulter-camp/ ; https://last-z.net/buildings/shooter-camp/ ; https://last-z.net/buildings/rider-camp/
-  - Independent community camp descriptions and progression references.
-  - Checked 2026-11-08.
-- Z Tools — Heroes overview: https://ztools.co.uk/wiki/heroes/
-  - Corroborates the faction-to-troop alignment.
-  - Checked 2026-11-08.
-- GAMIDES — Heroes: https://gamides.com/heroes/
-  - Independent corroboration of the faction-to-troop alignment.
-  - Checked 2026-11-08.
+- https://last-z.net/buildings/assaulter-camp/ — checked 2026-11-08.
+- https://last-z.net/buildings/shooter-camp/ — checked 2026-11-08.
+- https://last-z.net/buildings/rider-camp/ — checked 2026-11-08.
+- https://lastzguide.com/assaulter-camp/ — checked 2026-11-08.
+- https://lastzguide.com/shooter-camp/ — checked 2026-11-08.
+- https://lastzguide.com/rider-camp/ — checked 2026-11-08.
+- https://www.lastzplanner.com/en/research/unit_special_training/ — checked 2026-11-08; interactive research calculator currently reports 1,488,100 badges, Lab 30, HQ 24, 22 nodes / 246 levels. Conflicts with another source's total; verify live.
+- https://mmediamreza.com/en/last-z/troop-capacity-march-size-guide — checked 2026-11-08; broad march capacity factors, not a verified formula.
 
-## Excluded numerical data
+## Required in-game evidence
 
-The research contains tier names, camp-level unlocks, base stats, research badge costs, training capacity, and prerequisites. These are not included in public data because no current in-game screenshots from the LZ Carry target server were supplied, and some community sources describe different readings or scopes.
-
-No training costs, promotion costs, troop resource requirements, training times, march capacities, camp unlock levels, or T10 research totals are published.
-
-## Next verification needed
-
-1. Capture the troop details panel for each class and every tier on the target server.
-2. Capture each camp's unlock and upgrade panels, including prerequisite building/research.
-3. Capture training and promotion confirmation screens for a defined unit quantity; separate base cost from buffs and event discounts.
-4. Capture Unit Special Training research nodes and exact costs from the live laboratory.
-5. Record server, game version, account buffs, date, and displayed units; reconcile each value against a second independent current source.
+1. Each camp's tier list, selected tier details and building upgrade panel.
+2. Training screen for each troop class, including quantity, resource cost and duration.
+3. Promotion screen for each class and at least two tier transitions.
+4. New Home research prerequisites for Shooter/Rider camps and troop promotion.
+5. Unit Special Training overview and each node's max cost / prerequisites.
+6. March-size panel with hero lineup, research bonuses and other displayed modifiers.

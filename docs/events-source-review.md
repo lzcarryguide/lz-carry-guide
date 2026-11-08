@@ -31,8 +31,14 @@ The existing LZ Carry event page already referenced several of these. The new en
 - GAMIDES — Events: https://gamides.com/events/
   - Additional schedule and event descriptions; used as a cross-check only.
   - Checked 2026-11-08.
-- LastZ.GG — Alliance Duel: https://lastz.gg/guides/alliance-duel
-  - Detailed author-reported Alliance Duel schedule and scoring. The page describes a specific state/account and is not used to publish point values or a universal schedule.
+- Last Z Guides — Full Preparedness: https://www.lastz.guide/events/full-preparedness/
+  - Community guide to recurring tasks and preparation. Schedule windows are not treated as universal.
+  - Checked 2026-11-08.
+- Last-Z.net — Weekly event reference: https://last-z.net/guides/vs-weekly/
+  - Community schedule comparison; used to document rotation conflicts, not as a universal calendar.
+  - Checked 2026-11-08.
+- GameVoyant — Event Center: https://gamevoyant.com/guides/last-z-event-center-guide/
+  - Additional community event overview and reward-planning reference.
   - Checked 2026-11-08.
 - SIN Command — Full Preparedness: https://www.lastz.guide/events/full-preparedness/
   - Reports daily rotations and overlap with Alliance Duel; clock windows are withheld pending target-server confirmation.

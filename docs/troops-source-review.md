@@ -22,8 +22,11 @@
 - Last Z Guides — Shooter Camp: https://lastzguide.com/shooter-camp/
   - Reports Shooter Camp progression and New Home research relationship.
   - Checked 2026-11-08.
-- Last Z Guides — Unit Special Training: https://lastzguide.com/unit-special-training/
-  - Reports T10 research structure and conflicting badge totals across two in-game readings.
+- Last Z Planner — Unit Special Training: https://www.lastzplanner.com/en/research/unit_special_training/
+  - Reports the T10 research tree and published research requirements. Totals are excluded from public content pending direct target-server confirmation.
+  - Checked 2026-11-08.
+- Last-Z.net — Camp references: https://last-z.net/buildings/assaulter-camp/ ; https://last-z.net/buildings/shooter-camp/ ; https://last-z.net/buildings/rider-camp/
+  - Independent community camp descriptions and progression references.
   - Checked 2026-11-08.
 - Z Tools — Heroes overview: https://ztools.co.uk/wiki/heroes/
   - Corroborates the faction-to-troop alignment.

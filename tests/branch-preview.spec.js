@@ -28,6 +28,8 @@ test("homepage and separate video library render", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /your ultimate/i })).toBeVisible();
+  const navRows = await page.locator("header nav a").evaluateAll(as => [...new Set(as.map(a => Math.round(a.getBoundingClientRect().top)))]);
+  expect(navRows, "desktop homepage navigation should stay on one row").toHaveLength(1);
   await page.screenshot({ path: path.join(artifacts, "homepage-desktop.png"), fullPage: true });
   await page.goto("/guides.html");
   await expect(page.getByRole("heading", { name: "All Guides" })).toBeVisible();

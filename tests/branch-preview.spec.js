@@ -2,7 +2,7 @@ const { test, expect } = require("@playwright/test");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const pages = ["index.html", "guides.html", "beginner.html", "research.html", "heroes.html", "events.html", "videos.html", "pilot.html"];
+const pages = ["index.html", "guides.html", "beginner.html", "research.html", "heroes.html", "events.html", "pilot.html"];
 const artifacts = path.join(process.cwd(), "artifacts");
 fs.mkdirSync(artifacts, { recursive: true });
 
@@ -10,6 +10,7 @@ test("all primary navigation destinations resolve", async ({ page, request }) =>
   await page.goto("/");
   const links = await page.locator("header nav a").evaluateAll(as => as.map(a => a.getAttribute("href")));
   expect(links).toEqual(expect.arrayContaining(pages));
+  expect(links).not.toContain("videos.html");
   for (const href of links) {
     const response = await request.get("/" + href);
     expect(response.status(), href).toBe(200);
@@ -24,7 +25,7 @@ test("all primary navigation destinations resolve", async ({ page, request }) =>
   }
 });
 
-test("homepage and separate video library render", async ({ page }) => {
+test("homepage and Watch Our Videos channel section render", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /your ultimate/i })).toBeVisible();
@@ -34,16 +35,17 @@ test("homepage and separate video library render", async ({ page }) => {
   await page.goto("/guides.html");
   await expect(page.getByRole("heading", { name: "All Guides" })).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
-  await page.goto("/videos.html");
-  await expect(page.getByRole("heading", { name: "Video Library" })).toBeVisible();
-  await expect(page.getByText(/No videos published yet/)).toBeVisible();
-  await page.screenshot({ path: path.join(artifacts, "videos-desktop.png"), fullPage: true });
+  const watch = page.getByRole("heading", { name: "Watch Our Videos" });
+  await expect(watch).toBeVisible();
+  const channel = page.getByRole("link", { name: /Visit Our YouTube Channel/ });
+  await expect(channel).toHaveAttribute("href", "https://www.youtube.com/@Queen_WANGEL");
+  await expect(channel).toHaveAttribute("target", "_blank");
 });
 
 test("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
-    for (const target of ["/", "/videos.html", "/guides.html"]) {
+    for (const target of ["/", "/guides.html"]) {
       await page.goto(target);
       const sizes = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
@@ -51,7 +53,6 @@ test("mobile layouts fit viewport without page-level horizontal overflow", async
       }));
       expect(sizes.document, target + " at " + width + "px").toBeLessThanOrEqual(sizes.viewport + 1);
       if (target === "/" && width === 390) await page.screenshot({ path: path.join(artifacts, "homepage-mobile.png"), fullPage: true });
-      if (target === "/videos.html" && width === 390) await page.screenshot({ path: path.join(artifacts, "videos-mobile.png"), fullPage: true });
       if (target === "/guides.html" && width === 390) await page.screenshot({ path: path.join(artifacts, "guides-mobile.png"), fullPage: true });
     }
   }

@@ -1,10 +1,568 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "lastUpdated": "2026-11-08",
-  "verificationPolicy": "Class names, faction alignment, and camp association are included as reference information. Tier stats, costs, unlock levels, prerequisites, training times, promotion costs, and march capacity values are withheld pending direct in-game verification.",
-  "troops": [
-    {"id":"assaulters","name":"Assaulters","faction":"Blood Rose","camp":"Assaulter Camp","summary":"The troop line associated with Blood Rose heroes. Review hero skill descriptions for troop-type restrictions before building a march.","note":"No tier, cost, timer, or camp-level figures are published."},
-    {"id":"riders","name":"Riders","faction":"Guard of Order","camp":"Rider Camp","summary":"The troop line associated with Guard of Order heroes. Check the current camp and research screens for available progression options.","note":"No tier, cost, timer, or camp-level figures are published."},
-    {"id":"shooters","name":"Shooters","faction":"Wings of Dawn","camp":"Shooter Camp","summary":"The troop line associated with Wings of Dawn heroes. Confirm the selected hero bonuses and current troop details in-game.","note":"No tier, cost, timer, or camp-level figures are published."}
+  "verificationPolicy": "Tier attack/defense/HP and camp tier unlock levels agree across multiple community references but have not yet been checked against the user's live game client. Camp costs, training costs, timers and exact prerequisites are deliberately omitted. T10 is research-unlocked, not a normal camp-level tier.",
+  "progressionSummary": {
+    "campRule": "Each camp trains and promotes only its own troop class. Camp level opens tiers 1–9.",
+    "trainingVsPromotion": "Training creates units; promotion upgrades eligible existing lower-tier units. The promotion action and costs must be checked in the selected camp.",
+    "research": "Tier 10 is associated with Unit Special Training. Community sources agree on Laboratory 30 as the prerequisite; exact badge and resource costs differ by source and are omitted.",
+    "marchCapacity": "Capacity depends on hero effects, research and other account systems. No single universal number is published here."
+  },
+  "sources": [
+    {
+      "id": "lastznet-assaulter",
+      "url": "https://last-z.net/buildings/assaulter-camp/",
+      "checked": "2026-11-08",
+      "supports": "Assaulter tier stats, camp levels and names."
+    },
+    {
+      "id": "lastznet-shooter",
+      "url": "https://last-z.net/buildings/shooter-camp/",
+      "checked": "2026-11-08",
+      "supports": "Shooter tier stats, camp levels and names."
+    },
+    {
+      "id": "lastznet-rider",
+      "url": "https://last-z.net/buildings/rider-camp/",
+      "checked": "2026-11-08",
+      "supports": "Rider tier stats, camp levels and names."
+    },
+    {
+      "id": "lastzguide-assaulter",
+      "url": "https://lastzguide.com/assaulter-camp/",
+      "checked": "2026-11-08",
+      "supports": "Independent Assaulter progression, camp unlock and T10 research notes."
+    },
+    {
+      "id": "lastzguide-shooter",
+      "url": "https://lastzguide.com/shooter-camp/",
+      "checked": "2026-11-08",
+      "supports": "Independent Shooter progression, camp unlock and tier names."
+    },
+    {
+      "id": "lastzguide-rider",
+      "url": "https://lastzguide.com/rider-camp/",
+      "checked": "2026-11-08",
+      "supports": "Independent Rider progression and camp prerequisites."
+    },
+    {
+      "id": "unit-special-training",
+      "url": "https://lastzguide.com/unit-special-training/",
+      "checked": "2026-11-08",
+      "supports": "T10 research structure; total badge readings conflict."
+    }
+  ],
+  "tierUnlocks": [
+    {
+      "tier": 1,
+      "campLevel": 1,
+      "attack": 5,
+      "defense": 7,
+      "hp": 50,
+      "valuesStatus": "cross-source agreement; in-game capture pending"
+    },
+    {
+      "tier": 2,
+      "campLevel": 3,
+      "attack": 10,
+      "defense": 10,
+      "hp": 60,
+      "valuesStatus": "cross-source agreement; in-game capture pending"
+    },
+    {
+      "tier": 3,
+      "campLevel": 6,
+      "attack": 13,
+      "defense": 13,
+      "hp": 72,
+      "valuesStatus": "cross-source agreement; in-game capture pending"
+    },
+    {
+      "tier": 4,
+      "campLevel": 10,
+      "attack": 17,
+      "defense": 17,
+      "hp": 86,
+      "valuesStatus": "cross-source agreement; in-game capture pending"
+    },
+    {
+      "tier": 5,
+      "campLevel": 14,
+      "attack": 21,
+      "defense": 21,
+      "hp": 99,
+      "valuesStatus": "cross-source agreement; in-game capture pending"
+    },
+    {
+      "tier": 6,
+      "campLevel": 17,
+      "attack": 26,
+      "defense": 26,
+      "hp": 114,
+      "valuesStatus": "cross-source agreement; in-game capture pending"
+    },
+    {
+      "tier": 7,
+      "campLevel": 20,
+      "attack": 30,
+      "defense": 30,
+      "hp": 128,
+      "valuesStatus": "cross-source agreement; in-game capture pending"
+    },
+    {
+      "tier": 8,
+      "campLevel": 24,
+      "attack": 35,
+      "defense": 35,
+      "hp": 141,
+      "valuesStatus": "cross-source agreement; in-game capture pending"
+    },
+    {
+      "tier": 9,
+      "campLevel": 27,
+      "attack": 40,
+      "defense": 40,
+      "hp": 148,
+      "valuesStatus": "cross-source agreement; in-game capture pending"
+    }
+  ],
+  "tier10": {
+    "tier": 10,
+    "unlock": "Unit Special Training research",
+    "laboratoryLevel": 30,
+    "units": {
+      "assaulters": "Invader",
+      "shooters": "Executioner",
+      "riders": "Apocalypse Knight"
+    },
+    "status": "research-unlock corroborated by multiple sources; live research panel required for costs and exact prerequisites"
+  },
+  "classes": [
+    {
+      "id": "assaulters",
+      "name": "Assaulters",
+      "faction": "Blood Rose",
+      "camp": "Assaulter Camp",
+      "units": [
+        "Thug",
+        "Axe Fighter",
+        "Hammer Fighter",
+        "Chainsaw Fighter",
+        "Dread Warrior",
+        "Brutal Warrior",
+        "Pillager",
+        "Striker",
+        "Destroyer"
+      ],
+      "tiers": [
+        {
+          "tier": 1,
+          "campLevel": 1,
+          "unitName": "Thug",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 5,
+          "defense": 7,
+          "hp": 50,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 2,
+          "campLevel": 3,
+          "unitName": "Axe Fighter",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 10,
+          "defense": 10,
+          "hp": 60,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 3,
+          "campLevel": 6,
+          "unitName": "Hammer Fighter",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 13,
+          "defense": 13,
+          "hp": 72,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 4,
+          "campLevel": 10,
+          "unitName": "Chainsaw Fighter",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 17,
+          "defense": 17,
+          "hp": 86,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 5,
+          "campLevel": 14,
+          "unitName": "Dread Warrior",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 21,
+          "defense": 21,
+          "hp": 99,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 6,
+          "campLevel": 17,
+          "unitName": "Brutal Warrior",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 26,
+          "defense": 26,
+          "hp": 114,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 7,
+          "campLevel": 20,
+          "unitName": "Pillager",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 30,
+          "defense": 30,
+          "hp": 128,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 8,
+          "campLevel": 24,
+          "unitName": "Striker",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 35,
+          "defense": 35,
+          "hp": 141,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 9,
+          "campLevel": 27,
+          "unitName": "Destroyer",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 40,
+          "defense": 40,
+          "hp": 148,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        }
+      ],
+      "tier10": "Invader"
+    },
+    {
+      "id": "shooters",
+      "name": "Shooters",
+      "faction": "Wings of Dawn",
+      "camp": "Shooter Camp",
+      "units": [
+        "Archer",
+        "Hunter",
+        "Crossbowman",
+        "Rifleman",
+        "Sniper",
+        "Gunner",
+        "Artilleryman",
+        "Mercenary",
+        null
+      ],
+      "tiers": [
+        {
+          "tier": 1,
+          "campLevel": 1,
+          "unitName": "Archer",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 5,
+          "defense": 7,
+          "hp": 50,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 2,
+          "campLevel": 3,
+          "unitName": "Hunter",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 10,
+          "defense": 10,
+          "hp": 60,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 3,
+          "campLevel": 6,
+          "unitName": "Crossbowman",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 13,
+          "defense": 13,
+          "hp": 72,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 4,
+          "campLevel": 10,
+          "unitName": "Rifleman",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 17,
+          "defense": 17,
+          "hp": 86,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 5,
+          "campLevel": 14,
+          "unitName": "Sniper",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 21,
+          "defense": 21,
+          "hp": 99,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 6,
+          "campLevel": 17,
+          "unitName": "Gunner",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 26,
+          "defense": 26,
+          "hp": 114,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 7,
+          "campLevel": 20,
+          "unitName": "Artilleryman",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 30,
+          "defense": 30,
+          "hp": 128,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 8,
+          "campLevel": 24,
+          "unitName": "Mercenary",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 35,
+          "defense": 35,
+          "hp": 141,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 9,
+          "campLevel": 27,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Berserk Shooter",
+            "Furious Shooter"
+          ],
+          "nameStatus": "conflicting community names",
+          "attack": 40,
+          "defense": 40,
+          "hp": 148,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        }
+      ],
+      "tier10": "Executioner"
+    },
+    {
+      "id": "riders",
+      "name": "Riders",
+      "faction": "Guard of Order",
+      "camp": "Rider Camp",
+      "units": [
+        "Light Cavalry",
+        "Knight",
+        "Iron Cavalry",
+        null,
+        null,
+        null,
+        "Shock Cavalry",
+        null,
+        "Dauntless Knight"
+      ],
+      "tiers": [
+        {
+          "tier": 1,
+          "campLevel": 1,
+          "unitName": "Light Cavalry",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 5,
+          "defense": 7,
+          "hp": 50,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 2,
+          "campLevel": 3,
+          "unitName": "Knight",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 10,
+          "defense": 10,
+          "hp": 60,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 3,
+          "campLevel": 6,
+          "unitName": "Iron Cavalry",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 13,
+          "defense": 13,
+          "hp": 72,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 4,
+          "campLevel": 10,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Cowboy",
+            "Pro Cowboy"
+          ],
+          "nameStatus": "conflicting community names",
+          "attack": 17,
+          "defense": 17,
+          "hp": 86,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 5,
+          "campLevel": 14,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Heavy Cavalry",
+            "Crossbow Cavalry"
+          ],
+          "nameStatus": "conflicting community names",
+          "attack": 21,
+          "defense": 21,
+          "hp": 99,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 6,
+          "campLevel": 17,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Crossbow Cavalry",
+            "Heavy Cavalry"
+          ],
+          "nameStatus": "conflicting community names",
+          "attack": 26,
+          "defense": 26,
+          "hp": 114,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 7,
+          "campLevel": 20,
+          "unitName": "Shock Cavalry",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 30,
+          "defense": 30,
+          "hp": 128,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 8,
+          "campLevel": 24,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Charge Knight",
+            "Charging Knight"
+          ],
+          "nameStatus": "conflicting community names",
+          "attack": 35,
+          "defense": 35,
+          "hp": 141,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        },
+        {
+          "tier": 9,
+          "campLevel": 27,
+          "unitName": "Dauntless Knight",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "attack": 40,
+          "defense": 40,
+          "hp": 148,
+          "trainingCost": null,
+          "promotionCost": null,
+          "trainingTime": null
+        }
+      ],
+      "tier10": "Apocalypse Knight"
+    }
   ]
 }

@@ -1,92 +1,548 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "lastUpdated": "2026-11-08",
-  "scope": "Selected name references only; faction assignments are intentionally withheld until reconciled against current in-game hero profiles.",
-  "verificationPolicy": "Names are a non-exhaustive community roster reference. No hero-specific faction, troop type, skill text, skill values, rarity, season, or investment costs are published.",
+  "rosterStatus": "Community-indexed roster; not yet certified as complete for every current server/season. Source counts conflict (31, 36, and 30).",
+  "verificationPolicy": "Faction, troop type, rarity, role and season below are secondary-source index fields. Season 4 faction/type and all skill text, per-star values, acquisition and exclusive-equipment effects require current in-game confirmation. Do not treat null as none.",
+  "sources": [
+    {
+      "id": "sin-hero-database",
+      "url": "https://www.lastz.guide/heroes/hero-database/",
+      "checked": "2026-11-08",
+      "supports": "36 roster entries with faction, troop type, rarity, role and season; some Season 4 entries explicitly marked Verify."
+    },
+    {
+      "id": "lastzdata-hero-database",
+      "url": "https://www.lastzdata.com/basics/heroes",
+      "checked": "2026-11-08",
+      "supports": "Independent partial hero database; cross-checks selected names and faction/role categories."
+    },
+    {
+      "id": "sin-hero-skills",
+      "url": "https://www.lastz.guide/heroes/skills/",
+      "checked": "2026-11-08",
+      "supports": "Skill framework and selected hero signature/exclusive-skill summaries; exact values may be stale."
+    },
+    {
+      "id": "lastzwiki-hero-roster",
+      "url": "https://lastzwiki.com/en/heroes.html",
+      "checked": "2026-11-08",
+      "supports": "Alternative roster list; differs in count and spelling."
+    }
+  ],
+  "developmentGuidance": [
+    "Choose heroes for the role, faction synergy, troop type and formation position rather than power score alone.",
+    "Concentrate scarce fragments, EXP, skill books and equipment on heroes actually deployed in the primary formation.",
+    "Check whether a skill is global, march-only, deployment-only or faction-count dependent before investing.",
+    "Treat 4-star and 5-star fragment breakpoints as planning checkpoints, not universal upgrade instructions; verify the live hero screen."
+  ],
+  "starProgression": {
+    "status": "community-cross-checked; confirm current client",
+    "fragmentsPerStar": [
+      25,
+      50,
+      100,
+      300,
+      500
+    ],
+    "cumulative": [
+      25,
+      75,
+      175,
+      475,
+      975
+    ],
+    "notes": "Reported standard orange hero star-up costs. Recruitment fragments are separate and are not included in this star-up total."
+  },
+  "skillFramework": [
+    {
+      "slot": 1,
+      "commonRole": "Normal attack",
+      "verification": "generic skill taxonomy only"
+    },
+    {
+      "slot": 2,
+      "commonRole": "Active combat skill",
+      "verification": "generic skill taxonomy only"
+    },
+    {
+      "slot": 3,
+      "commonRole": "Signature or utility effect",
+      "verification": "varies by hero; exact description needs profile capture"
+    },
+    {
+      "slot": 4,
+      "commonRole": "Exclusive talent",
+      "verification": "availability and faction conditions need profile capture"
+    }
+  ],
   "heroes": [
     {
       "id": "angelina",
       "name": "Angelina",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "B",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "athena",
       "name": "Athena",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "B",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "audrey",
       "name": "Audrey",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "B",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "giselle",
       "name": "Giselle",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "B",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "natalie",
       "name": "Natalie",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "B",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "william",
       "name": "William",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "B",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "ava",
       "name": "Ava",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "A",
+      "role": "Support",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "christina",
       "name": "Christina",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "A",
+      "role": "Support",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "elizabeth",
       "name": "Elizabeth",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "A",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "fiona",
       "name": "Fiona",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "A",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "isabella",
       "name": "Isabella",
-      "faction": null,
-      "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "A",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     },
     {
       "id": "leah",
       "name": "Leah",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "A",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "maria",
+      "name": "Maria",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "A",
+      "role": "Support",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "miranda",
+      "name": "Miranda",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "A",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "vivian",
+      "name": "Vivian",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "A",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "amelia",
+      "name": "Amelia",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "chinatsu",
+      "name": "Chinatsu",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "katrina",
+      "name": "Katrina",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "S",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "laura",
+      "name": "Laura",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "mia",
+      "name": "Mia",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "sophia",
+      "name": "Sophia",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "evelyn",
+      "name": "Evelyn",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 1,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "nyx",
+      "name": "Nyx",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 1,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "oliveira",
+      "name": "Oliveira",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 1,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "sakura",
+      "name": "Sakura",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 1,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "scarlett",
+      "name": "Scarlett",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 1,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "selena",
+      "name": "Selena",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 1,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "alma",
+      "name": "Alma",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "Tank",
+      "season": 2,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "bella",
+      "name": "Bella",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "S",
+      "role": "Tank",
+      "season": 2,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "harleyna",
+      "name": "Harleyna",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "Tank",
+      "season": 2,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "dodemeki",
+      "name": "Dodemeki",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 3,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "licia",
+      "name": "Licia",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 3,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "liliana",
+      "name": "Liliana",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 3,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "amber",
+      "name": "Amber",
       "faction": null,
       "troopType": null,
-      "note": "Selected community roster name; hero-specific details require current in-game verification."
+      "rarity": "S",
+      "role": null,
+      "season": 4,
+      "dataStatus": "single-source; explicitly marked verify",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "queenie",
+      "name": "Queenie",
+      "faction": null,
+      "troopType": null,
+      "rarity": "S",
+      "role": null,
+      "season": 4,
+      "dataStatus": "single-source; explicitly marked verify",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+    },
+    {
+      "id": "yu-chan",
+      "name": "Yu Chan",
+      "faction": null,
+      "troopType": null,
+      "rarity": "S",
+      "role": null,
+      "season": 4,
+      "dataStatus": "single-source; explicitly marked verify",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
     }
   ]
 }

@@ -16,7 +16,7 @@ test("all primary navigation destinations resolve", async ({ page, request }) =>
   }
   for (const target of pages) {
     await page.goto("/" + target);
-    const localLinks = await page.locator("a[href]").evaluateAll(as => as.map(a => a.getAttribute("href")).filter(h => h && !h.startsWith("#") && !/^(https?:|mailto:|tel:|javascript:)/i.test(h)).map(h => h.split("#")[0] || target));
+    const localLinks = await page.locator("a[href]").evaluateAll(as => as.map(a => a.getAttribute("href")).filter(h => h && !h.startsWith("#") && !/^(https?:|mailto:|tel:|javascript:)/i.test(h)).map(h => h.split("#")[0] || location.pathname.replace(/^\\//, "")));
     for (const href of localLinks) {
       const response = await request.get("/" + href);
       expect(response.status(), target + " -> " + href).toBe(200);

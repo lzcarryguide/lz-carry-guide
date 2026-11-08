@@ -1,10 +1,754 @@
 {
   "schemaVersion": 1,
-  "game": "Last Z",
+  "game": "Last Z: Survival Shooter",
   "scope": {
     "minimumHqLevel": 1,
     "maximumHqLevel": 35
   },
   "lastUpdated": null,
-  "levels": []
+  "publicationStatus": "research-only-no-costs-published",
+  "levels": [
+    {
+      "hqLevel": 1,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 2,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 3,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 4,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "City Walls",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 5,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Radar",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Assaulter Camp",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 6,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Military Center",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 7,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Alliance Center",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Training Ground",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 8,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Assaulter Camp",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 9,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Hospital",
+          "requiredLevel": null,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 10,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 9,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Shooter Camp",
+          "requiredLevel": 9,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 11,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 10,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Rider Camp",
+          "requiredLevel": 10,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 12,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 11,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "City Walls",
+          "requiredLevel": 11,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 13,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 12,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Alliance Center",
+          "requiredLevel": 12,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 14,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 13,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Assaulter Camp",
+          "requiredLevel": 13,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 15,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 14,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Shooter Camp",
+          "requiredLevel": 14,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 16,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 15,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Rider Camp",
+          "requiredLevel": 15,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 17,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 16,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "City Walls",
+          "requiredLevel": 16,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 18,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 17,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Alliance Center",
+          "requiredLevel": 17,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 19,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 18,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Assaulter Camp",
+          "requiredLevel": 18,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 20,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 19,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Shooter Camp",
+          "requiredLevel": 19,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 21,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 20,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Rider Camp",
+          "requiredLevel": 20,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 22,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 21,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "City Walls",
+          "requiredLevel": 21,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 23,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 22,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Alliance Center",
+          "requiredLevel": 22,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 24,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 23,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Assaulter Camp",
+          "requiredLevel": 23,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 25,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 24,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Shooter Camp",
+          "requiredLevel": 24,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 26,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 25,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Rider Camp",
+          "requiredLevel": 25,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 27,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 26,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "City Walls",
+          "requiredLevel": 26,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 28,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 27,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Alliance Center",
+          "requiredLevel": 27,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 29,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 28,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Assaulter Camp",
+          "requiredLevel": 28,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 30,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 29,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Shooter Camp",
+          "requiredLevel": 29,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 31,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Laboratory",
+          "requiredLevel": 30,
+          "verificationStatus": "community-reported"
+        },
+        {
+          "name": "Rider Camp",
+          "requiredLevel": 30,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 32,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "City Walls",
+          "requiredLevel": 31,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 33,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Alliance Center",
+          "requiredLevel": 32,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 34,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Assaulter Camp",
+          "requiredLevel": 33,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    },
+    {
+      "hqLevel": 35,
+      "recordStatus": "community-candidate",
+      "resources": null,
+      "requiredBuildings": [
+        {
+          "name": "Shooter Camp",
+          "requiredLevel": 34,
+          "verificationStatus": "community-reported"
+        }
+      ],
+      "sources": [
+        "https://lastzguides.com/hq-construction-cost.html",
+        "https://ztools.co.uk/tools/hq/",
+        "https://www.mone.gg/blog/last-z-survival-shooter/headquarters-upgrade-guide.html"
+      ],
+      "notes": "Candidate only. Resource costs and prerequisite levels are not yet approved for publication; confirm against in-game upgrade screen and server/version."
+    }
+  ]
 }

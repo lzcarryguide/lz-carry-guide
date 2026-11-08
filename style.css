@@ -425,3 +425,18 @@ button:focus-visible {
  .home-footer-social{gap:20px}
 }
 @media(prefers-reduced-motion:reduce){.home-page *{transition-duration:.01ms!important}}
+
+/* Mobile overflow guard: keep the service panel inside narrow viewports. */
+@media (max-width: 520px) {
+  .home-page .home-service .wrap.card {
+    box-sizing: border-box;
+    width: calc(100% - 30px);
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .home-page .home-service .card > * {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}

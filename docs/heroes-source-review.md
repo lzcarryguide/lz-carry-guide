@@ -1,44 +1,31 @@
-# Heroes reference — source and publication review
+# Heroes source review
 
-**Review date:** 2026-11-08  
-**Public data:** `data/heroes.json`  
-**Status:** Limited index; not a complete roster.
+Checked: 2026-11-08
 
-## What is safe to publish now
+## Cross-source findings
 
-- The three faction-to-troop alignments are consistent across independent community references:
-  - Blood Rose → Assaulters
-  - Guard of Order → Riders
-  - Wings of Dawn → Shooters
-- A selected set of hero names and their faction alignment is included as a non-exhaustive reference index. The source roster is community-maintained; it is not presented as a complete or season-universal list.
-- No skill descriptions, percentages, star costs, fragment requirements, equipment statistics, rarity, release season, or tier rankings are published.
+- SIN Command's current hero database displays 36 entries and provides faction, troop class, rarity, combat role and release-period fields. Its own page marks some Season 4 entries "Verify". This is the strongest current structured secondary reference found, but it is not an official game source.
+- Last Z Data displays 13 hero profiles, a smaller partial index. It corroborates selected S-rarity hero names and roles, but it is not a complete roster.
+- Last Z Wiki presents a 31-character list. It contains different names/spellings and claims about skill/passive effects that are not consistently corroborated by the other sources.
+- Therefore no single total is declared definitive. The public dataset uses a sourced partial index and labels the roster incomplete.
+- Do not copy third-party skill descriptions. Exact skills, levels, star coefficients, acquisition routes and Exclusive Equipment effects must be transcribed from the user's current in-game hero screens in original LZ Carry wording.
 
-## Sources reviewed
+## Investment guidance permitted
 
-- Z Tools — Heroes overview: https://ztools.co.uk/wiki/heroes/
-  - Describes the three factions, their troop alignment, hero roles, and general squad-development practices.
-  - Checked 2026-11-08. Community-maintained; article page metadata and tool roster may change.
-- SIN Command — Hero database: https://www.lastz.guide/heroes/hero-database/
-  - Search-indexed roster shows faction, troop type, rarity, season, and broad combat-role fields for named heroes.
-  - Checked 2026-11-08. Roster count and seasonal labels differ from other community databases.
-- Last Z Wiki — Heroes: https://lastzwiki.com/en/heroes.html
-  - Additional community roster and hero reference; its roster scope differs from other databases.
-  - Checked 2026-11-08.
-- Last Z Hub: https://lastz-hub.com/
-  - Additional season/roster reference. Its coverage is treated as a dated community snapshot, not a definitive live roster.
-  - Checked 2026-11-08.
+General advice only: build around the actual formation role, troop type and skill scope; prioritize resources on heroes that are actively deployed; check whether passive effects apply to all troops or only expedition deployments. No universal hero tier list or "best hero" claim is published because server season, roster access and spending context matter.
 
-## Conflicts and exclusions
+## Sources (internal research only)
 
-- Community sources show different total roster counts (including 26, 30, and 36). These appear to reflect different update dates, server/season coverage, and roster inclusion rules.
-- The public database therefore labels itself as a selected index and does not state a total hero count.
-- Skill details and recommendations can depend on skill level, season, server, and game updates. No exact skill text or numeric values are included.
-- The public page uses original LZ Carry descriptions. External URLs remain in this internal review only.
+- https://www.lastz.guide/heroes/hero-database/ — checked 2026-11-08; 36-entry structured index; Season 4 records include Verify flags.
+- https://www.lastz.guide/heroes/skills/ — checked 2026-11-08; skill framework and selected skill references; exact current values need client confirmation.
+- https://www.lastzdata.com/basics/heroes — checked 2026-11-08; 13-entry partial database and selected profiles.
+- https://lastzwiki.com/en/heroes.html — checked 2026-11-08; 31-character alternative list; roster and spelling discrepancies.
+- https://lzexchange.net/guides/hero-exp-and-star-costs — checked 2026-11-08; reported star-up fragment costs; confirm in client before calculator publication.
 
-## Next verification needed
+## Required in-game evidence
 
-1. Capture the live hero roster from an identified server and game version.
-2. Record each hero's exact in-game name, faction, troop type, rarity, and season/unlock scope.
-3. Capture every skill panel at the level being documented, including effect target, conditions, duration, and scaling.
-4. Capture star/fragment and exclusive-equipment costs from the live upgrade UI.
-5. Reconcile names and labels against at least one independent current source before expanding the public roster.
+1. Hero roster screen showing all pages/filters and server season.
+2. Each hero profile's name, faction, troop type and rarity.
+3. All four skill panels, including level-specific text and scope labels.
+4. Exclusive Equipment page, unlock condition, star levels and effects.
+5. Hero fragment/star-up cost panel and recruitment requirement.

@@ -8,6 +8,8 @@ test("HQ planner shows candidate prerequisites and withholds unverified costs", 
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/beginner.html#hq-planner-section");
   await expect(page.getByRole("heading", { name: "Headquarters Progression Planner" })).toBeVisible();
+  await expect(page.getByText("HQ upgrade resources").first()).toBeVisible();
+  await expect(page.locator("#hq-totals")).toContainText("Estimated published-source totals");
   await page.screenshot({ path: path.join(artifacts, "hq-planner-desktop.png"), fullPage: true });
   await expect(page.getByText(/community research candidates/i)).toBeVisible();
   await expect(page.locator("#hq-current")).toHaveValue("1");
@@ -15,8 +17,8 @@ test("HQ planner shows candidate prerequisites and withholds unverified costs", 
   await expect(page.getByRole("heading", { name: "HQ 4" })).toBeVisible();
   await expect(page.getByText("City Walls", { exact: true })).toBeVisible();
   await expect(page.getByText("Required level: 3")).toBeVisible();
-  await expect(page.getByText("Not verified for your server/version").first()).toBeVisible();
-  await expect(page.locator("#hq-totals")).toContainText("Unavailable — costs are not verified");
+  await expect(page.getByText("Community-reported").first()).toBeVisible();
+  await expect(page.locator("#hq-totals")).toContainText("Estimated published-source totals");
   await page.locator("#hq-target").selectOption("6");
   await expect(page.getByRole("heading", { name: "HQ 6" })).toBeVisible();
   await expect(page.getByText("Military Center", { exact: true })).toBeVisible();

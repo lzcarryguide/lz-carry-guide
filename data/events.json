@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 2,
+  "lastUpdated": "2026-11-08",
+  "scope": "Event mechanics reference. Only stable mechanics with multiple-source support are described; dates, times, score values, thresholds and reward quantities remain omitted where sources conflict or live client verification is unavailable.",
+  "verificationPolicy": "Event schedule and scoring are server-, season- and version-sensitive. Check the in-game event panel and alliance mail before acting.",
+  "events": [
+    {
+      "id": "alliance-duel",
+      "name": "Alliance Duel / Alliance Versus",
+      "type": "Alliance",
+      "frequency": "recurring weekly; server schedule requires verification",
+      "objective": "Coordinate alliance members around the active daily progression theme and maximize eligible contribution.",
+      "mechanics": [
+        "A multi-day alliance competition with daily task themes.",
+        "The eligible actions and scoring list must be read from the live event panel; theme labels alone do not guarantee an action scores."
+      ],
+      "preparation": [
+        "Hold relevant upgrade items until the matching live task is active.",
+        "Coordinate resource timing with Full Preparedness only after checking both task lists.",
+        "Do not rely on old point tables or assumed daily themes."
+      ],
+      "scoring": null,
+      "rewards": null,
+      "serverSchedule": null,
+      "verification": "Theme structure described by multiple community sources; exact day order and scoring need in-game check.",
+      "tags": [
+        "alliance",
+        "weekly",
+        "progression"
+      ]
+    },
+    {
+      "id": "full-preparedness",
+      "name": "Full Preparedness",
+      "type": "Alliance",
+      "frequency": "daily recurring",
+      "objective": "Complete the active short-window progression tasks to earn event chests.",
+      "mechanics": [
+        "Community references describe six rotations of four hours each, covering the full day.",
+        "Five broad progression themes are reported.",
+        "Some windows can overlap with Alliance Duel themes, allowing one action to contribute to both systems when both task lists include it."
+      ],
+      "preparation": [
+        "Check the current rotation and task list before claiming or spending.",
+        "Prepare eligible upgrades in advance where the game permits completion to be held.",
+        "Do not assume the Full Preparedness task list is identical to the Alliance Duel list."
+      ],
+      "scoring": null,
+      "rewards": "Chest rewards vary by active task and are not reproduced without current in-game evidence.",
+      "serverSchedule": {
+        "rotationLengthHours": 4,
+        "rotationsPerDay": 6,
+        "clock": "Apocalypse Time",
+        "status": "community-cross-checked; user server offset needs verification"
+      },
+      "verification": "Six four-hour rotations agree across two current community references. Exact theme mapping and local clock conversion require screenshot.",
+      "tags": [
+        "daily",
+        "preparation",
+        "timing"
+      ]
+    },
+    {
+      "id": "canyon-clash",
+      "name": "Canyon Clash",
+      "type": "Competitive",
+      "frequency": "reported recurring weekly; confirm event center",
+      "objective": "Win alliance points by coordinating movement and control of strategic battlefield objectives.",
+      "mechanics": [
+        "Community descriptions agree on a staged process involving time selection, registration, opponent matching and a battle.",
+        "Battle points are tied to objective control and battlefield actions.",
+        "Two commanders and group coordination are described in one guide."
+      ],
+      "preparation": [
+        "Confirm registered starters and substitutes with R4/R5.",
+        "Agree on objective groups, commander calls and teleport timing before battle.",
+        "Capture the event's live rules screen because participant caps and battle length conflict between sources."
+      ],
+      "scoring": null,
+      "rewards": null,
+      "serverSchedule": null,
+      "conflicts": [
+        "One source reports up to 20 main players plus 30 substitutes and a 45-minute battle; another reports 20 starters plus 10 substitutes and a 40-minute battle plus preparation/settlement.",
+        "Eligibility and registration limits differ; do not publish numeric limits yet."
+      ],
+      "verification": "Core staged format and objective-based alliance scoring are supported; exact participant limits, timing and point values need in-game verification.",
+      "tags": [
+        "alliance",
+        "battlefield",
+        "pvp"
+      ]
+    },
+    {
+      "id": "battle-for-capital",
+      "name": "Battle for the Capital",
+      "type": "Competitive",
+      "frequency": "server event; schedule varies",
+      "objective": "Compete for capital occupation and control.",
+      "mechanics": [
+        "Community reference describes occupation progress as the central win condition.",
+        "The winning alliance leadership may receive authority to appoint a President for the war zone."
+      ],
+      "preparation": [
+        "Coordinate alliance entry, reinforcement and defense plans.",
+        "Confirm the live occupation rules, time limit and appointment privileges for the current event edition."
+      ],
+      "scoring": null,
+      "rewards": null,
+      "serverSchedule": null,
+      "verification": "Core occupation objective is described by event reference; details and reward package require current panel.",
+      "tags": [
+        "capital",
+        "server",
+        "pvp"
+      ]
+    },
+    {
+      "id": "server-war",
+      "name": "Server War (SvS)",
+      "type": "Competitive",
+      "frequency": "season/server-dependent",
+      "objective": "Compete across paired servers through preparation and capital battle phases.",
+      "mechanics": [
+        "Community sources describe a preparation/scoring phase followed by a capital battle phase.",
+        "Preparation activities and attacker/defender assignment are server-event dependent."
+      ],
+      "preparation": [
+        "Follow the paired-server event panel and server leadership plan.",
+        "Do not assume last season's scoring, battle day or teleport rules apply."
+      ],
+      "scoring": null,
+      "rewards": null,
+      "serverSchedule": null,
+      "verification": "Two-phase concept is reported; dates, scoring sources and victory conditions require in-game confirmation.",
+      "tags": [
+        "cross-server",
+        "seasonal",
+        "pvp"
+      ]
+    },
+    {
+      "id": "zombie-tyrant",
+      "name": "Zombie Tyrant",
+      "type": "Combat",
+      "frequency": "alliance-scheduled",
+      "objective": "Coordinate rallies to deal damage to an alliance boss.",
+      "mechanics": [
+        "An R4/R5 scheduled activity is described by the event reference.",
+        "Rewards are described as combining alliance damage and individual contribution."
+      ],
+      "preparation": [
+        "Ask R4/R5 for the current start time and rally plan.",
+        "Have troops and march buffs ready before the scheduled window.",
+        "Use alliance instructions for rally point placement and damage coordination."
+      ],
+      "scoring": null,
+      "rewards": "Collective and personal reward tracks are described; exact thresholds and quantities withheld.",
+      "serverSchedule": null,
+      "verification": "Rally and combined contribution structure supported by event guide; duration, member threshold and MVP multiplier need in-game evidence.",
+      "tags": [
+        "boss",
+        "rally",
+        "alliance"
+      ]
+    },
+    {
+      "id": "shooting-loot",
+      "name": "Shooting Loot",
+      "type": "Rewards",
+      "frequency": "rotating reward event",
+      "objective": "Exchange event ammunition/shots for prize draws.",
+      "mechanics": [
+        "Event-specific currency and prize selection are reported."
+      ],
+      "preparation": [
+        "Check currency carry-over, free attempts, prize pool and guarantee rules in the live event panel before spending."
+      ],
+      "scoring": null,
+      "rewards": null,
+      "serverSchedule": null,
+      "verification": "Basic event concept only; shot guarantees, currency carry-over and milestone rewards unverified.",
+      "tags": [
+        "rewards",
+        "currency"
+      ]
+    },
+    {
+      "id": "bullseye-booty",
+      "name": "Bullseye Booty",
+      "type": "Rewards",
+      "frequency": "rotating reward event",
+      "objective": "Participate in a reward-focused event and review its current prize track.",
+      "mechanics": [
+        "Detailed mechanics not sufficiently corroborated in current research."
+      ],
+      "preparation": [
+        "Read current event rules, currency sources and prize path before spending."
+      ],
+      "scoring": null,
+      "rewards": null,
+      "serverSchedule": null,
+      "verification": "Requires in-game event screenshots.",
+      "tags": [
+        "rewards"
+      ]
+    },
+    {
+      "id": "fury-lord",
+      "name": "Fury Lord",
+      "type": "Combat",
+      "frequency": "recurrence needs server confirmation",
+      "objective": "Boss activity; precise current mechanics not established.",
+      "mechanics": [],
+      "preparation": [
+        "Confirm boss rules, scoring and rally structure in-game."
+      ],
+      "scoring": null,
+      "rewards": null,
+      "serverSchedule": null,
+      "verification": "Not enough corroborated current detail for a mechanics guide.",
+      "tags": [
+        "boss",
+        "combat"
+      ]
+    },
+    {
+      "id": "hero-battlefield",
+      "name": "Hero Battlefield",
+      "type": "Competitive",
+      "frequency": "season/server-dependent",
+      "objective": "Hero-focused competitive activity.",
+      "mechanics": [],
+      "preparation": [
+        "Capture the current event rules, entry requirements and scoring panel."
+      ],
+      "scoring": null,
+      "rewards": null,
+      "serverSchedule": null,
+      "verification": "Not enough corroborated current detail for a mechanics guide.",
+      "tags": [
+        "heroes",
+        "pvp"
+      ]
+    }
+  ]
+}

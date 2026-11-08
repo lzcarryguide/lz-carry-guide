@@ -1,7 +1,9 @@
 name: Isolated branch preview
 on:
   push:
-    branches: [lz-carry-expansion]
+    branches: [lz-carry-knowledge-hub]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -11,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: lz-carry-expansion
+          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -26,7 +28,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: lz-carry-branch-preview
+          name: lz-carry-knowledge-hub-preview
           path: |
             artifacts/
             test-results/

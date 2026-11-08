@@ -1,0 +1,324 @@
+{
+  "schemaVersion": 2,
+  "lastUpdated": "2026-11-08",
+  "verificationPolicy": "Tier names, statistics, camp unlock levels and research gates are provisional community references only. Numeric troop stats, power, load, camp levels and T10 prerequisites are intentionally excluded from this public database until verified with current in-game screenshots. Costs and timers are also withheld.",
+  "progressionSummary": {
+    "campRule": "Camp tier unlock levels are not published here pending in-game verification.",
+    "trainingVsPromotion": "Training creates units; promotion upgrades eligible existing lower-tier units. The promotion action and costs must be checked in the selected camp.",
+    "research": "T10 research route is described in internal research notes only; current-client prerequisite verification is pending.",
+    "marchCapacity": "Capacity depends on hero effects, research and other account systems. No single universal number is published here."
+  },
+  "tierUnlocks": [],
+  "classes": [
+    {
+      "id": "assaulters",
+      "name": "Assaulters",
+      "faction": "Blood Rose",
+      "camp": "Assaulter Camp",
+      "units": [
+        "Thug",
+        "Axe Fighter",
+        "Hammer Fighter",
+        "Chainsaw Fighter",
+        "Dread Warrior",
+        "Brutal Warrior",
+        "Pillager",
+        "Striker",
+        "Destroyer"
+      ],
+      "tiers": [
+        {
+          "tier": 1,
+          "unitName": "Thug",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 2,
+          "unitName": "Axe Fighter",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 3,
+          "unitName": "Hammer Fighter",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 4,
+          "unitName": "Chainsaw Fighter",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 5,
+          "unitName": "Dread Warrior",
+          "reportedAlternativeNames": [
+            "Dread Warrior",
+            "Ghastly Warrior"
+          ],
+          "nameStatus": "conflicting community sources; verify in client",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 6,
+          "unitName": "Brutal Warrior",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 7,
+          "unitName": "Pillager",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 8,
+          "unitName": "Striker",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 9,
+          "unitName": "Destroyer",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 10,
+          "unitName": "Invader",
+          "nameStatus": "reported tier 10; live client verification pending",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        }
+      ],
+      "tier10": "Invader"
+    },
+    {
+      "id": "shooters",
+      "name": "Shooters",
+      "faction": "Wings of Dawn",
+      "camp": "Shooter Camp",
+      "units": [
+        "Archer",
+        "Hunter",
+        "Crossbowman",
+        "Rifleman",
+        "Sniper",
+        "Gunner",
+        "Artilleryman",
+        "Mercenary"
+      ],
+      "tiers": [
+        {
+          "tier": 1,
+          "unitName": "Archer",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 2,
+          "unitName": "Hunter",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 3,
+          "unitName": "Crossbowman",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 4,
+          "unitName": "Rifleman",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 5,
+          "unitName": "Sniper",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 6,
+          "unitName": "Gunner",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 7,
+          "unitName": "Artilleryman",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 8,
+          "unitName": "Mercenary",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 9,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Berserk Shooter",
+            "Furious Shooter"
+          ],
+          "nameStatus": "conflicting community sources; verify in client",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 10,
+          "unitName": "Executioner",
+          "nameStatus": "reported tier 10; live client verification pending",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        }
+      ],
+      "tier10": "Executioner"
+    },
+    {
+      "id": "riders",
+      "name": "Riders",
+      "faction": "Guard of Order",
+      "camp": "Rider Camp",
+      "units": [
+        "Light Cavalry",
+        "Knight",
+        "Iron Cavalry",
+        "Shock Cavalry",
+        "Dauntless Knight"
+      ],
+      "tiers": [
+        {
+          "tier": 1,
+          "unitName": "Light Cavalry",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 2,
+          "unitName": "Knight",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 3,
+          "unitName": "Iron Cavalry",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 4,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Cowboy",
+            "Pro Cowboy"
+          ],
+          "nameStatus": "conflicting community sources; verify in client",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 5,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Heavy Cavalry",
+            "Crossbow Cavalry"
+          ],
+          "nameStatus": "conflicting community sources; verify in client",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 6,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Crossbow Cavalry",
+            "Heavy Cavalry"
+          ],
+          "nameStatus": "conflicting community sources; verify in client",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 7,
+          "unitName": "Shock Cavalry",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 8,
+          "unitName": null,
+          "reportedAlternativeNames": [
+            "Charge Knight",
+            "Charging Knight"
+          ],
+          "nameStatus": "conflicting community sources; verify in client",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 9,
+          "unitName": "Dauntless Knight",
+          "reportedAlternativeNames": [],
+          "nameStatus": "cross-source agreement",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        },
+        {
+          "tier": 10,
+          "unitName": "Apocalypse Knight",
+          "nameStatus": "reported tier 10; live client verification pending",
+          "valuesStatus": "PROVISIONAL — community-reported; not published as a verified value",
+          "unlockStatus": "Provisional; camp unlock level withheld pending in-game screenshot"
+        }
+      ],
+      "tier10": "Apocalypse Knight"
+    }
+  ]
+}

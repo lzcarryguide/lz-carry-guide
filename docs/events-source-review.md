@@ -1,61 +1,32 @@
-# Events reference — source and publication review
+# Events source review
 
-**Review date:** 2026-11-08  
-**Public data:** `data/events.json`  
-**Status:** Event directory only; no fixed calendar or numerical mechanics.
+Checked: 2026-11-08
 
-## What is safe to publish now
+## Cross-source findings
 
-The public directory includes broad event descriptions and preparation prompts for:
-- Alliance Duel / Alliance Versus
-- Full Preparedness
-- Canyon Clash
-- Battle for the Capital
-- Server War (SvS)
-- Zombie Tyrant
-- Shooting Loot
-- Bullseye Booty
-- Fury Lord
-- Hero Battlefield
+- Full Preparedness is described by two community references as six four-hour windows per day. Exact task themes and Apocalypse Time conversion still require the user's event panel.
+- Alliance Duel / Alliance Versus is recurring and task-theme based. Day order and exact point values differ between published schedules; do not publish a fixed weekday table without current server evidence.
+- Canyon Clash sources agree on a staged registration/match/battle process and objective-based alliance play, but disagree on participant limits and battle duration. No numeric participant cap or duration is published.
+- Capital battle, SvS and Zombie Tyrant can be described at a high level. Exact schedules, scoring, entry conditions and rewards are omitted.
+- Shooting Loot, Bullseye Booty, Fury Lord and Hero Battlefield need additional current screenshots before detailed mechanics can be written.
+- GAMIDES currently lists Full Preparedness every four hours and Canyon Clash on Friday, but other sources give different weekly event arrangements. Treat all clock and weekday details as server-specific, not universal.
 
-The existing LZ Carry event page already referenced several of these. The new entries expand those topics without publishing unverified schedules, scoring, requirements, or reward values.
+## Sources (internal research only)
 
-## Sources reviewed
+- https://www.lastz.guide/events/full-preparedness/ — checked 2026-11-08.
+- https://ztools.co.uk/wiki/full-preparedness/ — checked 2026-11-08.
+- https://lastzwiki.com/en/events.html — checked 2026-11-08.
+- https://gamides.com/events/ — checked 2026-11-08; schedule currently reports AT UTC-2 and Full Preparedness four-hour windows; conflicting weekly event schedule evidence.
+- https://lz.qyjoy.vip/event — checked 2026-11-08; Canyon Clash structure; participant caps/duration conflict.
+- https://last-z.net/guides/vs-weekly/ — checked 2026-11-08; alternative weekly Alliance Duel schedule.
 
-- Last Z Wiki — Events: https://lastzwiki.com/en/events.html
-  - Broad event list and community descriptions for Canyon Clash, Battle for the Capital, Zombie Tyrant, Server War, Alliance Versus, and Shooting Loot.
-  - Checked 2026-11-08. Its published event timings and thresholds are not treated as universal.
-- Last Z Wiki — Event calendar: https://lastzwiki.com/en/events-calendar.html
-  - Community schedule reference; schedule may vary by server and cycle.
-  - Checked 2026-11-08.
-- GAMIDES — Events: https://gamides.com/events/
-  - Additional schedule and event descriptions; used as a cross-check only.
-  - Checked 2026-11-08.
-- Last Z Guides — Full Preparedness: https://www.lastz.guide/events/full-preparedness/
-  - Community guide to recurring tasks and preparation. Schedule windows are not treated as universal.
-  - Checked 2026-11-08.
-- Last-Z.net — Weekly event reference: https://last-z.net/guides/vs-weekly/
-  - Community schedule comparison; used to document rotation conflicts, not as a universal calendar.
-  - Checked 2026-11-08.
-- GameVoyant — Event Center: https://gamevoyant.com/guides/last-z-event-center-guide/
-  - Additional community event overview and reward-planning reference.
-  - Checked 2026-11-08.
-- SIN Command — Full Preparedness: https://www.lastz.guide/events/full-preparedness/
-  - Reports daily rotations and overlap with Alliance Duel; clock windows are withheld pending target-server confirmation.
-  - Checked 2026-11-08.
+## Required in-game evidence
 
-## Conflicts and exclusions
-
-- Community sources disagree on weekly event themes and event cycle lengths.
-- Apocalypse Time and UTC conversion need to be confirmed against the player's live event screen and server clock.
-- Canyon Clash participation counts, match duration, registration steps, and battle objectives vary between community reports.
-- Shooting Loot guarantees, round milestones, event currency carryover, and reward boxes need current event-panel confirmation.
-- Fury Lord and Hero Battlefield are retained as index topics only; detailed mechanics remain unpublished.
-- No calendar dates, time-of-day labels, entry thresholds, phase schedules, point values, or reward amounts appear in public data.
-
-## Next verification needed
-
-1. Capture the live event center and schedule panel on the target server.
-2. Capture each event's phase, timer, eligibility, scoring, and reward screens.
-3. Record server, season, game version, timezone, and capture date.
-4. Re-check after every major season/update and remove or mark stale entries until reconfirmed.
+1. Event Center main screen showing event names, server timezone and countdowns.
+2. Full Preparedness current and next task panels, including clock/AT label.
+3. Alliance Duel current cycle overview and every daily task tab with points/rewards.
+4. Canyon Clash registration, participant limits, substitutes, match time, map, scoring and reward panels.
+5. SvS preparation and battle phase overview, score breakdown and reward tiers.
+6. Capital battle entry, occupation, President appointment and rewards screens.
+7. Zombie Tyrant boss rules, rally schedule, damage ranking and reward panels.
+8. Shooting Loot, Bullseye Booty, Fury Lord and Hero Battlefield complete rules/rewards panels.

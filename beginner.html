@@ -36,6 +36,23 @@
 </article>
 </div><p class="notice">These sections introduce planned topics; they are not yet complete step-by-step guides. The HQ requirements dataset is being assembled level by level and will not display costs or prerequisites until verified.</p></div></section>
 
+<section id="hq-planner-section">
+<div class="wrap">
+  <p class="eyebrow">Interactive tool · HQ1–35</p>
+  <h2>Headquarters Progression Planner</h2>
+  <p class="lead">Choose your current HQ and goal. Review community-reported building prerequisites and track your checklist locally on this device.</p>
+  <div class="notice hq-data-notice"><strong>Accuracy notice:</strong> These prerequisite levels are community research candidates, not yet verified against in-game upgrade screens for every server/version. Resource costs are intentionally withheld. Do not treat candidate values as a definitive upgrade requirement.</div>
+  <div class="card hq-controls">
+    <label for="hq-current">Current HQ level<select id="hq-current"></select></label>
+    <label for="hq-target">Target HQ level<select id="hq-target"></select></label>
+    <div class="hq-progress-summary"><strong>Checklist progress</strong><span id="hq-progress" aria-live="polite">Loading HQ data…</span></div>
+  </div>
+  <div id="hq-totals" class="card hq-totals" aria-live="polite"><h3>Resource totals</h3><p>Loading…</p></div>
+  <div id="hq-steps" class="hq-steps" aria-live="polite"><div class="card"><p>Loading HQ requirements…</p></div></div>
+  <p class="small muted">Progress is saved in this browser only. Clearing site data or changing browsers/devices may remove it. Source notes and data status are documented in the <a href="docs/hq-source-review.md">HQ source review</a>.</p>
+</div>
+</section>
+<script src="assets/js/hq-planner.js" defer></script>
 </main>
 <footer><div class="wrap">
   <strong>LZ CARRY</strong>

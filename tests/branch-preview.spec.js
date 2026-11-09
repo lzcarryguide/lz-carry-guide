@@ -216,8 +216,8 @@ test("mixed-faction analysis explains pair signals, troop fit and counter matchu
  await expect(page.locator("#formation-advice")).toContainText("Bella + Licia");
  await page.getByLabel("March troop line").selectOption("Shooters");
  await expect(page.locator("#formation-advice")).toContainText("Check troop-specific passives");
- await page.getByLabel("Opponent faction").selectOption("Blood Rose");
- await expect(page.locator("#formation-advice")).toContainText("Wings of Dawn is the community-listed counter");
+ await page.getByLabel("Opponent faction").selectOption("Guard of Order");
+ await expect(page.locator("#formation-advice")).toContainText("Blood Rose is the community-listed counter");
  await page.screenshot({path:path.join(artifacts,"formation-mixed-feedback-mobile.png"),fullPage:true});
  await page.getByRole("button",{name:/Clear formation/}).click();
  await expect(page.locator("#formation-advice")).toContainText("Add heroes to compare");

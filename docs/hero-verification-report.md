@@ -62,7 +62,8 @@ The public builder now exposes only the 33 Verified entries. Amber, Queenie and 
 | Nikola | Needs confirmation | No sufficient individual roster / skill corroboration. |
 | Eva | Needs confirmation | Legacy source entry; no independent individual record sufficient for selection. |
 | Lysia | Needs confirmation | Possible spelling / identity collision with Licia; do not merge without a client card. |
-| Two remaining legacy entries | Needs confirmation | The legacy roster contains nine non-corroborated entries; consult the original 45-row roster audit below for all prior notes. |
+| Emilia | Needs confirmation | Legacy spelling in Last Z Wiki; current Z Tools / SIN Command references use Amelia. Treat as a possible alias, not a separate hero. |
+| Halina | Needs confirmation | Localized Last Z Wiki spelling associated with Harleyna; do not treat as an additional hero without client confirmation. |
 
 ## Why “Verified” is qualified
 

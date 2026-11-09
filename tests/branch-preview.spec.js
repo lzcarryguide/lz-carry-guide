@@ -219,6 +219,6 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
   await page.locator(".formation-slot").nth(0).getByText("Remove").click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
   await page.getByLabel("Faction").selectOption("Wings of Dawn");
-  await expect(page.locator(".builder-hero")).toHaveCount(11);
+  await expect(page.locator(".builder-hero")).toHaveCount(12);
   await expect(page.getByText("Jack", { exact: true })).toHaveCount(0);
 });

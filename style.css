@@ -791,3 +791,44 @@ footer p { max-width: 760px; margin: 7px 0 0; font-size: 13px; line-height: 1.55
 .faction-card{border-top:2px solid var(--accent-strong)}
 @media(max-width:760px){.knowledge-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.knowledge-tools,.knowledge-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* Expandable, responsive research and reference profiles */
+.research-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(220px,1fr);gap:12px 16px;margin:20px 0 12px;padding:18px;background:rgba(15,25,39,.82);border:1px solid var(--line);border-radius:12px}
+.research-controls label{display:grid;gap:7px;color:var(--text);font-size:13px;font-weight:750}
+.research-controls input,.research-controls select{width:100%;min-width:0;min-height:44px;padding:9px 12px;color:var(--text);background:#0b121d;border:1px solid #52677f;border-radius:7px;font:inherit}
+.research-controls #research-count{grid-column:1/-1;margin:0}
+.research-directory{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.research-tree-card{min-width:0;padding:0;overflow:hidden}
+.research-tree-card[hidden]{display:none!important}
+.research-tree-card summary{padding:20px 22px;cursor:pointer;list-style:none}
+.research-tree-card summary::-webkit-details-marker,.profile-summary::-webkit-details-marker{display:none}
+.research-tree-card summary:after{content:"＋ Open tree notes";display:block;margin-top:12px;color:var(--accent);font-size:13px;font-weight:750}
+.research-tree-card[open] summary:after{content:"− Close tree notes"}
+.research-tree-card summary h3{margin:10px 0 7px}
+.research-tree-card summary p{margin:0}
+.research-tree-body{padding:0 22px 22px;border-top:1px solid var(--line)}
+.research-tree-body p{margin:12px 0 0}
+.table-scroll{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+.research-milestone-table{width:100%;border-collapse:collapse;min-width:680px;background:rgba(14,22,34,.8)}
+.research-milestone-table th,.research-milestone-table td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.research-milestone-table th{color:#edf5ff;background:#152235;font-size:13px}
+.research-milestone-table td{color:#c5d2e0;font-size:14px}
+.research-milestone-table td:first-child{white-space:nowrap;color:#e4effc;font-weight:800}
+.research-checklist{display:grid;gap:12px}
+.research-checklist label{display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-bottom:1px solid var(--line);color:#d4e0ee}
+.research-checklist input{width:18px;height:18px;margin-top:3px;accent-color:var(--accent);flex:0 0 auto}
+.profile-card{min-width:0;overflow:hidden;padding:0}
+.profile-summary{display:block;padding:20px;cursor:pointer;list-style:none}
+.profile-summary h3{margin:10px 0 7px}
+.profile-summary p{margin:0 0 7px;overflow-wrap:anywhere}
+.profile-summary p:last-child{margin-bottom:0}
+.profile-summary:after{content:"＋ Open detailed profile";display:block;margin-top:12px;color:var(--accent);font-size:13px;font-weight:750}
+.profile-card[open]>.profile-summary:after{content:"− Close profile"}
+.profile-body{padding:0 20px 20px;border-top:1px solid var(--line)}
+.profile-section{margin-top:14px}
+.profile-section h4{margin:0 0 6px;color:#eaf3fd}
+.profile-section p{margin:0}
+.profile-body ul{margin:7px 0 12px}
+.profile-card summary:focus-visible{outline:2px solid #a8d9ff;outline-offset:-4px}
+@media(max-width:760px){.research-directory{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){.research-controls{grid-template-columns:minmax(0,1fr)}.research-controls #research-count{grid-column:auto}.research-tree-card summary,.profile-summary{padding:18px}.research-tree-body,.profile-body{padding:0 18px 18px}}

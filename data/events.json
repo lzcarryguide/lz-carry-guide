@@ -27,6 +27,14 @@
         "alliance",
         "weekly",
         "progression"
+      ],
+      "participation": "Check cycle eligibility and the current daily task tabs. Registration, server age and alliance participation may vary; follow live instructions.",
+      "f2pStrategy": "Choose free tasks and attainable personal/alliance chests. Hold badges, hero items, construction and training resources until the current task confirms they score.",
+      "spendingStrategy": "Do not chase an alliance rank unless leadership agrees and the reward justifies badge, speedup and troop opportunity costs.",
+      "commonMistakes": [
+        "Assuming last week's weekday mapping is universal.",
+        "Treating a theme label as proof every related action scores.",
+        "Spending before checking the live points panel."
       ]
     },
     {
@@ -58,6 +66,14 @@
         "daily",
         "preparation",
         "timing"
+      ],
+      "participation": "Check active rotation, theme, countdown and server time. Community references describe six four-hour windows, but confirm current edition and Apocalypse Time in-game.",
+      "f2pStrategy": "Prepare free or already-planned upgrades for a matching task. Aim for attainable chests. Check both event task lists before assuming overlap.",
+      "spendingStrategy": "Spend only when a verified threshold is worth more than the account opportunity cost.",
+      "commonMistakes": [
+        "Assuming the Alliance Duel and Full Preparedness lists match.",
+        "Using an unverified Apocalypse Time conversion.",
+        "Spending after a task window changes."
       ]
     },
     {
@@ -88,6 +104,14 @@
         "alliance",
         "battlefield",
         "pvp"
+      ],
+      "participation": "Check current registration for eligibility, starters, substitutes, commanders and battle time. Sources disagree on substitute slots and battle length; no universal cap is stated.",
+      "f2pStrategy": "Ask leadership which objective or support role is needed before spending teleports or healing.",
+      "spendingStrategy": "Commit teleports, healing or buffs only after confirming live rules and alliance plan.",
+      "commonMistakes": [
+        "Assuming old participant limits or battle duration.",
+        "Teleporting without an objective or return plan.",
+        "Ignoring substitute and commander assignments."
       ]
     },
     {
@@ -112,6 +136,14 @@
         "capital",
         "server",
         "pvp"
+      ],
+      "participation": "Check server notice for registration, war-zone eligibility, time, teleport limits and occupation rules.",
+      "f2pStrategy": "Follow alliance occupation/defense plan and reinforce assigned players.",
+      "spendingStrategy": "Coordinate paid teleports, shields and healing with alliance leadership and live conditions.",
+      "commonMistakes": [
+        "Using another server's schedule.",
+        "Assuming occupation or appointment rules are unchanged.",
+        "Fighting away from assigned objectives."
       ]
     },
     {
@@ -136,6 +168,14 @@
         "cross-server",
         "seasonal",
         "pvp"
+      ],
+      "participation": "Use paired-server panel for eligibility, preparation and battle phases, teleport rules and assignments. Schedule is server/season-dependent.",
+      "f2pStrategy": "Complete free preparation tasks aligned with normal development and follow leadership in battle.",
+      "spendingStrategy": "Agree priorities with leadership before committing speedups, healing, shields or teleports.",
+      "commonMistakes": [
+        "Assuming old pairing or battle dates apply.",
+        "Spending without checking scoring categories.",
+        "Ignoring server-wide protection and battle plans."
       ]
     },
     {
@@ -161,6 +201,14 @@
         "boss",
         "rally",
         "alliance"
+      ],
+      "participation": "Confirm alliance schedule, eligibility and rally instructions with R4/R5. Exact member thresholds and timing need the event panel.",
+      "f2pStrategy": "Join announced rallies with a suitable march; avoid premium buffs unless the event or leadership plan confirms value.",
+      "spendingStrategy": "Coordinate buffs and attempts after checking damage and reward rules; do not assume MVP multipliers.",
+      "commonMistakes": [
+        "Arriving late or using the wrong march.",
+        "Assuming reward thresholds are unchanged.",
+        "Changing rally placement without leadership."
       ]
     },
     {
@@ -182,6 +230,14 @@
       "tags": [
         "rewards",
         "currency"
+      ],
+      "participation": "Read live rules to confirm shot sources, prize pools, free attempts, guarantees and carry-over.",
+      "f2pStrategy": "Complete available tasks first. Save currency only when the current rules explicitly confirm carry-over.",
+      "spendingStrategy": "Compare guaranteed milestones with actual purchase cost; do not rely on old rewards.",
+      "commonMistakes": [
+        "Assuming shot currency carries over.",
+        "Buying before checking guarantees.",
+        "Confusing random draws with milestones."
       ]
     },
     {
@@ -202,6 +258,14 @@
       "verification": "Requires in-game event screenshots.",
       "tags": [
         "rewards"
+      ],
+      "participation": "Reviewed sources do not establish a universal rule. Check live eligibility, entry currency, free attempts and reward track.",
+      "f2pStrategy": "Use free attempts and tasks shown in the event. Keep premium currency until guarantees and probabilities are clear.",
+      "spendingStrategy": "Do not buy currency until current probability, guarantee, milestone and carry-over are confirmed.",
+      "commonMistakes": [
+        "Assuming rules from another reward event.",
+        "Spending before checking probabilities.",
+        "Treating an informal name as an official mode."
       ]
     },
     {
@@ -221,6 +285,14 @@
       "tags": [
         "boss",
         "combat"
+      ],
+      "participation": "Current research does not confirm cadence, eligibility or alliance requirements. Capture live rules before relying on a strategy.",
+      "f2pStrategy": "Check confirmed objective, attempt cost and rewards before using a march.",
+      "spendingStrategy": "No spending recommendation until the mode, attempts, scoring and rewards are verified.",
+      "commonMistakes": [
+        "Assuming Zombie Tyrant rules apply.",
+        "Using unverified schedules or damage thresholds.",
+        "Spending before confirming the mode is active."
       ]
     },
     {
@@ -240,7 +312,15 @@
       "tags": [
         "heroes",
         "pvp"
+      ],
+      "participation": "Research establishes only a hero-focused competitive label. Confirm mode, eligibility, formation restrictions and season rules in-game.",
+      "f2pStrategy": "Use the live entry preview and heroes already developed. Do not upgrade a hero solely from a third-party tier list.",
+      "spendingStrategy": "Invest only after determining if event benefits are exclusive or improve the wider account.",
+      "commonMistakes": [
+        "Assuming a specific arena format from the name.",
+        "Using generic tier lists rather than live lineup rules.",
+        "Spending fragments before checking restrictions."
       ]
     }
   ]
-}
+}\n

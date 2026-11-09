@@ -20,12 +20,8 @@
 
 <section id="hero-database"><div class="wrap">
   <p class="eyebrow">Hero reference</p><h2>Find a hero</h2>
-  <p class="section-intro">PARTIAL ROSTER — 22 indexed entries only. This is not a complete hero database. A structured community source lists 36 entries, and 14 have not yet been reconciled. Faction, troop line, rarity and role are secondary-source references, not confirmed current-client data. Skill descriptions and exclusive-equipment effects remain unpublished until checked against current in-game profiles.</p>
-  <div class="knowledge-tools">
-    <label>Search heroes<input id="hero-search" type="search" placeholder="Name, role, faction or troop line…" autocomplete="off"></label>
-    <label>Faction<select id="hero-faction"><option value="">All factions</option><option>Blood Rose</option><option>Wings of Dawn</option><option>Guard of Order</option></select></label>
-    <p class="small muted">Profiles marked for verification are not treated as confirmed current-client data.</p>
-  </div>
+  <p class="section-intro">A curated, explicitly partial 22-entry index: 19 entries have community-indexed faction and role metadata; three Season 4 names remain flagged for verification. Open each card for formation fit, strengths and trade-offs, investment notes and an evidence checklist. Exact skills, costs, Exclusive Equipment effects and definitive lineups stay unpublished until current in-game profiles are captured.</p>
+  <div class="knowledge-tools"><label>Search heroes<input id="hero-search" type="search" placeholder="Name, role, faction, troop type or season…" autocomplete="off"></label><label>Faction<select id="hero-faction"><option value="">All factions</option><option>Blood Rose</option><option>Wings of Dawn</option><option>Guard of Order</option></select></label><label>Role<select id="hero-role"><option value="">All roles</option><option>Tank</option><option>DPS</option><option>Support</option></select></label><label>Season<select id="hero-season"><option value="">All releases</option><option value="0">Season 0</option><option value="1">Season 1</option><option value="2">Season 2</option><option value="3">Season 3</option><option value="4">Season 4 · Verify</option></select></label></div>
   <p class="small muted" id="hero-count" aria-live="polite">Loading hero records…</p>
   <div class="knowledge-grid" id="hero-results" aria-live="polite"><div class="card"><p>Loading the hero index…</p></div></div>
 </div></section>

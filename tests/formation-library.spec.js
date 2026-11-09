@@ -9,6 +9,7 @@ test("Formation Lab saves, reloads and compares local lineups", async ({ page })
   await expect(page.locator("#builder-results .builder-hero").first()).toBeVisible();
   await page.locator("#formation-slots .formation-slot").nth(0).click();
   await page.locator("#builder-results .builder-hero").nth(0).click();
+  const alphaHero=await page.locator("#formation-slots .formation-slot").first().locator("strong").textContent();
   await page.locator("#formation-name").fill("Alpha");
   await page.locator("#formation-save").click();
   await expect(page.locator("#formation-saved-list")).toContainText("Alpha");
@@ -21,7 +22,7 @@ test("Formation Lab saves, reloads and compares local lineups", async ({ page })
   await page.locator("#formation-compare").click();
   await expect(page.locator("#formation-compare-result")).toContainText("Slot");
   await page.locator("#formation-saved-list").getByRole("button",{name:"Load"}).first().click();
-  await expect(page.locator("#formation-slots .formation-slot").first()).toContainText("Choose hero");
+  await expect(page.locator("#formation-slots .formation-slot").first()).toContainText(alphaHero);
   await page.reload();
   await expect(page.locator("#formation-saved-list")).toContainText("Alpha");
   await expect(page.locator("#formation-saved-list")).toContainText("Beta");

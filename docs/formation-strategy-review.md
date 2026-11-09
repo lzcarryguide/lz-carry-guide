@@ -1,68 +1,40 @@
-# Formation strategy evidence review
+# Formation strategy and preset evidence review
 
-**Scope:** Community recommendations checked 9 November 2026. These are planning recommendations, not official publisher rankings or guarantees. Player server age, available heroes, star levels, skill levels, troop type, equipment and mode materially change the best march.
+Checked 9 November 2026. These are community-reported patterns, not official publisher rankings or guaranteed wins.
 
-## Season and faction structure
+## Source-backed faction formation examples
 
-- Blood Rose → Assaulters
-- Wings of Dawn → Shooters
-- Guard of Order → Riders
-- Commonly reported counter triangle: Wings of Dawn counters Blood Rose; Guard of Order counters Wings of Dawn; Blood Rose counters Guard of Order.
-- Season 1–4 hero cohorts are shown in the public builder. Season 5 / Moonlit Elegy adds no new hero trio in the sources reviewed; it adds red-star awakening for Oliveira, Scarlett and Evelyn. Older server groups may label Moonlit Elegy Season 5 while newer server groups may call the same content Season 4.
+- **Blood Rose:** SIN Command's formation guide publishes a faction example with Bella, Katrina, Selena, Licia and Oliveira / Sophia as alternatives. LZ Carry uses Bella, Katrina, Selena, Licia and Oliveira as its preset.
+- **Wings of Dawn:** SIN Command publishes a faction example using Laura, Alma, Scarlett, Liliana and Amelia. LZ Carry uses those names as its preset.
+- The exact position, commander slot, star requirements and skill activation should be checked against the current client and original guide; the LZ Carry preset is an example to experiment with, not a guaranteed best-in-slot lineup.
 
-## Community consensus picks by faction
+## Mixed-faction 3+2 pattern
 
-These are *priority candidates*, not a universal top-five ranking.
+Last Z Guides describes 3 Wings of Dawn + 2 Blood Rose as a possible PvP counter pattern on Blood Rose-heavy servers. LZ Carry's sample test formation uses three Wings of Dawn heroes (Queenie, Liliana, Alma) and two Blood Rose heroes (Yu Chan, Licia) in the original example. Because the current SIN Command database marks Queenie and Yu Chan “Verify Season 4”, the builder uses an alternate verified test group: Scarlett, Alma, Liliana + Bella, Licia. This alternate five-name combination is a LZ Carry experiment, not a lineup published verbatim by Last Z Guides.
 
-### Blood Rose / Assaulters
-- Yu Chan (S4): current faction carry / primary DPS in recent tier reviews.
-- Licia (S3): high-priority damage hero; pair with Bella where the seasonal talent synergy is available.
-- Bella (S2): partner for Licia and a durable combat option.
-- Selena (S1): troop-focused Assaulter attack contribution.
-- Oliveira (S1): utility / troop-buff role and one of the Season 5 red-star awakening heroes.
-- Alternatives / account utility: Katrina (fuel) and Sophia (construction) are useful base-roster investments, but their economy utility should not be confused with main-march combat ranking.
+## Pair signals
+- Bella + Licia: community guides identify this as a Blood Rose seasonal pairing; exact live talent activation and star requirement must be confirmed.
+- Alma + Liliana: community guides identify this as a Wings of Dawn seasonal pairing; confirm the live talent and star requirement.
+- Harleyna + Dodemeki: community guides identify this as a Guard of Order pairing; spelling differs across sources.
 
-### Wings of Dawn / Shooters
-- Queenie (S4): current faction carry / primary DPS in recent tier reviews.
-- Liliana (S3): high-priority damage hero; pair with Alma where the seasonal talent synergy is available.
-- Alma (S2): partner and flex option in the Liliana pairing.
-- Scarlett (S1): troop-focused Shooter contribution and Season 5 red-star awakening candidate.
-- Nyx (S1): additional combat option.
-- Alternatives / account utility: Laura (radar progression) and base Shooter heroes can be used while a seasonal core is being built.
+## Faction counter model
+- Wings of Dawn counters Blood Rose.
+- Guard of Order counters Wings of Dawn.
+- Blood Rose counters Guard of Order.
 
-### Guard of Order / Riders
-- Amber (S4): current faction carry / primary DPS in recent tier reviews.
-- Dodemeki (S3): damage hero; pair with Harleyna where the seasonal talent synergy is available.
-- Harleyna (S2): partner in the Dodemeki pairing.
-- Evelyn (S1): combat option and Season 5 red-star awakening candidate.
-- Sakura (S1): alternative combat option.
-- Alternatives / account utility: Mia (vehicle progression) and other developed base Riders can fill utility roles.
+These are matchup heuristics, not guaranteed wins. Hero development, troop tier, skills, equipment, mode, buffs and battle RNG can outweigh a faction advantage.
 
-## Formation approaches
+## Player-stage guidance
+- **Early / F2P:** use your best-developed heroes, preserve fragments and manuals, and avoid splitting scarce investment across three factions.
+- **Mid-game / low-spend:** develop a stable faction core; add a seasonal pair only when the pair's talent and star gate are actually available.
+- **Late-game / higher spend:** compare a developed mono-faction lineup against 3+2 counter tests for the server's actual matchup. Do not assume higher spend alone makes a preset optimal.
+- **PvE:** do not blindly transfer PvP counter advice into PvE; compare damage and survivability under the mode's own rules.
 
-- **3+2 counter formation:** Last Z Guides recommends 3 Wings of Dawn + 2 Blood Rose on Blood Rose-heavy servers, with 3 Guard of Order + 2 Wings of Dawn as an alternative if Wings become dominant. This is a community meta recommendation, not a universal rule.
-- **Mono-faction:** A full five-hero faction lineup may gain a faction bonus but gives up counter flexibility. Treat it as a developed-account option, not an automatic whale-only requirement.
-- **Commander and troop alignment:** community formation guides recommend putting a strong all-troop buffer in the Commander slot and matching troop-specific skills to the march troop type. LZ Carry's current five-slot builder does not simulate the exact commander slot, row positions, skill trigger order or battle outcomes.
-- **PvE vs PvP:** faction counters may not apply in the same way to PvE. Use the strongest damage lineup for PvE modes and confirm each event's actual battle rules.
-
-## Spending-stage guidance
-
-- **Early game:** use the strongest heroes already developed; prioritize account-wide utility breakpoints and avoid scattering fragments across all three factions.
-- **F2P:** select one main faction based on actual owned / developed heroes and alliance/server context. Do not chase a new season carry if it would leave the rest of the march underbuilt.
-- **Low spending:** build a stable core and selectively add a seasonal pair; evaluate fragment and equipment cost before pivoting.
-- **High spending:** a 3+2 counter build or a fully developed mono-faction core can be viable. Do not assume spending alone makes an untested composition best.
-
-## Source register
-
-- SIN Command hero roster and field files: https://www.lastz.guide/heroes/hero-database/
-- Z Tools 26-hero skills index: https://ztools.co.uk/tools/heroes/
-- Z Tools Season 5 Moonlit Elegy guide (25 Oct 2026): https://ztools.co.uk/wiki/season-5/
-- Last Z Wiki roster / FAQ: https://lastzwiki.com/en/heroes.html
-- Last Z Guides formation guide (updated Feb 1, 2026): https://lastzguides.com/formations.html
-- Gaming Route tier list (checked Nov 2, 2026): https://gamingroute.com/last-z-hero-tier-list/
-- Gamevoyant tier list (updated Oct 12, 2026): https://gamevoyant.com/tier-lists/last-z-hero-tier-list/
-- LastZ.GG hero reference (updated Nov 9, 2026): https://lastz.gg/basics/heroes
+## Sources
+- SIN Command Formation Guide: https://www.lastz.guide/heroes/formations/
+- Last Z Guides, Best Formations: https://lastzguides.com/formations.html
+- Z Tools hero skill index: https://ztools.co.uk/tools/heroes/
+- LastZ.GG hero reference: https://lastz.gg/basics/heroes
 
 ## Limitations
-
-No publisher-hosted complete hero roster, current in-game screenshots, or controlled battle-log dataset was available. “Verified” in the roster audit means independently corroborated by community roster sources, not publisher certification. Best-in-slot rankings, exact skill coefficients and matchup percentages are not asserted as facts.
+The five-slot planner does not simulate commander bonuses, exact row positioning, skill triggers, troop counts, equipment, buffs, RNG or match outcomes. It deliberately gives no numerical formation score.

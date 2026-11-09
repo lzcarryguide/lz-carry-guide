@@ -1001,12 +1001,16 @@
       "rarity": "S",
       "role": null,
       "season": 4,
-      "dataStatus": "marked Verify by source; not confirmed in client",
+      "dataStatus": "community-indexed; season verification pending",
       "skills": [],
       "exclusiveEquipment": null,
       "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
-      "verificationStatus": "Verified",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationStatus": "Needs confirmation",
+      "verificationBasis": "Listed by SIN Command as a Season 4 hero with faction and troop type, but the current field file explicitly marks the Season 4 assignment Verify. Identity is community-indexed; season metadata is not sufficiently established for the Verified-only builder.",
+      "profileNotes": {
+        "evidence": "SIN Command's current field file lists this hero but explicitly marks the Season 4 assignment Verify. Independent current-client confirmation is not available.",
+        "limitations": "Season/release assignment remains unconfirmed; do not treat this as a completed seasonal profile."
+      }
     },
     {
       "id": "queenie",
@@ -1016,12 +1020,16 @@
       "rarity": "S",
       "role": null,
       "season": 4,
-      "dataStatus": "marked Verify by source; not confirmed in client",
+      "dataStatus": "community-indexed; season verification pending",
       "skills": [],
       "exclusiveEquipment": null,
       "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
-      "verificationStatus": "Verified",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationStatus": "Needs confirmation",
+      "verificationBasis": "Listed by SIN Command as a Season 4 hero with faction and troop type, but the current field file explicitly marks the Season 4 assignment Verify. Identity is community-indexed; season metadata is not sufficiently established for the Verified-only builder.",
+      "profileNotes": {
+        "evidence": "SIN Command's current field file lists this hero but explicitly marks the Season 4 assignment Verify. Independent current-client confirmation is not available.",
+        "limitations": "Season/release assignment remains unconfirmed; do not treat this as a completed seasonal profile."
+      }
     },
     {
       "id": "yu-chan",
@@ -1031,12 +1039,16 @@
       "rarity": "S",
       "role": null,
       "season": 4,
-      "dataStatus": "marked Verify by source; not confirmed in client",
+      "dataStatus": "community-indexed; season verification pending",
       "skills": [],
       "exclusiveEquipment": null,
       "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
-      "verificationStatus": "Verified",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationStatus": "Needs confirmation",
+      "verificationBasis": "Listed by SIN Command as a Season 4 hero with faction and troop type, but the current field file explicitly marks the Season 4 assignment Verify. Identity is community-indexed; season metadata is not sufficiently established for the Verified-only builder.",
+      "profileNotes": {
+        "evidence": "SIN Command's current field file lists this hero but explicitly marks the Season 4 assignment Verify. Independent current-client confirmation is not available.",
+        "limitations": "Season/release assignment remains unconfirmed; do not treat this as a completed seasonal profile."
+      }
     }
   ]
 }

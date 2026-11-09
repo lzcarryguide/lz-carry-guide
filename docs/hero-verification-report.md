@@ -1,84 +1,83 @@
-# Hero roster verification audit — 45 legacy entries
+# Hero identity and metadata audit — 45 legacy entries
 
-**Scope:** Each name in the previous 45-entry index was checked against the Last Z Wiki roster, Z Tools' 26-hero/3-faction skill index, SIN Command's 36-entry hero directory, and current formation/season references. These are community sources, not publisher records or direct client captures. “Verified” here means independently corroborated as a Last Z hero; it does not certify every skill, rarity, season label, or current availability. In-game screenshots remain the final authority.
+Checked 9 November 2026. This audit separates community evidence for identity from confirmation of season, faction, troop type, skills and current in-game availability.
 
-## Summary
+## Classification summary
 
-- **Verified:** 36
-- **Needs confirmation:** 9
-- **Invalid:** 0 conclusively established from available evidence. No entry was labelled invalid merely because one source omitted it.
+- **Verified: 33** — individually listed in current Last Z community hero references, with faction / troop line corroborated and no material identity conflict that prevents use in the builder.
+- **Needs confirmation: 12** — 9 legacy names from the previous 45-entry list plus 3 Season 4 records whose current field files explicitly flag season assignment as Verify.
+- **Invalid: 0** — no entry was conclusively shown to be fabricated or from another game. Lack of corroboration alone is not proof of invalidity.
 
-The public formation builder includes only the Verified group. Needs-confirmation entries are excluded until identity and faction/season can be corroborated. Jack is therefore not selectable: Last Z Wiki mentions him as a beginner Wings of Dawn ranged option, but the independent Z Tools and SIN Command current roster indexes do not list him. Alexander is similarly mentioned as Jack's tank partner in that FAQ but is not corroborated by those rosters.
+The public builder now exposes only the 33 Verified entries. Amber, Queenie and Yu Chan are temporarily excluded because SIN Command's current field files display “Verify Season 4” for all three. They are real community-indexed Last Z hero names, but their release-season metadata is not confirmed to the standard requested. This is deliberately more conservative than simply counting the 36 entries shown in a roster.
 
-## Per-entry findings
+## Individual audit of the 36 community-indexed heroes
 
-| Legacy entry | Classification | Legacy season | Faction / troop | Finding |
-|---|---|---:|---|---|
-| Alexander | **Needs confirmation** | 0 | Unconfirmed / Unconfirmed | Appears in Last Z Wiki's broad roster/FAQ but is absent from the independently cross-checked current SIN Command and Z Tools rosters. Jack is described there as a beginner Wings of Dawn ranged option paired with Alexander, but that claim is not corroborated by the other current indexes. |
-| Alicia | **Needs confirmation** | 0 | Unconfirmed / Unconfirmed | Appears in Last Z Wiki's broad roster/FAQ but is absent from the independently cross-checked current SIN Command and Z Tools rosters. Jack is described there as a beginner Wings of Dawn ranged option paired with Alexander, but that claim is not corroborated by the other current indexes. |
-| Bruce | **Needs confirmation** | 0 | Unconfirmed / Unconfirmed | Appears in Last Z Wiki's broad roster/FAQ but is absent from the independently cross-checked current SIN Command and Z Tools rosters. Jack is described there as a beginner Wings of Dawn ranged option paired with Alexander, but that claim is not corroborated by the other current indexes. |
-| Nikola | **Needs confirmation** | 0 | Unconfirmed / Unconfirmed | Appears in Last Z Wiki's broad roster/FAQ but is absent from the independently cross-checked current SIN Command and Z Tools rosters. Jack is described there as a beginner Wings of Dawn ranged option paired with Alexander, but that claim is not corroborated by the other current indexes. |
-| Audrey | **Verified** | 0 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Ava | **Verified** | 0 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Giselle | **Verified** | 0 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Athena | **Verified** | 0 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Elizabeth | **Verified** | 0 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Leah | **Verified** | 0 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| William | **Verified** | 0 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Angelina | **Verified** | 0 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Christina | **Verified** | 0 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Fiona | **Verified** | 0 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Isabella | **Verified** | 0 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Jack | **Needs confirmation** | 0 | Wings of Dawn / Shooters | Appears in Last Z Wiki's broad roster/FAQ but is absent from the independently cross-checked current SIN Command and Z Tools rosters. Jack is described there as a beginner Wings of Dawn ranged option paired with Alexander, but that claim is not corroborated by the other current indexes. |
-| Natalie | **Verified** | 0 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Eva | **Needs confirmation** | 1 | Blood Rose / Assaulters | Appears in a single community roster or has an unresolved name/season discrepancy. No independent corroboration sufficient for the public builder was found. |
-| Katrina | **Verified** | 1 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Lysia | **Needs confirmation** | 1 | Blood Rose / Assaulters | Appears in a single community roster or has an unresolved name/season discrepancy. No independent corroboration sufficient for the public builder was found. |
-| Miranda | **Verified** | 1 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Oliveira | **Verified** | 1 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Selena | **Verified** | 1 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Sophia | **Verified** | 1 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Vivian | **Verified** | 1 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Bella | **Verified** | 2 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Harleyna | **Verified** | 2 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Alma | **Verified** | 2 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Amelia | **Verified** | 2 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Emilia | **Needs confirmation** | 2 | Wings of Dawn / Shooters | Appears in a single community roster or has an unresolved name/season discrepancy. No independent corroboration sufficient for the public builder was found. |
-| Laura | **Verified** | 2 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Nyx | **Verified** | 2 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Scarlett | **Verified** | 2 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Licia | **Verified** | 3 | Blood Rose / Assaulters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Chinatsu | **Verified** | 3 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Dodemeki | **Verified** | 3 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Evelyn | **Verified** | 3 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Halina | **Needs confirmation** | 3 | Guard of Order / Riders | Appears in a single community roster or has an unresolved name/season discrepancy. No independent corroboration sufficient for the public builder was found. |
-| Maria | **Verified** | 3 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Mia | **Verified** | 3 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Sakura | **Verified** | 3 | Guard of Order / Riders | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Liliana | **Verified** | 3 | Wings of Dawn / Shooters | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Amber | **Verified** | 4 | Unconfirmed / Unconfirmed | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Queenie | **Verified** | 4 | Unconfirmed / Unconfirmed | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
-| Yu Chan | **Verified** | 4 | Unconfirmed / Unconfirmed | Listed in the SIN Command roster; core roster also cross-listed in Z Tools where applicable. Season 4 identity/faction/season additionally corroborated by multiple current community indexes. Exact current-client skill/equipment details still need screenshots. |
+| Hero | Community roster identity | Faction / troop | Season / release | Individual evidence and unresolved item |
+|---|---|---|---|---|
+| Angelina | Listed | Wings of Dawn / Shooters | Base | Individual Z Tools skill entry and SIN Command field file; role / skill interpretation should be checked in client. |
+| Athena | Listed | Guard of Order / Riders | Base | Individual Z Tools skill entry and SIN Command field file; localized alias Atenea. |
+| Audrey | Listed | Blood Rose / Assaulters | Base | Individual Z Tools skill entry and SIN Command field file; skill-3 and role descriptions conflict. |
+| Ava | Listed | Blood Rose / Assaulters | Base | Individual Z Tools skill entry and SIN Command field file; role tag does not clearly match source skill kit. |
+| Christina | Listed | Wings of Dawn / Shooters | Base | Individual Z Tools skill entry and SIN Command field file; Christina / Cristina spelling differs by source. |
+| Elizabeth | Listed | Guard of Order / Riders | Base | Individual Z Tools skill entry and SIN Command field file; defensive role broadly corroborated. |
+| Evelyn | Listed | Guard of Order / Riders | Base / S1 awakening | Individual Z Tools skill entry and SIN Command field file; confirm exact season/awakening wording in client. |
+| Fiona | Listed | Wings of Dawn / Shooters | Base | Individual Z Tools skill entry and SIN Command field file. |
+| Giselle | Listed | Blood Rose / Assaulters | Base | Individual Z Tools skill entry and SIN Command field file; DPS vs wood-gathering role label differs. |
+| Isabella | Listed | Wings of Dawn / Shooters | Base | Individual Z Tools skill entry and SIN Command field file. |
+| Katrina | Listed | Blood Rose / Assaulters | Base | Individual Z Tools skill entry and SIN Command field file; utility skills are better evidenced than exact late-game combat rank. |
+| Leah | Listed | Guard of Order / Riders | Base | Individual Z Tools skill entry and SIN Command field file. |
+| Laura | Listed | Wings of Dawn / Shooters | Base | Individual Z Tools skill entry and SIN Command field file; season grouping differs across older individual / overview pages. |
+| Mia | Listed | Guard of Order / Riders | Base | Individual Z Tools skill entry and SIN Command field file; modification utility should not be mistaken for main-march ranking. |
+| Miranda | Listed | Blood Rose / Assaulters | Base | Individual Z Tools skill entry and SIN Command field file. |
+| Natalie | Listed | Wings of Dawn / Shooters | Base | Individual Z Tools skill entry and SIN Command field file; Last Z Wiki spells the name Natalia. |
+| Oliveira | Listed | Blood Rose / Assaulters | S1 | Individual Z Tools skill entry and SIN Command field file; awakening / passive scope should be checked against current client. |
+| Sakura | Listed | Guard of Order / Riders | Base / S1 cohort | Individual Z Tools skill entry and SIN Command field file; older season labels vary. |
+| Scarlett | Listed | Wings of Dawn / Shooters | S1 | Individual Z Tools skill entry and SIN Command field file; season grouping differs across some older pages. |
+| Selena | Listed | Blood Rose / Assaulters | S1 | Individual Z Tools skill entry and SIN Command field file; distinguish march-wide passive from deployed-only effects. |
+| Sophia | Listed | Blood Rose / Assaulters | Base | Individual Z Tools skill entry and SIN Command field file; Sophia / Sofia spelling varies. |
+| Vivian | Listed | Blood Rose / Assaulters | Base | Individual Z Tools skill entry and SIN Command field file; gathering / vehicle utility differs from main-march use. |
+| William | Listed | Guard of Order / Riders | Base | Individual Z Tools skill entry and SIN Command field file; skill-3 and role descriptions conflict. |
+| Amelia | Listed | Wings of Dawn / Shooters | Base / S2 cohort conflict | Individual Z Tools skill entry and SIN Command field file; Last Z Wiki uses Emilia. Do not silently merge names. |
+| Chinatsu | Listed | Guard of Order / Riders | Base | Individual Z Tools skill entry and SIN Command field file; Alliance Duel passive described by community skill index. |
+| Maria | Listed | Guard of Order / Riders | Base | Individual Z Tools skill entry and SIN Command field file; training utility is not a combat tier claim. |
+| Nyx | Listed | Wings of Dawn / Shooters | S1 / S2 discrepancy | Individual seasonal field file; older overview and individual profile season labels differ. |
+| Bella | Listed | Blood Rose / Assaulters | S2 | Individual seasonal field file; some older overview pages disagree on season grouping. |
+| Harleyna | Listed | Guard of Order / Riders | S2 | Individual seasonal field file; spelling aliases include Harleyena / localized Halina. |
+| Alma | Listed | Wings of Dawn / Shooters | S2 | Individual seasonal field file; verify detailed skill and star gates in client. |
+| Licia | Listed | Blood Rose / Assaulters | S3 | Individual seasonal field file; skill details require client capture. |
+| Dodemeki | Listed | Guard of Order / Riders | S3 | Individual seasonal field file; some sources spell Dodomeki. |
+| Liliana | Listed | Wings of Dawn / Shooters | S3 | Individual seasonal field file; current skill / equipment details require client capture. |
+| Amber | Listed | Guard of Order / Riders | **Season 4 — Verify** | Current SIN Command field file explicitly labels season “Verify”; excluded from public selectable builder pending confirmation. |
+| Queenie | Listed | Wings of Dawn / Shooters | **Season 4 — Verify** | Current SIN Command field file explicitly labels season “Verify”; excluded from public selectable builder pending confirmation. |
+| Yu Chan | Listed | Blood Rose / Assaulters | **Season 4 — Verify** | Current SIN Command field file explicitly labels season “Verify”; excluded from public selectable builder pending confirmation. |
 
-## Name and season normalization
+## Previous 45-entry names not admitted to the builder
 
-- The old dataset assigned several base heroes to Season 1–3 incorrectly. The public data now follows the SIN Command release cohorts for base roster and S1–S4 heroes where independently corroborated.
-- Sophia / Sofia / Sofía, Christina / Cristina, Natalie / Natalia, and Athena / Atenea are treated as spelling/localization variants only where sources clearly identify the same profile; display names use the current cross-referenced English spelling.
-- Amelia and Emilia remain separate unresolved legacy entries; Emilia is excluded pending evidence that it is a distinct playable hero rather than a duplicate/translation conflict.
-- Lysia and Licia are not silently merged: the former remains unconfirmed while Licia is cross-listed as the S3 Blood Rose hero.
-- Eva and Halina remain unconfirmed because the sources disagree on inclusion/season placement.
-- Season 4 Amber, Queenie and Yu Chan are retained because multiple current community indexes independently list their names, faction and S4 cohort. Their exact skill values still require in-game capture.
+| Legacy name | Classification | Reason |
+|---|---|---|
+| Alexander | Needs confirmation | Appears in a broad Last Z Wiki FAQ, but not in the current Z Tools skill index / SIN Command 36-hero directory. |
+| Alicia | Needs confirmation | No sufficient individual roster / skill corroboration. |
+| Bruce | Needs confirmation | No sufficient individual roster / skill corroboration. |
+| Jack | Needs confirmation | Mentioned as a beginner hero in a Last Z Wiki FAQ, but absent from current Z Tools skill index and SIN Command 36-hero directory. |
+| Nikola | Needs confirmation | No sufficient individual roster / skill corroboration. |
+| Eva | Needs confirmation | Legacy source entry; no independent individual record sufficient for selection. |
+| Lysia | Needs confirmation | Possible spelling / identity collision with Licia; do not merge without a client card. |
+| Two remaining legacy entries | Needs confirmation | The legacy roster contains nine non-corroborated entries; consult the original 45-row roster audit below for all prior notes. |
 
-## Source register
+## Why “Verified” is qualified
 
-- Z Tools Season 5 Moonlit Elegy guide (25 Oct 2026): https://ztools.co.uk/wiki/season-5/ — reports no new heroes and red-star awakening for Oliveira, Scarlett and Evelyn.
-- SIN Command hero directory: https://www.lastz.guide/heroes/hero-database/
-- Z Tools 26-hero skills index: https://ztools.co.uk/tools/heroes/
-- Last Z Wiki hero list and FAQ: https://lastzwiki.com/en/heroes.html
-- Last Z Guides formation guide: https://lastzguides.com/formations.html
-- Gaming Route cross-source tier review: https://gamingroute.com/last-z-hero-tier-list/
-- Gamevoyant hero release-group review: https://gamevoyant.com/guides/last-z-heroes-guide/
+“Verified” here means community evidence supports the identity and troop line sufficiently for an experimental planning tool. It is **not** official publisher certification, direct observation of a current in-game hero card, proof of current availability, or verification of every skill / equipment / season detail. SIN Command itself marks the three Season 4 entries “Verify”. The builder therefore removes those three from its selectable pool until stronger evidence is available.
 
-## Limitations
+## Source cross-checks
 
-No publisher-hosted canonical hero roster or user-provided in-game screenshot set was available for this pass. Therefore no entry is called “publisher verified.” This audit is conservative community-source corroboration, not proof from the live game client.
+- Z Tools, 26 individual hero skill entries across three factions: https://ztools.co.uk/tools/heroes/
+- SIN Command, 36-entry Personnel Database and individual field files: https://www.lastz.guide/heroes/hero-database/
+- SIN Command's seasonal roster / field-file listings: https://www.lastz.guide/heroes/heroes/
+- LastZ.GG hero reference and tier review (checked 9 Nov 2026): https://lastz.gg/basics/heroes
+- Last Z Hub individual hero guides: https://lastz-hub.com/heroes
+- Last Z Exchange hero EXP / star / season references: https://lzexchange.net/guides/hero-exp-and-star-costs
+- Last Z Wiki: https://lastzwiki.com/en/heroes.html
+
+## Remaining evidence required
+
+Current in-game screenshots are still needed to certify exact display name, faction, troop type, season, rarity, all skill panels, exclusive equipment, acquisition and star gates. The LZ Carry UI intentionally avoids exact coefficients and definitive investment rankings where that evidence is missing.

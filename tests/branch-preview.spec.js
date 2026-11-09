@@ -91,7 +91,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.goto("/heroes.html");
   await expect(page.getByRole("heading",{name:"Hero Recommendations & Formation Builder"})).toBeVisible();
   await expect(page.locator("#formation-slots .formation-slot")).toHaveCount(5);
-  await expect(page.locator("#builder-results .builder-hero")).toHaveCount(36);
+  await expect(page.locator("#builder-results .builder-hero")).toHaveCount(33);
   await page.getByLabel("Search heroes").fill("Jack");
   await expect(page.locator("#builder-results .builder-hero")).toHaveCount(0);
   await page.getByLabel("Search heroes").fill("");

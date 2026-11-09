@@ -29,6 +29,10 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
   await page.goto("/guides.html");
   await expect(page.getByRole("heading", { name: "All Guides" })).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
+  await page.goto("/research.html");
+  await expect(page.getByRole("heading", { name: "21 research trees, explained" })).toBeVisible();
+  await expect(page.locator("#research-count")).toHaveText("21 of 21 trees shown");
+  await page.screenshot({ path: path.join(artifacts, "research-desktop.png"), fullPage: true });
   await page.goto("/");
   await expect(page.getByText("Watch Our Videos", { exact: true })).toBeVisible();
   const channel = page.getByRole("link", { name: /Visit Our YouTube Channel/ });
@@ -39,7 +43,7 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
 test("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
-    for (const target of ["/", "/guides.html", "/heroes.html", "/events.html"]) {
+    for (const target of ["/", "/guides.html", "/research.html", "/heroes.html", "/events.html"]) {
       await page.goto(target);
       const sizes = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, document: document.documentElement.scrollWidth }));
       expect(sizes.document, target + " at " + width + "px").toBeLessThanOrEqual(sizes.viewport + 1);
@@ -59,9 +63,13 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   console.log("HERO_COUNT_TEXT",await page.locator("#hero-count").textContent());
   console.log("PAGE_ERRORS",JSON.stringify(pageErrors));
   await expect(page.getByText("22 records")).toBeVisible();
-  await expect(page.getByText(/PARTIAL ROSTER — 22 indexed entries only/)).toBeVisible();
+  await expect(page.getByText(/22-entry index/)).toBeVisible();
+  await expect(page.locator("#hero-results details.hero-profile")).toHaveCount(22);
   await page.getByLabel("Search heroes").fill("angelina");
   await expect(page.getByRole("heading",{name:"Angelina"})).toBeVisible();
+  await page.getByRole("heading",{name:"Angelina"}).click();
+  await expect(page.getByText("Formation fit")).toBeVisible();
+  await expect(page.getByText("F2P investment")).toBeVisible();
   await page.getByLabel("Search heroes").fill("no-such-hero");
   await expect(page.getByText("No matching records")).toBeVisible();
   await page.getByLabel("Search heroes").fill("");
@@ -73,8 +81,12 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.goto("/events.html");
   await expect(page.getByRole("heading",{name:"Events & Rewards"})).toBeVisible();
   await expect(page.getByText("10 records")).toBeVisible();
+  await expect(page.locator("#event-results details.event-profile")).toHaveCount(10);
   await page.getByLabel("Search events").fill("canyon");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toBeVisible();
+  await page.getByRole("heading",{name:"Canyon Clash"}).click();
+  await expect(page.getByText("Participation and eligibility")).toBeVisible();
+  await expect(page.getByText("F2P strategy")).toBeVisible();
   await page.getByLabel("Event type").selectOption("Rewards");
   await page.getByLabel("Search events").fill("");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toHaveCount(0);

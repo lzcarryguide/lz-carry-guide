@@ -832,3 +832,9 @@ footer p { max-width: 760px; margin: 7px 0 0; font-size: 13px; line-height: 1.55
 .profile-card summary:focus-visible{outline:2px solid #a8d9ff;outline-offset:-4px}
 @media(max-width:760px){.research-directory{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:560px){.research-controls{grid-template-columns:minmax(0,1fr)}.research-controls #research-count{grid-column:auto}.research-tree-card summary,.profile-summary{padding:18px}.research-tree-body,.profile-body{padding:0 18px 18px}}
+
+/* Balance the four research principles and separate wrapped hero actions */
+.research-principles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.research-hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+@media(max-width:760px){.research-principles{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){.research-hero-actions{flex-direction:column;align-items:stretch;max-width:340px}.research-hero-actions .btn{width:100%;text-align:center}}

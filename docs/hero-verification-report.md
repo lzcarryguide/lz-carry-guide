@@ -71,6 +71,7 @@ The public formation builder includes only the Verified group. Needs-confirmatio
 
 ## Source register
 
+- Z Tools Season 5 Moonlit Elegy guide (25 Oct 2026): https://ztools.co.uk/wiki/season-5/ — reports no new heroes and red-star awakening for Oliveira, Scarlett and Evelyn.
 - SIN Command hero directory: https://www.lastz.guide/heroes/hero-database/
 - Z Tools 26-hero skills index: https://ztools.co.uk/tools/heroes/
 - Last Z Wiki hero list and FAQ: https://lastzwiki.com/en/heroes.html

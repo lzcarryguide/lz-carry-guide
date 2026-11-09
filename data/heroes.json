@@ -473,7 +473,8 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Verified",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "awakeningSeason": 5
     },
     {
       "id": "selena",
@@ -780,7 +781,8 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Verified",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "awakeningSeason": 5
     },
     {
       "id": "licia",
@@ -884,7 +886,8 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Verified",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "awakeningSeason": 5
     },
     {
       "id": "maria",

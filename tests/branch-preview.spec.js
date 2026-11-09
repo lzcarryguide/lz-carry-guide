@@ -48,8 +48,8 @@ test("research directory searches, filters and opens useful tree notes", async (
   const group = page.getByLabel("Group");
   await expect(page.locator("#research-count")).toHaveText("21 of 21 trees shown");
   await search.fill("Urgent Rescue");
-  await expect(page.locator("#research-count")).toHaveText("1 of 21 trees shown");
-  const peaceShield = page.locator(".research-tree-card").filter({ hasText: "Peace Shield" });
+  await expect(page.locator("#research-count")).toHaveText("2 of 21 trees shown");
+  const peaceShield = page.locator(".research-tree-card").filter({ has: page.getByRole("heading", { name: "Peace Shield", exact: true }) });
   await expect(peaceShield).toBeVisible();
   await peaceShield.locator("summary").click();
   await expect(peaceShield.locator(".research-tree-body")).toContainText("Urgent Rescue");

@@ -74,6 +74,16 @@ test("mobile layouts fit viewport without page-level horizontal overflow", async
       if (width === 390) await page.screenshot({ path: path.join(artifacts, target === "/" ? "homepage-mobile.png" : target.slice(1).replace(".html","") + "-mobile.png"), fullPage: true });
     }
   }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/research.html");
+  const mobileNav = page.locator("header nav");
+  const navMetrics = await mobileNav.evaluate(node => ({ client: node.clientWidth, scroll: node.scrollWidth, overflow: getComputedStyle(node).overflowX }));
+  expect(navMetrics.scroll).toBeGreaterThan(navMetrics.client);
+  expect(navMetrics.overflow).toMatch(/auto|scroll/);
+  await mobileNav.evaluate(node => { node.scrollLeft = node.scrollWidth; });
+  const finalNavItem = await mobileNav.locator("a").last().evaluate(node => { const rect = node.getBoundingClientRect(); return { left: rect.left, right: rect.right }; });
+  expect(finalNavItem.left).toBeGreaterThanOrEqual(0);
+  expect(finalNavItem.right).toBeLessThanOrEqual(391);
 });
 
 test("heroes, troops and events databases load and search", async ({ page }) => {

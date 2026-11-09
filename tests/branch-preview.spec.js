@@ -30,7 +30,7 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
   await expect(page.getByRole("heading", { name: "All Guides" })).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
   await page.goto("/research.html");
-  await expect(page.getByRole("heading", { name: "21 research trees, explained" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "22 community-indexed research trees" })).toBeVisible();
   await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
   await page.screenshot({ path: path.join(artifacts, "research-desktop.png"), fullPage: true });
   await page.goto("/");
@@ -48,7 +48,7 @@ test("research directory searches, filters and opens useful tree notes", async (
   const group = page.getByLabel("Group");
   await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
   await search.fill("Urgent Rescue");
-  await expect(page.locator("#research-count")).toHaveText("2 of 21 trees shown");
+  await expect(page.locator("#research-count")).toHaveText("2 of 22 trees shown");
   const peaceShield = page.locator(".research-tree-card").filter({ has: page.getByRole("heading", { name: "Peace Shield", exact: true }) });
   await expect(peaceShield).toBeVisible();
   await peaceShield.locator("summary").click();
@@ -158,7 +158,7 @@ test("public knowledge data contains no external source URLs or unverified numer
   expect(troopData.classes.every(c=>c.tiers.every(t=>t.trainingCost===undefined && t.promotionCost===undefined && t.trainingTime===undefined && t.campLevel===undefined && t.attack===undefined && t.defense===undefined && t.hp===undefined && t.power===undefined && t.load===undefined))).toBeTruthy();
   expect(troopData.tierUnlocks).toEqual([]);
   const eventData=await (await request.get("/data/events.json")).json();
-  expect(eventData.events).toHaveLength(10);
+  expect(eventData.events).toHaveLength(16);
 });
 
 test("guide directory filters search and only admits verified published records", async ({ page }) => {

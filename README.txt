@@ -55,3 +55,12 @@ Base: main at 10a833e0c986f181069d8a3d37ea9b1d9e8cc8a3
 Run browser tests with: npx playwright test
 The branch workflow runs Playwright and uploads screenshots/reports as artifacts.
 Do not merge or deploy until the release owner explicitly approves. A passing test run is not release approval.
+
+
+HERO PROFILE EVIDENCE
+---------------------
+The Heroes section now indexes 36 names from the available community references. This is not a publisher-confirmed roster count: the references disagree (one 31-hero headline lists 36 names, while a separate tool indexes 26 skill records). Some individual profiles contain paraphrased skill/formation notes; source conflicts and unverified details are called out. The 3 Season 4 names remain flagged Verify. Check docs/hero-profile-source-review.md before treating community notes as current in-game facts.
+
+RESEARCH GUIDE EVIDENCE
+-----------------------
+The Research Guide maps 21 community-indexed Laboratory trees and major reported gates. Community trackers disagree on some unlock requirements and names. Check docs/research-source-review.md for source comparisons and the in-game evidence backlog. Exact node effects, badge costs, resource totals and speedups are intentionally omitted until verified in the current client.

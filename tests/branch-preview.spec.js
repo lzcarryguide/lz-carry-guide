@@ -109,7 +109,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   const selenaCard=page.locator("#hero-results details.hero-profile").filter({has:page.getByRole("heading",{name:"Selena",exact:true})});
   await selenaCard.locator("summary").click();
   await expect(selenaCard).toContainText("Power of Nature");
-  await expect(selenaCard).toContainText("deployment");
+  await expect(selenaCard).toContainText("deployed");
   await page.screenshot({path:path.join(artifacts,"hero-profile-detail.png"),fullPage:true});
   await page.getByLabel("Search heroes").fill("no-such-hero");
   await expect(page.getByText("No matching records")).toBeVisible();

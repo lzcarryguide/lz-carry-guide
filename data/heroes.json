@@ -1,8 +1,8 @@
 {
   "schemaVersion": 3,
   "lastUpdated": "2026-11-09",
-  "rosterStatus": "39 cross-checked hero identities; only Verified entries are selectable. Community source verification is not equivalent to publisher-confirmed live client evidence.",
-  "verificationPolicy": "Verified means independently cross-listed in at least two Last Z community references or in the SIN Command roster plus the current S4 cross-reference set. Exact skill effects and in-game status should still be checked against current client screenshots.",
+  "rosterStatus": "36 individually indexed community hero identities; 33 meet the current community-evidence threshold and are selectable. Three Season 4 records remain Needs confirmation pending season verification.",
+  "verificationPolicy": "Verified means individually listed in the current SIN Command Personnel Database and corroborated by a current Last Z roster/skill reference, with no unresolved identity issue blocking selection. This is community evidence, not publisher certification or current-client confirmation. Season, role, skill, equipment and availability fields may remain caveated.",
   "heroes": [
     {
       "id": "audrey",

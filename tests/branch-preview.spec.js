@@ -63,7 +63,8 @@ test("research directory searches, filters and opens useful tree notes", async (
   await group.selectOption("");
   await expect(page.locator("#research-count")).toHaveText("21 of 21 trees shown");
 });
-\ntest("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
+
+test("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
     for (const target of ["/", "/guides.html", "/research.html", "/heroes.html", "/events.html"]) {

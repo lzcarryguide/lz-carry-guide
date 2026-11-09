@@ -31,7 +31,7 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
   await page.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
   await page.goto("/research.html");
   await expect(page.getByRole("heading", { name: "21 research trees, explained" })).toBeVisible();
-  await expect(page.locator("#research-count")).toHaveText("21 of 21 trees shown");
+  await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
   await page.screenshot({ path: path.join(artifacts, "research-desktop.png"), fullPage: true });
   await page.goto("/");
   await expect(page.getByText("Watch Our Videos", { exact: true })).toBeVisible();
@@ -46,7 +46,7 @@ test("research directory searches, filters and opens useful tree notes", async (
   await page.goto("/research.html");
   const search = page.getByLabel("Search trees");
   const group = page.getByLabel("Group");
-  await expect(page.locator("#research-count")).toHaveText("21 of 21 trees shown");
+  await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
   await search.fill("Urgent Rescue");
   await expect(page.locator("#research-count")).toHaveText("2 of 21 trees shown");
   const peaceShield = page.locator(".research-tree-card").filter({ has: page.getByRole("heading", { name: "Peace Shield", exact: true }) });
@@ -56,12 +56,13 @@ test("research directory searches, filters and opens useful tree notes", async (
   await page.screenshot({ path: path.join(artifacts, "research-tree-detail.png"), fullPage: true });
   await search.fill("");
   await group.selectOption("alliance");
-  await expect(page.locator("#research-count")).toHaveText("3 of 21 trees shown");
+  await expect(page.locator("#research-count")).toHaveText("3 of 22 trees shown");
   await expect(page.getByRole("heading", { name: "Alliance Recognition" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Leader's Will" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Peace Shield" })).toHaveCount(0);
   await group.selectOption("");
-  await expect(page.locator("#research-count")).toHaveText("21 of 21 trees shown");
+  await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
+  await expect(page.getByRole("heading", { name: "Allied Troops" })).toBeVisible();
 });
 
 test("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
@@ -96,14 +97,14 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.waitForTimeout(250);
   console.log("HERO_COUNT_TEXT",await page.locator("#hero-count").textContent());
   console.log("PAGE_ERRORS",JSON.stringify(pageErrors));
-  await expect(page.getByText("36 records")).toBeVisible();
-  await expect(page.getByText(/36-entry roster/)).toBeVisible();
-  await expect(page.locator("#hero-results details.hero-profile")).toHaveCount(36);
+  await expect(page.getByText("45 records")).toBeVisible();
+  await expect(page.getByText(/45-record community index/)).toBeVisible();
+  await expect(page.locator("#hero-results details.hero-profile")).toHaveCount(45);
   await page.getByLabel("Search heroes").fill("angelina");
   await expect(page.getByRole("heading",{name:"Angelina"})).toBeVisible();
   await page.getByRole("heading",{name:"Angelina"}).click();
   await expect(page.getByRole("heading", { name: "Formation fit" })).toBeVisible();
-  await expect(page.getByText("Serum Grenade")).toBeVisible();
+  await expect(page.getByText("Z Tools index lists")).toBeVisible();
   await expect(page.getByText("F2P \/ low-spend \/ high-spend investment")).toBeVisible();
   await page.getByLabel("Search heroes").fill("selena");
   const selenaCard=page.locator("#hero-results details.hero-profile").filter({has:page.getByRole("heading",{name:"Selena",exact:true})});
@@ -114,15 +115,19 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByLabel("Search heroes").fill("no-such-hero");
   await expect(page.getByText("No matching records")).toBeVisible();
   await page.getByLabel("Search heroes").fill("");
-  await expect(page.getByText(/Season 4 names remain explicitly flagged Verify/)).toBeVisible();
+  await expect(page.getByText(/three Season 4 names still show Verify/)).toBeVisible();
   await page.getByLabel("Search troop classes").fill("rider");
   await expect(page.getByRole("heading",{name:"Riders"})).toBeVisible();
   await page.getByLabel("Search troop classes").fill("");
   await page.screenshot({path:path.join(artifacts,"heroes-desktop.png"),fullPage:true});
   await page.goto("/events.html");
   await expect(page.getByRole("heading",{name:"Events & Rewards"})).toBeVisible();
-  await expect(page.getByText("10 records")).toBeVisible();
-  await expect(page.locator("#event-results details.event-profile")).toHaveCount(10);
+  await expect(page.getByRole("heading",{name:"Weekly Alliance Duel and Full Preparedness"})).toBeVisible();
+  await expect(page.getByText("16 records")).toBeVisible();
+  await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
+  await page.getByLabel("Search events").fill("bullseye");
+  await expect(page.getByRole("heading",{name:"Shooting Loot / Bullseye (Booty)"})).toBeVisible();
+  await expect(page.locator("#event-results details.event-profile")).toHaveCount(1);
   await page.getByLabel("Search events").fill("canyon");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toBeVisible();
   await page.getByRole("heading",{name:"Canyon Clash"}).click();
@@ -132,7 +137,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByLabel("Event type").selectOption("Rewards");
   await page.getByLabel("Search events").fill("");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toHaveCount(0);
-  await expect(page.getByRole("heading",{name:"Shooting Loot"})).toBeVisible();
+  await expect(page.getByRole("heading",{name:"Shooting Loot / Bullseye (Booty)"})).toBeVisible();
   await page.getByLabel("Search events").fill("");
   await page.getByLabel("Event type").selectOption("");
   await page.screenshot({path:path.join(artifacts,"events-desktop.png"),fullPage:true});

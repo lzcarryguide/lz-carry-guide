@@ -65,3 +65,23 @@ All source-derived details are labelled community-reference snapshots, not verif
 ## Required in-game evidence backlog
 
 For all 36 records: capture the current Heroes index with season/faction, all four skill panels and exact deployment/global scope, acquisition routes, fragment/star-up cost panels, Exclusive Equipment screen, and tested position/troop restrictions. Prioritize current season heroes and profiles with conflicting role/skill records above.
+
+ 
+## Additional individual profiles checked 2026-11-09
+
+Last Z Wiki's individual pages add qualitative, paraphrased skill and role notes for Katrina, Lysia, Bella, Oliveira, Sofia (LZ Carry display form Sophia), Vivian, Miranda, Eva, Nyx, Laura, Scarlett and Fiona. Exact level coefficients and star-up values are not copied into LZ Carry's public content.
+
+Useful role/condition distinctions:
+- Katrina: Exploration Genius adds exploration idle EXP / fuel utility; back-row Assaulter recommendation.
+- Lysia and Bella: Skill 3 is marked Active in Expeditions on their individual source pages; their Skill 4 synergy / formation effects are separate conditions.
+- Oliveira: Prodigy Girl is described as an Assaulter Barracks training passive.
+- Sofia: Lady's Gift is described as construction-time / construction-speed utility, useful outside active combat.
+- Vivian: Born of Fire is outdoor-zombie damage/fuel utility; the source recommends secondary farming use, not a general PvP carry.
+- Miranda: Rapid Fire includes a stun effect; front-row temporary A-rank role.
+- Eva: Faction Attack is a Blood Rose passive; B-rank secondary use.
+- Nyx: Shadow Acceleration is Shooter training utility and Skill 3 is marked Active in Expeditions. Her season label conflicts with the overview grouping.
+- Laura: Hunter's Gift is radar mission / exploration utility; her individual profile says front-row Shooter while the overview season grouping differs.
+- Scarlett: Domination Power is Shooter training utility; the individual profile mentions Exclusive Equipment but gives no independently validated equipment cost/effect for this guide.
+- Fiona: Fire Reinforcement / Blazing Flamethrower personal damage and Wings of Dawn Faction Attack; A-rank temporary/secondary use.
+
+No skill coefficients or upgrade costs are copied. These individual source pages show an April 2026 update stamp; verify current in-game text before investment.

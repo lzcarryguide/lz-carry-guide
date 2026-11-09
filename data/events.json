@@ -213,59 +213,42 @@
     },
     {
       "id": "shooting-loot",
-      "name": "Shooting Loot",
+      "name": "Shooting Loot / Bullseye (Booty)",
       "type": "Rewards",
       "frequency": "rotating reward event",
       "objective": "Exchange event ammunition/shots for prize draws.",
       "mechanics": [
-        "Event-specific currency and prize selection are reported."
+        "Community event references describe a shooting-bullet currency used for prize shots, with a selected grand prize and round-based progression.",
+        "Z Tools calls the hot-event version Bullseye (Booty); Last Z Wiki labels the related prize event Shooting Loot. The in-game title and rules on your server decide whether these labels refer to the same event edition.",
+        "Some community references describe guaranteed grand prizes in regular rounds and enhanced treasure rounds. Exact round guarantees, caps and prize contents are intentionally not stated here."
       ],
       "preparation": [
-        "Check currency carry-over, free attempts, prize pool and guarantee rules in the live event panel before spending."
+        "Check the live bullet source, round structure, selected grand prize and guarantee text before using shots.",
+        "Check whether unused bullets carry into the next appearance before deciding to save them.",
+        "Set an F2P milestone based on the actual prize track and your available bullets; do not assume a third-party round number is a universal target."
       ],
-      "scoring": null,
-      "rewards": null,
+      "scoring": "There is no independently confirmed point formula for this event in this guide. Follow its current round and milestone meter; do not confuse Alliance Duel points with Shooting Loot progression.",
+      "rewards": "Rewards depend on the chosen grand prize and current round. No exact prize quantities or guaranteed round is published here without a current-client panel.",
       "serverSchedule": null,
-      "verification": "Basic event concept only; shot guarantees, currency carry-over and milestone rewards unverified.",
+      "verification": "Shooting Loot / Bullseye (Booty) naming and round mechanics differ between community references. Current in-game event rules are required before relying on shot prices, round count, guarantees or carry-over.",
       "tags": [
         "rewards",
         "currency"
       ],
-      "participation": "Read live rules to confirm shot sources, prize pools, free attempts, guarantees and carry-over.",
-      "f2pStrategy": "Complete available tasks first. Save currency only when the current rules explicitly confirm carry-over.",
-      "spendingStrategy": "Compare guaranteed milestones with actual purchase cost; do not rely on old rewards.",
+      "participation": "Check the live event start/end, account eligibility, available shots and round cap. The community names vary between Shooting Loot and Bullseye (Booty).",
+      "f2pStrategy": "Complete free event tasks and use only the free/earned shots first. Check carry-over before saving bullets. Aim for a milestone only when the current prize preview confirms its reward.",
+      "spendingStrategy": "Do not purchase bullets based on an old price or round guide. Compare the displayed cost and exact guaranteed reward in the live client, then stop when the incremental reward is poor value.",
       "commonMistakes": [
         "Assuming shot currency carries over.",
         "Buying before checking guarantees.",
         "Confusing random draws with milestones."
-      ]
-    },
-    {
-      "id": "bullseye-booty",
-      "name": "Bullseye Booty",
-      "type": "Rewards",
-      "frequency": "rotating reward event",
-      "objective": "Participate in a reward-focused event and review its current prize track.",
-      "mechanics": [
-        "Detailed mechanics not sufficiently corroborated in current research."
       ],
-      "preparation": [
-        "Read current event rules, currency sources and prize path before spending."
-      ],
-      "scoring": null,
-      "rewards": null,
-      "serverSchedule": null,
-      "verification": "Requires in-game event screenshots.",
-      "tags": [
-        "rewards"
-      ],
-      "participation": "Reviewed sources do not establish a universal rule. Check live eligibility, entry currency, free attempts and reward track.",
-      "f2pStrategy": "Use free attempts and tasks shown in the event. Keep premium currency until guarantees and probabilities are clear.",
-      "spendingStrategy": "Do not buy currency until current probability, guarantee, milestone and carry-over are confirmed.",
-      "commonMistakes": [
-        "Assuming rules from another reward event apply.",
-        "Spending before checking probabilities.",
-        "Treating an informal name as an official mode."
+      "aliases": [
+        "Bullseye",
+        "Bullseye Booty",
+        "Bullseye (Booty)",
+        "Booty",
+        "Shooting Bullets"
       ]
     },
     {
@@ -321,7 +304,229 @@
         "Using generic tier lists rather than live lineup rules.",
         "Spending fragments before checking restrictions."
       ]
+    },
+    {
+      "id": "gacha-go",
+      "name": "Gacha Go / Lucky Lucky Lucky",
+      "aliases": [
+        "Lucky Lucky Lucky",
+        "Gacha",
+        "Capsule Machine"
+      ],
+      "type": "Rewards",
+      "frequency": "hot-event rotation; server cycle varies",
+      "objective": "Use the live capsule-machine event to earn keys and prize items while managing daily free attempts and the event's carry-over rules.",
+      "mechanics": [
+        "Community references describe a capsule machine / ball-drop event with multiple result slots and keys used for prizes or exchanges.",
+        "Some versions are referred to as Gacha Go and others as Lucky Lucky Lucky. Confirm the live title and rules on your server.",
+        "The event may connect to a separate coloured-chest or Lucky Chest phase; do not assume all currencies share the same carry-over rule."
+      ],
+      "preparation": [
+        "Collect the free attempts shown by the live event each reset.",
+        "Check key and chest currency carry-over before the event ends.",
+        "Keep the depot below its displayed capacity if the game awards chests into a limited inventory."
+      ],
+      "participation": "Check the live event window, daily attempt counter and any VIP / purchase restrictions. Community cycle tools disagree on the number of weeks in the hot-event rotation.",
+      "scoring": "No Alliance Duel point value or event draw probability is stated here. Follow the live draw, milestone and exchange screens.",
+      "rewards": "Keys, chest items and other event resources are described in community references. Exact drop rates and exchange quantities are omitted until verified against the current client.",
+      "f2pStrategy": "Use the free attempts and daily missions first. Bank keys only when the current event text confirms they carry forward and you have a plan for using them.",
+      "spendingStrategy": "Avoid buying draws based on old diamond prices or probability tables. Compare the current guaranteed milestones, odds and cost before spending.",
+      "commonMistakes": [
+        "Assuming event keys and coloured chests share a carry-over rule.",
+        "Letting a chest depot reach its cap if the game stops awarding more.",
+        "Confusing a community event name with the live in-game title."
+      ],
+      "verification": "Community sources use both Gacha Go and Lucky Lucky Lucky. Confirm the live title, free attempts, key rules, draw odds and event linkage in-game."
+    },
+    {
+      "id": "lucky-discounter",
+      "name": "Lucky Discounter",
+      "aliases": [
+        "Lucky Discount Shop",
+        "Discount Shop",
+        "Lucky Discount"
+      ],
+      "type": "Rewards",
+      "frequency": "hot-event rotation; cycle timing varies",
+      "objective": "Use discount tickets or coupons to open a limited-time shop and compare the available discount with the price of the item you actually need.",
+      "mechanics": [
+        "Community event-cycle references describe drawing discount coupons that activate a time-limited shop.",
+        "The available inventory and price are shown during the active shop window; the shop may reset when another discount is drawn.",
+        "Some community references describe guaranteed high-discount draw positions, but exact odds and guarantees are not reproduced without current-client verification."
+      ],
+      "preparation": [
+        "Keep tickets only if the live event confirms they carry over.",
+        "Check the shop's active duration and available item inventory as soon as it opens.",
+        "Prioritize items that directly support the account's current bottleneck; don't buy because the discount percentage looks large."
+      ],
+      "participation": "Open the event panel to confirm eligibility, draw tickets, shop duration and reset conditions.",
+      "scoring": "Not an Alliance Duel scoring event in this reference. Use the live draw counter and shop offers.",
+      "rewards": "The shop may offer progression materials and other items. Exact discount odds, guarantees and stock vary by edition and are not stated.",
+      "f2pStrategy": "Use free tickets and compare the post-discount price to the item's normal value in your account. Save coupons if the current rules explicitly support carry-over.",
+      "spendingStrategy": "Do not chase a guaranteed draw count using an old cycle chart. Confirm cumulative draw progress, pity/guarantee rules and the exact cart total before paying.",
+      "commonMistakes": [
+        "Assuming the shop remains open after its timer expires.",
+        "Spending tickets without checking whether a better inventory refresh is possible.",
+        "Treating published coupon odds as current after a game update."
+      ],
+      "verification": "Hot-event cycle references disagree on three- vs four-week rotation and the exact guarantee positions. Current event rules control."
+    },
+    {
+      "id": "lucky-chest",
+      "name": "Lucky Chest",
+      "aliases": [
+        "Coloured Chest",
+        "Color Chest",
+        "Chest Opening"
+      ],
+      "type": "Rewards",
+      "frequency": "hot-event rotation or linked chest phase; confirm server",
+      "objective": "Open eligible stored chests using the event's current key or token rules while keeping storage capacity available.",
+      "mechanics": [
+        "Z Tools describes a chest phase linked to Gacha Go, where coloured chests may be accumulated in a depot and opened with keys.",
+        "The same reference warns about an inventory cap and a short opening window once a chest is activated. Those details can change by event edition."
+      ],
+      "preparation": [
+        "Check the current depot capacity and opening timer before triggering a chest.",
+        "Keep the required keys ready if the current interface asks for them immediately.",
+        "Open enough stored chests to leave space for additional rewards if the depot can fill."
+      ],
+      "participation": "Confirm that the event is active on your server and check which chest colours, keys and opening windows are currently supported.",
+      "scoring": "No independent points formula is established; follow the event's displayed chest-opening or milestone progress.",
+      "rewards": "Community sources describe blueprints, speedups and other items in coloured chests. Exact reward tables and probabilities are not published here.",
+      "f2pStrategy": "Open the free or earned chests within the live timer. Do not use rare keys until you understand the current chest contents and exchange value.",
+      "spendingStrategy": "Avoid buying keys based on an old chest table. Compare the current contents, key cost and inventory limit.",
+      "commonMistakes": [
+        "Allowing the depot to fill to its cap if that blocks new chests.",
+        "Missing a timed chest-opening window.",
+        "Assuming Lucky Chest runs on the same cycle on every server."
+      ],
+      "verification": "The 20-minute window and depot limit are single-source community notes; confirm the current client before relying on them."
+    },
+    {
+      "id": "server-migration",
+      "name": "Server Migration",
+      "aliases": [
+        "Migration Event",
+        "Server Transfer"
+      ],
+      "type": "Seasonal",
+      "frequency": "season transition; server and season dependent",
+      "objective": "Move to an eligible server during the migration period after checking invitation tiers, ticket costs, power rules and alliance fit.",
+      "mechanics": [
+        "Community guides describe preparation, invitation and free-migration phases around a season transition.",
+        "Eligible destination servers and player tiers are presented in the live migration interface.",
+        "Migration tickets are required in many cases; the exact amount and eligibility depend on the account and the current event rules."
+      ],
+      "preparation": [
+        "Research destination servers and contact leadership before the event opens.",
+        "Check migration ticket requirements and whether your power tier needs an invitation.",
+        "Resolve combat, alliance, presidency or other status restrictions before the migration window."
+      ],
+      "participation": "Check the live event's phase, destination list, invitation tier, ticket balance and personal eligibility. Do not assume every account can use the free-migration phase.",
+      "scoring": "Not a score-based competition in the sources reviewed. Progress is determined by the current eligibility and migration workflow.",
+      "rewards": "No universal reward track is asserted. The primary outcome is relocation; any accompanying rewards must be confirmed in the live event.",
+      "f2pStrategy": "Plan destinations early and save the required tickets from regular sources. Avoid buying tickets until the destination, tier and personal eligibility are confirmed.",
+      "spendingStrategy": "Do not pay for an invitation, ticket pack or server move before validating the target server and account status. A strong alliance fit is more important than a rushed transfer.",
+      "commonMistakes": [
+        "Assuming migration opens on a fixed date every season.",
+        "Ignoring destination caps or invitation tiers.",
+        "Trying to migrate while combat or an account status restriction is active.",
+        "Moving without discussing the target server's rules and alliance situation."
+      ],
+      "verification": "Migration phase names and ticket requirements are community-described. Current event panel governs the actual dates, power tiers, ticket count and restrictions."
+    },
+    {
+      "id": "zombie-preparation",
+      "name": "Zombie Preparation / Zombie Saga",
+      "aliases": [
+        "Zombie Prep",
+        "Zombie Preparation"
+      ],
+      "type": "Combat",
+      "frequency": "recurring or season/server event; confirm Event Center",
+      "objective": "Prepare the base and troop formations for zombie waves or attacks, complete the eligible tasks and claim the event's progression rewards.",
+      "mechanics": [
+        "Last Z Wiki describes Zombie Preparation as defending the base from zombie hordes, earning points and receiving prizes.",
+        "The reference does not establish one universal wave schedule, personal score formula or reward table for every server."
+      ],
+      "preparation": [
+        "Upgrade and train the troop lines you intend to deploy before the active window.",
+        "Check the event's wave, defense, rally or mission requirements instead of assuming it is the same as another zombie event.",
+        "Keep healing and protection resources available if the mode exposes the base to attacks."
+      ],
+      "participation": "Confirm the event title, entry requirements, active phase and any alliance or HQ restrictions in your Event Center.",
+      "scoring": "Exact point awards, wave multipliers and caps are not independently confirmed. Use the current event progress panel.",
+      "rewards": "The reference describes prize rewards but does not establish a universal item list or quantity.",
+      "f2pStrategy": "Prioritize free missions and achievable defense milestones. Do not train a large troop batch solely for an event without checking the actual task list.",
+      "spendingStrategy": "Only use paid buffs or extra attempts if the event interface displays a worthwhile guaranteed milestone and the resource cost is reasonable.",
+      "commonMistakes": [
+        "Confusing Zombie Preparation / Zombie Saga with Zombie Tyrant rally boss.",
+        "Assuming one server's wave schedule or scoring applies to another.",
+        "Spending healing or speedups before reading the live rules."
+      ],
+      "verification": "The sources describe the objective at a high level only. Server-specific rules and exact score/reward values remain unverified."
+    },
+    {
+      "id": "corpse-hunter",
+      "name": "Corpse Hunter",
+      "aliases": [
+        "Corpse Hunter missions"
+      ],
+      "type": "Daily",
+      "frequency": "reported daily recurring",
+      "objective": "Complete the daily mission session to accumulate its event tokens for use in the linked exchange shop.",
+      "mechanics": [
+        "The Last Z Wiki event calendar describes daily missions that generate two types of tokens per session.",
+        "The reference does not provide enough detail to publish the current mission list, token totals or exact reset rules."
+      ],
+      "preparation": [
+        "Check the mission list after reset and plan free attempts or daily actions around the displayed objectives.",
+        "Track both token types and the expiry/availability of the linked shop."
+      ],
+      "participation": "Check the live Corpse Hunter tile for entry requirements, mission count, reset and token sources.",
+      "scoring": "Mission completion and token generation are the progression mechanism; exact points or token amounts are not confirmed.",
+      "rewards": "Tokens are used in a linked Camila's Shop according to the community calendar. Exact stock and exchange prices are not reproduced.",
+      "f2pStrategy": "Complete the free daily missions and redeem earned tokens before the shop closes.",
+      "spendingStrategy": "Do not buy tokens or packages until the live exchange inventory and remaining time are checked.",
+      "commonMistakes": [
+        "Forgetting to claim or exchange earned tokens.",
+        "Assuming the shop and daily mission window close at the same time.",
+        "Using old mission counts or token totals."
+      ],
+      "verification": "Community calendar describes the daily token loop only. Current client is required for task and exchange details."
+    },
+    {
+      "id": "camilas-shop",
+      "name": "Camila's Shop",
+      "aliases": [
+        "Camila Shop",
+        "Token Exchange"
+      ],
+      "type": "Rewards",
+      "frequency": "linked to Corpse Hunter; availability window varies",
+      "objective": "Exchange accumulated Corpse Hunter tokens for the items currently available in the shop.",
+      "mechanics": [
+        "Last Z Wiki describes Camila's Shop as a token exchange linked to Corpse Hunter and reports that it may remain open one day longer than the mission event.",
+        "The live shop inventory, token cost and close time determine the best redemption order."
+      ],
+      "preparation": [
+        "Check the shop before the daily mission event ends so you know which tokens to earn.",
+        "Prioritize scarce items that support your current account needs.",
+        "Recheck the closing timer; do not rely on a remembered calendar."
+      ],
+      "participation": "Open the shop from the current event interface and confirm the token types and availability window.",
+      "scoring": "This is an exchange shop rather than a points competition.",
+      "rewards": "Items depend on the current shop rotation. No reward quantities or token exchange prices are published here.",
+      "f2pStrategy": "Use earned tokens and avoid leaving expiring currency unspent. Compare each item against the next best free source.",
+      "spendingStrategy": "Do not purchase extra tokens without reading the live price and stock cap. A longer shop window does not mean the token event is extended.",
+      "commonMistakes": [
+        "Assuming the shop closes with Corpse Hunter.",
+        "Forgetting to exchange the second token type.",
+        "Spending tokens on items that are already plentiful for your account."
+      ],
+      "verification": "The reported extra shop day is a community reference; validate current timer and inventory in-game."
     }
   ],
-  "researchNote": "Event mechanics and strategy are separated from live server schedules, scoring and reward values. Check each event's own current panel."
+  "researchNote": "Event mechanics, schedule models and strategy are separated from live server dates, points and reward values. Check each event's own current panel. Community cycle references disagree; do not rely on a global calendar."
 }

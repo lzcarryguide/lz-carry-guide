@@ -30,3 +30,38 @@ Checked: 2026-11-08
 6. Capital battle entry, occupation, President appointment and rewards screens.
 7. Zombie Tyrant boss rules, rally schedule, damage ranking and reward panels.
 8. Shooting Loot, Bullseye Booty, Fury Lord and Hero Battlefield complete rules/rewards panels.
+
+ 
+## Schedule and event-catalogue reconciliation (2026-11-09)
+
+### Weekly Alliance Duel
+- Last Z Wiki and LastZ.GG describe a Monday–Saturday themed Alliance Duel with Sunday reset/restock.
+- Community theme mapping: Monday Mod Vehicle / Vehicle Upgrade; Tuesday Shelter Upgrade / Building; Wednesday Age of Science / Research; Thursday Hero Progression; Friday Unit Training / Holistic Growth (label differs); Saturday Enemy Buster / War Zone Duel.
+- Public LZ Carry omits point values and task caps because eligible actions can change. The live daily task panel is authoritative.
+
+### Full Preparedness
+- SIN Command describes six four-hour Apocalypse Time rotations at 00:00, 04:00, 08:00, 12:00, 16:00 and 20:00.
+- It reports possible Alliance Duel overlap windows at 08:00–12:00 and 20:00–00:00 AT, but exact task lists are not identical.
+- GAMIDES describes AT as UTC-2 and corroborates the six four-hour resets. LZ Carry keeps schedule labels in AT and does not convert to local time.
+
+### Hot Event cycle conflict
+- Z Tools Event Cycle Tracker describes a four-week cycle: Gacha Go → Bullseye (Booty) → Lucky Discounter → Lucky Chest, each around seven days.
+- Last Z Wiki Event Calendar describes a three-week rotation: Gacha Go, Shooting Loot, Lucky Discounter, with other daily and seasonal events alongside it.
+- LZ Carry does not hard-code cycle dates or declare either cycle universal. Shooting Loot and Bullseye (Booty) share one alias-backed profile; confirm the live event title/rules. Gacha Go / Lucky Lucky Lucky is also represented as one alias-backed profile.
+- Added profiles: Lucky Discounter, Lucky Chest, Server Migration, Zombie Preparation / Zombie Saga, Corpse Hunter and Camila's Shop.
+
+### Internal sources
+- https://www.lastz.guide/events/full-preparedness/ — Full Prep timing / overlap reference.
+- https://lastz.gg/guides/alliance-duel — weekly themes and Full Prep windows; 10 Aug 2026 update.
+- https://lastzwiki.com/en/events.html — event mechanics and Alliance Duel reference.
+- https://lastzwiki.com/en/events-calendar.html — three-week Hot Event cycle; May 2026.
+- https://ztools.co.uk/tools/event-cycle/ — four-week Hot Event cycle model.
+- https://gamides.com/events/ — Apocalypse Time reset and recurring event reference.
+
+### In-game evidence backlog
+1. Event Center task lists, scoring, caps and reward tiers.
+2. Full Prep active rotation and overlap with Alliance Duel.
+3. Hot-event title and carry-over rules for each currency.
+4. Canyon Clash registration caps, battle timer and objective scoring.
+5. Zombie Tyrant eligibility, duration, damage scoring and reward tiers.
+6. Migration ticket requirement, destination eligibility and personal restrictions.

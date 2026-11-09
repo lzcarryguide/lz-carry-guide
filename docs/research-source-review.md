@@ -78,3 +78,21 @@ A current source re-check found specific differences that are now shown in the p
 - Last Z Guide's Laboratory page describes a second Laboratory unlocked around HQ 18 with a Research License; acquisition source and availability differ among community references.
 
 The public unlock table now marks these discrepancies and expressly tells readers to confirm the active gate in their game client. It does not publish exact badge costs or node percentages from these sources.
+
+ 
+## Cross-source reconciliation checked 2026-11-09
+
+The public directory is a 22-name union across community research indexes, not a guarantee that every server exposes 22 current tree menu entries.
+
+- SIN Command's September 2026 Research Priority guide lists 21 trees and reports New Home Lab 1, Shelter Building Lab 5, Elite Troops Lab 8 (badge-free), Hero Training Lab 8, Alliance Recognition / Fully Armed Alliance Lab 10 + New Home 50%, HQ Management Lab 14 + Shelter Building 100%, Military Strategies Lab 16 + Elite Troops 100%, Siege to Seize at 15%, Peace Shield at 45%, and Age of Steel at Lab 30.
+- Z Tools' Research Tree Unlocks article, dated 26 May 2026 and last verified on Server 277, includes Allied Troops as a separate start-of-Lab badge tree. It lists New Home / Shelter Building as free when the Lab is built, Elite Troops as badge-paid when the Lab is built, Hero Training with no documented prerequisite (typically HQ 13–15), Alliance Recognition / Fully Armed Alliance as early trees with no documented gate, and Siege to Seize at 40%.
+- Z Tools says Lab No. 2 unlocks at HQ 18; a Research License from the Alliance Shop opens a second concurrent queue.
+- Z Tools reports Army Expansion at Lab No. 2 level 33 + Rapid Growth 50% + Season 2 Day 50; later nodes require Lab No. 2 levels 34–35. The other 21-tree guide simplifies this to Lab 33 + Rapid Growth 50%.
+- Z Tools reports Steel Age typically at Lab 31 after earlier badge trees; SIN Command lists Age of Steel at Lab 30. The page shows both labels and the gate conflict.
+
+Public content marks these discrepancies and omits exact costs, point values, node coefficients and speedups. The player's current Laboratory panel and live badge price are the final authority.
+
+### New source links (internal)
+- https://www.lastz.guide/progression/research-priority/ — September 2026 snapshot; 21-tree reference and endgame strategy.
+- https://ztools.co.uk/wiki/research-tree-unlocks/ — 26 May 2026, Server 277 unlock audit; includes Allied Troops and second Lab.
+- https://lastzguide.com/research/ — general strategy context.

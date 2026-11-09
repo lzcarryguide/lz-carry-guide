@@ -194,3 +194,31 @@ test("existing guide database remains empty and unpublished", async ({ request }
   expect(data.schemaVersion).toBe(1);
   expect(data.entries).toEqual([]);
 });
+
+test("research database search filters and expands only matching technologies", async ({ page }) => {
+  await page.goto("/research.html");
+  await page.getByLabel("Search research").fill("Laboratory");
+  await expect(page.locator(".research-tree-card:visible").first()).toBeVisible();
+  await page.getByLabel("Search research").fill("Alliance Recognition");
+  await expect(page.locator(".research-tree-card:visible")).toHaveCount(1);
+  await expect(page.locator(".research-tree-card:visible summary h3")).toHaveText("Alliance Recognition");
+  await expect(page.locator(".research-tree-card:visible")).toHaveAttribute("open", "");
+});
+test("formation builder selects, replaces, swaps, removes and filters verified heroes", async ({ page }) => {
+  await page.goto("/heroes.html");
+  await expect(page.locator(".formation-slot")).toHaveCount(5);
+  await page.locator(".formation-slot").nth(0).click();
+  await page.getByRole("button", { name: /Katrina/ }).click();
+  await expect(page.locator(".formation-slot").nth(0)).toContainText("Katrina");
+  await page.locator(".formation-slot").nth(1).click();
+  await page.getByRole("button", { name: /Sophia/ }).click();
+  await page.locator(".formation-slot").nth(0).click();
+  await page.getByRole("button", { name: /Sophia/ }).click();
+  await expect(page.locator(".formation-slot").nth(0)).toContainText("Sophia");
+  await expect(page.locator(".formation-slot").nth(1)).toContainText("Katrina");
+  await page.locator(".formation-slot").nth(0).getByText("Remove").click();
+  await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
+  await page.getByLabel("Faction").selectOption("Wings of Dawn");
+  await expect(page.locator(".builder-hero")).toHaveCount(11);
+  await expect(page.getByText("Jack", { exact: true })).toHaveCount(0);
+});

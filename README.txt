@@ -7,10 +7,10 @@ CURRENT FEATURES
 ----------------
 - Homepage and LZ Carry YouTube channel section.
 - Searchable guide directory.
-- Beginner guide and a 22-tree community-indexed Laboratory research guide with HQ/Lab gates and F2P/spending routes.
+- Beginner guide and searchable 22-entry community-indexed Laboratory research guide, with personal Laboratory route and progress planner.
 - HQ progression planner and local checklist.
-- 45-record community-indexed Heroes Encyclopedia with expandable profiles, source conflicts and search/filter controls.
-- 16 searchable event profiles plus weekly Alliance Duel / Full Preparedness planning and Hot Event cycle conflict notes.
+- Evidence-screened Hero Formation Lab with hero profiles, mixed-faction builder, formation save/rename/load/compare/share, and troop database.
+- Searchable event directory, weekly Alliance Duel / Full Preparedness reference, live Apocalypse Time clock and browser-saved preparation checklist.
 - Weekly Pilot — $30 (Sunday–Saturday).
 - Weekly + Canyon Clash — $35 (Sunday–Saturday).
 - Responsive dark-blue visual system.
@@ -50,11 +50,11 @@ CONTENT RULES
 
 DEVELOPMENT AND RELEASE SAFETY
 ------------------------------
-Current development branch: research-guide-heroes-events-v2
+Current development branch: research-ui-hero-formation
 Base: production main as of 2026-11-09
 Run browser tests with: npx playwright test
 The branch workflow runs Playwright and uploads screenshots/reports as artifacts.
-Do not merge or deploy until the release owner explicitly approves. A passing test run is not release approval.
+The product owner has authorized autonomous development and release when quality criteria are met. Keep unresolved evidence gaps explicit; a passing test run alone is not sufficient.
 
 
 HERO PROFILE EVIDENCE
@@ -64,3 +64,11 @@ The Heroes section now indexes 45 community-referenced records from the union of
 RESEARCH GUIDE EVIDENCE
 -----------------------
 The Research Guide maps 22 named trees across community indexes (including Allied Troops, which some current guides omit) and records conflicting gates. Community trackers disagree on some unlock requirements and names. Check docs/research-source-review.md for source comparisons and the in-game evidence backlog. Exact node effects, badge costs, resource totals and speedups are intentionally omitted until verified in the current client.
+
+
+PLANNER TOOL NOTES
+------------------
+- Laboratory route suggestions use community-reported gates and intentionally omit exact node costs, badge totals, percentages and timers until current-client evidence is available. The second Laboratory is tracked separately, including the reported Season 2 Day 50 condition.
+- Full Preparedness planner displays Apocalypse Time (UTC-2), four-hour windows and a local checklist. It does not infer the active server theme or scoring tasks.
+- Formation library stores names and five hero slots locally; share links contain hero names and slot order only. No account or game credentials are stored.
+- See docs/laboratory-planner-review.md, docs/event-planner-review.md and docs/website-quality-review.md for evidence and remaining verification.

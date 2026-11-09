@@ -30,8 +30,8 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
   await expect(page.getByRole("heading", { name: "All Guides" })).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
   await page.goto("/research.html");
-  await expect(page.getByRole("heading", { name: "22 community-indexed research trees" })).toBeVisible();
-  await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
+  await expect(page.getByRole("heading", { name: "Research Guide" })).toBeVisible();
+  await expect(page.locator("#research-count")).toHaveText("22 matching technologies");
   await page.screenshot({ path: path.join(artifacts, "research-desktop.png"), fullPage: true });
   await page.goto("/");
   await expect(page.getByText("Watch Our Videos", { exact: true })).toBeVisible();
@@ -41,30 +41,26 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
 });
 
 
-test("research directory searches, filters and opens useful tree notes", async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 1000 });
+test("research database searches, filters and expands technology details", async ({ page }) => {
+  await page.setViewportSize({width:1440,height:1000});
   await page.goto("/research.html");
-  const search = page.getByLabel("Search trees");
-  const group = page.getByLabel("Group");
-  await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
-  await search.fill("Urgent Rescue");
-  await expect(page.locator("#research-count")).toHaveText("2 of 22 trees shown");
-  const peaceShield = page.locator(".research-tree-card").filter({ has: page.getByRole("heading", { name: "Peace Shield", exact: true }) });
-  await expect(peaceShield).toBeVisible();
-  await peaceShield.locator("summary").click();
-  await expect(peaceShield.locator(".research-tree-body")).toContainText("Urgent Rescue");
-  await page.screenshot({ path: path.join(artifacts, "research-tree-detail.png"), fullPage: true });
+  const search=page.getByLabel("Search research");
+  const group=page.getByLabel("Category");
+  await expect(page.locator(".research-tree-card")).toHaveCount(22);
+  await search.fill("Alliance Recognition");
+  await expect(page.locator(".research-tree-card:visible")).toHaveCount(1);
+  const card=page.locator(".research-tree-card:visible");
+  await expect(card.locator("summary h3")).toHaveText("Alliance Recognition");
+  await expect(card).toHaveAttribute("open","");
+  await expect(card.locator(".research-tree-body")).toContainText("Prerequisite");
+  await page.screenshot({path:path.join(artifacts,"research-tree-detail.png"),fullPage:true});
   await search.fill("");
   await group.selectOption("alliance");
-  await expect(page.locator("#research-count")).toHaveText("3 of 22 trees shown");
-  await expect(page.getByRole("heading", { name: "Alliance Recognition" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Leader's Will" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Peace Shield" })).toHaveCount(0);
+  await expect(page.locator(".research-tree-card:visible")).toHaveCount(3);
   await group.selectOption("");
-  await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
-  await expect(page.getByRole("heading", { name: "Allied Troops" })).toBeVisible();
+  await search.fill("Laboratory");
+  await expect(page.locator(".research-tree-card:visible").first()).toBeVisible();
 });
-
 test("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
@@ -93,37 +89,19 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   page.on("pageerror",error=>pageErrors.push(error.stack || error.message));
   page.on("console",message=>{if(message.type()==="error") console.log("BROWSER_CONSOLE_ERROR",message.text());});
   await page.goto("/heroes.html");
-  await expect(page.getByRole("heading",{name:"Heroes & Troops"})).toBeVisible();
-  await page.waitForTimeout(250);
-  console.log("HERO_COUNT_TEXT",await page.locator("#hero-count").textContent());
-  console.log("PAGE_ERRORS",JSON.stringify(pageErrors));
-  await expect(page.getByText("45 records")).toBeVisible();
-  await expect(page.getByText(/45-record community index/)).toBeVisible();
-  await expect(page.locator("#hero-results details.hero-profile")).toHaveCount(45);
-  await page.getByLabel("Search heroes").fill("angelina");
-  await expect(page.getByRole("heading",{name:"Angelina"})).toBeVisible();
-  await page.getByRole("heading",{name:"Angelina"}).click();
-  await expect(page.getByRole("heading", { name: "Formation fit" })).toBeVisible();
-  await expect(page.getByText("Z Tools index lists")).toBeVisible();
-  await expect(page.getByText("F2P \/ low-spend \/ high-spend investment")).toBeVisible();
-  await page.getByLabel("Search heroes").fill("selena");
-  const selenaCard=page.locator("#hero-results details.hero-profile").filter({has:page.getByRole("heading",{name:"Selena",exact:true})});
-  await selenaCard.locator("summary").click();
-  await expect(selenaCard).toContainText("Power of Nature");
-  await expect(selenaCard).toContainText("deployed");
-  await page.screenshot({path:path.join(artifacts,"hero-profile-detail.png"),fullPage:true});
-  await page.getByLabel("Search heroes").fill("no-such-hero");
-  await expect(page.getByText("No matching records")).toBeVisible();
+  await expect(page.getByRole("heading",{name:"Hero Recommendations & Formation Builder"})).toBeVisible();
+  await expect(page.locator("#formation-slots .formation-slot")).toHaveCount(5);
+  await expect(page.locator("#builder-results .builder-hero")).toHaveCount(33);
+  await page.getByLabel("Search heroes").fill("Jack");
+  await expect(page.locator("#builder-results .builder-hero")).toHaveCount(0);
   await page.getByLabel("Search heroes").fill("");
-  await expect(page.getByText(/three Season 4 names still show Verify/)).toBeVisible();
-  await page.getByLabel("Search troop classes").fill("rider");
-  await expect(page.getByRole("heading",{name:"Riders"})).toBeVisible();
-  await page.getByLabel("Search troop classes").fill("");
+  await page.getByLabel("Season").selectOption("5");
+  await expect(page.locator("#builder-results .builder-hero")).toHaveCount(3);
+  await page.getByLabel("Season").selectOption("");
   await page.screenshot({path:path.join(artifacts,"heroes-desktop.png"),fullPage:true});
   await page.goto("/events.html");
   await expect(page.getByRole("heading",{name:"Events & Rewards"})).toBeVisible();
   await expect(page.getByRole("heading",{name:"Weekly Alliance Duel and Full Preparedness"})).toBeVisible();
-  await expect(page.getByText("16 records")).toBeVisible();
   await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
   await page.getByLabel("Search events").fill("bullseye");
   await expect(page.getByRole("heading",{name:"Shooting Loot / Bullseye (Booty)"})).toBeVisible();
@@ -148,7 +126,7 @@ test("public knowledge data contains no external source URLs or unverified numer
     const response=await request.get("/data/"+file+".json");
     expect(response.ok()).toBeTruthy();
     const data=await response.json();
-    expect(data.schemaVersion).toBe(2);
+    expect(data.schemaVersion).toBe(key==="heroes"?3:2);
     expect(Array.isArray(data[key])).toBeTruthy();
     expect(JSON.stringify(data)).not.toMatch(/https?:\/\//i);
   }
@@ -193,4 +171,63 @@ test("existing guide database remains empty and unpublished", async ({ request }
   const data=await response.json();
   expect(data.schemaVersion).toBe(1);
   expect(data.entries).toEqual([]);
+});
+
+test("research database search filters and expands only matching technologies", async ({ page }) => {
+  await page.goto("/research.html");
+  await page.getByLabel("Search research").fill("Laboratory");
+  await expect(page.locator(".research-tree-card:visible").first()).toBeVisible();
+  await page.getByLabel("Search research").fill("Alliance Recognition");
+  await expect(page.locator(".research-tree-card:visible")).toHaveCount(1);
+  await expect(page.locator(".research-tree-card:visible summary h3")).toHaveText("Alliance Recognition");
+  await expect(page.locator(".research-tree-card:visible")).toHaveAttribute("open", "");
+});
+test("formation builder selects, replaces, swaps, removes and filters verified heroes", async ({ page }) => {
+  await page.goto("/heroes.html");
+  await expect(page.locator(".formation-slot")).toHaveCount(5);
+  await page.locator(".formation-slot").nth(0).click();
+  await page.getByRole("button", { name: /Katrina/ }).click();
+  await expect(page.locator(".formation-slot").nth(0)).toContainText("Katrina");
+  await expect(page.locator("#hero-intel")).toContainText("Hero quick intel · Katrina");
+  await page.screenshot({path:path.join(artifacts,"formation-builder-selected.png"),fullPage:true});
+  await page.locator(".formation-slot").nth(1).click();
+  await page.getByRole("button", { name: /Sophia/ }).click();
+  await page.locator(".formation-slot").nth(0).click();
+  await page.locator(".builder-hero").filter({hasText:"Sophia"}).click();
+  await expect(page.locator(".formation-slot").nth(0)).toContainText("Sophia");
+  await expect(page.locator(".formation-slot").nth(1)).toContainText("Katrina");
+  await page.locator(".formation-slot").nth(0).click();
+  await page.locator(".builder-hero").filter({hasText:"Angelina"}).click();
+  await expect(page.locator(".formation-slot").nth(0)).toContainText("Angelina");
+  await page.locator(".slot-remove").nth(0).click();
+  await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
+  await expect(page.locator("#builder-results .builder-hero[aria-pressed=true]")).toHaveCount(1);
+  await page.locator("#builder-faction").selectOption("Wings of Dawn");
+  await expect(page.locator(".builder-hero")).toHaveCount(11);
+  await expect(page.getByText("Jack", { exact: true })).toHaveCount(0);
+});
+
+test("mixed-faction analysis explains pair signals, troop fit and counter matchups", async ({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto("/heroes.html");
+ await page.locator(".formation-slot").nth(0).click();await page.getByRole("button",{name:/Bella/}).click();
+ await page.locator(".formation-slot").nth(1).click();await page.getByRole("button",{name:/Licia/}).click();
+ await page.locator(".formation-slot").nth(2).click();await page.getByRole("button",{name:/Scarlett/}).click();
+ await expect(page.locator("#formation-advice")).toContainText("Mixed-faction formation");
+ await expect(page.locator("#formation-advice")).toContainText("Bella + Licia");
+ await page.getByLabel("March troop line").selectOption("Shooters");
+ await expect(page.locator("#formation-advice")).toContainText("Check troop-specific passives");
+ await page.getByLabel("Opponent faction").selectOption("Guard of Order");
+ await expect(page.locator("#formation-advice")).toContainText("Blood Rose is the community-listed counter");
+ await page.screenshot({path:path.join(artifacts,"formation-mixed-feedback-mobile.png"),fullPage:true});
+ await page.getByRole("button",{name:/Clear formation/}).click();
+ await expect(page.locator("#formation-advice")).toContainText("Add heroes to compare");
+});
+test("source-backed faction presets populate named examples",async({page})=>{
+ await page.goto("/heroes.html");
+ await page.getByRole("button",{name:/Blood Rose.*SIN Command example/}).click();
+ await expect(page.locator(".formation-slot").nth(0)).toContainText("Bella");
+ await expect(page.locator(".formation-slot").nth(3)).toContainText("Licia");
+ await page.getByRole("button",{name:/Wings of Dawn.*SIN Command example/}).click();
+ await expect(page.locator(".formation-slot").nth(0)).toContainText("Laura");
+ await expect(page.locator(".formation-slot").nth(3)).toContainText("Liliana");
 });

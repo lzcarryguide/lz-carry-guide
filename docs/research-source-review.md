@@ -1,6 +1,6 @@
 # Research Guide source review
 
-Checked: 2026-11-08.
+Checked: 2026-11-09.
 
 ## Publication approach
 The public LZ Carry Research & Progression page is an original synthesis: a 21-tree directory, Laboratory gates, stage routes, badge-budget advice and resource/queue management. It does not copy third-party prose, layouts or artwork. Tree names and major gates are secondary-source findings, not official publisher data. The player's current Laboratory screen is authoritative after patches and server/season differences.
@@ -65,3 +65,16 @@ The public LZ Carry Research & Progression page is an original synthesis: a 21-t
 4. Current Alliance Duel research task and points panel.
 5. Second Laboratory unlock and Research License description if present.
 6. Server season/day conditions for Army Expansion.
+
+## Additional cross-check on 2026-11-09
+
+A current source re-check found specific differences that are now shown in the public guide as unresolved:
+- SIN Command's current Research Priority tree table lists New Home at Lab 1, Shelter Building at Lab 5, and Elite Troops / Hero Training at Lab 8.
+- Last Z Exchange's current research-cost table likewise lists New Home Lab 1, Shelter Building Lab 5 and Elite Troops Lab 8.
+- Last Z Guide's recently crawled Laboratory guide describes the initial free trees (New Home, Shelter Building and Elite Troops) as being available when the Laboratory opens and emphasizes prior-tree completion for the free chain. It also explains Lab levels are research-tree gates and the building does not directly increase research speed; research speed is affected by separate bonuses and nodes.
+- HQ Management's separate Lab 14 gate is listed in the Last Z Exchange table but the newer Last Z Guide research page presents Shelter Building 100% as the unlock, without repeating a separate Lab 14 gate.
+- Siege to Seize is listed at Military Strategies 15% by Last Z Exchange / SIN Command; Last Z Guide's Laboratory text reports a 15–40% split among trackers.
+- Army Expansion is listed at a Lab 33 gate by Last Z Exchange and Last Z Guide; Z Tools' source notes also mention a Lab No. 2 level 33. The current client must resolve whether the requirement is Lab 1 or Lab No. 2.
+- Last Z Guide's Laboratory page describes a second Laboratory unlocked around HQ 18 with a Research License; acquisition source and availability differ among community references.
+
+The public unlock table now marks these discrepancies and expressly tells readers to confirm the active gate in their game client. It does not publish exact badge costs or node percentages from these sources.

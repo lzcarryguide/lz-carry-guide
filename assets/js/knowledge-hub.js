@@ -1,83 +1,43 @@
-(function () {
-  function node(tag, cls, value) {
-    var el = document.createElement(tag);
-    if (cls) el.className = cls;
-    el.textContent = value == null ? "" : String(value);
-    return el;
-  }
-  function addList(card, heading, values) {
-    if (!Array.isArray(values) || !values.length) return;
-    card.appendChild(node("h4", "", heading));
-    var ul = document.createElement("ul");
-    values.forEach(function (v) { ul.appendChild(node("li", "", v)); });
-    card.appendChild(ul);
-  }
-  function makeCard(r, kind) {
-    var card = node("article", "card knowledge-card", "");
-    if (kind === "hero") {
-      card.appendChild(node("span", "pill", [r.rarity, r.faction, r.season != null ? "Season " + r.season : ""].filter(Boolean).join(" · ") || "Details pending"));
-      card.appendChild(node("h3", "", r.name));
-      card.appendChild(node("p", "", [r.role, r.troopType].filter(Boolean).join(" · ") || "Role and troop line pending verification"));
-      card.appendChild(node("p", "small muted", r.dataStatus || "Verification pending"));
-      if (r.skills && r.skills.length) addList(card, "Skills", r.skills.map(function (s) { return s.name + ": " + s.effect; }));
-      if (r.exclusiveEquipment) card.appendChild(node("p", "", "Exclusive Equipment: " + r.exclusiveEquipment));
-      card.appendChild(node("p", "small muted", r.investmentNote || ""));
-    } else if (kind === "troop") {
-      card.appendChild(node("span", "pill", r.faction));
-      card.appendChild(node("h3", "", r.name));
-      card.appendChild(node("p", "", "Camp: " + r.camp));
-      card.appendChild(node("p", "", r.summary));
-      var table = document.createElement("div");
-      table.className = "troop-tier-list";
-      (r.tiers || []).forEach(function (t) {
-        var line = [ "T" + t.tier, t.unitName || "Name pending" ].join(" · ");
-        table.appendChild(node("p", "small", line));
-        if (t.reportedAlternativeNames && t.reportedAlternativeNames.length) table.appendChild(node("p", "small muted", "Alternative community names: " + t.reportedAlternativeNames.join(", ")));
-      });
-      card.appendChild(table);
-      card.appendChild(node("p", "small muted", "Tier statistics and camp unlock levels are provisional community research and are withheld until verified in-game."));
-      card.appendChild(node("p", "small muted", r.note || ""));
-    } else {
-      card.appendChild(node("span", "pill", r.type + (r.frequency ? " · " + r.frequency : "")));
-      card.appendChild(node("h3", "", r.name));
-      card.appendChild(node("p", "", r.objective || r.summary || ""));
-      addList(card, "How it works", r.mechanics || []);
-      addList(card, "Preparation", r.preparation || []);
-      if (r.scoring) card.appendChild(node("p", "", "Scoring: " + r.scoring));
-      if (r.rewards) card.appendChild(node("p", "", "Rewards: " + r.rewards));
-      if (r.conflicts && r.conflicts.length) addList(card, "Source discrepancies", r.conflicts);
-      card.appendChild(node("p", "small muted", r.verification || "Confirm current rules in-game."));
-    }
-    return card;
-  }
-  function setup(cfg) {
-    var search = document.getElementById(cfg.searchId), filter = document.getElementById(cfg.filterId);
-    var count = document.getElementById(cfg.countId), results = document.getElementById(cfg.resultsId);
-    if (!search || !count || !results) return;
-    function render() {
-      var term = search.value.trim().toLowerCase(), selected = filter ? filter.value : "";
-      var visible = cfg.records.filter(function (r) {
-        var hay = [r.name,r.faction,r.troopType,r.camp,r.role,r.type,r.rarity,r.objective,r.summary,(r.tags||[]).join(" ")].filter(Boolean).join(" ").toLowerCase();
-        return (!selected || r[cfg.filterField] === selected) && (!term || hay.indexOf(term) !== -1);
-      });
-      count.textContent = visible.length + (visible.length === 1 ? " record" : " records");
-      results.replaceChildren();
-      if (!visible.length) { results.appendChild(node("p","card","No matching records. Try another search or filter.")); return; }
-      visible.forEach(function (r) { results.appendChild(makeCard(r,cfg.kind)); });
-    }
-    search.addEventListener("input",render);
-    if (filter) filter.addEventListener("change",render);
-    render();
-  }
-  function load(url,key,cfg,root) {
-    fetch(url).then(function(r){if(!r.ok)throw new Error("Database unavailable");return r.json();})
-      .then(function(data){if(!data||data.schemaVersion!==2||!Array.isArray(data[key]))throw new Error("Invalid database");cfg.records=data[key];setup(cfg);})
-      .catch(function(){root.replaceChildren(node("div","card","Directory unavailable. Please refresh to reload the local database."));});
-  }
-  var root=document.getElementById("hero-results");
-  if(root)load("data/heroes.json","heroes",{kind:"hero",searchId:"hero-search",filterId:"hero-faction",countId:"hero-count",resultsId:"hero-results",filterField:"faction"},root);
-  root=document.getElementById("troop-results");
-  if(root)load("data/troops.json","classes",{kind:"troop",searchId:"troop-search",filterId:"troop-faction",countId:"troop-count",resultsId:"troop-results",filterField:"faction"},root);
-  root=document.getElementById("event-results");
-  if(root)load("data/events.json","events",{kind:"event",searchId:"event-search",filterId:"event-type",countId:"event-count",resultsId:"event-results",filterField:"type"},root);
+(function(){
+function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;n.textContent=x==null?"":String(x);return n;}
+function para(p,h,x){var s=el("section","profile-section","");s.appendChild(el("h4","",h));s.appendChild(el("p","",x));p.appendChild(s);}
+function ul(p,h,a){if(!Array.isArray(a)||!a.length)return;p.appendChild(el("h4","",h));var u=document.createElement("ul");a.forEach(function(x){u.appendChild(el("li","",x));});p.appendChild(u);}
+function role(r){if(r==="Tank")return["The community index labels this entry Tank. If the live profile confirms that role, assess it for frontline or durability work. Verify actual skill targets, position restrictions and which allies are protected before assigning a formation slot.","Potential value: helping a march survive or protecting damage dealers. Trade-off: durability alone does not prove added damage, control or team utility.","Inspect defensive effects, protection, control resistance and recipients. Verify activation, duration, troop restrictions and mode scope."];if(r==="DPS")return["The community index labels this entry DPS. If the live profile confirms it, assess damage contribution by its targets, skill cycle and troop restrictions against other damage dealers you own.","Potential value: damage or damage amplification. Trade-off: burst numbers can mislead if triggers, cooldowns or targets rarely line up.","Inspect damage type, target count, activation chance, cooldown and whether the effect is march-wide or mode-specific."];if(r==="Support")return["The community index labels this entry Support. If confirmed, judge its team benefit, not just personal damage. Identify exactly which heroes or troops receive the effect.","Potential value: buffs, debuffs, healing, control or utility. Trade-off: value falls when the recipient or condition does not match your march.","Inspect scope, uptime, activation and recipients. A team-wide effect may matter more than a larger self-only number, but only when the skill text confirms it."];return["Role metadata is not reconciled. Do not assign frontline, damage or support duty from rarity or season alone. Capture the current client profile first.","No role-specific strength or weakness is assigned until the role is confirmed.","Confirm faction, troop type, rarity, role and every skill panel from the current game client."];}
+function hero(r){
+var d=document.createElement("details");d.className="card knowledge-card profile-card hero-profile";
+var s=el("summary","profile-summary","");
+s.appendChild(el("span","pill",[r.rarity,r.faction,r.season!=null?"Season "+r.season:""].filter(Boolean).join(" · ")||"Metadata pending"));
+s.appendChild(el("h3","",r.name));
+s.appendChild(el("p","",[r.role,r.troopType].filter(Boolean).join(" · ")||"Role and troop line not reconciled"));
+s.appendChild(el("p","small muted","Open scouting profile · "+(r.dataStatus||"Verification pending")));
+d.appendChild(s);
+var b=el("div","profile-body","");
+var p=r.profileNotes||{};
+para(b,"Evidence status",(p.evidence||"Roster metadata only; skill and formation evidence is not yet reconciled.")+" Current game-client confirmation is pending. Community references may be outdated or disagree.");
+para(b,"Indexed identity","Faction: "+(r.faction||"not reconciled")+". Troop type: "+(r.troopType||"not reconciled")+". Rarity: "+(r.rarity||"not reconciled")+". Indexed role: "+(r.role||"not reconciled")+". Release cohort: "+(r.season!=null?"Season "+r.season:"not reconciled")+". Null means unverified, not absent.");
+if(p.fieldRole)para(b,"Practical role and job",p.fieldRole);
+if(p.skills&&p.skills.length)ul(b,"Community-indexed skill snapshot (paraphrased)",p.skills);
+else para(b,"Skill details","No hero-specific skill transcription has been reconciled for this entry yet. Exact skill names, targets, triggers and effects need current-client screenshots; this is an open evidence item, not a completed profile.");
+if(p.priority)para(b,"Skill upgrade priorities",p.priority);
+if(p.formation)para(b,"Formation fit",p.formation);
+if(p.strengths)para(b,"Strengths",p.strengths);
+if(p.limitations)para(b,"Weaknesses and trade-offs",p.limitations);
+else para(b,"Weaknesses and trade-offs",role(r.role)[1]);
+if(p.investment)para(b,"F2P / low-spend / high-spend investment",p.investment);
+else para(b,"Investment approach","Concentrate fragments, EXP, skill manuals and gear on a small number of heroes actually deployed in the main formation. Do not spend premium items from rarity alone.");
+var stage = r.rarity==="S"
+ ? "Early: use only if this hero is the strongest available match for your first developed faction. Mid-game: build toward the strongest few S heroes of the faction you can sustain. Late-game: compare against newer-season alternatives and keep the hero only if their role/passive still earns a formation slot."
+ : "Early: use as a temporary role or utility option if the live skill fills a need. Mid-game: move to a secondary formation or resource role when stronger S-rank heroes are available. Late-game: avoid heavy investment unless a verified global passive or specialist task still gives account value.";
+para(b,"Early-, mid- and late-game usefulness",stage);
+para(b,"Exclusive Equipment","Not confirmed for this entry. A fourth-skill exclusive talent is a separate system and must not be confused with Exclusive Equipment. Verify equipment availability, unlock conditions, level effects and costs in the current client.");
+para(b,"What to capture next","Current hero profile and troop type; all four skill panels with scope/trigger/target; fourth-skill conditions; Exclusive Equipment screen; fragment acquisition and star-up costs; tested formation row and troop restrictions.");
+d.appendChild(b);return d;
+}
+function troop(r){var c=el("article","card knowledge-card","");c.appendChild(el("span","pill",r.faction));c.appendChild(el("h3","",r.name));c.appendChild(el("p","","Camp: "+r.camp));c.appendChild(el("p","",r.summary));var t=el("div","troop-tier-list","");(r.tiers||[]).forEach(function(x){t.appendChild(el("p","small","T"+x.tier+" · "+(x.unitName||"Name pending")));if(x.reportedAlternativeNames&&x.reportedAlternativeNames.length)t.appendChild(el("p","small muted","Alternative community names: "+x.reportedAlternativeNames.join(", ")));});c.appendChild(t);c.appendChild(el("p","small muted","Tier statistics, unlock levels, costs and timers remain withheld until verified in-game."));c.appendChild(el("p","small muted",r.note||""));return c;}
+function event(r){var d=document.createElement("details");d.className="card knowledge-card profile-card event-profile";var s=el("summary","profile-summary","");s.appendChild(el("span","pill",[r.type,r.frequency].filter(Boolean).join(" · ")));s.appendChild(el("h3","",r.name));s.appendChild(el("p","",r.objective||r.summary||"Read the live event panel before spending."));s.appendChild(el("p","small muted","Open event field guide"));d.appendChild(s);var b=el("div","profile-body","");ul(b,"How it works",r.mechanics||[]);if(!r.mechanics||!r.mechanics.length)para(b,"Mechanics status","Available sources do not support a complete description. Do not infer schedules, scores, rounds or entry rules from the event name.");ul(b,"Preparation",r.preparation||[]);para(b,"Participation and eligibility",r.participation||"Check current server, alliance, HQ, registration and personal eligibility in the Event Center.");para(b,"Scoring",r.scoring||"Not published. Read the current task and points panel; values and caps are not independently verified.");para(b,"Rewards",r.rewards||"Not published. Confirm current chests, ranking and milestone panels before spending.");para(b,"F2P strategy",r.f2pStrategy||"Prioritize free tasks and attainable personal milestones. Keep rare items for actions the live panel confirms will score.");para(b,"Spending strategy",r.spendingStrategy||"Do not buy currency on an old guide. Compare live thresholds with real cost and stop when the next reward is poor value.");ul(b,"Common mistakes",r.commonMistakes||["Assuming an old schedule or reward table is current.","Spending before checking task rules.","Confusing personal points with alliance-wide contribution."]);para(b,"Verification status",r.verification||"Confirm current rules in-game.");ul(b,"Known source conflicts",r.conflicts||[]);d.appendChild(b);return d;}
+function setup(c){var q=document.getElementById(c.searchId),count=document.getElementById(c.countId),out=document.getElementById(c.resultsId);var f=(c.filters||[]).map(function(x){return{field:x.field,node:document.getElementById(x.id)};}).filter(function(x){return x.node;});if(!f.length&&c.filterId){var n=document.getElementById(c.filterId);if(n)f.push({field:c.filterField,node:n});}if(!q||!count||!out)return;function render(){var term=q.value.trim().toLowerCase();var a=c.records.filter(function(r){var text=[r.name,(r.aliases||[]).join(" "),r.faction,r.troopType,r.camp,r.role,r.type,r.rarity,r.season!=null?"season "+r.season:"",r.objective,r.summary,(r.tags||[]).join(" ")].filter(Boolean).join(" ").toLowerCase();return f.every(function(x){return!x.node.value||String(r[x.field]==null?"":r[x.field])===x.node.value;})&&(!term||text.indexOf(term)>=0);});count.textContent=a.length+(a.length===1?" record":" records");out.replaceChildren();if(!a.length){out.appendChild(el("p","card knowledge-empty","No matching records. Try another search or filter."));return;}a.forEach(function(r){out.appendChild(c.kind==="hero"?hero(r):c.kind==="troop"?troop(r):event(r));});}q.addEventListener("input",render);f.forEach(function(x){x.node.addEventListener("change",render);});render();}
+function load(url,key,c,root){fetch(url).then(function(r){if(!r.ok)throw new Error("Database unavailable");return r.json();}).then(function(d){if(!d||d.schemaVersion!==2||!Array.isArray(d[key]))throw new Error("Invalid database");c.records=d[key];setup(c);}).catch(function(){root.replaceChildren(el("div","card","Directory unavailable. Please refresh to reload the local database."));});}
+var r=document.getElementById("hero-results");if(r)load("data/heroes.json","heroes",{kind:"hero",searchId:"hero-search",countId:"hero-count",resultsId:"hero-results",filters:[{id:"hero-faction",field:"faction"},{id:"hero-role",field:"role"},{id:"hero-season",field:"season"}]},r);
+r=document.getElementById("troop-results");if(r)load("data/troops.json","classes",{kind:"troop",searchId:"troop-search",filterId:"troop-faction",countId:"troop-count",resultsId:"troop-results",filterField:"faction"},r);
+r=document.getElementById("event-results");if(r)load("data/events.json","events",{kind:"event",searchId:"event-search",filterId:"event-type",countId:"event-count",resultsId:"event-results",filterField:"type"},r);
 })();

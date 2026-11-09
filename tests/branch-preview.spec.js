@@ -29,6 +29,10 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
   await page.goto("/guides.html");
   await expect(page.getByRole("heading", { name: "All Guides" })).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
+  await page.goto("/research.html");
+  await expect(page.getByRole("heading", { name: "22 community-indexed research trees" })).toBeVisible();
+  await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
+  await page.screenshot({ path: path.join(artifacts, "research-desktop.png"), fullPage: true });
   await page.goto("/");
   await expect(page.getByText("Watch Our Videos", { exact: true })).toBeVisible();
   const channel = page.getByRole("link", { name: /Visit Our YouTube Channel/ });
@@ -36,16 +40,51 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
   await expect(channel).toHaveAttribute("target", "_blank");
 });
 
+
+test("research directory searches, filters and opens useful tree notes", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/research.html");
+  const search = page.getByLabel("Search trees");
+  const group = page.getByLabel("Group");
+  await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
+  await search.fill("Urgent Rescue");
+  await expect(page.locator("#research-count")).toHaveText("2 of 22 trees shown");
+  const peaceShield = page.locator(".research-tree-card").filter({ has: page.getByRole("heading", { name: "Peace Shield", exact: true }) });
+  await expect(peaceShield).toBeVisible();
+  await peaceShield.locator("summary").click();
+  await expect(peaceShield.locator(".research-tree-body")).toContainText("Urgent Rescue");
+  await page.screenshot({ path: path.join(artifacts, "research-tree-detail.png"), fullPage: true });
+  await search.fill("");
+  await group.selectOption("alliance");
+  await expect(page.locator("#research-count")).toHaveText("3 of 22 trees shown");
+  await expect(page.getByRole("heading", { name: "Alliance Recognition" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Leader's Will" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Peace Shield" })).toHaveCount(0);
+  await group.selectOption("");
+  await expect(page.locator("#research-count")).toHaveText("22 of 22 trees shown");
+  await expect(page.getByRole("heading", { name: "Allied Troops" })).toBeVisible();
+});
+
 test("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
-    for (const target of ["/", "/guides.html", "/heroes.html", "/events.html"]) {
+    for (const target of ["/", "/guides.html", "/research.html", "/heroes.html", "/events.html"]) {
       await page.goto(target);
       const sizes = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, document: document.documentElement.scrollWidth }));
       expect(sizes.document, target + " at " + width + "px").toBeLessThanOrEqual(sizes.viewport + 1);
       if (width === 390) await page.screenshot({ path: path.join(artifacts, target === "/" ? "homepage-mobile.png" : target.slice(1).replace(".html","") + "-mobile.png"), fullPage: true });
     }
   }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/research.html");
+  const mobileNav = page.locator("header nav");
+  const navMetrics = await mobileNav.evaluate(node => ({ client: node.clientWidth, scroll: node.scrollWidth, overflow: getComputedStyle(node).overflowX }));
+  expect(navMetrics.scroll).toBeGreaterThan(navMetrics.client);
+  expect(navMetrics.overflow).toMatch(/auto|scroll/);
+  await mobileNav.evaluate(node => { node.scrollLeft = node.scrollWidth; });
+  const finalNavItem = await mobileNav.locator("a").last().evaluate(node => { const rect = node.getBoundingClientRect(); return { left: rect.left, right: rect.right }; });
+  expect(finalNavItem.left).toBeGreaterThanOrEqual(0);
+  expect(finalNavItem.right).toBeLessThanOrEqual(391);
 });
 
 test("heroes, troops and events databases load and search", async ({ page }) => {
@@ -58,27 +97,47 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.waitForTimeout(250);
   console.log("HERO_COUNT_TEXT",await page.locator("#hero-count").textContent());
   console.log("PAGE_ERRORS",JSON.stringify(pageErrors));
-  await expect(page.getByText("22 records")).toBeVisible();
-  await expect(page.getByText(/PARTIAL ROSTER — 22 indexed entries only/)).toBeVisible();
+  await expect(page.getByText("45 records")).toBeVisible();
+  await expect(page.getByText(/45-record community index/)).toBeVisible();
+  await expect(page.locator("#hero-results details.hero-profile")).toHaveCount(45);
   await page.getByLabel("Search heroes").fill("angelina");
   await expect(page.getByRole("heading",{name:"Angelina"})).toBeVisible();
+  await page.getByRole("heading",{name:"Angelina"}).click();
+  await expect(page.getByRole("heading", { name: "Formation fit" })).toBeVisible();
+  await expect(page.getByText("Z Tools index lists")).toBeVisible();
+  await expect(page.getByText("F2P \/ low-spend \/ high-spend investment")).toBeVisible();
+  await page.getByLabel("Search heroes").fill("selena");
+  const selenaCard=page.locator("#hero-results details.hero-profile").filter({has:page.getByRole("heading",{name:"Selena",exact:true})});
+  await selenaCard.locator("summary").click();
+  await expect(selenaCard).toContainText("Power of Nature");
+  await expect(selenaCard).toContainText("deployed");
+  await page.screenshot({path:path.join(artifacts,"hero-profile-detail.png"),fullPage:true});
   await page.getByLabel("Search heroes").fill("no-such-hero");
   await expect(page.getByText("No matching records")).toBeVisible();
   await page.getByLabel("Search heroes").fill("");
-  await expect(page.getByText(/Profiles marked for verification/)).toBeVisible();
+  await expect(page.getByText(/three Season 4 names still show Verify/)).toBeVisible();
   await page.getByLabel("Search troop classes").fill("rider");
   await expect(page.getByRole("heading",{name:"Riders"})).toBeVisible();
   await page.getByLabel("Search troop classes").fill("");
   await page.screenshot({path:path.join(artifacts,"heroes-desktop.png"),fullPage:true});
   await page.goto("/events.html");
   await expect(page.getByRole("heading",{name:"Events & Rewards"})).toBeVisible();
-  await expect(page.getByText("10 records")).toBeVisible();
+  await expect(page.getByRole("heading",{name:"Weekly Alliance Duel and Full Preparedness"})).toBeVisible();
+  await expect(page.getByText("16 records")).toBeVisible();
+  await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
+  await page.getByLabel("Search events").fill("bullseye");
+  await expect(page.getByRole("heading",{name:"Shooting Loot / Bullseye (Booty)"})).toBeVisible();
+  await expect(page.locator("#event-results details.event-profile")).toHaveCount(1);
   await page.getByLabel("Search events").fill("canyon");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toBeVisible();
+  await page.getByRole("heading",{name:"Canyon Clash"}).click();
+  await expect(page.getByText("Participation and eligibility")).toBeVisible();
+  await expect(page.getByText("F2P strategy")).toBeVisible();
+  await page.screenshot({path:path.join(artifacts,"event-profile-detail.png"),fullPage:true});
   await page.getByLabel("Event type").selectOption("Rewards");
   await page.getByLabel("Search events").fill("");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toHaveCount(0);
-  await expect(page.getByRole("heading",{name:"Shooting Loot"})).toBeVisible();
+  await expect(page.getByRole("heading",{name:"Shooting Loot / Bullseye (Booty)"})).toBeVisible();
   await page.getByLabel("Search events").fill("");
   await page.getByLabel("Event type").selectOption("");
   await page.screenshot({path:path.join(artifacts,"events-desktop.png"),fullPage:true});
@@ -99,7 +158,7 @@ test("public knowledge data contains no external source URLs or unverified numer
   expect(troopData.classes.every(c=>c.tiers.every(t=>t.trainingCost===undefined && t.promotionCost===undefined && t.trainingTime===undefined && t.campLevel===undefined && t.attack===undefined && t.defense===undefined && t.hp===undefined && t.power===undefined && t.load===undefined))).toBeTruthy();
   expect(troopData.tierUnlocks).toEqual([]);
   const eventData=await (await request.get("/data/events.json")).json();
-  expect(eventData.events).toHaveLength(10);
+  expect(eventData.events).toHaveLength(16);
 });
 
 test("guide directory filters search and only admits verified published records", async ({ page }) => {

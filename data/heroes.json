@@ -1,13 +1,15 @@
 {
   "schemaVersion": 2,
-  "lastUpdated": "2026-11-08",
-  "rosterStatus": "22 indexed entries currently published: 19 profiles with community faction/role metadata plus three Season 4 entries explicitly flagged Verify. The structured source lists 36 heroes; the remaining 14 have not yet been reconciled into this database. This is not a complete roster.",
-  "verificationPolicy": "Faction, troop type, rarity, role and season are secondary-source index fields, not verified current-client facts. All hero skill text, skill values, star-up costs, acquisition routes and exclusive-equipment effects are withheld pending in-game confirmation. Do not treat null as none.",
+  "lastUpdated": "2026-11-09",
+  "rosterStatus": "36 indexed entries now represented using the supplied community hero indexes: 33 carry secondary-source faction/troop/rarity/season metadata; three Season 4 entries remain explicitly marked Verify. This is a community reference roster, not an official or current-client verified roster. Exact skills, costs, gear and formations remain subject to in-game confirmation.",
+  "verificationPolicy": "All hero classifications and profile notes are secondary-source community data, not official publisher data. Current-client confirmation is pending. Skill summaries are paraphrased and coefficients/costs are omitted where sources are inconsistent or not independently confirmed. Do not treat null as none. Fourth-skill exclusive talents are not Exclusive Equipment.",
   "developmentGuidance": [
-    "Choose heroes for the role, faction synergy, troop type and formation position rather than power score alone.",
-    "Concentrate scarce fragments, EXP, skill books and equipment on heroes actually deployed in the primary formation.",
+    "Choose heroes for role, faction synergy, troop type and formation position rather than power score alone.",
+    "Concentrate scarce fragments, EXP, skill books and equipment on a small group actually deployed in your main formation.",
     "Check whether a skill is global, march-only, deployment-only or faction-count dependent before investing.",
-    "Treat 4-star and 5-star fragment breakpoints as planning checkpoints, not universal upgrade instructions; verify the live hero screen."
+    "Prioritize a hero's distinctive passive only when its scope and deployment requirement match the job you need.",
+    "Treat profile skill names and formation suggestions as community-reference snapshots; verify live text, target, star breakpoints and skill levels before spending.",
+    "Do not equate a fourth-skill exclusive talent with the separate Exclusive Equipment system."
   ],
   "skillFramework": [
     {
@@ -33,32 +35,6 @@
   ],
   "heroes": [
     {
-      "id": "angelina",
-      "name": "Angelina",
-      "faction": "Wings of Dawn",
-      "troopType": "Shooters",
-      "rarity": "B",
-      "role": "Tank",
-      "season": 0,
-      "dataStatus": "community-indexed; current in-game confirmation pending",
-      "skills": [],
-      "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
-    },
-    {
-      "id": "athena",
-      "name": "Athena",
-      "faction": "Guard of Order",
-      "troopType": "Riders",
-      "rarity": "B",
-      "role": "DPS",
-      "season": 0,
-      "dataStatus": "community-indexed; current in-game confirmation pending",
-      "skills": [],
-      "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
-    },
-    {
       "id": "audrey",
       "name": "Audrey",
       "faction": "Blood Rose",
@@ -69,46 +45,23 @@
       "dataStatus": "community-indexed; current in-game confirmation pending",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
-    },
-    {
-      "id": "giselle",
-      "name": "Giselle",
-      "faction": "Blood Rose",
-      "troopType": "Assaulters",
-      "rarity": "B",
-      "role": "DPS",
-      "season": 0,
-      "dataStatus": "community-indexed; current in-game confirmation pending",
-      "skills": [],
-      "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
-    },
-    {
-      "id": "natalie",
-      "name": "Natalie",
-      "faction": "Wings of Dawn",
-      "troopType": "Shooters",
-      "rarity": "B",
-      "role": "DPS",
-      "season": 0,
-      "dataStatus": "community-indexed; current in-game confirmation pending",
-      "skills": [],
-      "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
-    },
-    {
-      "id": "william",
-      "name": "William",
-      "faction": "Guard of Order",
-      "troopType": "Riders",
-      "rarity": "B",
-      "role": "Tank",
-      "season": 0,
-      "dataStatus": "community-indexed; current in-game confirmation pending",
-      "skills": [],
-      "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Cross-referenced community entries; an unresolved third-skill conflict remains.",
+        "fieldRole": "The main index labels Audrey Tank; an individual profile describes troop-training support. These are not interchangeable roles.",
+        "skills": [
+          "Fist Fury — normal-attack enhancement.",
+          "Thai Boxing Impact — active forward attack.",
+          "Skill 3 conflict: Z Tools lists an Electricity-production passive; Last Z Wiki lists troop-training speed. Do not publish either as settled.",
+          "Faction Defense — listed as a Blood Rose hero-defense effect."
+        ],
+        "priority": "Do not invest around the third skill until the current client resolves the mismatch. Keep combat skill spending low if she is only a temporary B-rank hero.",
+        "formation": "An individual profile suggests secondary formations, but the ideal position depends on the confirmed skill role; do not assume a frontline Tank slot.",
+        "strengths": "May provide secondary economy/training value if the current skill text confirms it.",
+        "limitations": "Role and skill-3 data conflict across sources.",
+        "investment": "F2P: temporary use only. Spending accounts should not invest premium materials into an unresolved utility profile.",
+        "sourceConfidence": "Z Tools and Last Z Wiki disagree on Skill 3 and role."
+      }
     },
     {
       "id": "ava",
@@ -121,20 +74,81 @@
       "dataStatus": "community-indexed; current in-game confirmation pending",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Z Tools skill index only; exact role and current-client effects pending.",
+        "fieldRole": "The index lists Support; the reference skill panel includes an attack passive and faction attack talent. Check how the client defines her role before building a support formation.",
+        "skills": [
+          "Chemical Reaction — normal-attack enhancement.",
+          "Perilous Potion — active attack with a poison effect described in the source index.",
+          "Attack Expert — personal attack progression.",
+          "Faction Attack — listed as a Blood Rose hero-attack passive."
+        ],
+        "priority": "The active skill's poison progression is the distinctive combat note; the source's Skill 3 is self-focused, not evidence of team-wide support. Avoid a fixed priority before checking its exact in-game scope.",
+        "formation": "Blood Rose / Assaulter classification is indexed. Exact row and recommended lineup are not confirmed.",
+        "strengths": "Damage and poison-oriented attack kit in the community index.",
+        "limitations": "Single-source skill record; role label does not obviously match the described passive kit.",
+        "investment": "F2P: temporary early use only. Spending: compare with Blood Rose S heroes before committing fragments or exclusive gear.",
+        "sourceConfidence": "Single community skill index."
+      }
     },
     {
-      "id": "christina",
-      "name": "Christina",
-      "faction": "Wings of Dawn",
-      "troopType": "Shooters",
-      "rarity": "A",
-      "role": "Support",
+      "id": "giselle",
+      "name": "Giselle",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "B",
+      "role": "DPS",
       "season": 0,
       "dataStatus": "community-indexed; current in-game confirmation pending",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Cross-referenced Z Tools and Last Z Wiki; role label in the main index conflicts with the individual utility profile.",
+        "fieldRole": "The main roster index labels Giselle DPS, while the individual guide describes her as a Wood-gathering specialist. Treat the gathering use as provisional until checked in-game.",
+        "skills": [
+          "Alloy Lever — normal-attack enhancement.",
+          "Lever Strike — active attack in a forward area.",
+          "Wood Gathering Mastery / Gathering Master: Wood — sources describe Wood gathering and production utility.",
+          "Faction Attack — listed as a Blood Rose faction-hero attack passive."
+        ],
+        "priority": "If the Wood passive is confirmed, prioritize the gathering effect only when using her as a resource specialist; do not upgrade her attack skills expecting a competitive main-march carry.",
+        "formation": "Secondary resource/gathering formation is the community recommendation; Assaulter troop classification is indexed.",
+        "strengths": "Potential resource-economy value outside direct combat.",
+        "limitations": "DPS versus gathering-role label conflict; B-rank combat scaling is described as limited in later progression.",
+        "investment": "F2P: use as an early gatherer if confirmed, then keep fragments for the main S team. Spenders should not buy upgrades for a gathering-only slot.",
+        "sourceConfidence": "Z Tools and Last Z Wiki agree on wood utility, but the overall role tag conflicts."
+      }
+    },
+    {
+      "id": "athena",
+      "name": "Athena",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "B",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Z Tools skill index only; current-client and independent profile confirmation pending.",
+        "fieldRole": "The indexed role is DPS, but the skill list includes an Electricity gathering passive. Treat her as a mixed early-combat / economy option until the live profile resolves the intended job.",
+        "skills": [
+          "Bullet Upgrade — normal-attack damage progression.",
+          "Pistol Shooting — active attack skill.",
+          "Gathering Master: Electricity — global Electricity gathering utility in the source index.",
+          "Faction Attack — listed as a Guard of Order faction-hero attack passive."
+        ],
+        "priority": "If the Electricity gathering effect is confirmed and your account needs it, compare the passive utility with combat investment. Do not spend heavily on basic attack upgrades before the S-rank main march is ready.",
+        "formation": "Guard of Order / Rider classification is indexed; exact row and secondary-march recommendation are not independently established.",
+        "strengths": "Potential dual-purpose combat and Electricity gathering utility.",
+        "limitations": "Role and exact skill text need a current-client cross-check; no definitive lineup is published.",
+        "investment": "F2P: keep investment modest and use only while useful. Spenders should compare her utility against an available S-rank Rider before spending.",
+        "sourceConfidence": "Single community skill index; metadata also needs in-game confirmation."
+      }
     },
     {
       "id": "elizabeth",
@@ -147,33 +161,23 @@
       "dataStatus": "community-indexed; current in-game confirmation pending",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
-    },
-    {
-      "id": "fiona",
-      "name": "Fiona",
-      "faction": "Wings of Dawn",
-      "troopType": "Shooters",
-      "rarity": "A",
-      "role": "DPS",
-      "season": 0,
-      "dataStatus": "community-indexed; current in-game confirmation pending",
-      "skills": [],
-      "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
-    },
-    {
-      "id": "isabella",
-      "name": "Isabella",
-      "faction": "Wings of Dawn",
-      "troopType": "Shooters",
-      "rarity": "A",
-      "role": "Tank",
-      "season": 0,
-      "dataStatus": "community-indexed; current in-game confirmation pending",
-      "skills": [],
-      "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Cross-referenced Last Z Wiki and Z Tools.",
+        "fieldRole": "Self-defence / frontline durability is the profile's main use, consistent with her indexed Tank role.",
+        "skills": [
+          "Bad Omen / Bad Luck Omen — normal-attack enhancement.",
+          "Scatter Shot — ranged attack with an immobilization effect in the individual guide.",
+          "Defense Expert — self-defence progression.",
+          "Faction Defense — listed as a Guard of Order hero-defense passive."
+        ],
+        "priority": "If she is used as a temporary frontline, the defensive skill is the most role-aligned upgrade. Do not invest as a long-term main carry after S-rank Riders are available.",
+        "formation": "Front row with Riders is the individual profile recommendation; verify the five-hero faction bonus and live row restriction.",
+        "strengths": "Accessible early frontline and a defensive profile.",
+        "limitations": "A-rank transition hero; reference guides advise replacing her as the main S-rank team develops.",
+        "investment": "F2P: reasonable temporary filler using free universal A fragments. Spenders: avoid heavy long-term investment.",
+        "sourceConfidence": "Last Z Wiki and Z Tools support the defensive and faction-passive description; exact percentages omitted."
+      }
     },
     {
       "id": "leah",
@@ -186,7 +190,269 @@
       "dataStatus": "community-indexed; current in-game confirmation pending",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Z Tools skill index only; current-client confirmation pending.",
+        "fieldRole": "Indexed as a Guard of Order Rider damage hero.",
+        "skills": [
+          "Crack Shot — normal-attack enhancement.",
+          "Arrow of Silence — active attack; source index lists a later burning effect.",
+          "Attack Expert — global/personal attack progression as labelled by the source.",
+          "Faction Attack — Guard of Order hero-attack passive."
+        ],
+        "priority": "If used in a temporary damage formation, compare the active-skill upgrade with her faction passive. Do not publish a fixed star-level order until the live effect is checked.",
+        "formation": "Guard of Order / Rider classification is indexed; row and exact five-hero lineup are not independently confirmed.",
+        "strengths": "Direct attack skill set in the community index.",
+        "limitations": "Single-source skill notes; no validated late-game tier or exclusive gear profile.",
+        "investment": "F2P: temporary A-rank use. Spenders: prioritize the main S-rank Riders before investing.",
+        "sourceConfidence": "Single community skill index."
+      }
+    },
+    {
+      "id": "william",
+      "name": "William",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "B",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Cross-referenced Last Z Wiki and Z Tools; Skill 3 disagrees.",
+        "fieldRole": "The main index labels William Tank, while the individual page presents a training-support role. This is not a dependable frontline recommendation.",
+        "skills": [
+          "Reinforced Bullet / Enhanced Bullets — normal-attack enhancement.",
+          "Explosive Grenade — active area damage.",
+          "Skill 3 conflict: Z Tools lists a Food-production passive; Last Z Wiki lists troop-training speed. Verify in-game.",
+          "Faction Defense — listed as a Guard of Order hero-defense passive."
+        ],
+        "priority": "Resolve Skill 3 first. If it is troop-training speed, its value is utility rather than combat and should not justify heavy battle investment.",
+        "formation": "One profile suggests a secondary Rider formation. Avoid assigning him a frontline slot from the Tank tag alone.",
+        "strengths": "Potential secondary training or Food-economy utility; faction passive.",
+        "limitations": "Tank vs support role and Skill 3 effect conflict across references.",
+        "investment": "F2P: temporary secondary use at most. Spenders should preserve fragments and books for their deployed S-rank Riders.",
+        "sourceConfidence": "Z Tools and Last Z Wiki conflict on the third skill and role."
+      }
+    },
+    {
+      "id": "angelina",
+      "name": "Angelina",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "B",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Cross-referenced community skill indexes; not checked against a current game-client screenshot.",
+        "fieldRole": "The main index labels Angelina Tank, while an individual profile describes a troop-training support role. Do not assume she is a primary combat tank.",
+        "skills": [
+          "Normal Attack Boost — improves the basic attack damage coefficient.",
+          "Serum Grenade — an attack affecting enemies in a forward area.",
+          "Skill 3 utility conflict: Z Tools lists a wood-production passive; Last Z Wiki lists troop-training speed. Verify the live skill before relying on either effect.",
+          "Faction Defense — listed as a Wings of Dawn hero-defense passive."
+        ],
+        "priority": "Do not prioritize combat skill investment while core S-rank heroes remain unfinished. The disputed third skill is the only reason to consider her for an economy or training utility role; confirm it first.",
+        "formation": "One reference suggests a secondary Shooter formation. The different Tank and training-support labels make a frontline recommendation unsafe without the live formation screen.",
+        "strengths": "Potential value is low-cost early utility and a faction passive.",
+        "limitations": "B-rank / secondary role in current community advice; skill-3 effect and role classification conflict between indexes.",
+        "investment": "F2P: use as a temporary roster filler or secondary utility only. Low/high spend: avoid expensive fragments or equipment until the role and skill-3 text are confirmed.",
+        "sourceConfidence": "Role and third-skill conflict across Last Z Wiki and Z Tools."
+      }
+    },
+    {
+      "id": "christina",
+      "name": "Christina",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "A",
+      "role": "Support",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Cross-referenced Last Z Wiki and Z Tools.",
+        "fieldRole": "The main index calls Christina Support; the detailed guides describe a city-siege specialist. Her value is objective demolition utility, not a general PvP carry.",
+        "skills": [
+          "Judgement Knight — normal-attack enhancement.",
+          "Flame Storm — forward fire-area attack.",
+          "Siege Expert — reduces neutral-city demolition time in the community guide; Z Tools lists the siege/fuel effect progression.",
+          "Siege Specialization — the source describes the siege effect applying to the whole formation even when Christina is not deployed."
+        ],
+        "priority": "For alliance city-siege roles, the Siege Expert passive is the distinctive investment. For ordinary PvP, do not prioritize her over the main S-rank Shooter team.",
+        "formation": "Secondary Shooter / siege utility formation is the source recommendation; full deployment requirements for each effect should be checked in-game.",
+        "strengths": "Specialized alliance objective utility that can benefit a formation beyond her direct combat presence.",
+        "limitations": "A-rank transition hero and limited direct-PvP value in the reference profile.",
+        "investment": "F2P: use her for siege utility if confirmed, but do not divert core S-hero fragments. Spending: avoid expensive combat investment unless the alliance role makes demolition utility valuable.",
+        "sourceConfidence": "Last Z Wiki and Z Tools broadly agree on the siege-focused role; exact values omitted."
+      }
+    },
+    {
+      "id": "fiona",
+      "name": "Fiona",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "A",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Cross-referenced Last Z Wiki and Z Tools.",
+        "fieldRole": "A temporary Shooter damage dealer with a personal attack effect and a Wings of Dawn faction passive.",
+        "skills": [
+          "Fire Reinforcement / Flame Enhancement — normal-attack enhancement.",
+          "Blazing Flamethrower / Flame Jet — forward fan-shaped fire attack.",
+          "Attack Expert — personal attack progression.",
+          "Faction Attack — listed as a Wings of Dawn hero-attack passive."
+        ],
+        "priority": "For temporary combat use, focus the active damage skill and verify the faction passive. Stop heavy investment once a stronger S-rank Wings of Dawn carry replaces her.",
+        "formation": "Secondary Shooter formation is the community recommendation.",
+        "strengths": "Accessible early damage and a faction offensive passive.",
+        "limitations": "A-rank transition hero that is described as falling behind later-season S heroes.",
+        "investment": "F2P: use as temporary Shooter DPS and then secondary formation support. Spending: prioritize the main S-rank formation first.",
+        "sourceConfidence": "Last Z Wiki and Z Tools broadly agree on the personal attack and faction-attack role; exact values omitted."
+      }
+    },
+    {
+      "id": "isabella",
+      "name": "Isabella",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "A",
+      "role": "Tank",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Cross-referenced Last Z Wiki and Z Tools.",
+        "fieldRole": "The detailed community profile describes a self-defence-oriented Shooter who can serve as a temporary secondary frontliner; this differs from a conventional damage role.",
+        "skills": [
+          "Reinforced Bullet / Enhanced Bullets — normal-attack enhancement.",
+          "Dual Weapon Shot / Dual Gun Strike — active dual-weapon attack; sources describe an immobilization improvement at a later skill level.",
+          "Attack Expert — the source indexes describe a personal defensive stat progression despite the generic skill name.",
+          "Faction Defense — Wings of Dawn hero-defence passive."
+        ],
+        "priority": "If assigned a temporary frontline role, the defensive passive is more relevant than chasing attack-only improvements. Keep investment low after stronger S-rank heroes become available.",
+        "formation": "Secondary formation, Shooters; one profile notes her as somewhat more durable than Fiona in a frontline position. Verify the live formation restrictions.",
+        "strengths": "Accessible A-rank utility and a more defensive profile than a pure Shooter DPS.",
+        "limitations": "Transition hero; not recommended as a long-term main-march investment.",
+        "investment": "F2P: temporary use with universal A fragments. Spending: preserve rare materials for core S heroes.",
+        "sourceConfidence": "Last Z Wiki and Z Tools broadly agree on the attack, defence and faction-passive structure; exact text/values omitted."
+      }
+    },
+    {
+      "id": "natalie",
+      "name": "Natalie",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "B",
+      "role": "DPS",
+      "season": 0,
+      "dataStatus": "community-indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Z Tools skill index; Last Z Wiki's roster uses the spelling Natalia, so identity/name matching should be checked.",
+        "fieldRole": "The hero index spells this entry Natalie; Last Z Wiki's roster lists Natalia. Keep one record for now rather than risk a duplicate.",
+        "skills": [
+          "Enhanced Crossbow — normal-attack enhancement.",
+          "Crossbow Shooting — active attack.",
+          "Gathering Master: Food — Food gathering utility in the source index.",
+          "Faction Attack — listed as a Wings of Dawn hero attack passive."
+        ],
+        "priority": "Check whether the Food gathering passive appears under the same hero in your client before building a resource-only profile. Do not rank her combat value from the name alone.",
+        "formation": "Wings of Dawn / Shooter classification is indexed; row position needs a current-client check.",
+        "strengths": "Potential Food-gathering utility plus ranged attack skills.",
+        "limitations": "Natalie/Natalia spelling and role interpretation require confirmation.",
+        "investment": "F2P: temporary utility only until identity and passive are confirmed. Low/high spend: avoid rare materials until then.",
+        "sourceConfidence": "Single skill index; Last Z Wiki uses the alternate spelling Natalia."
+      }
+    },
+    {
+      "id": "katrina",
+      "name": "Katrina",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "S",
+      "role": "Tank",
+      "season": 1,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed S-rank Blood Rose frontline. Evaluate with the live formation and faction synergy; do not assume a community tier placement is universal.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "miranda",
+      "name": "Miranda",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "A",
+      "role": "Tank",
+      "season": 1,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed as an A-rank frontline option. Keep investment proportional to her temporary role until your main S-rank march is established.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "oliveira",
+      "name": "Oliveira",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 1,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source references describe a support/economy passive alongside combat skills. Verify whether the passive applies without deployment before prioritizing her in a march.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
     },
     {
       "id": "selena",
@@ -199,20 +465,71 @@
       "dataStatus": "single-source indexed; verify against client",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Cross-referenced Z Tools and Last Z Wiki.",
+        "fieldRole": "Blood Rose Assaulter damage/defence specialist. The general roster calls her DPS; the individual guide emphasizes Assaulter defence and march support.",
+        "skills": [
+          "Torn Wound — normal-attack enhancement.",
+          "Wild Summon — forward bear attack with area ground-slam damage.",
+          "Power of Nature — improves the led Assaulter troop line; the individual guide says this effect requires Selena to be deployed.",
+          "Potential Unleashed — the guide describes an Assaulter damage benefit that applies even when Selena is not deployed."
+        ],
+        "priority": "Her deployed-only third skill matters when she is in the active march; the fourth-skill faction/Assaulter passive is the distinctive long-term account benefit. Verify the exact unlock and skill-level order in-game.",
+        "formation": "Back row with Assaulters; Blood Rose faction composition is recommended in the individual guide.",
+        "strengths": "S-rank faction synergy and an Assaulter passive that may help beyond the active formation.",
+        "limitations": "The third-skill effect depends on deployment; S-rank fragment investment is substantial. The role label differs across indexes.",
+        "investment": "F2P: invest if Blood Rose is your main faction and you can obtain her fragments; concentrate on a small S-rank core. Low/high spend: prioritize only if she remains one of your strongest faction heroes.",
+        "sourceConfidence": "Last Z Wiki and Z Tools both list the Assaulter/passive skill structure; live scope still needs client confirmation."
+      }
     },
     {
-      "id": "alma",
-      "name": "Alma",
-      "faction": "Wings of Dawn",
-      "troopType": "Shooters",
+      "id": "sophia",
+      "name": "Sophia",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
       "rarity": "S",
-      "role": "Tank",
-      "season": 2,
-      "dataStatus": "single-source indexed; verify against client",
+      "role": "DPS",
+      "season": 1,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "Source references highlight construction-time utility. If verified in your client, prioritize the global construction passive for account development; do not build her as a combat carry solely from her rarity.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "vivian",
+      "name": "Vivian",
+      "faction": "Blood Rose",
+      "troopType": "Assaulters",
+      "rarity": "A",
+      "role": "DPS",
+      "season": 1,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed as an A-rank damage option. Use as a bridge or secondary-formation candidate; preserve premium fragments for the long-term main faction.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
     },
     {
       "id": "bella",
@@ -225,7 +542,23 @@
       "dataStatus": "single-source indexed; verify against client",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Last Z Wiki individual profile; one community source, not checked against the current client.",
+        "fieldRole": "Blood Rose Assaulter health and damage specialist; the current generic Tank tag does not fully describe her role.",
+        "skills": [
+          "Apocalyptic Impact — normal-attack enhancement.",
+          "Pacifying Fury — area stampede attack.",
+          "Order of the Burning Sun — improves the led Assaulter line's health and damage.",
+          "Eternal Sacred Glow — a five-hero Blood Rose formation bonus to troop health."
+        ],
+        "priority": "The third skill is the core Assaulter-stat focus in the source profile. The fourth skill's value depends on being able to field a full Blood Rose formation; confirm its live condition.",
+        "formation": "Back row with Assaulters; use the faction bonus only when the required Blood Rose lineup is actually available.",
+        "strengths": "S-rank Assaulter synergy and formation-wide faction support.",
+        "limitations": "Season-pass / special-event access and fragment investment are noted by the source; the full-faction bonus is roster-dependent.",
+        "investment": "F2P: do not budget fragments until she is realistically obtainable and part of your core. Spenders: compare her to the strongest three Blood Rose heroes rather than spreading resources.",
+        "sourceConfidence": "One detailed Last Z Wiki profile (Portuguese/Spanish mixed language); current client transcription needed."
+      }
     },
     {
       "id": "harleyna",
@@ -238,20 +571,143 @@
       "dataStatus": "single-source indexed; verify against client",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
     },
     {
-      "id": "dodemeki",
-      "name": "Dodemeki",
-      "faction": "Guard of Order",
-      "troopType": "Riders",
+      "id": "alma",
+      "name": "Alma",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
       "rarity": "S",
-      "role": "DPS",
-      "season": 3,
+      "role": "Tank",
+      "season": 2,
       "dataStatus": "single-source indexed; verify against client",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Last Z Wiki individual profile; secondary source only, not checked against the current client.",
+        "fieldRole": "Wings of Dawn Shooter frontline-health and damage support. The generic Tank role label is an oversimplification of her shooter-buff role.",
+        "skills": [
+          "Lethal Golden Bullet — normal-attack enhancement.",
+          "Golden Corruption — Golden Serpent area attack with poison described in the individual guide.",
+          "Purple Scale Decree — increases the led Shooter line's survivability and Archer damage; the source labels it Active in Expeditions, so deployment matters.",
+          "Black Gold Power — faction bonus when a full Wings of Dawn formation is deployed."
+        ],
+        "priority": "The third skill is the key Shooter-stat upgrade when Alma is actually deployed. Consider the faction skill separately when you can field the full Wings of Dawn lineup.",
+        "formation": "Back row with Shooters; five Wings of Dawn heroes are recommended for the faction bonus in the source profile.",
+        "strengths": "S-rank Season 2 Shooter synergy and a deployed-march skill that supports the troop line.",
+        "limitations": "Season-pass / special-event acquisition and fragment investment are cited by the source; skill 3 does not work from the bench according to that guide.",
+        "investment": "F2P: invest only if access to fragments and the Wings of Dawn core makes her a realistic main hero. Spenders: compare against the strongest three faction heroes rather than building every S hero equally.",
+        "sourceConfidence": "One detailed Last Z Wiki profile; all skill names and conditions require current-client confirmation."
+      }
+    },
+    {
+      "id": "amelia",
+      "name": "Amelia",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 2,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed S-rank Shooter. Compare her live skill-3 scope and faction synergy with the other two or three S heroes you can realistically build before distributing fragments.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "laura",
+      "name": "Laura",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "Tank",
+      "season": 2,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed as a frontline option for the Wings of Dawn Shooter group. Confirm position restrictions and defensive effect text before heavy investment.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "nyx",
+      "name": "Nyx",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 2,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source references identify her as a key Wings of Dawn Shooter. Check whether the reported skill-3 effect is deployment-dependent before allocating fragments.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "scarlett",
+      "name": "Scarlett",
+      "faction": "Wings of Dawn",
+      "troopType": "Shooters",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 2,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source references describe Shooter-wide and training utility. Verify passive scope and faction scaling before treating her as a core combat investment.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
     },
     {
       "id": "licia",
@@ -264,7 +720,162 @@
       "dataStatus": "single-source indexed; verify against client",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "chinatsu",
+      "name": "Chinatsu",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 3,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed S-rank Rider. Confirm current Alliance Duel interaction and skill scope in-game before prioritizing her for event scoring.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "dodemeki",
+      "name": "Dodemeki",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 3,
+      "dataStatus": "single-source indexed; verify against client",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "evelyn",
+      "name": "Evelyn",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 3,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed S-rank Guard of Order hero. Hold a final formation and fragment recommendation until her live skills and faction conditions are captured.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "maria",
+      "name": "Maria",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "A",
+      "role": "Support",
+      "season": 3,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed as an A-rank support entry. Treat as a secondary formation candidate only after checking her live utility and skill scope.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "mia",
+      "name": "Mia",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "Tank",
+      "season": 3,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed S-rank Guard of Order hero. Confirm whether her distinctive vehicle or modification utility matches the current mode before spending fragments.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
+    },
+    {
+      "id": "sakura",
+      "name": "Sakura",
+      "faction": "Guard of Order",
+      "troopType": "Riders",
+      "rarity": "S",
+      "role": "DPS",
+      "season": 3,
+      "dataStatus": "secondary-source indexed; current in-game confirmation pending",
+      "skills": [],
+      "exclusiveEquipment": null,
+      "investmentNote": "Source-indexed S-rank Rider. Confirm the vehicle/mech skill scope and whether the relevant effect applies outside active deployment.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
     },
     {
       "id": "liliana",
@@ -277,7 +888,18 @@
       "dataStatus": "single-source indexed; verify against client",
       "skills": [],
       "exclusiveEquipment": null,
-      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified."
+      "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
+      "profileNotes": {
+        "evidence": "Roster-level secondary-source entry only; no hero-specific skill transcription independently reconciled in this pass.",
+        "fieldRole": "Factions, troop type, rarity, role and release period are indexed in community references, but the exact role label may be a broad category rather than the hero's most useful passive.",
+        "skills": [],
+        "priority": "Do not infer a skill order from rarity. Capture the current skill panel and prioritize the passive only after checking whether it is global, deployment-only, formation-limited or mode-specific.",
+        "formation": "Faction and troop type are indexed; exact front/back row, position and a five-hero formation are not published because current-client restrictions and a reliable multi-source build were not confirmed.",
+        "strengths": "The roster classification provides a starting point for faction and troop-type comparisons.",
+        "limitations": "Specific skill effects, unique passive scope, exclusive equipment, acquisition route and matchup strengths need direct in-game evidence.",
+        "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
+        "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
+      }
     },
     {
       "id": "amber",

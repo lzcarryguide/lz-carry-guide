@@ -64,7 +64,9 @@ function render(){
  summary.textContent=done+" marked done · "+active+" in progress · "+catalog.length+" indexed entries. This is a personal checklist, not a live unlock calculator.";
  route.textContent=chosen[1];
 }
-function toggleSecond(){ $("lab-second-extra").hidden=!lab2.checked; $("lab-season-extra").hidden=!lab2.checked; render(); }\n[hq,lab,lab2level,season50,pathSelect].forEach(function(el){el.addEventListener("change",render);});\nlab2.addEventListener("change",toggleSecond);
+function toggleSecond(){ $("lab-second-extra").hidden=!lab2.checked; $("lab-season-extra").hidden=!lab2.checked; render(); }
+[hq,lab,lab2level,season50,pathSelect].forEach(function(el){el.addEventListener("change",render);});
+lab2.addEventListener("change",toggleSecond);
 $("lab-plan-reset").addEventListener("click",function(){if(!confirm("Reset your saved Laboratory checklist on this browser?"))return;state={};save();render();});
-render();
+toggleSecond();
 })();

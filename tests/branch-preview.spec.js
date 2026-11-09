@@ -73,7 +73,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByLabel("Search heroes").fill("no-such-hero");
   await expect(page.getByText("No matching records")).toBeVisible();
   await page.getByLabel("Search heroes").fill("");
-  await expect(page.getByText(/Profiles marked for verification/)).toBeVisible();
+  await expect(page.getByText(/Season 4 names remain flagged for verification/)).toBeVisible();
   await page.getByLabel("Search troop classes").fill("rider");
   await expect(page.getByRole("heading",{name:"Riders"})).toBeVisible();
   await page.getByLabel("Search troop classes").fill("");

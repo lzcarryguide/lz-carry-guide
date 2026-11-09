@@ -37,10 +37,10 @@ var paths={
 "t10":[["Unit Special Training","Army Expansion","Tactical Master","Leader's Will"],"Late-game targets only. Separate Lab, season-day and prior-tree conditions remain important; this is not a guaranteed linear unlock chain."]
 };
 var state={};try{state=JSON.parse(localStorage.getItem(STORAGE)||"{}");}catch(e){state={};}
-var route=$("lab-route"),hq=$("lab-hq"),lab=$("lab-level"),lab2=$("lab-second"),list=$("lab-plan-list"),next=$("lab-next"),summary=$("lab-plan-summary"),pathSelect=$("lab-path");
+var route=$("lab-route"),hq=$("lab-hq"),lab=$("lab-level"),lab2=$("lab-second"),lab2level=$("lab-second-level"),season50=$("lab-season-day50"),list=$("lab-plan-list"),next=$("lab-next"),summary=$("lab-plan-summary"),pathSelect=$("lab-path");
 function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch(e){}}
 function status(name){return state[name]||"Not started";}
-function eligible(item){var labOK=item[1]===null||Number(lab.value)>=item[1],hqOK=!item[2]||Number(hq.value)>=item[2];if(item[3]==="free2")return !!lab2.checked&&Number(lab.value)>=item[1]&&Number(hq.value)>=18;return labOK&&hqOK;}
+function eligible(item){var labOK=item[1]===null||Number(lab.value)>=item[1],hqOK=!item[2]||Number(hq.value)>=item[2];if(item[3]==="free2")return !!lab2.checked&&Number(lab2level.value)>=33&&Number(hq.value)>=18&&!!season50.checked;return labOK&&hqOK;}
 function render(){
  var chosen=paths[pathSelect.value]||paths.balanced,focus=chosen[0],done=0,active=0,visible=[];
  catalog.forEach(function(item){var s=status(item[0]);if(s==="Done")done++;if(s==="In progress")active++;if(focus.indexOf(item[0])>=0||pathSelect.value==="balanced")visible.push(item);});
@@ -50,7 +50,7 @@ function render(){
   var top=document.createElement("div");top.className="lab-plan-item-head";
   var title=document.createElement("h4");title.textContent=item[0];top.append(title);
   var badge=document.createElement("span");badge.className="pill";badge.textContent=item[3]==="free"||item[3]==="free2"?"Badge-free reported":item[3]==="disputed"?"Verify in game":"Badge tree";top.append(badge);card.append(top);
-  var gate=document.createElement("p");gate.className="small muted";gate.textContent=item[1]===null?"Gate unknown / alternate source only":("Reported Lab "+item[1]+(item[2]?" + HQ "+item[2]:"")+(item[3]==="free2"?" · Second Lab / season prerequisite":""));card.append(gate);
+  var gate=document.createElement("p");gate.className="small muted";gate.textContent=item[1]===null?"Gate unknown / alternate source only":(item[3]==="free2"?"Reported Lab No. 2 level 33 + HQ 18 + Season 2 Day 50":"Reported Lab "+item[1]+(item[2]?" + HQ "+item[2]:""));card.append(gate);
   var note=document.createElement("p");note.textContent=item[4];card.append(note);
   var statusLine=document.createElement("div");statusLine.className="lab-plan-status";
   var select=document.createElement("select");select.setAttribute("aria-label",item[0]+" progress");["Not started","In progress","Done"].forEach(function(v){var o=document.createElement("option");o.value=v;o.textContent=v;select.append(o);});select.value=status(item[0]);select.addEventListener("change",function(){state[item[0]]=select.value;save();render();});statusLine.append(select);
@@ -64,7 +64,7 @@ function render(){
  summary.textContent=done+" marked done · "+active+" in progress · "+catalog.length+" indexed entries. This is a personal checklist, not a live unlock calculator.";
  route.textContent=chosen[1];
 }
-[hq,lab,lab2,pathSelect].forEach(function(el){el.addEventListener("change",render);});
+function toggleSecond(){ $("lab-second-extra").hidden=!lab2.checked; $("lab-season-extra").hidden=!lab2.checked; render(); }\n[hq,lab,lab2level,season50,pathSelect].forEach(function(el){el.addEventListener("change",render);});\nlab2.addEventListener("change",toggleSecond);
 $("lab-plan-reset").addEventListener("click",function(){if(!confirm("Reset your saved Laboratory checklist on this browser?"))return;state={};save();render();});
 render();
 })();

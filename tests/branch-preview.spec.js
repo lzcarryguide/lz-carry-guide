@@ -203,7 +203,7 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
   await expect(page.locator("#builder-results .builder-hero[aria-pressed=true]")).toHaveCount(1);
   await page.locator("#builder-faction").selectOption("Wings of Dawn");
-  await expect(page.locator(".builder-hero")).toHaveCount(12);
+  await expect(page.locator(".builder-hero")).toHaveCount(11);
   await expect(page.getByText("Jack", { exact: true })).toHaveCount(0);
 });
 
@@ -211,7 +211,7 @@ test("mixed-faction analysis explains pair signals, troop fit and counter matchu
  await page.setViewportSize({width:390,height:844});await page.goto("/heroes.html");
  await page.locator(".formation-slot").nth(0).click();await page.getByRole("button",{name:/Bella/}).click();
  await page.locator(".formation-slot").nth(1).click();await page.getByRole("button",{name:/Licia/}).click();
- await page.locator(".formation-slot").nth(2).click();await page.getByRole("button",{name:/Queenie/}).click();
+ await page.locator(".formation-slot").nth(2).click();await page.getByRole("button",{name:/Scarlett/}).click();
  await expect(page.locator("#formation-advice")).toContainText("Mixed-faction formation");
  await expect(page.locator("#formation-advice")).toContainText("Bella + Licia");
  await page.getByLabel("March troop line").selectOption("Shooters");

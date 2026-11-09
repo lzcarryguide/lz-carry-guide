@@ -40,7 +40,30 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
   await expect(channel).toHaveAttribute("target", "_blank");
 });
 
-test("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
+
+test("research directory searches, filters and opens useful tree notes", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/research.html");
+  const search = page.getByLabel("Search trees");
+  const group = page.getByLabel("Group");
+  await expect(page.locator("#research-count")).toHaveText("21 of 21 trees shown");
+  await search.fill("Urgent Rescue");
+  await expect(page.locator("#research-count")).toHaveText("1 of 21 trees shown");
+  const peaceShield = page.locator(".research-tree-card").filter({ hasText: "Peace Shield" });
+  await expect(peaceShield).toBeVisible();
+  await peaceShield.locator("summary").click();
+  await expect(peaceShield.locator(".research-tree-body")).toContainText("Urgent Rescue");
+  await page.screenshot({ path: path.join(artifacts, "research-tree-detail.png"), fullPage: true });
+  await search.fill("");
+  await group.selectOption("alliance");
+  await expect(page.locator("#research-count")).toHaveText("3 of 21 trees shown");
+  await expect(page.getByRole("heading", { name: "Alliance Recognition" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Leader's Will" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Peace Shield" })).toHaveCount(0);
+  await group.selectOption("");
+  await expect(page.locator("#research-count")).toHaveText("21 of 21 trees shown");
+});
+\ntest("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
     for (const target of ["/", "/guides.html", "/research.html", "/heroes.html", "/events.html"]) {
@@ -70,6 +93,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByRole("heading",{name:"Angelina"}).click();
   await expect(page.getByRole("heading", { name: "Formation fit" })).toBeVisible();
   await expect(page.getByText("F2P investment")).toBeVisible();
+  await page.screenshot({path:path.join(artifacts,"hero-profile-detail.png"),fullPage:true});
   await page.getByLabel("Search heroes").fill("no-such-hero");
   await expect(page.getByText("No matching records")).toBeVisible();
   await page.getByLabel("Search heroes").fill("");
@@ -87,6 +111,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByRole("heading",{name:"Canyon Clash"}).click();
   await expect(page.getByText("Participation and eligibility")).toBeVisible();
   await expect(page.getByText("F2P strategy")).toBeVisible();
+  await page.screenshot({path:path.join(artifacts,"event-profile-detail.png"),fullPage:true});
   await page.getByLabel("Event type").selectOption("Rewards");
   await page.getByLabel("Search events").fill("");
   await expect(page.getByRole("heading",{name:"Canyon Clash"})).toHaveCount(0);

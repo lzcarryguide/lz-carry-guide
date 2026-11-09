@@ -263,7 +263,7 @@
       "f2pStrategy": "Use free attempts and tasks shown in the event. Keep premium currency until guarantees and probabilities are clear.",
       "spendingStrategy": "Do not buy currency until current probability, guarantee, milestone and carry-over are confirmed.",
       "commonMistakes": [
-        "Assuming rules from another reward event.",
+        "Assuming rules from another reward event apply.",
         "Spending before checking probabilities.",
         "Treating an informal name as an official mode."
       ]
@@ -322,5 +322,6 @@
         "Spending fragments before checking restrictions."
       ]
     }
-  ]
-}\n
+  ],
+  "researchNote": "Event mechanics and strategy are separated from live server schedules, scoring and reward values. Check each event's own current panel."
+}

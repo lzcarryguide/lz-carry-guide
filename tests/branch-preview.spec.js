@@ -68,7 +68,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByLabel("Search heroes").fill("angelina");
   await expect(page.getByRole("heading",{name:"Angelina"})).toBeVisible();
   await page.getByRole("heading",{name:"Angelina"}).click();
-  await expect(page.getByText("Formation fit")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Formation fit" })).toBeVisible();
   await expect(page.getByText("F2P investment")).toBeVisible();
   await page.getByLabel("Search heroes").fill("no-such-hero");
   await expect(page.getByText("No matching records")).toBeVisible();

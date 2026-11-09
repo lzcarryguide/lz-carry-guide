@@ -189,12 +189,16 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
   await page.getByRole("button", { name: /Katrina/ }).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Katrina");
   await expect(page.locator("#hero-intel")).toContainText("Hero quick intel · Katrina");
+  await page.screenshot({path:path.join(artifacts,"formation-builder-selected.png"),fullPage:true});
   await page.locator(".formation-slot").nth(1).click();
   await page.getByRole("button", { name: /Sophia/ }).click();
   await page.locator(".formation-slot").nth(0).click();
   await page.locator(".builder-hero").filter({hasText:"Sophia"}).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Sophia");
   await expect(page.locator(".formation-slot").nth(1)).toContainText("Katrina");
+  await page.locator(".formation-slot").nth(0).click();
+  await page.locator(".builder-hero").filter({hasText:"Angelina"}).click();
+  await expect(page.locator(".formation-slot").nth(0)).toContainText("Angelina");
   await page.locator(".formation-slot").nth(0).getByText("Remove").click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
   await page.locator("#builder-faction").selectOption("Wings of Dawn");

@@ -296,3 +296,17 @@ test("knowledge pages contain no stray escaped newline text", async ({ page }) =
     expect(bodyText, target).not.toContain("\\n");
   }
 });
+
+test("hero formation controls remain usable on narrow mobile screens", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/heroes.html");
+  const search = page.locator("#builder-search");
+  const searchBox = await search.boundingBox();
+  expect(searchBox.width).toBeGreaterThanOrEqual(300);
+  const add = page.locator("#builder-results .builder-hero:not(:disabled)").first();
+  const addBox = await add.boundingBox();
+  expect(addBox.width).toBeGreaterThanOrEqual(300);
+  await expect(add).toHaveCSS("white-space", "nowrap");
+  const pageWidth = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+  expect(pageWidth.page).toBeLessThanOrEqual(pageWidth.viewport + 1);
+});

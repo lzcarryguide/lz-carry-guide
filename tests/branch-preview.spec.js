@@ -349,9 +349,10 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": true }));
     localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done" }));
     localStorage.setItem("lzcarry-event-prep-v2", JSON.stringify({ "20261110-Research-0": true }));
+    localStorage.setItem("lzcarry-event-reminders-v1", JSON.stringify([{ id: "reminder-1", name: "Alliance Duel", when: "2026-11-12T18:00:00.000Z", note: "Check the live task panel" }]));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/4 of 8 saved data sets found/)).toBeVisible();
+  await expect(page.getByText(/5 of 9 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;
@@ -363,6 +364,7 @@ test("player progress can be exported and safely imported across planners", asyn
   expect(backup.schemaVersion).toBe(1);
   expect(backup.data["lzcarry-formation-library-v1"][0].name).toBe("Test formation");
   expect(backup.data["lzcarry:hq-planner:v2"]["35:0"]).toBe(true);
+  expect(backup.data["lzcarry-event-reminders-v1"][0].name).toBe("Alliance Duel");
 
   await page.evaluate(() => localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": false })));
   page.on("dialog", dialog => dialog.accept());
@@ -375,10 +377,12 @@ test("player progress can be exported and safely imported across planners", asyn
   const restored = await page.evaluate(() => ({
     hq: JSON.parse(localStorage.getItem("lzcarry:hq-planner:v2")),
     research: JSON.parse(localStorage.getItem("lzcarry-research-plan-v1")),
-    rollback: JSON.parse(localStorage.getItem("lzcarry-player-data-rollback-v1"))
+    rollback: JSON.parse(localStorage.getItem("lzcarry-player-data-rollback-v1")),
+    reminders: JSON.parse(localStorage.getItem("lzcarry-event-reminders-v1"))
   }));
   expect(restored.hq["35:0"]).toBe(true);
   expect(restored.research["New Home"]).toBe("Done");
+  expect(restored.reminders[0].name).toBe("Alliance Duel");
   expect(restored.rollback.values["lzcarry:hq-planner:v2"]).toContain("false");
 });
 
@@ -543,4 +547,23 @@ test("dashboard and HQ planner share the player's saved current HQ level", async
   await page.goto("/dashboard.html");
   await expect(page.locator("#dashboard-hq")).toHaveValue("21");
   await expect(page.locator("#dashboard-hq-value")).toHaveText("HQ 21");
+});
+
+test("dashboard stores personal event reminders without implying an official schedule", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/dashboard.html");
+  await page.locator("#dashboard-reminder-name").fill("Alliance Duel");
+  await page.locator("#dashboard-reminder-when").fill("2026-11-12T18:00");
+  await page.locator("#dashboard-reminder-note").fill("Confirm the live task before spending");
+  await page.getByRole("button", { name: "Add reminder" }).click();
+  await expect(page.locator("#dashboard-reminder-list")).toContainText("Alliance Duel");
+  await expect(page.locator("#dashboard-reminder-list")).toContainText("Confirm the live task before spending");
+  await expect(page.locator("#dashboard-reminder-value")).toHaveText("1");
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("lzcarry-event-reminders-v1")));
+  expect(saved).toHaveLength(1);
+  expect(saved[0].name).toBe("Alliance Duel");
+  await page.getByRole("button", { name: "Remove reminder for Alliance Duel" }).click();
+  await expect(page.locator("#dashboard-reminder-value")).toHaveText("0");
+  const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+  expect(size.page).toBeLessThanOrEqual(size.viewport + 1);
 });

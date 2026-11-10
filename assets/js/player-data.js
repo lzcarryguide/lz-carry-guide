@@ -2,7 +2,7 @@
 (function(){
 "use strict";
 var script=document.currentScript;if(!script)return;var root=new URL("../../",script.src);
-var KEYS=["lzcarry-formation-library-v1","lzcarry:hq-planner:v2","lzcarry-research-plan-v1","lzcarry-event-prep-v2","lzcarry-player-profile-v1","lzcarry-beginner-mode-v1","lzcarry-research-resource-calculator-v1","lzcarry-troop-plan-v1"];
+var KEYS=["lzcarry-formation-library-v1","lzcarry:hq-planner:v2","lzcarry-research-plan-v1","lzcarry-event-prep-v2","lzcarry-player-profile-v1","lzcarry-beginner-mode-v1","lzcarry-research-resource-calculator-v1","lzcarry-troop-plan-v1","lzcarry-event-reminders-v1"];
 function el(t,c,s){var n=document.createElement(t);if(c)n.className=c;if(s!=null)n.textContent=s;return n;}
 var nav=document.querySelector("header nav");if(!nav)return;
 var css=document.createElement("link");css.rel="stylesheet";css.href=new URL("assets/css/player-data.css",root).href;document.head.append(css);
@@ -19,7 +19,7 @@ exp.addEventListener("click",function(){try{var b={format:"lz-carry-player-data"
 imp.addEventListener("click",function(){file.click();});
 file.addEventListener("change",async function(){var f=file.files&&file.files[0];if(!f)return;try{
 if(f.size>2097152)throw Error("Backup is larger than 2 MB.");var p=JSON.parse(await f.text());if(!p||p.format!=="lz-carry-player-data"||p.schemaVersion!==1||!p.data||typeof p.data!=="object"||Array.isArray(p.data))throw Error("Unsupported LZ Carry backup.");
-var incoming={};Object.keys(p.data).forEach(function(k){if(KEYS.indexOf(k)<0)throw Error("Unsupported data key.");var v=p.data[k];if(k==="lzcarry-formation-library-v1"&&(!Array.isArray(v)||v.length>500))throw Error("Invalid saved formation data.");if(k!=="lzcarry-formation-library-v1"&&(!v||typeof v!=="object"||Array.isArray(v)))throw Error("Invalid planner progress data.");incoming[k]=JSON.stringify(v);});
+var incoming={};Object.keys(p.data).forEach(function(k){if(KEYS.indexOf(k)<0)throw Error("Unsupported data key.");var v=p.data[k];if(k==="lzcarry-formation-library-v1"&&(!Array.isArray(v)||v.length>500))throw Error("Invalid saved formation data.");if(k==="lzcarry-event-reminders-v1"&&(!Array.isArray(v)||v.length>30||!v.every(function(x){return x&&typeof x.name==="string"&&typeof x.when==="string";})))throw Error("Invalid event reminder data.");if(k!=="lzcarry-formation-library-v1"&&k!=="lzcarry-event-reminders-v1"&&(!v||typeof v!=="object"||Array.isArray(v)))throw Error("Invalid planner progress data: "+k);incoming[k]=JSON.stringify(v);});
 if(!Object.keys(incoming).length)throw Error("Backup contains no saved planner data.");if(!confirm("Import "+Object.keys(incoming).length+" data set(s)? Matching progress on this device will be replaced."))return;
 var before={};KEYS.forEach(function(k){before[k]=localStorage.getItem(k);});localStorage.setItem("lzcarry-player-data-rollback-v1",JSON.stringify({savedAt:new Date().toISOString(),values:before}));
 try{Object.keys(incoming).forEach(function(k){localStorage.setItem(k,incoming[k]);});}catch(e){KEYS.forEach(function(k){if(before[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,before[k]);});throw e;}

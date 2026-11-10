@@ -18,3 +18,14 @@
 .dashboard-events{margin-top:18px}
 @media(max-width:760px){.dashboard-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.dashboard-columns{grid-template-columns:1fr}.dashboard-controls{align-items:stretch}.dashboard-controls label,.dashboard-controls button{width:100%}}
 @media(max-width:360px){.dashboard-stat{padding:12px}}
+
+.dashboard-reminders{margin-top:18px}
+.dashboard-reminder-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.dashboard-reminder-form label{display:grid;gap:6px;min-width:0;font-weight:700}
+.dashboard-reminder-form label:nth-child(3){grid-column:1/-1}
+.dashboard-reminder-form input{width:100%;min-width:0;min-height:42px;padding:9px 11px;border:1px solid #52677f;border-radius:8px;background:#0b121d;color:#e8eff8;font:inherit}
+.dashboard-reminder-list{display:grid;gap:8px;margin-top:12px}
+.dashboard-reminder-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid #31465d;border-radius:9px;background:#111f30}
+.dashboard-reminder-item p{margin:4px 0 0;color:#afbdce}
+.dashboard-reminder-remove{flex:0 0 auto}
+@media(max-width:760px){.dashboard-reminder-form{grid-template-columns:1fr}.dashboard-reminder-form label:nth-child(3){grid-column:auto}.dashboard-reminder-form button{width:100%}.dashboard-reminder-item{align-items:flex-start;flex-direction:column}.dashboard-reminder-remove{width:100%}}

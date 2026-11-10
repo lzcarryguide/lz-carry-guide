@@ -25,7 +25,7 @@ test("Formation Lab saves, reloads and compares local lineups", async ({ page })
   await expect(page.locator("#formation-slots .formation-slot").first()).toContainText(alphaHero);
   await page.reload();
   await expect(page.locator("#formation-saved-list")).toContainText("Alpha");
-  await expect(page.locator("#formation-saved-list")).toContainText("Beta");
+  await expect(page.locator("#formation-saved-list")).toContainText("Beta");\n  await expect(page.locator("#formation-saved-list")).toContainText("Alpha copy");
   await page.screenshot({path:"artifacts/formation-library.png",fullPage:true});
   expect(errors).toEqual([]);
 });

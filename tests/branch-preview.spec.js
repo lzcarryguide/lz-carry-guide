@@ -213,7 +213,7 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
   await expect(page.locator("#builder-results .builder-hero[aria-pressed=true]")).toHaveCount(1);
   await page.locator("#builder-faction").selectOption("Wings of Dawn");
-  await expect(page.locator(".builder-hero")).toHaveCount(11);
+  await expect(page.locator(".builder-hero:not(:disabled)")).toHaveCount(11);
   await expect(page.getByText("Jack", { exact: true })).toHaveCount(0);
 });
 

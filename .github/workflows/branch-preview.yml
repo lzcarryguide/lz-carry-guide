@@ -1,9 +1,9 @@
 name: Isolated branch preview
 on:
   push:
-    branches: [lz-carry-knowledge-hub]
+    branches: [lz-carry-knowledge-hub, player-tools-foundation]
   pull_request:
-    branches: [main]
+    branches: [main, interactive-knowledge-hub-ux]
   workflow_dispatch:
 permissions:
   contents: read

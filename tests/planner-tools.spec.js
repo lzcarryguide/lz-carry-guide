@@ -5,10 +5,10 @@ test("Laboratory route planner filters routes and saves progress locally", async
   page.on("pageerror",e=>errors.push(e.message));
   await page.setViewportSize({width:1280,height:900});
   await page.goto("/research.html");
-  await expect(page.getByRole("heading",{name:"Laboratory Route Planner"})).toBeVisible();
+  await expect(page.getByRole("heading",{name:"Research Guide"})).toBeVisible();\n  await expect(page.getByLabel("Search research")).toBeVisible();\n  const searchTop=await page.locator("#tree-map").evaluate(n=>n.getBoundingClientRect().top);\n  const plannerTop=await page.locator("#lab-planner").evaluate(n=>n.getBoundingClientRect().top);\n  expect(searchTop).toBeLessThan(plannerTop);\n  await expect(page.getByRole("heading",{name:"Laboratory Route Planner"})).toBeVisible();
   await page.locator("#lab-hq").selectOption("30");
   await page.locator("#lab-level").selectOption("30");
-  await page.locator("#lab-path").selectOption("t10");
+  await page.locator("#lab-path").selectOption("early-low");\n  await expect(page.locator("#lab-plan-list")).toContainText("Alliance Recognition");\n  await page.locator("#lab-path").selectOption("t10");
   await page.locator("#lab-second").check();
   await expect(page.locator("#lab-plan-list")).toContainText("Unit Special Training");
   await expect(page.locator("#lab-plan-list")).toContainText("Army Expansion");
@@ -35,7 +35,7 @@ test("Full Preparedness planner shows Apocalypse Time and persists checklist", a
   await expect(page.getByRole("heading",{name:"Full Preparedness & Alliance Duel Prep"})).toBeVisible();
   await expect(page.locator("#event-at-clock")).toContainText("AT");
   await expect(page.locator("#event-at-window")).toContainText("–");
-  await page.locator("#event-prep-theme").selectOption("Research");
+  await page.locator("#event-prep-theme").selectOption("Research");\n  await page.locator("#event-prep-next-theme").selectOption("Heroes");\n  await expect(page.locator("#event-theme-context")).toContainText("Next theme selected: Heroes");\n  await expect(page.locator("#event-prep-checks")).toContainText("research badges");\n  await expect(page.locator("#event-prep-theme option")).toHaveCount(6);
   const first=page.locator("#event-prep-checks input").first();
   await first.check();
   await page.reload();

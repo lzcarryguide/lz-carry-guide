@@ -3,7 +3,7 @@ on:
   push:
     branches: [lz-carry-knowledge-hub]
   pull_request:
-    branches: [main, interactive-knowledge-hub-ux]
+    branches: [main, interactive-knowledge-hub-ux, player-tools-foundation]
   workflow_dispatch:
 permissions:
   contents: read

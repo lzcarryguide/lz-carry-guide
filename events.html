@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Searchable LZ Carry Last Z event reference for alliance, competitive, combat, and reward events.">
-  <title>Events & Rewards | LZ Carry</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="assets/css/knowledge-hub-ux.css"><script src="assets/js/event-prep-planner.js" defer></script>
-  <script src="assets/js/knowledge-hub.js" defer></script>
+  <title>Events & Rewards | LZ Carry</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="assets/css/knowledge-hub-ux.css"><link rel="stylesheet" href="assets/css/lucky-rose-tracker.css"><script src="assets/js/event-prep-planner.js" defer></script>
+  <script src="assets/js/knowledge-hub.js" defer></script><script src="assets/js/lucky-rose-tracker.js" defer></script>
 </head>
 <body>
 <header><div class="wrap nav"><a class="brand" href="index.html">LAST Z <span>CARRY</span></a><nav aria-label="Main navigation">
@@ -12,6 +12,16 @@
 </nav></div></header>
 <main>
 <section class="hero"><div class="wrap"><p class="eyebrow">Category 04 · Knowledge base</p><h1>Events & Rewards</h1><p class="lead">Know what each event is asking you to do, prepare resources with intent, and verify the live rules before spending.</p><a class="btn" href="#event-directory">Browse event reference</a></div></section>
+<section id="lucky-rose-tracker"><div class="wrap">
+<p class="eyebrow">Weekly reference · Evidence log</p><h2>Lucky Rose Tracker</h2>
+<p class="section-intro">A manually maintained weekly record. Community reports can help identify a candidate, but the current in-game Lucky Rose panel must be checked before you send roses.</p>
+<div class="lucky-rose-panel">
+<article class="lucky-rose-current" id="lucky-rose-current" aria-live="polite"><p>Loading current evidence…</p></article>
+<section class="card"><p class="eyebrow">Running history</p><h3>Recent community reports</h3><div class="lucky-rose-history" id="lucky-rose-history" aria-live="polite"><p class="small muted">Loading history…</p></div></section>
+</div>
+<p class="notice lucky-rose-scope" id="lucky-rose-scope-note">Buff scope is not confirmed. Check the live client.</p>
+<div class="card"><h3>How LZ Carry verifies a weekly entry</h3><ol><li>Capture the Lucky Rose number, buff wording and duration from the current in-game panel for the relevant week.</li><li>Cross-check the same week against a second independent, current community report.</li><li>Record the week start, checked date, source links and any server or reset scope.</li><li>If the sources disagree, keep the entry Unconfirmed and show the conflict. Never infer the next number from a past rotation.</li></ol><p class="small muted">The current candidate is not yet in-game confirmed by LZ Carry. Its buff recipient scope is disputed across community sources; treat it as sender-only unless the game itself clearly confirms otherwise.</p></div>
+</div></section>
 <section id="event-directory"><div class="wrap">
   <p class="eyebrow">Event directory</p><h2>Find an event</h2>
   <p class="section-intro">Open any event for a field guide covering mechanics, preparation, eligibility checks, scoring and reward evidence, F2P and spending strategy, and mistakes to avoid. Recurring, seasonal and server-specific activities are separated. Unknown details are clearly marked rather than guessed.</p>

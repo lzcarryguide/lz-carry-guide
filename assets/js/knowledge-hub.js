@@ -78,7 +78,7 @@ body.append(node("p","small muted","Exclusive Equipment: not confirmed for this 
 body.append(node("p","small muted","Usefulness across early, mid and late game depends on the live skill text, your developed faction and the role this hero fills in your active march. Avoid investment from rarity alone."));
 body.append(node("p","small muted","Evidence still needed: current profile, all skill panels and triggers, fourth-skill conditions, equipment screen, fragment/star-up costs and tested formation restrictions."));
 details.append(body);
-var add=node("button","btn secondary builder-hero","");add.type="button";add.setAttribute("aria-pressed",String(selected));add.setAttribute("aria-label",(selected?"Selected: ":"Add ")+h.name+" "+(selected?"in formation":"to active formation"));add.textContent=selected?"Selected · "+h.name:"Add "+h.name+" to active slot";
+var add=node("button","btn secondary builder-hero","");add.type="button";add.setAttribute("aria-pressed",String(selected));add.setAttribute("aria-label",(selected?"Selected: ":"Add ")+h.name+" "+(selected?"in formation":"to active formation"));add.append(node("strong","",h.name),document.createTextNode(selected?" · Selected":" · Add to active slot"));
 add.addEventListener("click",function(){var existing=chosen.findIndex(function(x){return x&&x.id===h.id;});if(existing>=0&&existing!==active){var tmp=chosen[active];chosen[active]=chosen[existing];chosen[existing]=tmp;}else chosen[active]=h;drawSlots();drawResults();analyze();intel(h);});
 wrap.append(details,add);results.append(wrap);
 });

@@ -335,9 +335,9 @@ test("canonical evidence labels distinguish verified and community claims", asyn
   await search.fill("Bella");
   await expect(page.locator(".universal-search-result-status", { hasText: "Community-supported" }).first()).toBeVisible();
   await search.fill("HQ 35");
-  const hq = page.locator(".universal-search-result[href*="beginner.html"]").filter({ hasText: "HQ 35 upgrade" }).first();
+  const hq = page.locator('.universal-search-result[href*="beginner.html"]').filter({ hasText: "HQ 35 upgrade" }).first();
   await expect(hq.locator(".universal-search-result-status")).toHaveText("Unconfirmed");
   await search.fill("Canyon Clash");
-  const event = page.locator(".universal-search-result[href*="events.html"]").filter({ hasText: "Canyon Clash" }).first();
+  const event = page.locator('.universal-search-result[href*="events.html"]').filter({ hasText: "Canyon Clash" }).first();
   await expect(event.locator(".universal-search-result-status")).toHaveText("Community-supported");
 });

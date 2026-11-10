@@ -231,3 +231,27 @@ test("source-backed faction presets populate named examples",async({page})=>{
  await expect(page.locator(".formation-slot").nth(0)).toContainText("Laura");
  await expect(page.locator(".formation-slot").nth(3)).toContainText("Liliana");
 });
+test("GitHub Pages project subpath resolves scripts, styles and JSON data", async ({ page }) => {
+  const alias=path.join(process.cwd(),"lz-carry-guide");
+  let created=false;
+  try { fs.symlinkSync(process.cwd(),alias,"dir"); created=true; }
+  catch(e) { if(e.code!=="EEXIST") throw e; }
+  const errors=[];
+  page.on("pageerror",e=>errors.push(e.message));
+  const failed=[];
+  page.on("requestfailed",r=>failed.push(r.url()));
+  try {
+    await page.goto("/lz-carry-guide/research.html");
+    await expect(page.getByLabel("Search research")).toBeVisible();
+    await page.getByLabel("Search research").fill("Alliance Recognition");
+    await expect(page.locator(".research-tree-card:visible")).toHaveCount(1);
+    await page.goto("/lz-carry-guide/heroes.html");
+    await expect(page.locator("#builder-results .builder-hero")).toHaveCount(33);
+    await page.goto("/lz-carry-guide/events.html");
+    await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
+    expect(errors).toEqual([]);
+    expect(failed).toEqual([]);
+  } finally {
+    if(created) fs.unlinkSync(alias);
+  }
+});

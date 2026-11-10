@@ -95,7 +95,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(33);
   await page.locator("#builder-results .hero-directory-item").first().locator("summary").click();
   await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("Portrait not verified");
-  await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("current-client verification pending");
+  await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("Hero-specific skill transcription is not yet verified");
   await page.getByLabel("Role").selectOption("Tank");
   expect(await page.locator("#builder-results .hero-directory-item").count()).toBeGreaterThan(0);
   await page.getByLabel("Role").selectOption("");

@@ -266,3 +266,25 @@ test("GitHub Pages project subpath resolves scripts, styles and JSON data", asyn
     if(created) fs.unlinkSync(alias);
   }
 });
+
+test("universal search indexes pages and structured game databases", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  for (const target of pages) {
+    await page.goto("/" + target);
+    await expect(page.getByRole("button", { name: "Search the entire LZ Carry website" })).toBeVisible();
+  }
+  await page.goto("/heroes.html");
+  await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
+  const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
+  await search.fill("Bella");
+  await expect(page.locator(".universal-search-result-title", { hasText: "Bella" }).first()).toBeVisible();
+  await expect(page.locator(".universal-search-result").first()).toHaveAttribute("href", /heroes\.html/);
+  await search.fill("Alliance Recognition");
+  await expect(page.locator(".universal-search-result-title", { hasText: "Alliance Recognition" }).first()).toBeVisible();
+  await expect(page.locator(".universal-search-result").filter({ hasText: "Research Center" })).toHaveCount(0);
+  await search.fill("Canyon Clash");
+  await expect(page.locator(".universal-search-result-title", { hasText: "Canyon Clash" }).first()).toBeVisible();
+  await expect(page.locator(".universal-search-result").first()).toHaveAttribute("href", /events\.html/);
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".universal-search-dialog")).not.toBeVisible();
+});

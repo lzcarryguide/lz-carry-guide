@@ -76,3 +76,8 @@
 .builder-results{display:flex!important;flex-direction:column;gap:0!important}
 .builder-hero{width:auto!important;min-width:0!important}
 @media(max-width:760px){.hero-directory-item{grid-template-columns:minmax(0,1fr) auto;gap:5px}.hero-directory-summary{grid-template-columns:76px minmax(0,1fr) auto;gap:7px;padding:12px 4px}.hero-directory-item>.builder-hero{white-space:normal;max-width:82px;margin-right:3px;padding:8px 7px;font-size:.7rem}.hero-directory-detail{padding:4px 8px 16px}}
+
+/* Full-width hero encyclopedia beneath the formation workspace */
+.hero-picker{width:100%;max-width:none;margin-top:20px;align-self:stretch}
+.builder-results{max-height:none!important;overflow:visible!important}
+.hero-directory-item>.builder-hero{display:flex;align-items:center;gap:8px}

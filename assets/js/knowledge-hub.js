@@ -73,7 +73,7 @@ line("Practical role",p.fieldRole);line("Strengths",p.strengths);line("Trade-off
 if(p.skills&&p.skills.length){body.append(node("h4","","Community-indexed skill notes"));var ul=node("ul","","");p.skills.forEach(function(x){ul.append(node("li","",x));});body.append(ul);}
 else body.append(node("p","small muted","Hero-specific skill transcription is not yet verified. Exact names, triggers, targets and effects require current-client evidence."));
 body.append(node("p","small muted","Portrait status: no official or reliable portrait asset has been verified for this entry."));
-var add=node("button","btn secondary builder-hero","");add.type="button";add.setAttribute("aria-pressed",String(selected));add.setAttribute("aria-label",(selected?"Selected: ":"Add ")+h.name+" "+(selected?"in formation":"to active formation"));add.textContent=selected?"Selected in formation":"Add to active slot";
+var add=node("button","btn secondary builder-hero","");add.type="button";add.setAttribute("aria-pressed",String(selected));add.setAttribute("aria-label",(selected?"Selected: ":"Add ")+h.name+" "+(selected?"in formation":"to active formation"));add.textContent=selected?"Selected · "+h.name:"Add "+h.name+" to active slot";
 add.addEventListener("click",function(){var existing=chosen.findIndex(function(x){return x&&x.id===h.id;});if(existing>=0&&existing!==active){var tmp=chosen[active];chosen[active]=chosen[existing];chosen[existing]=tmp;}else chosen[active]=h;drawSlots();drawResults();analyze();intel(h);});
 body.append(add);wrap.append(body);results.append(wrap);
 });

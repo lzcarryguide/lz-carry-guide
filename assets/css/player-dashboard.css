@@ -1,0 +1,20 @@
+.dashboard-privacy{margin-bottom:18px}
+.dashboard-controls{display:flex;align-items:end;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+.dashboard-controls label{display:grid;gap:7px;min-width:min(100%,220px);font-weight:700}
+.dashboard-controls select{min-height:42px;padding:9px 12px;border:1px solid #52677f;border-radius:8px;background:#0b121d;color:#e8eff8;font:inherit}
+.dashboard-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0}
+.dashboard-stat{display:grid;gap:7px;min-width:0}
+.dashboard-stat strong{font-size:clamp(1.35rem,3vw,2rem);color:#eaf4ff;overflow-wrap:anywhere}
+.dashboard-stat small,.dashboard-links span{color:#aab8c9;font-size:.82rem}
+.dashboard-columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.dashboard-recommendations{display:grid;gap:10px}
+.dashboard-recommendation{padding:12px;border:1px solid #31465d;border-radius:9px;background:#111f30}
+.dashboard-recommendation strong{display:block;margin-bottom:4px}
+.dashboard-recommendation p{margin:0 0 8px;color:#afbdce;font-size:.88rem}
+.dashboard-recommendation a,.dashboard-links a{color:#c6e2ff;text-decoration:none}
+.dashboard-links{display:grid;gap:9px}
+.dashboard-links a{display:grid;gap:4px;padding:12px;border:1px solid #31465d;border-radius:9px;background:#111f30}
+.dashboard-links a:hover,.dashboard-links a:focus-visible{border-color:#7da8d2;background:#172a40}
+.dashboard-events{margin-top:18px}
+@media(max-width:760px){.dashboard-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.dashboard-columns{grid-template-columns:1fr}.dashboard-controls{align-items:stretch}.dashboard-controls label,.dashboard-controls button{width:100%}}
+@media(max-width:360px){.dashboard-stat{padding:12px}}

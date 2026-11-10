@@ -889,3 +889,10 @@ footer p { max-width: 760px; margin: 7px 0 0; font-size: 13px; line-height: 1.55
 .formation-saved-row .btn{padding:.5rem .75rem}
 #formation-compare-result{min-height:3rem}
 @media(max-width:560px){.formation-saved-row{align-items:stretch}.formation-saved-row strong{flex-basis:100%}.formation-saved-row .btn{flex:1}.formation-save-controls .btn,.formation-compare-controls .btn{width:100%}}
+
+/* Keep expanded site navigation inside narrow phone viewports. */
+@media(max-width:760px){
+  header .nav{align-items:flex-start;flex-wrap:wrap;min-width:0}
+  header .nav nav{display:flex;flex:1 0 100%;width:100%;min-width:0;max-width:100%;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;white-space:nowrap;padding:5px 0 8px;scrollbar-width:thin}
+  header .nav nav a,header .nav nav button{flex:0 0 auto;white-space:nowrap}
+}

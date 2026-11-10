@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your LZ Carry player dashboard for saved progression, research, heroes and event preparation.">
+  <title>Player Dashboard | LZ Carry</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/player-dashboard.css">
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">LAST Z <span>CARRY</span></a>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home</a><a href="guides.html">Guides</a><a href="beginner.html">Beginner</a>
+    <a href="dashboard.html" aria-current="page">Dashboard</a><a href="beginner.html#hq-planner-section">HQ Planner</a>
+    <a href="research.html">Research Center</a><a href="heroes.html">Hero Formation Lab</a>
+    <a href="events.html">Events Center</a><a href="pilot.html">LZ Carry Service</a>
+  </nav>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">Your account workspace</p><h1>Player Dashboard</h1>
+  <p class="lead">A local overview of the progress you choose to save in LZ Carry. Update your HQ level and jump back into your planners.</p>
+</div></section>
+<section><div class="wrap">
+  <div class="notice dashboard-privacy"><strong>Progress is player-entered and device-local.</strong> LZ Carry does not connect to your game account or verify your in-game state. Use My Progress to export a backup before changing devices or clearing browser data.</div>
+  <div class="dashboard-controls card">
+    <label for="dashboard-hq">My current HQ level
+      <select id="dashboard-hq"><option value="">Not set</option></select>
+    </label>
+    <button class="btn" id="dashboard-save" type="button">Save account progress</button>
+    <span id="dashboard-status" class="small muted" aria-live="polite">Progress is stored in this browser.</span>
+  </div>
+  <div class="dashboard-stats" aria-label="Saved account progress">
+    <article class="card dashboard-stat"><span class="eyebrow">Headquarters</span><strong id="dashboard-hq-value">Not set</strong><small>Player-entered level</small></article>
+    <article class="card dashboard-stat"><span class="eyebrow">Saved formations</span><strong id="dashboard-formation-value">0</strong><small>Saved hero lineups</small></article>
+    <article class="card dashboard-stat"><span class="eyebrow">Research</span><strong id="dashboard-research-value">0 / 0</strong><small>Tracked routes completed</small></article>
+    <article class="card dashboard-stat"><span class="eyebrow">Event checklist</span><strong id="dashboard-event-value">0</strong><small>Saved preparation checks</small></article>
+  </div>
+  <div class="dashboard-columns">
+    <section class="card"><p class="eyebrow">Your next steps</p><h2>Progression recommendations</h2><div id="dashboard-recommendations" class="dashboard-recommendations" aria-live="polite"></div></section>
+    <section class="card"><p class="eyebrow">Pick up where you left off</p><h2>Continue planning</h2>
+      <div class="dashboard-links">
+        <a href="beginner.html#hq-planner-section"><strong>HQ Upgrade Planner</strong><span>Review requirements, saved checklist and published cost comparisons</span></a>
+        <a href="research.html#lab-planner"><strong>Laboratory Planner</strong><span>Resume your selected research route and saved progress</span></a>
+        <a href="research.html#research-resource-calculator"><strong>Research Resource Calculator</strong><span>Compare your available resources with costs copied from your live research panel</span></a>
+        <a href="heroes.html#formation-builder"><strong>Hero Formation Builder</strong><span>Build or restore one of your saved lineups</span></a>
+        <a href="events.html#event-prep-planner"><strong>Event Preparation</strong><span>Continue your manually selected event checklist</span></a>
+        <a href="beginner.html#beginner-mode"><strong>Beginner Mode</strong><span>Follow the guided account progression checklist</span></a>
+      </div>
+    </section>
+  </div>
+  <section class="card dashboard-events"><p class="eyebrow">Event readiness</p><h2>Preparation status</h2><p id="dashboard-event-note" class="small muted">No event schedule is automatically synced. Use the live Event Center in your game to confirm the active theme and dates.</p><a class="btn secondary" href="events.html">Open Events Center</a></section>
+</div></section>
+</main>
+<footer><div class="wrap"><strong>LZ CARRY</strong><p>Independent community guide and gaming assistance service. Not affiliated with or endorsed by the game's publisher.</p><p class="small">Never share passwords, verification codes, or recovery information.</p></div></footer>
+<script src="assets/js/player-dashboard.js" defer></script>
+<script src="assets/js/data-verification.js" defer></script>
+<script src="assets/js/player-data.js" defer></script>
+<script src="assets/js/universal-search.js" defer></script>
+</body></html>

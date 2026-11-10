@@ -8,6 +8,7 @@
     { file: "index.html", title: "Home", category: "Page" },
     { file: "guides.html", title: "Guides", category: "Page" },
     { file: "beginner.html", title: "Beginner's Guide", category: "Page" },
+    { file: "dashboard.html", title: "Player Dashboard", category: "Page" },
     { file: "research.html", title: "Research Center", category: "Page" },
     { file: "heroes.html", title: "Hero Formation Lab", category: "Page" },
     { file: "events.html", title: "Events Center", category: "Page" },
@@ -17,7 +18,7 @@
     { file: "data/guides.json", page: "guides.html", title: "Guide", key: ["title", "name"] },
     { file: "data/hq-requirements.json", page: "beginner.html#hq-planner-section", title: "HQ requirement", key: ["targetHq", "hqLevel", "level", "title", "name"] },
     { file: "data/heroes.json", page: "heroes.html", title: "Hero", key: ["name", "faction", "troopType", "rarity", "role"] },
-    { file: "data/troops.json", page: "heroes.html", title: "Troop", key: ["name", "title", "class", "faction"] },
+    { file: "data/troops.json", page: "heroes.html", title: "Troop", key: ["name", "title", "class", "faction"], fallbackStatus: "community-supported" },
     { file: "data/events.json", page: "events.html", title: "Event", key: ["name", "title"] }
   ];
   var css = document.createElement("link");
@@ -92,7 +93,7 @@
   }
   function add(item) {
     if (!item || !item.text || !item.text.trim()) return;
-    index.push({ title: item.title || "LZ Carry", category: item.category || "Reference", text: item.text, url: item.url || "index.html" });
+    index.push({ title: item.title || "LZ Carry", category: item.category || "Reference", text: item.text, url: item.url || "index.html", status: item.status || null });
   }
   function recordText(value) {
     if (value == null) return "";
@@ -111,7 +112,9 @@
     if (isRecord) {
       var title = cfg.key.map(function (k) { return value[k]; }).find(function (v) { return v != null && String(v).trim(); });
       if (cfg.file === "data/hq-requirements.json" && value.targetHq != null) title = "HQ " + value.targetHq + " upgrade";
-      add({ title: String(title), category: cfg.title, text: recordText(value), url: cfg.page });
+      var evidence = value.verification || value.verificationStatus || value.dataStatus || null;
+      var status = window.LZCarryDataStatus ? window.LZCarryDataStatus.describe(evidence, cfg.fallbackStatus) : null;
+      add({ title: String(title), category: cfg.title, text: recordText(value), url: cfg.page, status: status });
     } else {
       Object.keys(value).forEach(function (k) { if (k !== "schemaVersion" && k !== "lastUpdated") collectRecords(value[k], cfg, value); });
     }
@@ -157,6 +160,12 @@
       var link = make("a", "universal-search-result");
       link.href = new URL(item.url, root).href;
       link.appendChild(make("span", "universal-search-result-meta", item.category));
+      if (item.status) {
+        var statusBadge = make("span", "universal-search-result-status " + item.status.className, item.status.label);
+        statusBadge.title = item.status.detail;
+        statusBadge.setAttribute("aria-label", item.status.label + ". " + item.status.detail);
+        link.appendChild(statusBadge);
+      }
       link.appendChild(make("strong", "universal-search-result-title", item.title));
       link.appendChild(make("span", "universal-search-result-excerpt", excerpt(item.text, query)));
       results.appendChild(link);

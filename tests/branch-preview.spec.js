@@ -2,7 +2,7 @@ const { test, expect } = require("@playwright/test");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const pages = ["index.html", "guides.html", "beginner.html", "research.html", "heroes.html", "events.html", "pilot.html"];
+const pages = ["index.html", "guides.html", "beginner.html", "dashboard.html", "research.html", "heroes.html", "events.html", "pilot.html"];
 const artifacts = path.join(process.cwd(), "artifacts");
 fs.mkdirSync(artifacts, { recursive: true });
 
@@ -78,7 +78,7 @@ test("mobile layouts fit viewport without page-level horizontal overflow", async
   expect(navMetrics.scroll).toBeGreaterThan(navMetrics.client);
   expect(navMetrics.overflow).toMatch(/auto|scroll/);
   await mobileNav.evaluate(node => { node.scrollLeft = node.scrollWidth; });
-  const finalNavItem = await mobileNav.locator("a").last().evaluate(node => { const rect = node.getBoundingClientRect(); return { left: rect.left, right: rect.right }; });
+  const finalNavItem = await mobileNav.locator(":scope > *").last().evaluate(node => { const rect = node.getBoundingClientRect(); return { left: rect.left, right: rect.right }; });
   expect(finalNavItem.left).toBeGreaterThanOrEqual(0);
   expect(finalNavItem.right).toBeLessThanOrEqual(391);
 });
@@ -309,4 +309,141 @@ test("hero formation controls remain usable on narrow mobile screens", async ({ 
   await expect(add).toHaveCSS("white-space", "nowrap");
   const pageWidth = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
   expect(pageWidth.page).toBeLessThanOrEqual(pageWidth.viewport + 1);
+});
+
+test("canonical evidence labels distinguish verified and community claims", async ({ page }) => {
+  await page.goto("/heroes.html");
+  const mapped = await page.evaluate(() => {
+    const status = window.LZCarryDataStatus;
+    return {
+      verified: status.normalize({ status: "verified", method: "current in-game client" }),
+      community: status.normalize("community-indexed; current in-game confirmation pending"),
+      candidate: status.normalize("community-candidate"),
+      estimated: status.normalize("estimated from published source values"),
+      outdated: status.normalize("outdated")
+    };
+  });
+  expect(mapped).toEqual({
+    verified: "verified",
+    community: "community-supported",
+    candidate: "unconfirmed",
+    estimated: "estimated",
+    outdated: "outdated"
+  });
+  await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
+  const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
+  await search.fill("Bella");
+  await expect(page.locator(".universal-search-result-status", { hasText: "Community-supported" }).first()).toBeVisible();
+  await search.fill("HQ 35");
+  const hq = page.locator('.universal-search-result[href*="beginner.html"]').filter({ hasText: "HQ 35 upgrade" }).first();
+  await expect(hq.locator(".universal-search-result-status")).toHaveText("Unconfirmed");
+  await search.fill("Canyon Clash");
+  const event = page.locator('.universal-search-result[href*="events.html"]').filter({ hasText: "Canyon Clash" }).first();
+  await expect(event.locator(".universal-search-result-status")).toHaveText("Community-supported");
+});
+
+test("player progress can be exported and safely imported across planners", async ({ page }) => {
+  await page.goto("/heroes.html");
+  await page.evaluate(() => {
+    localStorage.setItem("lzcarry-formation-library-v1", JSON.stringify([{ id: "test-formation", name: "Test formation", heroes: ["Bella", null, null, null, null] }]));
+    localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": true }));
+    localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done" }));
+    localStorage.setItem("lzcarry-event-prep-v2", JSON.stringify({ "20261110-Research-0": true }));
+  });
+  await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
+  await expect(page.getByText(/4 of 7 saved data sets found/)).toBeVisible();
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export my progress" }).click();
+  const download = await downloadPromise;
+  const stream = await download.createReadStream();
+  let json = "";
+  for await (const chunk of stream) json += chunk.toString();
+  const backup = JSON.parse(json);
+  expect(backup.format).toBe("lz-carry-player-data");
+  expect(backup.schemaVersion).toBe(1);
+  expect(backup.data["lzcarry-formation-library-v1"][0].name).toBe("Test formation");
+  expect(backup.data["lzcarry:hq-planner:v2"]["35:0"]).toBe(true);
+
+  await page.evaluate(() => localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": false })));
+  page.on("dialog", dialog => dialog.accept());
+  await page.locator(".player-data-file").setInputFiles({
+    name: "lz-carry-backup.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(JSON.stringify(backup))
+  });
+  await expect(page.locator(".player-data-summary")).toContainText("Progress imported successfully");
+  const restored = await page.evaluate(() => ({
+    hq: JSON.parse(localStorage.getItem("lzcarry:hq-planner:v2")),
+    research: JSON.parse(localStorage.getItem("lzcarry-research-plan-v1")),
+    rollback: JSON.parse(localStorage.getItem("lzcarry-player-data-rollback-v1"))
+  }));
+  expect(restored.hq["35:0"]).toBe(true);
+  expect(restored.research["New Home"]).toBe("Done");
+  expect(restored.rollback.values["lzcarry:hq-planner:v2"]).toContain("false");
+});
+
+test("progress manager is available on every primary page and fits mobile screens", async ({ page }) => {
+  for (const target of pages) {
+    await page.setViewportSize({ width: 320, height: 780 });
+    await page.goto("/" + target);
+    await expect(page.getByRole("button", { name: "Manage saved LZ Carry progress" })).toBeVisible();
+    const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+    expect(size.page, target + " mobile progress manager").toBeLessThanOrEqual(size.viewport + 1);
+  }
+});
+
+test("Player Dashboard summarizes local progress and links to existing planners", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/dashboard.html");
+  await expect(page.getByRole("heading", { name: "Player Dashboard" })).toBeVisible();
+  await expect(page.getByText(/does not connect to your game account/i)).toBeVisible();
+  await page.locator("#dashboard-hq").selectOption("25");
+  await page.getByRole("button", { name: "Save account progress" }).click();
+  await expect(page.locator("#dashboard-hq-value")).toHaveText("HQ 25");
+  await page.evaluate(() => {
+    localStorage.setItem("lzcarry-formation-library-v1", JSON.stringify([{ id: "one", name: "Saved lineup", heroes: ["Bella"] }]));
+    localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done", "Shelter Building": "In progress" }));
+  });
+  await page.reload();
+  await expect(page.locator("#dashboard-formation-value")).toHaveText("1");
+  await expect(page.locator("#dashboard-research-value")).toHaveText("1 / 2");
+  await expect(page.locator("#dashboard-recommendations")).toContainText("Review your saved formations");
+  await expect(page.locator('a[href="heroes.html#formation-builder"]').first()).toBeVisible();
+  await page.screenshot({ path: path.join(artifacts, "player-dashboard-desktop.png"), fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.screenshot({ path: path.join(artifacts, "player-dashboard-mobile.png"), fullPage: true });
+});
+
+test("Beginner Mode checklist resumes and resets saved steps", async ({ page }) => {
+  await page.goto("/beginner.html");
+  await expect(page.getByRole("heading", { name: "Your first progression path" })).toBeVisible();
+  await page.locator('[data-step="account"]').check();
+  await page.locator('[data-step="hq"]').check();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("2 of 5 steps complete");
+  await page.reload();
+  await expect(page.locator('[data-step="account"]')).toBeChecked();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("2 of 5 steps complete");
+  page.on("dialog", dialog => dialog.accept());
+  await page.getByRole("button", { name: "Reset checklist" }).click();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("0 of 5 steps complete");
+});
+
+test("research resource calculator compares player-entered costs and persists inputs", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/research.html");
+  const input = (resource, kind) => page.locator('[data-resource="' + resource + '"][data-kind="' + kind + '"]');
+  await input("food", "available").fill("100");
+  await input("food", "cost").fill("150");
+  await input("wood", "available").fill("200");
+  await input("wood", "cost").fill("150");
+  await expect(page.locator("#research-resource-results")).toContainText("Short by 50");
+  await expect(page.locator("#research-resource-results")).toContainText("Covered · 50 remaining");
+  await page.locator("#research-resource-calculator").screenshot({ path: path.join(artifacts, "research-resource-calculator.png") });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator("#research-resource-calculator").screenshot({ path: path.join(artifacts, "research-resource-calculator-mobile.png") });
+  await page.reload();
+  await expect(input("food", "available")).toHaveValue("100");
+  await expect(input("food", "cost")).toHaveValue("150");
+  await page.getByRole("button", { name: "Clear calculator" }).click();
+  await expect(input("food", "available")).toHaveValue("");
 });

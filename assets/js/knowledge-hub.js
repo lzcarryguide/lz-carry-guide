@@ -58,9 +58,9 @@ function intel(h){var box=$("hero-intel");if(!box)return;box.replaceChildren(nod
 function drawSlots(){slots.replaceChildren();chosen.forEach(function(h,i){var wrap=node("div","formation-slot-wrap",""),b=node("button","formation-slot","");b.type="button";b.setAttribute("aria-pressed",String(active===i));b.addEventListener("click",function(){active=i;drawSlots();drawResults();});b.append(node("span","slot-number","SLOT "+(i+1)),node("span","slot-avatar",h?h.name.split(/\s+/).map(function(x){return x[0];}).join("").slice(0,2):"+"),node("strong","",h?h.name:"Choose hero"),node("small","",h?h.faction:"Open slot"));wrap.append(b);if(h){var rm=node("button","slot-remove","Remove");rm.type="button";rm.setAttribute("aria-label","Remove "+h.name+" from slot "+(i+1));rm.addEventListener("click",function(){chosen[i]=null;drawSlots();drawResults();analyze();intel(null);});wrap.append(rm);}slots.append(wrap);});}
 function filtered(){var q=$("builder-search").value.toLowerCase(),f=$("builder-faction").value,s=$("builder-season").value,roleFilter=$("builder-role")?$("builder-role").value:"";return roster.filter(function(h){return(!q||[h.name,h.faction,h.role,h.season,h.awakeningSeason].join(" ").toLowerCase().includes(q))&&(!f||h.faction===f)&&(!roleFilter||h.role===roleFilter)&&(!s||(s==="5"?h.awakeningSeason===5:String(h.season)===s));});}
 function drawResults(){
-var a=filtered();$("builder-count").textContent=a.length+" community-corroborated heroes";results.replaceChildren();
+var a=filtered();var selectable=a.filter(function(h){return h.verificationStatus==="Verified";}).length;$("builder-count").textContent=a.length+" indexed heroes · "+selectable+" selectable";results.replaceChildren();
 a.forEach(function(h){
-var selected=chosen.some(function(x){return x&&x.id===h.id;}),wrap=node("div","hero-directory-item","");
+var selected=chosen.some(function(x){return x&&x.id===h.id;}),eligible=h.verificationStatus==="Verified",wrap=node("div","hero-directory-item"+(eligible?"":" is-pending"),"");
 var details=node("details","hero-directory-details","");
 var summary=node("summary","hero-directory-summary","");
 summary.append(node("span","hero-portrait-pending","Portrait not verified"));
@@ -78,8 +78,8 @@ body.append(node("p","small muted","Exclusive Equipment: not confirmed for this 
 body.append(node("p","small muted","Usefulness across early, mid and late game depends on the live skill text, your developed faction and the role this hero fills in your active march. Avoid investment from rarity alone."));
 body.append(node("p","small muted","Evidence still needed: current profile, all skill panels and triggers, fourth-skill conditions, equipment screen, fragment/star-up costs and tested formation restrictions."));
 details.append(body);
-var add=node("button","btn secondary builder-hero","");add.type="button";add.setAttribute("aria-pressed",String(selected));add.setAttribute("aria-label",(selected?"Selected: ":"Add ")+h.name+" "+(selected?"in formation":"to active formation"));add.append(node("strong","",h.name),document.createTextNode(selected?" · Selected":" · Add to active slot"));
-add.addEventListener("click",function(){var existing=chosen.findIndex(function(x){return x&&x.id===h.id;});if(existing>=0&&existing!==active){var tmp=chosen[active];chosen[active]=chosen[existing];chosen[existing]=tmp;}else chosen[active]=h;drawSlots();drawResults();analyze();intel(h);});
+var add=node("button","btn secondary builder-hero","");add.type="button";add.disabled=!eligible;add.setAttribute("aria-pressed",String(selected));add.setAttribute("aria-label",eligible?(selected?"Selected: ":"Add ")+h.name+" "+(selected?"in formation":"to active formation"):h.name+" · needs confirmation before formation use");add.append(node("strong","",h.name),document.createTextNode(!eligible?" · Needs confirmation":selected?" · Selected":" · Add to active slot"));
+if(eligible)add.addEventListener("click",function(){var existing=chosen.findIndex(function(x){return x&&x.id===h.id;});if(existing>=0&&existing!==active){var tmp=chosen[active];chosen[active]=chosen[existing];chosen[existing]=tmp;}else chosen[active]=h;drawSlots();drawResults();analyze();intel(h);});
 wrap.append(details,add);results.append(wrap);
 });
 }
@@ -96,5 +96,5 @@ function preset(k){var picks={bloodrose:["Bella","Katrina","Selena","Licia","Oli
 ["builder-search","builder-faction","builder-role","builder-season"].forEach(function(id){$(id).addEventListener(id==="builder-search"?"input":"change",drawResults);});
 ["builder-troop","builder-opponent"].forEach(function(id){$(id).addEventListener("change",analyze);});
 document.querySelectorAll("[data-preset]").forEach(function(b){b.addEventListener("click",function(){preset(b.dataset.preset);});});
-fetch("data/heroes.json").then(function(r){return r.json();}).then(function(d){roster=d.heroes.filter(function(h){return h.verificationStatus==="Verified";});drawSlots();drawResults();analyze();}).catch(function(){results.textContent="Hero data could not be loaded.";});
+fetch("data/heroes.json").then(function(r){return r.json();}).then(function(d){roster=d.heroes;drawSlots();drawResults();analyze();}).catch(function(){results.textContent="Hero data could not be loaded.";});
 })();

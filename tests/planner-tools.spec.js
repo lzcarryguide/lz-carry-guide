@@ -45,7 +45,7 @@ test("Full Preparedness planner shows Apocalypse Time and persists checklist", a
   await page.locator("#event-prep-theme").selectOption("Research");
   await page.locator("#event-prep-next-theme").selectOption("Heroes");
   await expect(page.locator("#event-theme-context")).toContainText("Next theme selected: Heroes");
-  await expect(page.locator("#event-prep-checks")).toContainText("research badges");
+  await expect(page.locator("#event-prep-checks")).toContainText("badges only for listed tasks");
   await expect(page.locator("#event-prep-theme option")).toHaveCount(6);
   const first=page.locator("#event-prep-checks input").first();
   await first.check();

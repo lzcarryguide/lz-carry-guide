@@ -39,3 +39,7 @@ Google-indexed community pages were reviewed. Targeted YouTube searches for curr
 
 ## Planner wording and research-first layout — 2026-11-10
 The Research Center now opens with the searchable technology directory before the Laboratory planner, matching the search-first requirement. The planner labels its suggestion as a "route focus — not an unlock prediction" and reports that meeting a Lab / HQ level gate does not prove the prerequisite tree is complete. Early-, mid-, late-game and badge-income profiles provide different starting routes without labelling them universally best or assuming spending level alone determines the correct choice.
+
+
+## F2P / badge-income profile evidence — 2026-11-10
+LastZ.GG's F2P progression guide (updated 9 Nov 2026) explicitly recommends investing badges in Alliance Recognition first and participating in Alliance Duel. The early-game low-badge route now reflects this as the first badge investment for active Duel participants, while preserving the Elite Troops badge-price conflict: check the live Laboratory before assuming it is free or badge-funded. This is a community strategy recommendation, not a universal publisher rule.

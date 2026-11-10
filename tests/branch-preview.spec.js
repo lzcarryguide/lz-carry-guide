@@ -350,9 +350,10 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done" }));
     localStorage.setItem("lzcarry-event-prep-v2", JSON.stringify({ "20261110-Research-0": true }));
     localStorage.setItem("lzcarry-event-reminders-v1", JSON.stringify([{ id: "reminder-1", name: "Alliance Duel", when: "2026-11-12T18:00:00.000Z", note: "Check the live task panel" }]));
+    localStorage.setItem("lzcarry-hq-resource-check-v1", JSON.stringify({ food: "120", wood: "80", zent: "10", steel: "5" }));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/5 of 9 saved data sets found/)).toBeVisible();
+  await expect(page.getByText(/6 of 10 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;
@@ -365,6 +366,7 @@ test("player progress can be exported and safely imported across planners", asyn
   expect(backup.data["lzcarry-formation-library-v1"][0].name).toBe("Test formation");
   expect(backup.data["lzcarry:hq-planner:v2"]["35:0"]).toBe(true);
   expect(backup.data["lzcarry-event-reminders-v1"][0].name).toBe("Alliance Duel");
+  expect(backup.data["lzcarry-hq-resource-check-v1"].food).toBe("120");
 
   await page.evaluate(() => localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": false })));
   page.on("dialog", dialog => dialog.accept());
@@ -378,11 +380,13 @@ test("player progress can be exported and safely imported across planners", asyn
     hq: JSON.parse(localStorage.getItem("lzcarry:hq-planner:v2")),
     research: JSON.parse(localStorage.getItem("lzcarry-research-plan-v1")),
     rollback: JSON.parse(localStorage.getItem("lzcarry-player-data-rollback-v1")),
-    reminders: JSON.parse(localStorage.getItem("lzcarry-event-reminders-v1"))
+    reminders: JSON.parse(localStorage.getItem("lzcarry-event-reminders-v1")),
+    hqResources: JSON.parse(localStorage.getItem("lzcarry-hq-resource-check-v1"))
   }));
   expect(restored.hq["35:0"]).toBe(true);
   expect(restored.research["New Home"]).toBe("Done");
   expect(restored.reminders[0].name).toBe("Alliance Duel");
+  expect(restored.hqResources.food).toBe("120");
   expect(restored.rollback.values["lzcarry:hq-planner:v2"]).toContain("false");
 });
 
@@ -567,3 +571,22 @@ test("dashboard stores personal event reminders without implying an official sch
   const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
   expect(size.page).toBeLessThanOrEqual(size.viewport + 1);
 });
+
+
+test("HQ resource calculator compares saved holdings with selected published totals", async ({ page }) => {
+  await page.goto("/beginner.html#hq-planner-section");
+  await page.locator("#hq-current").selectOption("1");
+  await page.locator("#hq-target").selectOption("15");
+  const calculator = page.locator(".hq-resource-availability");
+  await expect(calculator).toBeVisible();
+  const food = calculator.locator('[data-hq-resource="food"]');
+  await food.fill("0");
+  await expect(calculator.locator(".hq-resource-results")).toContainText("Short by");
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("lzcarry-hq-resource-check-v1")));
+  expect(saved.food).toBe("0");
+  await page.reload();
+  await page.locator("#hq-current").selectOption("1");
+  await page.locator("#hq-target").selectOption("15");
+  await expect(page.locator('.hq-resource-availability [data-hq-resource="food"]')).toHaveValue("0");
+});
+

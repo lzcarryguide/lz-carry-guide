@@ -61,14 +61,17 @@ function render(){
  }else{
   context.textContent="Current theme selected: "+theme+". "+(next?"Next theme selected: "+next+".":"Next theme not confirmed; check the live Event Center before planning the next window.")+" These selections are manual, not automatically detected.";
  }
- var items=themes[theme]||[],container=$("event-prep-checks");container.replaceChildren();
- if(!theme){var empty=document.createElement("p");empty.className="small muted";empty.textContent="Choose a live Full Preparedness theme to load its preparation checklist.";container.append(empty);return;}
- items.forEach(function(t,i){
-  var id=day+"-"+theme+"-"+i,label=document.createElement("label");label.className="event-check-row";
+ var items=themes[theme]||[],container=$("event-prep-checks"),milestoneContainer=$("event-prep-milestones");
+ container.replaceChildren();milestoneContainer.replaceChildren();
+ if(!theme){var empty=document.createElement("p");empty.className="small muted";empty.textContent="Choose a live Full Preparedness theme to load its preparation checklist.";container.append(empty);milestoneContainer.append(empty.cloneNode(true));return;}
+ function addCheck(target,text,id){
+  var label=document.createElement("label");label.className="event-check-row";
   var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!checks[id];
   cb.addEventListener("change",function(){checks[id]=cb.checked;try{localStorage.setItem(key,JSON.stringify(checks));}catch(e){context.textContent="Browser storage is unavailable; checklist changes may not persist.";}}); 
-  var span=document.createElement("span");span.textContent=t;label.append(cb,span);container.append(label);
- });
+  var span=document.createElement("span");span.textContent=text;label.append(cb,span);target.append(label);
+ }
+ items.forEach(function(t,i){addCheck(container,t,day+"-"+theme+"-"+i);});
+ ["Personal chest 1 reached and claimed","Personal chest 2 reached and claimed","Personal chest 3 reached and claimed","Daily Preparedness Medal chest checked"].forEach(function(t,i){addCheck(milestoneContainer,t,day+"-"+theme+"-milestone-"+i);});
 }
 $("event-prep-theme").addEventListener("change",render);
 $("event-prep-next-theme").addEventListener("change",render);

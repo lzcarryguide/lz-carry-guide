@@ -12,7 +12,7 @@ test("Laboratory route planner filters routes and saves progress locally", async
   await page.locator("#lab-second").check();
   await expect(page.locator("#lab-plan-list")).toContainText("Unit Special Training");
   await expect(page.locator("#lab-plan-list")).toContainText("Army Expansion");
-  await expect(page.locator("#lab-plan-list")).toContainText("Below reported Lab/HQ gate");
+  await expect(page.locator("#lab-plan-list")).toContainText("Below reported Lab/HQ or Lab No. 2 / season gate");
   await page.locator("#lab-second-level").selectOption("33");
   await page.locator("#lab-season-day50").check();
   await expect(page.locator("#lab-plan-list .lab-plan-item").filter({hasText:"Army Expansion"})).toContainText("Reported Lab No. 2 / HQ / season gates reached");

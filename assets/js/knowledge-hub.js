@@ -4,13 +4,15 @@ function para(p,h,x){var s=el("section","profile-section","");s.appendChild(el("
 function ul(p,h,a){if(!Array.isArray(a)||!a.length)return;p.appendChild(el("h4","",h));var u=document.createElement("ul");a.forEach(function(x){u.appendChild(el("li","",x));});p.appendChild(u);}
 function role(r){if(r==="Tank")return["The community index labels this entry Tank. If the live profile confirms that role, assess it for frontline or durability work. Verify actual skill targets, position restrictions and which allies are protected before assigning a formation slot.","Potential value: helping a march survive or protecting damage dealers. Trade-off: durability alone does not prove added damage, control or team utility.","Inspect defensive effects, protection, control resistance and recipients. Verify activation, duration, troop restrictions and mode scope."];if(r==="DPS")return["The community index labels this entry DPS. If the live profile confirms it, assess damage contribution by its targets, skill cycle and troop restrictions against other damage dealers you own.","Potential value: damage or damage amplification. Trade-off: burst numbers can mislead if triggers, cooldowns or targets rarely line up.","Inspect damage type, target count, activation chance, cooldown and whether the effect is march-wide or mode-specific."];if(r==="Support")return["The community index labels this entry Support. If confirmed, judge its team benefit, not just personal damage. Identify exactly which heroes or troops receive the effect.","Potential value: buffs, debuffs, healing, control or utility. Trade-off: value falls when the recipient or condition does not match your march.","Inspect scope, uptime, activation and recipients. A team-wide effect may matter more than a larger self-only number, but only when the skill text confirms it."];return["Role metadata is not reconciled. Do not assign frontline, damage or support duty from rarity or season alone. Capture the current client profile first.","No role-specific strength or weakness is assigned until the role is confirmed.","Confirm faction, troop type, rarity, role and every skill panel from the current game client."];}
 function hero(r){
-var d=document.createElement("details");d.className="card knowledge-card profile-card hero-profile";
-var s=el("summary","profile-summary","");
-s.appendChild(el("span","pill",[r.rarity,r.faction,r.season!=null?"Season "+r.season:""].filter(Boolean).join(" · ")||"Metadata pending"));
-s.appendChild(el("h3","",r.name));
-s.appendChild(el("p","",[r.role,r.troopType].filter(Boolean).join(" · ")||"Role and troop line not reconciled"));
-s.appendChild(el("p","small muted","Open scouting profile · "+(r.dataStatus||"Verification pending")));
-d.appendChild(s);
+var d=document.createElement("details");d.className="knowledge-card profile-card hero-profile";
+var s=el("summary","profile-summary hero-profile-summary","");
+var portrait=el("span","hero-portrait-pending","Portrait not verified");portrait.setAttribute("aria-label","Official or reliable portrait not yet verified for "+r.name);s.appendChild(portrait);
+var identity=el("span","hero-profile-identity","");
+identity.appendChild(el("span","pill",[r.rarity,r.faction,r.season!=null?"Season "+r.season:""].filter(Boolean).join(" · ")||"Metadata pending"));
+identity.appendChild(el("h3","",r.name));
+identity.appendChild(el("p","", [r.role,r.troopType].filter(Boolean).join(" · ")||"Role and troop line not reconciled"));
+identity.appendChild(el("p","small muted","Open profile · "+(r.dataStatus||"Verification pending")));
+s.appendChild(identity);d.appendChild(s);
 var b=el("div","profile-body","");
 var p=r.profileNotes||{};
 para(b,"Evidence status",(p.evidence||"Roster metadata only; skill and formation evidence is not yet reconciled.")+" Current game-client confirmation is pending. Community references may be outdated or disagree.");
@@ -25,9 +27,7 @@ if(p.limitations)para(b,"Weaknesses and trade-offs",p.limitations);
 else para(b,"Weaknesses and trade-offs",role(r.role)[1]);
 if(p.investment)para(b,"F2P / low-spend / high-spend investment",p.investment);
 else para(b,"Investment approach","Concentrate fragments, EXP, skill manuals and gear on a small number of heroes actually deployed in the main formation. Do not spend premium items from rarity alone.");
-var stage = r.rarity==="S"
- ? "Early: use only if this hero is the strongest available match for your first developed faction. Mid-game: build toward the strongest few S heroes of the faction you can sustain. Late-game: compare against newer-season alternatives and keep the hero only if their role/passive still earns a formation slot."
- : "Early: use as a temporary role or utility option if the live skill fills a need. Mid-game: move to a secondary formation or resource role when stronger S-rank heroes are available. Late-game: avoid heavy investment unless a verified global passive or specialist task still gives account value.";
+var stage=r.rarity==="S"?"Early: use only if this hero is the strongest available match for your first developed faction. Mid-game: build toward the strongest few S heroes of the faction you can sustain. Late-game: compare against newer-season alternatives and keep the hero only if their role/passive still earns a formation slot.":"Early: use as a temporary role or utility option if the live skill fills a need. Mid-game: move to a secondary formation or resource role when stronger S-rank heroes are available. Late-game: avoid heavy investment unless a verified global passive or specialist task still gives account value.";
 para(b,"Early-, mid- and late-game usefulness",stage);
 para(b,"Exclusive Equipment","Not confirmed for this entry. A fourth-skill exclusive talent is a separate system and must not be confused with Exclusive Equipment. Verify equipment availability, unlock conditions, level effects and costs in the current client.");
 para(b,"What to capture next","Current hero profile and troop type; all four skill panels with scope/trigger/target; fourth-skill conditions; Exclusive Equipment screen; fragment acquisition and star-up costs; tested formation row and troop restrictions.");

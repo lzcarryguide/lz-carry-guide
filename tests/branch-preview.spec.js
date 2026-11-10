@@ -91,12 +91,22 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.goto("/heroes.html");
   await expect(page.getByRole("heading",{name:"Hero Recommendations & Formation Builder"})).toBeVisible();
   await expect(page.locator("#formation-slots .formation-slot")).toHaveCount(5);
-  await expect(page.locator("#builder-results .builder-hero")).toHaveCount(33);
+  await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(36);
+  await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(33);
+  await expect(page.locator("#builder-results .builder-hero:disabled")).toHaveCount(3);
+  await expect(page.locator("#builder-count")).toContainText("36 indexed heroes · 33 selectable");
+  await page.locator("#builder-results .hero-directory-item").first().locator("summary").click();
+  await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("Portrait not verified");
+  await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("Portrait status: no official or reliable portrait asset has been verified");
+  await page.getByLabel("Role").selectOption("Tank");
+  expect(await page.locator("#builder-results .hero-directory-item").count()).toBeGreaterThan(0);
+  await page.getByLabel("Role").selectOption("");
   await page.getByLabel("Search heroes").fill("Jack");
   await expect(page.locator("#builder-results .builder-hero")).toHaveCount(0);
   await page.getByLabel("Search heroes").fill("");
   await page.getByLabel("Season").selectOption("5");
-  await expect(page.locator("#builder-results .builder-hero")).toHaveCount(3);
+  await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(3);
+  await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(3);
   await page.getByLabel("Season").selectOption("");
   await page.screenshot({path:path.join(artifacts,"heroes-desktop.png"),fullPage:true});
   await page.goto("/events.html");
@@ -203,7 +213,7 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
   await expect(page.locator("#builder-results .builder-hero[aria-pressed=true]")).toHaveCount(1);
   await page.locator("#builder-faction").selectOption("Wings of Dawn");
-  await expect(page.locator(".builder-hero")).toHaveCount(11);
+  await expect(page.locator(".builder-hero:not(:disabled)")).toHaveCount(11);
   await expect(page.getByText("Jack", { exact: true })).toHaveCount(0);
 });
 
@@ -246,7 +256,8 @@ test("GitHub Pages project subpath resolves scripts, styles and JSON data", asyn
     await page.getByLabel("Search research").fill("Alliance Recognition");
     await expect(page.locator(".research-tree-card:visible")).toHaveCount(1);
     await page.goto("/lz-carry-guide/heroes.html");
-    await expect(page.locator("#builder-results .builder-hero")).toHaveCount(33);
+    await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(36);
+     await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(33);
     await page.goto("/lz-carry-guide/events.html");
     await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
     expect(errors).toEqual([]);

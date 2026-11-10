@@ -49,17 +49,19 @@ function render(){
  catalog.forEach(function(item){var s=status(item[0]);if(s==="Done")done++;if(s==="In progress")active++;if(focus.indexOf(item[0])>=0||pathSelect.value==="balanced")visible.push(item);});
  list.replaceChildren();
  visible.forEach(function(item){
-  var card=document.createElement("article");card.className="card lab-plan-item";
-  var top=document.createElement("div");top.className="lab-plan-item-head";
+  var card=document.createElement("details");card.className="lab-plan-item";
+  var top=document.createElement("summary");top.className="lab-plan-item-head";
   var title=document.createElement("h4");title.textContent=item[0];top.append(title);
-  var badge=document.createElement("span");badge.className="pill";badge.textContent=item[3]==="free"||item[3]==="free2"?"Badge-free reported":item[3]==="disputed"?"Verify in game":"Badge tree";top.append(badge);card.append(top);
-  var gate=document.createElement("p");gate.className="small muted";gate.textContent=item[1]===null?"Gate unknown / alternate source only":(item[3]==="free2"?"Reported Lab No. 2 level 33 + HQ 18 + Season 2 Day 50":"Reported Lab "+item[1]+(item[2]?" + HQ "+item[2]:""));card.append(gate);
-  var note=document.createElement("p");note.textContent=item[4];card.append(note);
+  var badge=document.createElement("span");badge.className="pill";badge.textContent=item[3]==="free"||item[3]==="free2"?"Badge-free reported":item[3]==="disputed"?"Verify in game":"Badge tree";top.append(badge);
+  var gateText=item[1]===null?"Gate unknown / alternate source only":(item[3]==="free2"?"Reported Lab No. 2 level 33 + HQ 18 + Season 2 Day 50":"Reported Lab "+item[1]+(item[2]?" + HQ "+item[2]:""));
+  top.append(document.createTextNode(" · "+gateText));card.append(top);
+  var detail=document.createElement("div");detail.className="lab-plan-detail";
+  var note=document.createElement("p");note.textContent=item[4];detail.append(note);
   var statusLine=document.createElement("div");statusLine.className="lab-plan-status";
   var select=document.createElement("select");select.setAttribute("aria-label",item[0]+" progress");["Not started","In progress","Done"].forEach(function(v){var o=document.createElement("option");o.value=v;o.textContent=v;select.append(o);});select.value=status(item[0]);select.addEventListener("change",function(){state[item[0]]=select.value;save();render();});statusLine.append(select);
-  var ready=document.createElement("span");ready.className="small "+(eligible(item)?"text-good":"muted");ready.textContent=item[1]===null?"Gate not mapped":eligible(item)?(item[0]==="Army Expansion"?"Input checks met; verify Rapid Growth 50% in game":"Lab/HQ level gate met; confirm prerequisites in game") :"Below reported Lab/HQ or Lab No. 2 / season gate";statusLine.append(ready);card.append(statusLine);
-  if(item[3]==="disputed"||item[3]==="free2"||item[1]===null){var warn=document.createElement("p");warn.className="notice small";warn.textContent="Planning caution: community references conflict or omit a required condition. Your in-game Laboratory unlock panel takes priority.";card.append(warn);}
-  list.append(card);
+  var ready=document.createElement("span");ready.className="small "+(eligible(item)?"text-good":"muted");ready.textContent=item[1]===null?"Gate not mapped":eligible(item)?(item[0]==="Army Expansion"?"Input checks met; verify Rapid Growth 50% in game":"Lab/HQ level gate met; confirm prerequisites in game") :"Below reported Lab/HQ or Lab No. 2 / season gate";statusLine.append(ready);detail.append(statusLine);
+  if(item[3]==="disputed"||item[3]==="free2"||item[1]===null){var warn=document.createElement("p");warn.className="notice small";warn.textContent="Planning caution: community references conflict or omit a required condition. Your in-game Laboratory unlock panel takes priority.";detail.append(warn);}
+  card.append(detail);list.append(card);
  });
  var order=focus.map(function(n){return catalog.find(function(x){return x[0]===n;});}).filter(Boolean);
  var candidate=order.find(function(x){return status(x[0])!=="Done"&&eligible(x);});

@@ -468,3 +468,19 @@ test("troop target planner tracks a player-entered goal without inventing costs"
   await expect(page.locator(".troop-tier-row").first()).toContainText("Name evidence");
 });
 
+test("beginner progression guide provides six usable linked learning steps", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/beginner.html");
+  await expect(page.getByRole("heading", { name: "A practical progression guide" })).toBeVisible();
+  const steps = page.locator(".beginner-guide-card");
+  await expect(steps).toHaveCount(6);
+  await expect(steps.nth(0)).toHaveAttribute("open", "");
+  await steps.nth(1).locator("summary").click();
+  await expect(steps.nth(1)).toHaveAttribute("open", "");
+  await expect(steps.nth(1)).toContainText("in-game upgrade panel");
+  await expect(steps.nth(2).locator('a[href="research.html#lab-planner"]')).toHaveAttribute("href", "research.html#lab-planner");
+  await expect(steps.nth(3).locator('a[href="heroes.html#formation-lab"]')).toHaveAttribute("href", "heroes.html#formation-lab");
+  await expect(steps.nth(5).locator('a[href="events.html#event-prep-planner"]')).toHaveAttribute("href", "events.html#event-prep-planner");
+  const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+  expect(size.page).toBeLessThanOrEqual(size.viewport + 1);
+});

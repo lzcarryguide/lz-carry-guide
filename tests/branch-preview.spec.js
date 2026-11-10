@@ -514,3 +514,33 @@ test("universal search indexes Lucky Rose candidates and evidence status", async
   await expect(result).toHaveAttribute("href", /events\.html#lucky-rose-tracker/);
   await expect(result.locator(".universal-search-result-status")).toHaveText("Community-supported");
 });
+
+test("canonical evidence labels appear on hero, research, HQ and event records", async ({ page }) => {
+  await page.goto("/heroes.html");
+  await expect(page.locator("#builder-results .hero-directory-item .evidence-badge").first()).toBeVisible();
+  await expect(page.locator(".troop-tier-row .troop-evidence-badge").first()).toBeVisible();
+  await page.goto("/research.html");
+  await expect(page.locator(".lab-plan-item .evidence-badge").first()).toHaveText("Community-supported");
+  await page.addInitScript(() => { localStorage.removeItem("lzcarry-player-profile-v1"); localStorage.removeItem("lzcarry:hq-planner:v2"); });
+  await page.goto("/beginner.html");
+  await page.locator("#hq-current").selectOption("1");
+  await page.locator("#hq-target").selectOption("15");
+  await expect(page.locator("#hq-steps")).toContainText("HQ 2");
+  await expect(page.locator(".hq-step .evidence-badge").first()).toHaveText("Unconfirmed");
+  await page.goto("/events.html");
+  await expect(page.locator(".event-profile .evidence-badge").first()).toHaveText("Community-supported");
+  await page.getByLabel("Search events").fill("shooting loot");
+  await expect(page.locator(".event-profile .evidence-badge").first()).toHaveText("Unconfirmed");
+});
+
+test("dashboard and HQ planner share the player's saved current HQ level", async ({ page }) => {
+  await page.addInitScript(() => { if (!localStorage.getItem("lzcarry-player-profile-v1")) localStorage.setItem("lzcarry-player-profile-v1", JSON.stringify({ currentHq: 20 })); });
+  await page.goto("/beginner.html#hq-planner-section");
+  await expect(page.locator("#hq-current")).toHaveValue("20");
+  await page.locator("#hq-current").selectOption("21");
+  await page.reload();
+  await expect(page.locator("#hq-current")).toHaveValue("21");
+  await page.goto("/dashboard.html");
+  await expect(page.locator("#dashboard-hq")).toHaveValue("21");
+  await expect(page.locator("#dashboard-hq-value")).toHaveText("HQ 21");
+});

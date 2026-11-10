@@ -53,6 +53,8 @@ function render(){
   var top=document.createElement("summary");top.className="lab-plan-item-head";
   var title=document.createElement("h4");title.textContent=item[0];top.append(title);
   var badge=document.createElement("span");badge.className="pill";badge.textContent=item[3]==="free"||item[3]==="free2"?"Badge-free reported":item[3]==="disputed"?"Verify in game":"Badge tree";top.append(badge);
+  var evidence=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(item[3]==="disputed"?"unconfirmed":"community-supported"):{label:item[3]==="disputed"?"Unconfirmed":"Community-supported",detail:"Community reference; current-client verification pending.",className:item[3]==="disputed"?"is-unconfirmed":"is-community"};
+  var evidenceTag=document.createElement("span");evidenceTag.className="pill evidence-badge "+evidence.className;evidenceTag.textContent=evidence.label;evidenceTag.title=evidence.detail;top.append(evidenceTag);
   var gateText=item[1]===null?"Gate unknown / alternate source only":(item[3]==="free2"?"Reported Lab No. 2 level 33 + HQ 18 + Season 2 Day 50":"Reported Lab "+item[1]+(item[2]?" + HQ "+item[2]:""));
   top.append(document.createTextNode(" · "+gateText));card.append(top);
   var detail=document.createElement("div");detail.className="lab-plan-detail";

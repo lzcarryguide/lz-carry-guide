@@ -39,6 +39,7 @@
     <article class="card dashboard-stat"><span class="eyebrow">Research</span><strong id="dashboard-research-value">0 / 0</strong><small>Tracked routes completed</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Event checklist</span><strong id="dashboard-event-value">0</strong><small>Saved preparation checks</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Troop goal</span><strong id="dashboard-troop-value">Not set</strong><small>Personal quantity target</small></article>
+    <article class="card dashboard-stat"><span class="eyebrow">Upcoming reminders</span><strong id="dashboard-reminder-value">0</strong><small>Personal event dates</small></article>
   </div>
   <div class="dashboard-columns">
     <section class="card"><p class="eyebrow">Your next steps</p><h2>Progression recommendations</h2><div id="dashboard-recommendations" class="dashboard-recommendations" aria-live="polite"></div></section>
@@ -55,6 +56,18 @@
     </section>
   </div>
   <section class="card dashboard-events"><p class="eyebrow">Event readiness</p><h2>Preparation status</h2><p id="dashboard-event-note" class="small muted">No event schedule is automatically synced. Use the live Event Center in your game to confirm the active theme and dates.</p><a class="btn secondary" href="events.html">Open Events Center</a></section>
+  <section class="card dashboard-reminders" aria-labelledby="dashboard-reminders-title">
+    <p class="eyebrow">Your calendar · Local only</p><h2 id="dashboard-reminders-title">My upcoming events</h2>
+    <p class="small muted">Add dates you have confirmed in your own game or alliance calendar. These are personal reminders, not an official LZ Carry event schedule.</p>
+    <form id="dashboard-reminder-form" class="dashboard-reminder-form">
+      <label for="dashboard-reminder-name">Event name<input id="dashboard-reminder-name" type="text" maxlength="80" required placeholder="e.g. Alliance Duel"></label>
+      <label for="dashboard-reminder-when">Starts in your local time<input id="dashboard-reminder-when" type="datetime-local" required></label>
+      <label for="dashboard-reminder-note">Planning note (optional)<input id="dashboard-reminder-note" type="text" maxlength="160" placeholder="e.g. Confirm current task before spending"></label>
+      <button class="btn" type="submit">Add reminder</button>
+    </form>
+    <p id="dashboard-reminder-status" class="small muted" aria-live="polite">Reminders are saved in this browser and included in My Progress backups.</p>
+    <div id="dashboard-reminder-list" class="dashboard-reminder-list" aria-live="polite"></div>
+  </section>
 </div></section>
 </main>
 <footer><div class="wrap"><strong>LZ CARRY</strong><p>Independent community guide and gaming assistance service. Not affiliated with or endorsed by the game's publisher.</p><p class="small">Never share passwords, verification codes, or recovery information.</p></div></footer>

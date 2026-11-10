@@ -3,14 +3,32 @@
 "use strict";
 var $=function(id){return document.getElementById(id);};
 var profileKey="lzcarry-player-profile-v1";
-var keys={formations:"lzcarry-formation-library-v1",hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",beginner:"lzcarry-beginner-mode-v1",troop:"lzcarry-troop-plan-v1"};
+var keys={formations:"lzcarry-formation-library-v1",hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",beginner:"lzcarry-beginner-mode-v1",troop:"lzcarry-troop-plan-v1",reminders:"lzcarry-event-reminders-v1"};
 var select=$("dashboard-hq"),status=$("dashboard-status");
+var reminderForm=$("dashboard-reminder-form"),reminderList=$("dashboard-reminder-list"),reminderStatus=$("dashboard-reminder-status");
 if(!select)return;
 for(var i=1;i<=35;i++){var o=document.createElement("option");o.value=String(i);o.textContent="HQ "+i;select.append(o);}
 var profile={};try{profile=JSON.parse(localStorage.getItem(profileKey)||"{}")||{};}catch(e){profile={};}
 select.value=profile.currentHq?String(profile.currentHq):"";
 function read(key,fallback){try{return JSON.parse(localStorage.getItem(key)||"null")||fallback;}catch(e){return fallback;}}
 function card(title,copy,url,label){var node=document.createElement("article");node.className="dashboard-recommendation";var h=document.createElement("strong");h.textContent=title;var p=document.createElement("p");p.textContent=copy;var a=document.createElement("a");a.href=url;a.textContent=label;node.append(h,p,a);return node;}
+function renderReminders(){
+ if(!reminderList)return;
+ var all=read(keys.reminders,[]);if(!Array.isArray(all))all=[];
+ var now=Date.now(),upcoming=all.filter(function(x){return x&&typeof x.name==="string"&&Number.isFinite(new Date(x.when).getTime())&&new Date(x.when).getTime()>now;}).sort(function(a,b){return new Date(a.when)-new Date(b.when);});
+ reminderList.replaceChildren();
+ if(!upcoming.length){var empty=document.createElement("p");empty.className="small muted";empty.textContent="No upcoming reminders. Add a date after checking your server's live event calendar.";reminderList.append(empty);}
+ upcoming.forEach(function(item){
+  var row=document.createElement("article");row.className="dashboard-reminder-item";
+  var info=document.createElement("div"),title=document.createElement("strong"),date=document.createElement("p"),note=document.createElement("p");
+  title.textContent=item.name;date.className="small muted";date.textContent=new Intl.DateTimeFormat(undefined,{dateStyle:"medium",timeStyle:"short"}).format(new Date(item.when));
+  note.className="small";note.textContent=item.note||"No planning note.";
+  info.append(title,date,note);
+  var remove=document.createElement("button");remove.type="button";remove.className="btn secondary dashboard-reminder-remove";remove.textContent="Remove";remove.setAttribute("aria-label","Remove reminder for "+item.name);remove.addEventListener("click",function(){var latest=read(keys.reminders,[]);if(!Array.isArray(latest))latest=[];try{localStorage.setItem(keys.reminders,JSON.stringify(latest.filter(function(x){return x.id!==item.id;})));if(reminderStatus)reminderStatus.textContent="Reminder removed.";renderReminders();}catch(e){if(reminderStatus)reminderStatus.textContent="Browser storage unavailable; reminder was not removed.";}});
+  row.append(info,remove);reminderList.append(row);
+ });
+ var stat=$("dashboard-reminder-value");if(stat)stat.textContent=String(upcoming.length);
+}
 function render(){
  var formations=read(keys.formations,[]),hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),beginner=read(keys.beginner,{}),troop=read(keys.troop,{});
  if(!Array.isArray(formations))formations=[];
@@ -27,6 +45,7 @@ function render(){
  $("dashboard-event-value").textContent=String(eventDone);
  var troopNames={assaulters:"Assaulters",shooters:"Shooters",riders:"Riders"};
  $("dashboard-troop-value").textContent=troop.classId&&troop.tier?((troopNames[troop.classId]||troop.classId)+" T"+troop.tier):"Not set";
+ renderReminders();
  var rec=$("dashboard-recommendations");rec.replaceChildren();
  if(!profile.currentHq)rec.append(card("Set your current HQ","Add your current HQ level to personalize your next planning steps. This is player-entered, not read from your game account.","#dashboard-hq","Set HQ level"));
  else rec.append(card("Plan your next HQ upgrade","Use the HQ planner to review community-reported prerequisites and compare source values before spending.","beginner.html#hq-planner-section","Open HQ planner"));
@@ -38,6 +57,7 @@ function render(){
  if(!rec.children.length)rec.append(card("Review your saved progress","Your local trackers look complete. Recheck current game requirements and update your saved progress when your account changes.","beginner.html","Review progression"));
  $("dashboard-event-note").textContent=eventDone?eventDone+" preparation check(s) saved on this device. Confirm the live event theme and schedule in game. HQ checklist: "+hqDone+" prerequisite(s) marked complete.":"No event preparation checks are currently saved. Event schedules are not automatically synced; confirm dates and themes in the live game.";
 }
+if(reminderForm)reminderForm.addEventListener("submit",function(e){e.preventDefault();var name=$("dashboard-reminder-name").value.trim(),raw=$("dashboard-reminder-when").value,date=new Date(raw),note=$("dashboard-reminder-note").value.trim();if(!name||!raw||!Number.isFinite(date.getTime())||date.getTime()<=Date.now()){reminderStatus.textContent="Enter an event name and a future date/time from your confirmed calendar.";return;}var all=read(keys.reminders,[]);if(!Array.isArray(all))all=[];all=all.filter(function(x){return x&&Number.isFinite(new Date(x.when).getTime())&&new Date(x.when).getTime()>Date.now();});if(all.length>=30){reminderStatus.textContent="You can keep up to 30 reminders. Remove an old reminder first.";return;}all.push({id:String(Date.now()),name:name,when:date.toISOString(),note:note,createdAt:new Date().toISOString()});try{localStorage.setItem(keys.reminders,JSON.stringify(all));reminderForm.reset();reminderStatus.textContent="Reminder saved on this device.";renderReminders();}catch(e){reminderStatus.textContent="Browser storage unavailable; reminder was not saved.";}});
 $("dashboard-save").addEventListener("click",function(){var n=Number(select.value);if(!Number.isInteger(n)||n<1||n>35){profile={};localStorage.removeItem(profileKey);status.textContent="Current HQ cleared."; }else{profile.currentHq=n;profile.updatedAt=new Date().toISOString();try{localStorage.setItem(profileKey,JSON.stringify(profile));status.textContent="Your HQ level was saved on this device.";}catch(e){status.textContent="Browser storage unavailable; your HQ level was not saved.";}}render();});
 render();
 })();

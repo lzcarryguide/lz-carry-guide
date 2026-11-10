@@ -51,11 +51,11 @@ test("Full Preparedness planner shows Apocalypse Time and persists checklist", a
   await first.check();
   await page.reload();
   await page.locator("#event-prep-theme").selectOption("Research");
-  await expect(page.locator("#event-prep-checks input").first()).toBeChecked();
+  await expect(page.locator("#event-prep-checks input").first()).toBeChecked();\n  await expect(page.locator("#event-prep-milestones input").first()).toBeChecked();
   await page.screenshot({path:"artifacts/event-preparation-planner.png",fullPage:true});
   page.once("dialog",d=>d.accept());
   await page.locator("#event-prep-reset").click();
-  await expect(page.locator("#event-prep-checks input").first()).not.toBeChecked();
+  await expect(page.locator("#event-prep-checks input").first()).not.toBeChecked();\n  await expect(page.locator("#event-prep-milestones input").first()).not.toBeChecked();
   expect(errors).toEqual([]);
 });
 

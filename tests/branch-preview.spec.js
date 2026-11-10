@@ -92,6 +92,13 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await expect(page.getByRole("heading",{name:"Hero Recommendations & Formation Builder"})).toBeVisible();
   await expect(page.locator("#formation-slots .formation-slot")).toHaveCount(5);
   await expect(page.locator("#builder-results .builder-hero")).toHaveCount(33);
+  await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(33);
+  await page.locator("#builder-results .hero-directory-item").first().locator("summary").click();
+  await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("Portrait not verified");
+  await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("current-client verification pending");
+  await page.getByLabel("Role").selectOption("Tank");
+  expect(await page.locator("#builder-results .hero-directory-item").count()).toBeGreaterThan(0);
+  await page.getByLabel("Role").selectOption("");
   await page.getByLabel("Search heroes").fill("Jack");
   await expect(page.locator("#builder-results .builder-hero")).toHaveCount(0);
   await page.getByLabel("Search heroes").fill("");

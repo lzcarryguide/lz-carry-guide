@@ -3,7 +3,7 @@
 "use strict";
 var $=function(id){return document.getElementById(id);};
 var profileKey="lzcarry-player-profile-v1";
-var keys={formations:"lzcarry-formation-library-v1",hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",beginner:"lzcarry-beginner-mode-v1"};
+var keys={formations:"lzcarry-formation-library-v1",hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",beginner:"lzcarry-beginner-mode-v1",troop:"lzcarry-troop-plan-v1"};
 var select=$("dashboard-hq"),status=$("dashboard-status");
 if(!select)return;
 for(var i=1;i<=35;i++){var o=document.createElement("option");o.value=String(i);o.textContent="HQ "+i;select.append(o);}
@@ -12,7 +12,7 @@ select.value=profile.currentHq?String(profile.currentHq):"";
 function read(key,fallback){try{return JSON.parse(localStorage.getItem(key)||"null")||fallback;}catch(e){return fallback;}}
 function card(title,copy,url,label){var node=document.createElement("article");node.className="dashboard-recommendation";var h=document.createElement("strong");h.textContent=title;var p=document.createElement("p");p.textContent=copy;var a=document.createElement("a");a.href=url;a.textContent=label;node.append(h,p,a);return node;}
 function render(){
- var formations=read(keys.formations,[]),hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),beginner=read(keys.beginner,{});
+ var formations=read(keys.formations,[]),hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),beginner=read(keys.beginner,{}),troop=read(keys.troop,{});
  if(!Array.isArray(formations))formations=[];
  var researchNames=Object.keys(research).filter(function(k){return research[k]==="Done"||research[k]==="In progress";});
  var researchDone=researchNames.filter(function(k){return research[k]==="Done";}).length;
@@ -23,6 +23,8 @@ function render(){
  $("dashboard-formation-value").textContent=String(formations.length);
  $("dashboard-research-value").textContent=researchDone+" / "+researchNames.length;
  $("dashboard-event-value").textContent=String(eventDone);
+ var troopNames={assaulters:"Assaulters",shooters:"Shooters",riders:"Riders"};
+ $("dashboard-troop-value").textContent=troop.classId&&troop.tier?((troopNames[troop.classId]||troop.classId)+" T"+troop.tier):"Not set";
  var rec=$("dashboard-recommendations");rec.replaceChildren();
  if(!profile.currentHq)rec.append(card("Set your current HQ","Add your current HQ level to personalize your next planning steps. This is player-entered, not read from your game account.","#dashboard-hq","Set HQ level"));
  else rec.append(card("Plan your next HQ upgrade","Use the HQ planner to review community-reported prerequisites and compare source values before spending.","beginner.html#hq-planner-section","Open HQ planner"));

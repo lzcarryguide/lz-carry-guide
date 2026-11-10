@@ -86,10 +86,10 @@
 .hero-directory-item.is-pending>.builder-hero:disabled{opacity:.62;cursor:not-allowed;border-style:dashed;color:var(--muted);background:rgba(158,220,255,.035)}
 .hero-directory-item.is-pending .hero-directory-identity small{color:var(--muted)}
 
-/* Mobile formation controls and hero-directory actions */
+/* Formation filters and directory actions remain legible at every width. */
+.formation-filters label{display:grid;gap:7px;align-content:start;min-width:0}
+.formation-filters input,.formation-filters select{width:100%;min-width:0;max-width:100%;min-height:40px;padding:9px 12px;color:var(--text);background:#0b121d;border:1px solid #52677f;border-radius:7px;font:inherit}
 @media(max-width:760px){
- .formation-filters label{display:grid;grid-template-columns:minmax(0,1fr);gap:7px;min-width:0}
- .formation-filters input,.formation-filters select{width:100%;min-width:0;max-width:100%;min-height:40px}
  .hero-directory-item{grid-template-columns:minmax(0,1fr);gap:0}
  .hero-directory-summary{grid-template-columns:76px minmax(0,1fr) auto;gap:7px;padding:12px 4px}
  .hero-directory-item>.builder-hero{width:calc(100% - 8px)!important;max-width:none;margin:0 4px 10px;min-height:40px;white-space:nowrap;justify-content:center;padding:9px 12px;font-size:.78rem}

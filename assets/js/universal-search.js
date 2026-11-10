@@ -15,7 +15,7 @@
   ];
   var datasets = [
     { file: "data/guides.json", page: "guides.html", title: "Guide", key: ["title", "name"] },
-    { file: "data/hq-requirements.json", page: "beginner.html#hq-planner-section", title: "HQ requirement", key: ["hqLevel", "level", "title", "name"] },
+    { file: "data/hq-requirements.json", page: "beginner.html#hq-planner-section", title: "HQ requirement", key: ["targetHq", "hqLevel", "level", "title", "name"] },
     { file: "data/heroes.json", page: "heroes.html", title: "Hero", key: ["name", "faction", "troopType", "rarity", "role"] },
     { file: "data/troops.json", page: "heroes.html", title: "Troop", key: ["name", "title", "class", "faction"] },
     { file: "data/events.json", page: "events.html", title: "Event", key: ["name", "title"] }
@@ -100,6 +100,7 @@
     var isRecord = cfg.key.some(function (k) { return value[k] != null && String(value[k]).trim(); });
     if (isRecord) {
       var title = cfg.key.map(function (k) { return value[k]; }).find(function (v) { return v != null && String(v).trim(); });
+      if (cfg.file === "data/hq-requirements.json" && value.targetHq != null) title = "HQ " + value.targetHq + " upgrade";
       add({ title: String(title), category: cfg.title, text: recordText(value), url: cfg.page });
     } else {
       Object.keys(value).forEach(function (k) { if (k !== "schemaVersion" && k !== "lastUpdated") collectRecords(value[k], cfg, value); });

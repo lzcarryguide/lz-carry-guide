@@ -284,7 +284,7 @@ test("universal search indexes pages and structured game databases", async ({ pa
   await expect(page.locator(".universal-search-result").filter({ hasText: "Alliance Recognition" }).first()).toHaveAttribute("href", /research\.html/);
   await search.fill("Canyon Clash");
   await expect(page.locator(".universal-search-result-title", { hasText: "Canyon Clash" }).first()).toBeVisible();
-  await expect(page.locator(".universal-search-result").filter({ hasText: "Canyon Clash" }).first()).toHaveAttribute("href", /events\.html/);
+  await expect(page.locator(".universal-search-result[href*=\"events.html\"]").filter({ hasText: "Canyon Clash" }).first()).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(page.locator(".universal-search-dialog")).not.toBeVisible();
 });

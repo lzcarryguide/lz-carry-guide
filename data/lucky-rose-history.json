@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "lastReviewed": "2026-11-10",
+  "policy": {
+    "activePublication": "A weekly number is never marked Verified until a current in-game observation and a second independent report for the same week agree.",
+    "conflict": "If sources disagree on the number, buff, duration or scope, show the conflict and keep the active result unconfirmed.",
+    "scope": "Community sources disagree on whether the buff is sender-only or shared with an alliance. LZ Carry does not claim alliance-wide scope; treat it as sender-only unless the current client clearly confirms otherwise.",
+    "history": "Append new weekly records. Do not overwrite earlier observations; corrections must be appended with a correction note."
+  },
+  "activeCandidate": {
+    "weekOf": "2026-11-09",
+    "number": 5,
+    "buff": "+20% Research Speed",
+    "durationHours": 2,
+    "status": "community-supported",
+    "publicationState": "awaiting-in-game-confirmation",
+    "checkedAt": "2026-11-09",
+    "inGameConfirmed": false,
+    "sources": [
+      {
+        "name": "LastZ.GG",
+        "url": "https://lastz.gg/guides/lucky-rose",
+        "checkedAt": "2026-11-09",
+        "claim": "Reports lucky number 5, +20% Research Speed, 2 hours."
+      },
+      {
+        "name": "Z Tools",
+        "url": "https://ztools.co.uk/tools/lucky-rose/",
+        "checkedAt": "2026-11-09",
+        "claim": "Reports lucky number 5, Research Speed-Up +20%, 2 hours."
+      }
+    ],
+    "conflicts": [
+      "Buff scope conflicts: LastZ.GG says the sender and alliance receive the buff; Z Tools and Last Z Guide describe a sender-only buff.",
+      "No current in-game screenshot or direct client observation has been recorded by LZ Carry for this week."
+    ],
+    "notes": "This is a community-supported candidate only. Do not present it as a verified live value or advise spending roses until the current Gift/Lucky Rose panel is checked."
+  },
+  "history": [
+    {
+      "weekOf": "2026-11-02",
+      "number": 7,
+      "buff": "+10% Troop ATK",
+      "durationHours": 2,
+      "status": "community-supported",
+      "checkedAt": "2026-11-09",
+      "sources": [
+        "LastZ.GG",
+        "Z Tools"
+      ],
+      "notes": "Both community trackers list the same number, effect and duration. No LZ Carry in-game capture is archived."
+    },
+    {
+      "weekOf": "2026-10-26",
+      "number": 3,
+      "buff": "+30% Gathering Speed",
+      "durationHours": 24,
+      "status": "community-supported",
+      "checkedAt": "2026-11-09",
+      "sources": [
+        "LastZ.GG",
+        "Z Tools"
+      ],
+      "notes": "Both community trackers list the same number, effect and duration. No LZ Carry in-game capture is archived."
+    }
+  ]
+}

@@ -31,6 +31,9 @@ var catalog=[
 ];
 var paths={
 "balanced":[["New Home","Shelter Building","HQ Management","Rapid Growth"],"Badge-light foundation path. Keep the free queue moving while protecting badges for the account's next real gate."],
+"early-low":[["New Home","Shelter Building","Elite Troops","Alliance Recognition","Hero Training","HQ Management"],"Early-game F2P / low-spend route: finish the free foundation, then prioritize Alliance Recognition if you actively participate in Alliance Duel. Hero Training's Cockpit is a reported checkpoint; do not assume every account should max it immediately."],
+"mid-low":[["Military Strategies","Peace Shield","Siege to Seize","Rapid Growth","Field Research"],"Mid-game low-badge route: use Military Strategies as the bridge, compare the Peace Shield survival path with Siege to Seize, and keep Rapid Growth moving in a badge-free queue. The exact Siege gate is disputed."],
+"high":[["Alliance Recognition","Fully Armed Alliance","Military Strategies","Peace Shield","Siege to Seize","Field Research","Army Building","Tactical Master"],"High badge-income route: parallelize more badge branches only when your recurring badge supply supports them. Do not treat high spending as a reason to ignore prerequisites, resource bottlenecks or the value of survival research."],
 "duel":[["Alliance Recognition","New Home","Elite Troops","Military Strategies"],"For active Alliance Duel participants: recurring reward value plus a broad combat bridge. Confirm Elite Troops' live badge price."],
 "combat":[["Elite Troops","Military Strategies","Peace Shield","Siege to Seize","Field Research"],"Combat route. The 15% vs 40% Siege gate is disputed; choose based on your live tree, and compare the survival branch before spending."],
 "specialize":[["Field Research","Assaulter Training","Rider Training","Shooter Training"],"After Field Research, prioritize the one troop line that matches your developed main formation; this is not a recommendation to max all three."],
@@ -54,13 +57,13 @@ function render(){
   var note=document.createElement("p");note.textContent=item[4];card.append(note);
   var statusLine=document.createElement("div");statusLine.className="lab-plan-status";
   var select=document.createElement("select");select.setAttribute("aria-label",item[0]+" progress");["Not started","In progress","Done"].forEach(function(v){var o=document.createElement("option");o.value=v;o.textContent=v;select.append(o);});select.value=status(item[0]);select.addEventListener("change",function(){state[item[0]]=select.value;save();render();});statusLine.append(select);
-  var ready=document.createElement("span");ready.className="small "+(eligible(item)?"text-good":"muted");ready.textContent=item[1]===null?"Gate not mapped":eligible(item)?(item[3]==="free2"?"Reported Lab No. 2 / HQ / season gates reached":"Reported Lab/HQ level gate reached"):"Below reported Lab/HQ or Lab No. 2 / season gate";statusLine.append(ready);card.append(statusLine);
+  var ready=document.createElement("span");ready.className="small "+(eligible(item)?"text-good":"muted");ready.textContent=item[1]===null?"Gate not mapped":eligible(item)?(item[0]==="Army Expansion"?"Input checks met; verify Rapid Growth 50% in game":"Lab/HQ level gate met; confirm prerequisites in game") :"Below reported Lab/HQ or Lab No. 2 / season gate";statusLine.append(ready);card.append(statusLine);
   if(item[3]==="disputed"||item[3]==="free2"||item[1]===null){var warn=document.createElement("p");warn.className="notice small";warn.textContent="Planning caution: community references conflict or omit a required condition. Your in-game Laboratory unlock panel takes priority.";card.append(warn);}
   list.append(card);
  });
  var order=focus.map(function(n){return catalog.find(function(x){return x[0]===n;});}).filter(Boolean);
  var candidate=order.find(function(x){return status(x[0])!=="Done"&&eligible(x);});
- next.textContent=candidate?candidate[0]+" — "+candidate[4]:"No mapped next step is currently ready. Check prerequisite completion and your live Laboratory panel.";
+ next.textContent=candidate?candidate[0]+" — "+candidate[4]+" Check the required prior-tree percentage and live unlock panel before starting.":"No mapped next route focus is within the selected level gates. Check the live Laboratory panel and prerequisites.";
  summary.textContent=done+" marked done · "+active+" in progress · "+catalog.length+" indexed entries. This is a personal checklist, not a live unlock calculator.";
  route.textContent=chosen[1];
 }

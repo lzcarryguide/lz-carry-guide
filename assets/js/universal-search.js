@@ -8,6 +8,7 @@
     { file: "index.html", title: "Home", category: "Page" },
     { file: "guides.html", title: "Guides", category: "Page" },
     { file: "beginner.html", title: "Beginner's Guide", category: "Page" },
+    { file: "dashboard.html", title: "Player Dashboard", category: "Page" },
     { file: "research.html", title: "Research Center", category: "Page" },
     { file: "heroes.html", title: "Hero Formation Lab", category: "Page" },
     { file: "events.html", title: "Events Center", category: "Page" },

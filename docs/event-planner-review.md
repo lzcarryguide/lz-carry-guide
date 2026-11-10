@@ -44,3 +44,7 @@ Google-indexed event references were reviewed. Targeted YouTube searches for cur
 
 ## Planner UI correction
 The preparation checklist now lists the five Full Preparedness theme families and excludes Enemy Buster / Combat from the Full Prep theme selector. Enemy Buster remains a separate Alliance Duel day in the weekly reference. The visitor manually selects the current and next theme from the live Event Center; the clock only supplies AT time and the current four-hour boundary. Reward thresholds remain a live-client-only value and are not fabricated.
+
+
+## Reward-milestone evidence — 2026-11-10
+SIN Command's Full Preparedness guide reports three personal task chests per four-hour rotation, Preparedness Medals from task chests, and a daily medal-chest track. The UI therefore tracks three personal chest milestones plus a daily medal-chest reminder. It intentionally leaves point thresholds and reward quantities to the live Event Center because those values are not independently certified across servers / versions.

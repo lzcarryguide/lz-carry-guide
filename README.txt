@@ -70,5 +70,5 @@ PLANNER TOOL NOTES
 ------------------
 - Laboratory route suggestions use community-reported gates and intentionally omit exact node costs, badge totals, percentages and timers until current-client evidence is available. The second Laboratory is tracked separately, including the reported Season 2 Day 50 condition.
 - Full Preparedness planner displays Apocalypse Time (UTC-2), four-hour windows and a local checklist. It does not infer the active server theme or scoring tasks.
-- Formation library stores names and five hero slots locally; share links contain hero names and slot order only. No account or game credentials are stored.
+- Formation library stores names and five hero slots locally; save, rename, copy, load, compare and share links are available. Share links contain hero names and slot order only. No account or game credentials are stored.
 - See docs/laboratory-planner-review.md, docs/event-planner-review.md and docs/website-quality-review.md for evidence and remaining verification.

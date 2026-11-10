@@ -46,7 +46,8 @@ function tick(){
  var p=atParts(),h=Number(p.hour),m=Number(p.minute),s=Number(p.second),start=Math.floor(h/4)*4;
  $("event-at-clock").textContent=p.weekday+" · "+p.year+"-"+p.month+"-"+p.day+" · "+p.hour+":"+p.minute+":"+p.second+" AT";
  $("event-at-window").textContent=String(start).padStart(2,"0")+":00–"+String((start+4)%24).padStart(2,"0")+":00 Apocalypse Time";
- $("event-at-next").textContent=String(3-h%4).padStart(1,"0")+"h "+String(59-m).padStart(2,"0")+"m "+String(59-s).padStart(2,"0")+"s until next four-hour boundary";
+ var remaining=4*3600-((h%4)*3600+m*60+s),rh=Math.floor(remaining/3600),rm=Math.floor((remaining%3600)/60),rs=remaining%60;
+ $("event-at-next").textContent=String(rh).padStart(1,"0")+"h "+String(rm).padStart(2,"0")+"m "+String(rs).padStart(2,"0")+"s until next four-hour boundary";
  var overlap=(h>=8&&h<12)||(h>=20&&h<24);
  $("event-at-overlap").textContent=overlap?"Potential overlap window. Confirm the Alliance Duel day and check that the same action appears in BOTH live task lists.":"Outside the two commonly reported overlap windows (08:00–12:00 and 20:00–00:00 AT).";
  $("event-at-overlap").className=overlap?"notice":"small muted";

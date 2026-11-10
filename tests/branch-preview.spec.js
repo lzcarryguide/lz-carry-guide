@@ -288,3 +288,11 @@ test("universal search indexes pages and structured game databases", async ({ pa
   await page.keyboard.press("Escape");
   await expect(page.locator(".universal-search-dialog")).not.toBeVisible();
 });
+
+test("knowledge pages contain no stray escaped newline text", async ({ page }) => {
+  for (const target of ["/heroes.html", "/events.html"]) {
+    await page.goto(target);
+    const bodyText = await page.locator("body").innerText();
+    expect(bodyText, target).not.toContain("\\n");
+  }
+});

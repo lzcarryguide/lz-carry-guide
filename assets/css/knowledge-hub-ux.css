@@ -81,3 +81,7 @@
 .hero-picker{width:100%;max-width:none;margin-top:20px;align-self:stretch}
 .builder-results{max-height:none!important;overflow:visible!important}
 .hero-directory-item>.builder-hero{display:flex;align-items:center;gap:8px}
+
+/* Unconfirmed roster entries stay visible in the encyclopedia but cannot enter formations. */
+.hero-directory-item.is-pending>.builder-hero:disabled{opacity:.62;cursor:not-allowed;border-style:dashed;color:var(--muted);background:rgba(158,220,255,.035)}
+.hero-directory-item.is-pending .hero-directory-identity small{color:var(--muted)}

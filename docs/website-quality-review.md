@@ -46,3 +46,12 @@ GitHub Actions Playwright runs execute the static site locally in CI and upload 
 - Formation share links carry five hero names and slot order only. They do not encode server state, equipment, troop tiers, skills, buffs or account ownership.
 - Saved planners and formations remain on the visitor's current browser/device and are not cloud-synced.
 - HQ Planner is an anchor within the Beginner page rather than a standalone HTML page.
+
+
+## Follow-up polish — 2026-11-10
+- Reordered Research Center content so the searchable, filterable technology directory is the first working tool after the page introduction; Laboratory planning remains immediately below it.
+- Added early-game F2P / low-badge, mid-game F2P / low-badge and high-badge-income route profiles. The suggested item is a route focus, not an unlock prediction; Lab / HQ level checks do not certify prerequisite percentages.
+- Corrected the Full Preparedness selector to the five community-indexed theme families. Enemy Buster / Combat remains a separate Alliance Duel day, not a Full Prep theme.
+- Added manual current-theme and next-theme selectors. The AT clock reports time and four-hour boundaries; it does not pretend to detect a server's active theme.
+- Added a Copy action to duplicate a saved formation without rebuilding it.
+- Added regression coverage for search-first layout, route profiles, manual Full Prep theme selection, formation duplication and GitHub Pages project-subpath data loading.

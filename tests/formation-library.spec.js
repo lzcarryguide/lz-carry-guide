@@ -13,12 +13,14 @@ test("Formation Lab saves, reloads and compares local lineups", async ({ page })
   await page.locator("#formation-name").fill("Alpha");
   await page.locator("#formation-save").click();
   await expect(page.locator("#formation-saved-list")).toContainText("Alpha");
+  await page.locator("#formation-saved-list").getByRole("button",{name:"Copy",exact:true}).first().click();
+  await expect(page.locator("#formation-saved-list")).toContainText("Alpha copy");
   await page.locator("#formation-slots .formation-slot").nth(1).click();
   await page.locator("#builder-results .builder-hero").nth(1).click();
   await page.locator("#formation-name").fill("Beta");
   await page.locator("#formation-save").click();
   await page.locator("#formation-compare-a").selectOption({index:1});
-  await page.locator("#formation-compare-b").selectOption({index:2});
+  await page.locator("#formation-compare-b").selectOption({index:3});
   await page.locator("#formation-compare").click();
   await expect(page.locator("#formation-compare-result")).toContainText("Slot");
   await page.locator("#formation-saved-list").getByRole("button",{name:"Load"}).first().click();
@@ -26,6 +28,7 @@ test("Formation Lab saves, reloads and compares local lineups", async ({ page })
   await page.reload();
   await expect(page.locator("#formation-saved-list")).toContainText("Alpha");
   await expect(page.locator("#formation-saved-list")).toContainText("Beta");
+  await expect(page.locator("#formation-saved-list")).toContainText("Alpha copy");
   await page.screenshot({path:"artifacts/formation-library.png",fullPage:true});
   expect(errors).toEqual([]);
 });

@@ -6,9 +6,9 @@ Checked: 2026-11-09
 - Displays a live Apocalypse Time clock using the fixed UTC−2 reference.
 - Shows the current four-hour time block and time until its next boundary.
 - Flags the two community-reported possible Full Preparedness / Alliance Duel overlap windows: 08:00–12:00 and 20:00–00:00 AT.
-- Provides a browser-saved preparation checklist for Vehicle, Shelter, Research, Heroes, Training and Combat themes.
+- Provides a browser-saved checklist for the five community-indexed Full Preparedness themes: Mod Vehicle Boost, Shelter Upgrade, Age of Science, Hero Initiative and Army Expansion / Unit Training. Players manually select the active and next themes from their live Event Center.
 - Rolls checklist state to a new Apocalypse Time date.
-- Does not guess the active Full Preparedness theme, the server's Alliance Duel day, scoring actions, reward milestones or event-specific reset.
+- Does not guess the active Full Preparedness theme, the server's Alliance Duel day, scoring actions, reward thresholds or server-specific reset. The current / next theme selectors are manual inputs, not an inferred schedule.
 
 ## Evidence used
 - SIN Command Full Preparedness: https://www.lastz.guide/events/full-preparedness/ — six four-hour rotations and reported 08:00–12:00 / 20:00–00:00 AT overlap.
@@ -33,3 +33,18 @@ Google-indexed event references were reviewed. Targeted YouTube searches for cur
 3. Alliance Duel current daily task list and eligible action details.
 4. The same action checked against both task panels during an overlap window.
 5. Current rewards and thresholds for each event edition.
+
+
+## Additional current-source recheck — 2026-11-10
+
+- SIN Command's current Full Preparedness reference describes six four-hour AT rotations, the five recurring progression themes, and two potential matching windows at 08:00–12:00 and 20:00–00:00 AT.
+- LastZ.GG's Alliance Duel guide updated 9 Nov 2026 repeats the two windows and warns that the eligible actions must be checked against both task panels. It also distinguishes the weekly Alliance Duel themes: Mod Vehicle, Shelter Upgrade, Age of Science, Hero Progression, Holistic Growth / Unit Training and Enemy Buster.
+- GAMIDES independently states AT is UTC−2 and lists Full Preparedness four-hour changes. It also shows differing event cycle schedules, so LZ Carry does not hard-code the current theme or a universal weekly calendar.
+- Targeted YouTube searches on 2026-11-10 for current Laboratory, Full Preparedness / Alliance Duel and hero formation videos returned no directly usable results. No gameplay video, creator or timestamp is claimed as reviewed.
+
+## Planner UI correction
+The preparation checklist now lists the five Full Preparedness theme families and excludes Enemy Buster / Combat from the Full Prep theme selector. Enemy Buster remains a separate Alliance Duel day in the weekly reference. The visitor manually selects the current and next theme from the live Event Center; the clock only supplies AT time and the current four-hour boundary. Reward thresholds remain a live-client-only value and are not fabricated.
+
+
+## Reward-milestone evidence — 2026-11-10
+SIN Command's Full Preparedness guide reports three personal task chests per four-hour rotation, Preparedness Medals from task chests, and a daily medal-chest track. The UI therefore tracks three personal chest milestones plus a daily medal-chest reminder. It intentionally leaves point thresholds and reward quantities to the live Event Center because those values are not independently certified across servers / versions.

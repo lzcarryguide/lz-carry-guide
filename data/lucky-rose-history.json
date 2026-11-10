@@ -34,7 +34,8 @@
       "Buff scope conflicts: LastZ.GG says the sender and alliance receive the buff; Z Tools and Last Z Guide describe a sender-only buff.",
       "No current in-game screenshot or direct client observation has been recorded by LZ Carry for this week."
     ],
-    "notes": "This is a community-supported candidate only. Do not present it as a verified live value or advise spending roses until the current Gift/Lucky Rose panel is checked."
+    "notes": "This is a community-supported candidate only. Do not present it as a verified live value or advise spending roses until the current Gift/Lucky Rose panel is checked.",
+    "verificationStatus": "community-supported"
   },
   "history": [
     {
@@ -48,7 +49,8 @@
         "LastZ.GG",
         "Z Tools"
       ],
-      "notes": "Both community trackers list the same number, effect and duration. No LZ Carry in-game capture is archived."
+      "notes": "Both community trackers list the same number, effect and duration. No LZ Carry in-game capture is archived.",
+      "verificationStatus": "community-supported"
     },
     {
       "weekOf": "2026-10-26",
@@ -61,7 +63,8 @@
         "LastZ.GG",
         "Z Tools"
       ],
-      "notes": "Both community trackers list the same number, effect and duration. No LZ Carry in-game capture is archived."
+      "notes": "Both community trackers list the same number, effect and duration. No LZ Carry in-game capture is archived.",
+      "verificationStatus": "community-supported"
     }
   ]
 }

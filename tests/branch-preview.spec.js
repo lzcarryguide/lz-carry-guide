@@ -281,7 +281,7 @@ test("universal search indexes pages and structured game databases", async ({ pa
   await expect(page.locator(".universal-search-result").first()).toHaveAttribute("href", /heroes\.html/);
   await search.fill("Alliance Recognition");
   await expect(page.locator(".universal-search-result-title", { hasText: "Alliance Recognition" }).first()).toBeVisible();
-  await expect(page.locator(".universal-search-result").filter({ hasText: "Research Center" })).toHaveCount(0);
+  await expect(page.locator(".universal-search-result").filter({ hasText: "Alliance Recognition" }).first()).toHaveAttribute("href", /research\\.html/);
   await search.fill("Canyon Clash");
   await expect(page.locator(".universal-search-result-title", { hasText: "Canyon Clash" }).first()).toBeVisible();
   await expect(page.locator(".universal-search-result").first()).toHaveAttribute("href", /events\.html/);

@@ -423,3 +423,19 @@ test("Beginner Mode checklist resumes and resets saved steps", async ({ page }) 
   await page.getByRole("button", { name: "Reset checklist" }).click();
   await expect(page.locator("#beginner-progress-text")).toHaveText("0 of 5 steps complete");
 });
+
+test("research resource calculator compares player-entered costs and persists inputs", async ({ page }) => {
+  await page.goto("/research.html");
+  const input = (resource, kind) => page.locator('[data-resource="' + resource + '"][data-kind="' + kind + '"]');
+  await input("food", "available").fill("100");
+  await input("food", "cost").fill("150");
+  await input("wood", "available").fill("200");
+  await input("wood", "cost").fill("150");
+  await expect(page.locator("#research-resource-results")).toContainText("Short by 50");
+  await expect(page.locator("#research-resource-results")).toContainText("Covered · 50 remaining");
+  await page.reload();
+  await expect(input("food", "available")).toHaveValue("100");
+  await expect(input("food", "cost")).toHaveValue("150");
+  await page.getByRole("button", { name: "Clear calculator" }).click();
+  await expect(input("food", "available")).toHaveValue("");
+});

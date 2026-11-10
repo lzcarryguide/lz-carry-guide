@@ -78,7 +78,7 @@ test("mobile layouts fit viewport without page-level horizontal overflow", async
   expect(navMetrics.scroll).toBeGreaterThan(navMetrics.client);
   expect(navMetrics.overflow).toMatch(/auto|scroll/);
   await mobileNav.evaluate(node => { node.scrollLeft = node.scrollWidth; });
-  const finalNavItem = await mobileNav.locator("a").last().evaluate(node => { const rect = node.getBoundingClientRect(); return { left: rect.left, right: rect.right }; });
+  const finalNavItem = await mobileNav.locator(":scope > *").last().evaluate(node => { const rect = node.getBoundingClientRect(); return { left: rect.left, right: rect.right }; });
   expect(finalNavItem.left).toBeGreaterThanOrEqual(0);
   expect(finalNavItem.right).toBeLessThanOrEqual(391);
 });
@@ -351,7 +351,7 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry-event-prep-v2", JSON.stringify({ "20261110-Research-0": true }));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/4 of 4 planner data sets found/)).toBeVisible();
+  await expect(page.getByText(/4 of 6 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;
@@ -407,7 +407,7 @@ test("Player Dashboard summarizes local progress and links to existing planners"
   await expect(page.locator("#dashboard-formation-value")).toHaveText("1");
   await expect(page.locator("#dashboard-research-value")).toHaveText("1 / 2");
   await expect(page.locator("#dashboard-recommendations")).toContainText("Review your saved formations");
-  await expect(page.locator('a[href="heroes.html#formation-builder"]')).toBeVisible();
+  await expect(page.locator('a[href="heroes.html#formation-builder"]').first()).toBeVisible();
 });
 
 test("Beginner Mode checklist resumes and resets saved steps", async ({ page }) => {

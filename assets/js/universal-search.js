@@ -19,7 +19,8 @@
     { file: "data/hq-requirements.json", page: "beginner.html#hq-planner-section", title: "HQ requirement", key: ["targetHq", "hqLevel", "level", "title", "name"] },
     { file: "data/heroes.json", page: "heroes.html", title: "Hero", key: ["name", "faction", "troopType", "rarity", "role"] },
     { file: "data/troops.json", page: "heroes.html", title: "Troop", key: ["name", "title", "class", "faction"], fallbackStatus: "community-supported" },
-    { file: "data/events.json", page: "events.html", title: "Event", key: ["name", "title"] }
+    { file: "data/events.json", page: "events.html", title: "Event", key: ["name", "title"] },
+    { file: "data/lucky-rose-history.json", page: "events.html#lucky-rose-tracker", title: "Lucky Rose", key: ["weekOf", "number", "buff", "durationHours", "notes"] }
   ];
   var css = document.createElement("link");
   css.rel = "stylesheet";
@@ -55,10 +56,10 @@
   heading.appendChild(close);
   var input = make("input", "universal-search-input");
   input.type = "search";
-  input.placeholder = "Search heroes, research, HQ levels, events…";
+  input.placeholder = "Search heroes, research, HQ levels, events, Lucky Rose…";
   input.setAttribute("aria-label", "Search all LZ Carry content");
   input.autocomplete = "off";
-  var hint = make("p", "universal-search-hint", "Search across guides, planners, heroes, troops, research and events. Press Escape to close.");
+  var hint = make("p", "universal-search-hint", "Search across guides, planners, heroes, troops, research, events and Lucky Rose. Press Escape to close.");
   var results = make("div", "universal-search-results");
   results.setAttribute("aria-live", "polite");
   results.setAttribute("aria-label", "Search results");

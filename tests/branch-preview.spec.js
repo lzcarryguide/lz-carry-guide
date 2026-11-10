@@ -64,7 +64,7 @@ test("research database searches, filters and expands technology details", async
 test("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
-    for (const target of ["/", "/guides.html", "/research.html", "/heroes.html", "/events.html"]) {
+    for (const target of ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/heroes.html", "/events.html"]) {
       await page.goto(target);
       const sizes = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, document: document.documentElement.scrollWidth }));
       expect(sizes.document, target + " at " + width + "px").toBeLessThanOrEqual(sizes.viewport + 1);
@@ -407,6 +407,7 @@ test("Player Dashboard summarizes local progress and links to existing planners"
   });
   await page.reload();
   await expect(page.locator("#dashboard-formation-value")).toHaveText("1");
+  await expect(page.locator("#dashboard-hero-value")).toHaveText("1");
   await expect(page.locator("#dashboard-research-value")).toHaveText("1 / 2");
   await expect(page.locator("#dashboard-troop-value")).toHaveText("Assaulters T10");
   await expect(page.locator("#dashboard-recommendations")).toContainText("Review your saved formations");

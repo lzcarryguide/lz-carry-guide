@@ -69,3 +69,18 @@ test("new planning tools remain within narrow mobile viewports", async ({ page }
     }
   }
 });
+
+test("Apocalypse Time countdown is exact at a four-hour boundary", async ({ page }) => {
+  const fixed=Date.parse("2026-11-10T02:00:00Z"); // 00:00 AT (UTC-2)
+  await page.addInitScript((timestamp)=>{
+    const NativeDate=Date;
+    class FixedDate extends NativeDate {
+      constructor(...args){ super(...(args.length?args:[timestamp])); }
+      static now(){ return timestamp; }
+    }
+    window.Date=FixedDate;
+  },fixed);
+  await page.goto("/events.html");
+  await expect(page.locator("#event-at-clock")).toContainText("00:00:00 AT");
+  await expect(page.locator("#event-at-next")).toHaveText("4h 00m 00s until next four-hour boundary");
+});

@@ -393,6 +393,7 @@ test("progress manager is available on every primary page and fits mobile screen
 });
 
 test("Player Dashboard summarizes local progress and links to existing planners", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/dashboard.html");
   await expect(page.getByRole("heading", { name: "Player Dashboard" })).toBeVisible();
   await expect(page.getByText(/does not connect to your game account/i)).toBeVisible();
@@ -408,6 +409,9 @@ test("Player Dashboard summarizes local progress and links to existing planners"
   await expect(page.locator("#dashboard-research-value")).toHaveText("1 / 2");
   await expect(page.locator("#dashboard-recommendations")).toContainText("Review your saved formations");
   await expect(page.locator('a[href="heroes.html#formation-builder"]').first()).toBeVisible();
+  await page.screenshot({ path: path.join(artifacts, "player-dashboard-desktop.png"), fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.screenshot({ path: path.join(artifacts, "player-dashboard-mobile.png"), fullPage: true });
 });
 
 test("Beginner Mode checklist resumes and resets saved steps", async ({ page }) => {
@@ -425,6 +429,7 @@ test("Beginner Mode checklist resumes and resets saved steps", async ({ page }) 
 });
 
 test("research resource calculator compares player-entered costs and persists inputs", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/research.html");
   const input = (resource, kind) => page.locator('[data-resource="' + resource + '"][data-kind="' + kind + '"]');
   await input("food", "available").fill("100");
@@ -433,6 +438,9 @@ test("research resource calculator compares player-entered costs and persists in
   await input("wood", "cost").fill("150");
   await expect(page.locator("#research-resource-results")).toContainText("Short by 50");
   await expect(page.locator("#research-resource-results")).toContainText("Covered · 50 remaining");
+  await page.locator("#research-resource-calculator").screenshot({ path: path.join(artifacts, "research-resource-calculator.png") });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator("#research-resource-calculator").screenshot({ path: path.join(artifacts, "research-resource-calculator-mobile.png") });
   await page.reload();
   await expect(input("food", "available")).toHaveValue("100");
   await expect(input("food", "cost")).toHaveValue("150");

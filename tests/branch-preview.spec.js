@@ -593,7 +593,7 @@ test("HQ resource calculator compares saved holdings with selected published tot
 
 test("primary pages expose names for interactive controls and text alternatives", async ({ page }) => {
   for (const target of pages) {
-    await page.goto("/" + target);
+    await page.goto("/" + target, { waitUntil: "domcontentloaded" });
     const issues = await page.evaluate(() => {
       const controls = Array.from(document.querySelectorAll('button, input:not([type="hidden"]), select, textarea, a[href]'));
       return controls.filter(el => {

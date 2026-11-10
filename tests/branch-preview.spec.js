@@ -266,3 +266,47 @@ test("GitHub Pages project subpath resolves scripts, styles and JSON data", asyn
     if(created) fs.unlinkSync(alias);
   }
 });
+
+test("universal search indexes pages and structured game databases", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  for (const target of pages) {
+    await page.goto("/" + target);
+    await expect(page.getByRole("button", { name: "Search the entire LZ Carry website" })).toBeVisible();
+  }
+  await page.goto("/heroes.html");
+  await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
+  const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
+  await search.fill("Bella");
+  await expect(page.locator(".universal-search-result-title", { hasText: "Bella" }).first()).toBeVisible();
+  await expect(page.locator(".universal-search-result").first()).toHaveAttribute("href", /heroes\.html/);
+  await search.fill("Alliance Recognition");
+  await expect(page.locator(".universal-search-result-title", { hasText: "Alliance Recognition" }).first()).toBeVisible();
+  await expect(page.locator(".universal-search-result").filter({ hasText: "Alliance Recognition" }).first()).toHaveAttribute("href", /research\.html/);
+  await search.fill("Canyon Clash");
+  await expect(page.locator(".universal-search-result-title", { hasText: "Canyon Clash" }).first()).toBeVisible();
+  await expect(page.locator(".universal-search-result[href*=\"events.html\"]").filter({ hasText: "Canyon Clash" }).first()).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".universal-search-dialog")).not.toBeVisible();
+});
+
+test("knowledge pages contain no stray escaped newline text", async ({ page }) => {
+  for (const target of ["/heroes.html", "/events.html"]) {
+    await page.goto(target);
+    const bodyText = await page.locator("body").innerText();
+    expect(bodyText, target).not.toContain("\\n");
+  }
+});
+
+test("hero formation controls remain usable on narrow mobile screens", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/heroes.html");
+  const search = page.locator("#builder-search");
+  const searchBox = await search.boundingBox();
+  expect(searchBox.width).toBeGreaterThanOrEqual(300);
+  const add = page.locator("#builder-results .builder-hero:not(:disabled)").first();
+  const addBox = await add.boundingBox();
+  expect(addBox.width).toBeGreaterThanOrEqual(300);
+  await expect(add).toHaveCSS("white-space", "nowrap");
+  const pageWidth = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+  expect(pageWidth.page).toBeLessThanOrEqual(pageWidth.viewport + 1);
+});

@@ -69,10 +69,20 @@
   var indexed = false;
   var building = null;
   var timer = 0;
-  function plainText(html) {
+  function indexPage(html, page) {
     var doc = new DOMParser().parseFromString(html, "text/html");
     doc.querySelectorAll("script,style,noscript,header,footer,nav,svg").forEach(function (n) { n.remove(); });
-    return (doc.body.textContent || "").replace(/\s+/g, " ").trim();
+    var body = doc.body;
+    var blocks = body.querySelectorAll(".research-tree-card, .research-extra, .event-profile, article.card, main section[id]");
+    blocks.forEach(function (block) {
+      var heading = block.querySelector("summary h3, summary h2, h3, h2, h1");
+      var title = heading ? heading.textContent.trim() : page.title;
+      var text = (block.textContent || "").replace(/\\s+/g, " ").trim();
+      var anchor = block.id ? "#" + block.id : "";
+      if (text.length > 20) add({ title: title, category: page.title, text: text, url: page.file + anchor });
+    });
+    var text = (body.textContent || "").replace(/\\s+/g, " ").trim();
+    add({ title: page.title, category: page.category, text: text, url: page.file });
   }
   function excerpt(text, query) {
     var lower = text.toLowerCase(), at = lower.indexOf(query.toLowerCase());
@@ -113,8 +123,7 @@
       try {
         var response = await fetch(new URL(p.file, root).href, { credentials: "same-origin" });
         if (!response.ok) throw new Error("HTTP " + response.status);
-        var text = plainText(await response.text());
-        add({ title: p.title, category: p.category, text: text, url: p.file });
+        indexPage(await response.text(), p);
       } catch (e) { /* One unavailable page must not disable search elsewhere. */ }
     }).concat(datasets.map(async function (cfg) {
       try {

@@ -68,11 +68,14 @@ identity.append(node("strong","",h.name),node("small","",h.faction+" · "+(h.sea
 summary.append(identity);wrap.append(summary);
 var p=h.profileNotes||{},body=node("div","hero-directory-detail","");
 function line(label,value){if(value){var row=node("p","hero-directory-note","");row.append(node("strong","",label+": "),document.createTextNode(value));body.append(row);}}
-line("Evidence",h.verificationBasis||h.dataStatus||"Community index entry; current-client verification pending");
-line("Practical role",p.fieldRole);line("Strengths",p.strengths);line("Trade-offs",p.limitations);line("Formation fit",p.formation);line("Investment",p.investment||h.investmentNote);
+line("Evidence",p.evidence||h.verificationBasis||h.dataStatus||"Community index entry; current-client verification pending");
+line("Practical role",p.fieldRole);line("Skill upgrade priority",p.priority);line("Strengths",p.strengths);line("Trade-offs",p.limitations);line("Formation fit",p.formation);line("Investment",p.investment||h.investmentNote);
 if(p.skills&&p.skills.length){body.append(node("h4","","Community-indexed skill notes"));var ul=node("ul","","");p.skills.forEach(function(x){ul.append(node("li","",x));});body.append(ul);}
 else body.append(node("p","small muted","Hero-specific skill transcription is not yet verified. Exact names, triggers, targets and effects require current-client evidence."));
 body.append(node("p","small muted","Portrait status: no official or reliable portrait asset has been verified for this entry."));
+body.append(node("p","small muted","Exclusive Equipment: not confirmed for this hero. Verify availability, unlock conditions and effects in the current client."));
+body.append(node("p","small muted","Usefulness across early, mid and late game depends on the live skill text, your developed faction and the role this hero fills in your active march. Avoid investment from rarity alone."));
+body.append(node("p","small muted","Evidence still needed: current profile, all skill panels and triggers, fourth-skill conditions, equipment screen, fragment/star-up costs and tested formation restrictions."));
 var add=node("button","btn secondary builder-hero","");add.type="button";add.setAttribute("aria-pressed",String(selected));add.setAttribute("aria-label",(selected?"Selected: ":"Add ")+h.name+" "+(selected?"in formation":"to active formation"));add.textContent=selected?"Selected · "+h.name:"Add "+h.name+" to active slot";
 add.addEventListener("click",function(){var existing=chosen.findIndex(function(x){return x&&x.id===h.id;});if(existing>=0&&existing!==active){var tmp=chosen[active];chosen[active]=chosen[existing];chosen[existing]=tmp;}else chosen[active]=h;drawSlots();drawResults();analyze();intel(h);});
 body.append(add);wrap.append(body);results.append(wrap);

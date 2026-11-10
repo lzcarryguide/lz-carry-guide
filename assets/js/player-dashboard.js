@@ -14,6 +14,7 @@ function card(title,copy,url,label){var node=document.createElement("article");n
 function render(){
  var formations=read(keys.formations,[]),hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),beginner=read(keys.beginner,{}),troop=read(keys.troop,{});
  if(!Array.isArray(formations))formations=[];
+ var heroNames={};formations.forEach(function(f){if(f&&Array.isArray(f.heroes))f.heroes.forEach(function(name){if(typeof name==="string"&&name.trim())heroNames[name.trim()]=true;});});
  var researchNames=Object.keys(research).filter(function(k){return research[k]==="Done"||research[k]==="In progress";});
  var researchDone=researchNames.filter(function(k){return research[k]==="Done";}).length;
  var eventDone=Object.keys(events).filter(function(k){return events[k]===true;}).length;
@@ -21,6 +22,7 @@ function render(){
  var beginnerDone=Object.keys(beginner).filter(function(k){return beginner[k]===true;}).length;
  $("dashboard-hq-value").textContent=profile.currentHq?"HQ "+profile.currentHq:"Not set";
  $("dashboard-formation-value").textContent=String(formations.length);
+ $("dashboard-hero-value").textContent=String(Object.keys(heroNames).length);
  $("dashboard-research-value").textContent=researchDone+" / "+researchNames.length;
  $("dashboard-event-value").textContent=String(eventDone);
  var troopNames={assaulters:"Assaulters",shooters:"Shooters",riders:"Riders"};

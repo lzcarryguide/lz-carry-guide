@@ -77,11 +77,11 @@
     blocks.forEach(function (block) {
       var heading = block.querySelector("summary h3, summary h2, h3, h2, h1");
       var title = heading ? heading.textContent.trim() : page.title;
-      var text = (block.textContent || "").replace(/\\s+/g, " ").trim();
+      var text = (block.textContent || "").replace(/\s+/g, " ").trim();
       var anchor = block.id ? "#" + block.id : "";
       if (text.length > 20) add({ title: title, category: page.title, text: text, url: page.file + anchor });
     });
-    var text = (body.textContent || "").replace(/\\s+/g, " ").trim();
+    var text = (body.textContent || "").replace(/\s+/g, " ").trim();
     add({ title: page.title, category: page.category, text: text, url: page.file });
   }
   function excerpt(text, query) {

@@ -3,15 +3,25 @@
   if (!root) return;
   const currentSelect=root.querySelector("#hq-current"), targetSelect=root.querySelector("#hq-target");
   const stepsNode=root.querySelector("#hq-steps"), totalsNode=root.querySelector("#hq-totals"), progressNode=root.querySelector("#hq-progress");
-  const storageKey="lzcarry:hq-planner:v2";
-  let records=[], progress={}, profile={};
+  const storageKey="lzcarry:hq-planner:v2", resourceKey="lzcarry-hq-resource-check-v1";
+  let records=[], progress={}, profile={}, available={};
   try { progress=JSON.parse(localStorage.getItem(storageKey)||"{}")||{}; } catch (_) { progress={}; }
   try { profile=JSON.parse(localStorage.getItem("lzcarry-player-profile-v1")||"{}")||{}; } catch (_) { profile={}; }
+  try { available=JSON.parse(localStorage.getItem(resourceKey)||"{}")||{}; } catch (_) { available={}; }
   const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const save=()=>{try{localStorage.setItem(storageKey,JSON.stringify(progress));}catch(_){}};
   const fmt=n=>new Intl.NumberFormat("en-US",{maximumFractionDigits:3}).format(n);
   const money=(n)=>n===0?"0":fmt(n)+"M";
   const keyFor=(target,i)=>target+":"+i;
+  const renderAvailability=(sum)=>{
+    const fields=[["food","Food","foodMillions"],["wood","Wood","woodMillions"],["zent","Zent","zentMillions"],["steel","Steel","steelMillions"]];
+    const section=document.createElement("section");section.className="hq-resource-availability";section.innerHTML='<h4>HQ resource availability calculator</h4><p class="small muted">Enter your current amounts in millions. This compares your holdings with the selected HQ construction totals only; prerequisite-building costs are excluded.</p><div class="hq-resource-inputs">'+fields.map(f=>'<label>'+f[1]+' available (M)<input type="number" min="0" step="any" inputmode="decimal" data-hq-resource="'+f[0]+'" aria-label="'+f[1]+' available in millions"></label>').join("")+'</div><div class="hq-resource-results" aria-live="polite"></div>';
+    totalsNode.appendChild(section);
+    const output=section.querySelector(".hq-resource-results");
+    fields.forEach(f=>{const input=section.querySelector('[data-hq-resource="'+f[0]+'"]');input.value=available[f[0]]==null?"":available[f[0]];input.addEventListener("input",()=>{available[f[0]]=input.value;try{localStorage.setItem(resourceKey,JSON.stringify(available));}catch(_){}update();});});
+    function update(){output.replaceChildren();fields.forEach(f=>{const row=document.createElement("p"),label=document.createElement("strong"),value=document.createElement("span");label.textContent=f[1];const raw=available[f[0]],have=raw==null||raw===""?null:Number(raw),need=sum[f[2]];value.textContent=have===null?"Enter available amount":!Number.isFinite(have)||have<0?"Enter a valid non-negative amount":have<need?"Short by "+fmt(need-have)+"M":"Enough · "+fmt(have-need)+"M surplus";row.className="hq-resource-result";row.append(label,value);output.appendChild(row);});}
+    update();
+  };
   const setOptions=()=>{
     currentSelect.innerHTML=Array.from({length:35},(_,i)=>'<option value="'+(i+1)+'">HQ '+(i+1)+'</option>').join("");
     targetSelect.innerHTML=currentSelect.innerHTML;
@@ -45,6 +55,7 @@
       const sum={foodMillions:0,woodMillions:0,zentMillions:0,steelMillions:0};
       chosen.forEach(r=>Object.keys(sum).forEach(k=>sum[k]+=r.resources[k]));
       totalsNode.innerHTML='<h3>Estimated published-source totals · HQ '+(from+1)+' to HQ '+to+'</h3><p class="small muted">Sum of the Last Z Guides per-level table for upgrades above your current HQ. Figures inherit its displayed precision and may differ by account/server/version.</p><dl class="hq-cost-list"><div><dt>Food</dt><dd>'+money(sum.foodMillions)+'</dd></div><div><dt>Wood</dt><dd>'+money(sum.woodMillions)+'</dd></div><div><dt>Zent</dt><dd>'+money(sum.zentMillions)+'</dd></div><div><dt>Steel</dt><dd>'+money(sum.steelMillions)+'</dd></div></dl><p class="small muted">This total covers HQ construction only, not the cost of upgrading prerequisite buildings.</p>';
+      renderAvailability(sum);
     } else totalsNode.innerHTML='<h3>Resource totals</h3><p class="hq-unknown">Incomplete — one or more selected levels lack published cost data.</p>';
     stepsNode.querySelectorAll('input[type="checkbox"][data-key]').forEach(input=>input.addEventListener("change",()=>{progress[input.dataset.key]=input.checked;save();render();}));
   };

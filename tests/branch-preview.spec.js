@@ -452,7 +452,7 @@ test("research resource calculator compares player-entered costs and persists in
 
 test("troop target planner tracks a player-entered goal without inventing costs", async ({ page }) => {
   await page.goto("/heroes.html");
-  await page.locator("#troop-plan-class option").nth(1).waitFor();
+  await expect(page.locator('#troop-plan-class option[value="assaulters"]')).toHaveCount(1);
   await page.locator("#troop-plan-class").selectOption("assaulters");
   await page.locator("#troop-plan-tier").selectOption("10");
   await page.locator("#troop-plan-current").fill("120");

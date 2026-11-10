@@ -1,0 +1,61 @@
+/* Interactive knowledge hub refinement — preserve LZ Carry dark/silver/ice palette */
+.research-directory{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(158,220,255,.12)}
+.research-tree-card,.lab-plan-item,.profile-card{background:transparent!important;border:0!important;border-bottom:1px solid rgba(158,220,255,.14)!important;border-radius:0!important;box-shadow:none!important;margin:0!important}
+.research-tree-card summary{display:grid;grid-template-columns:minmax(145px,190px) minmax(170px,.7fr) minmax(220px,1.3fr) auto;align-items:center;gap:12px;padding:15px 8px!important}
+.research-tree-card summary h3,.research-tree-card summary p{margin:0!important}
+.research-tree-card summary .pill{justify-self:start}
+.research-tree-card summary:after{margin-left:10px}
+.research-tree-card[open]{background:rgba(158,220,255,.025)!important}
+.research-tree-body{padding:4px 18px 20px!important;max-width:920px}
+.research-tree-body p{margin:9px 0!important;line-height:1.55}
+.research-controls,.knowledge-tools,.formation-filters,.lab-planner-controls{align-items:end;gap:14px!important;padding:16px 0!important}
+.research-controls label,.knowledge-tools label,.formation-filters label,.lab-planner-controls label{min-width:0}
+#research-count,#hero-count,#event-count{margin:0 0 5px!important}
+.lab-plan-list{display:flex;flex-direction:column;gap:0}
+.lab-plan-item{padding:0!important}
+.lab-plan-item-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.lab-plan-item-head h4{margin:0}
+.lab-plan-item>p{margin:7px 0;line-height:1.5}
+.lab-plan-status{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:12px}
+.lab-plan-status select{min-width:150px}
+.lab-plan-item .notice{margin:10px 0!important}
+.knowledge-grid{display:flex!important;flex-direction:column;gap:0!important;border-top:1px solid rgba(158,220,255,.12)}
+.profile-card{padding:0!important}
+.profile-summary{padding:15px 8px!important;display:grid;grid-template-columns:minmax(145px,190px) minmax(180px,1fr) minmax(220px,1.2fr) auto;align-items:center;gap:12px}
+.profile-summary h3,.profile-summary p{margin:0!important}
+.profile-summary:after{justify-self:end}
+.profile-body{padding:6px 18px 22px!important;max-width:980px}
+.profile-section{padding:10px 0;border-bottom:1px solid rgba(158,220,255,.08)}
+.profile-section:last-child{border-bottom:0}
+.profile-section h4{margin:0 0 5px;color:var(--accent);font-size:.9rem}
+.profile-section p{margin:0;line-height:1.55}
+.hero-profile-summary{grid-template-columns:160px minmax(0,1fr) auto}
+.hero-portrait-pending{display:flex;align-items:center;justify-content:center;min-height:62px;padding:8px;border:1px dashed rgba(158,220,255,.28);border-radius:8px;color:var(--muted);font-size:.72rem;text-align:center;background:rgba(158,220,255,.025)}
+.hero-profile-identity h3{margin:5px 0!important}
+.hero-profile-identity p{margin:3px 0!important}
+.hero-profile[open] .hero-profile-summary{background:rgba(158,220,255,.035)}
+#event-results .profile-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+#event-results .profile-section{align-self:start}
+#event-results .profile-section:first-child{grid-column:1/-1}
+#event-results .profile-body>h4{grid-column:1/-1}
+#event-results .profile-body>ul{margin:6px 0 14px}
+#event-results .profile-body>p{line-height:1.5}
+.event-clock-grid{gap:14px!important}
+.event-clock-grid .card,.event-prep-card{box-shadow:none}
+#event-directory .knowledge-grid{margin-top:12px}
+#event-routines .grid,#event-planning .grid{gap:14px!important}
+#event-routines .grid .card,#event-planning .grid .card{padding:18px}
+@media(max-width:760px){
+ .research-tree-card summary,.profile-summary{grid-template-columns:1fr auto;gap:6px 10px;padding:13px 4px!important}
+ .research-tree-card summary .pill,.profile-summary>.pill{grid-column:1/-1}
+ .research-tree-card summary h3,.profile-summary h3{grid-column:1}
+ .research-tree-card summary p,.profile-summary p{grid-column:1/-1}
+ .research-tree-body,.profile-body{padding:4px 8px 18px!important}
+ .hero-profile-summary{grid-template-columns:84px minmax(0,1fr) auto}
+ .hero-portrait-pending{min-height:70px;font-size:.66rem}
+ #event-results .profile-body{display:block}
+ .lab-plan-status{align-items:flex-start}
+}
+@media(prefers-reduced-motion:no-preference){
+ .research-tree-card summary,.profile-summary{transition:background .18s ease}
+}

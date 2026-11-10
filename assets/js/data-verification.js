@@ -44,7 +44,7 @@
       return "unconfirmed";
     }
     if (/not-supported/.test(value)) return "unconfirmed";
-    if (/community|corroborat|multiple-sources|source-comparison|\\bsupported\\b/.test(value)) return "community-supported";
+    if (/community|corroborat|multiple-sources|source-comparison|\bsupported\b/.test(value)) return "community-supported";
     if (/verified|confirmed/.test(value)) {
       if (/in-game|client|official|publisher/.test(method + " " + value)) return "verified";
       return "community-supported";

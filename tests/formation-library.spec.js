@@ -13,6 +13,8 @@ test("Formation Lab saves, reloads and compares local lineups", async ({ page })
   await page.locator("#formation-name").fill("Alpha");
   await page.locator("#formation-save").click();
   await expect(page.locator("#formation-saved-list")).toContainText("Alpha");
+  await page.locator("#formation-saved-list").getByRole("button",{name:"Copy",exact:true}).first().click();
+  await expect(page.locator("#formation-saved-list")).toContainText("Alpha copy");
   await page.locator("#formation-slots .formation-slot").nth(1).click();
   await page.locator("#builder-results .builder-hero").nth(1).click();
   await page.locator("#formation-name").fill("Beta");

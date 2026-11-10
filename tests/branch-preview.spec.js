@@ -310,3 +310,34 @@ test("hero formation controls remain usable on narrow mobile screens", async ({ 
   const pageWidth = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
   expect(pageWidth.page).toBeLessThanOrEqual(pageWidth.viewport + 1);
 });
+
+test("canonical evidence labels distinguish verified and community claims", async ({ page }) => {
+  await page.goto("/heroes.html");
+  const mapped = await page.evaluate(() => {
+    const status = window.LZCarryDataStatus;
+    return {
+      verified: status.normalize({ status: "verified", method: "current in-game client" }),
+      community: status.normalize("community-indexed; current in-game confirmation pending"),
+      candidate: status.normalize("community-candidate"),
+      estimated: status.normalize("estimated from published source values"),
+      outdated: status.normalize("outdated")
+    };
+  });
+  expect(mapped).toEqual({
+    verified: "verified",
+    community: "community-supported",
+    candidate: "unconfirmed",
+    estimated: "estimated",
+    outdated: "outdated"
+  });
+  await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
+  const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
+  await search.fill("Bella");
+  await expect(page.locator(".universal-search-result-status", { hasText: "Community-supported" }).first()).toBeVisible();
+  await search.fill("HQ 35");
+  const hq = page.locator(".universal-search-result[href*="beginner.html"]").filter({ hasText: "HQ 35 upgrade" }).first();
+  await expect(hq.locator(".universal-search-result-status")).toHaveText("Unconfirmed");
+  await search.fill("Canyon Clash");
+  const event = page.locator(".universal-search-result[href*="events.html"]").filter({ hasText: "Canyon Clash" }).first();
+  await expect(event.locator(".universal-search-result-status")).toHaveText("Community-supported");
+});

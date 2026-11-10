@@ -484,3 +484,22 @@ test("beginner progression guide provides six usable linked learning steps", asy
   const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
   expect(size.page).toBeLessThanOrEqual(size.viewport + 1);
 });
+
+test("Lucky Rose tracker separates community candidates from in-game verification", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/events.html#lucky-rose-tracker");
+  await expect(page.getByRole("heading", { name: "Lucky Rose Tracker" })).toBeVisible();
+  const current = page.locator("#lucky-rose-current");
+  await expect(current).toContainText("Week of 2026-11-09");
+  await expect(current.locator(".lucky-rose-number")).toHaveText("#5");
+  await expect(current).toContainText("+20% Research Speed");
+  await expect(current).toContainText("2 hours");
+  await expect(current.locator(".evidence-badge")).toContainText("Community-supported");
+  await expect(current.locator(".evidence-badge")).not.toContainText("Verified");
+  await expect(current.locator("a[href*='lastz.gg']")).toBeVisible();
+  await expect(current.locator("a[href*='ztools.co.uk']")).toBeVisible();
+  await expect(page.locator("#lucky-rose-scope-note")).toContainText("sender-only");
+  await expect(page.locator("#lucky-rose-history .lucky-rose-history-row")).toHaveCount(2);
+  const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+  expect(size.page).toBeLessThanOrEqual(size.viewport + 1);
+});

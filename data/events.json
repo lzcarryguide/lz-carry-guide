@@ -35,7 +35,8 @@
         "Assuming last week's weekday mapping is universal.",
         "Treating a theme label as proof every related action scores.",
         "Spending before checking the live points panel."
-      ]
+      ],
+      "verificationStatus": "community-supported"
     },
     {
       "id": "full-preparedness",
@@ -74,7 +75,8 @@
         "Assuming the Alliance Duel and Full Preparedness lists match.",
         "Using an unverified Apocalypse Time conversion.",
         "Spending after a task window changes."
-      ]
+      ],
+      "verificationStatus": "community-supported"
     },
     {
       "id": "canyon-clash",
@@ -112,7 +114,8 @@
         "Assuming old participant limits or battle duration.",
         "Teleporting without an objective or return plan.",
         "Ignoring substitute and commander assignments."
-      ]
+      ],
+      "verificationStatus": "community-supported"
     },
     {
       "id": "battle-for-capital",
@@ -144,7 +147,8 @@
         "Using another server's schedule.",
         "Assuming occupation or appointment rules are unchanged.",
         "Fighting away from assigned objectives."
-      ]
+      ],
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "server-war",
@@ -176,7 +180,8 @@
         "Assuming old pairing or battle dates apply.",
         "Spending without checking scoring categories.",
         "Ignoring server-wide protection and battle plans."
-      ]
+      ],
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "zombie-tyrant",
@@ -209,7 +214,8 @@
         "Arriving late or using the wrong march.",
         "Assuming reward thresholds are unchanged.",
         "Changing rally placement without leadership."
-      ]
+      ],
+      "verificationStatus": "community-supported"
     },
     {
       "id": "shooting-loot",
@@ -249,7 +255,8 @@
         "Bullseye (Booty)",
         "Booty",
         "Shooting Bullets"
-      ]
+      ],
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "fury-lord",
@@ -276,7 +283,8 @@
         "Assuming Zombie Tyrant rules apply.",
         "Using unverified schedules or damage thresholds.",
         "Spending before confirming the mode is active."
-      ]
+      ],
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "hero-battlefield",
@@ -303,7 +311,8 @@
         "Assuming a specific arena format from the name.",
         "Using generic tier lists rather than live lineup rules.",
         "Spending fragments before checking restrictions."
-      ]
+      ],
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "gacha-go",
@@ -336,7 +345,8 @@
         "Letting a chest depot reach its cap if the game stops awarding more.",
         "Confusing a community event name with the live in-game title."
       ],
-      "verification": "Community sources use both Gacha Go and Lucky Lucky Lucky. Confirm the live title, free attempts, key rules, draw odds and event linkage in-game."
+      "verification": "Community sources use both Gacha Go and Lucky Lucky Lucky. Confirm the live title, free attempts, key rules, draw odds and event linkage in-game.",
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "lucky-discounter",
@@ -369,7 +379,8 @@
         "Spending tickets without checking whether a better inventory refresh is possible.",
         "Treating published coupon odds as current after a game update."
       ],
-      "verification": "Hot-event cycle references disagree on three- vs four-week rotation and the exact guarantee positions. Current event rules control."
+      "verification": "Hot-event cycle references disagree on three- vs four-week rotation and the exact guarantee positions. Current event rules control.",
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "lucky-chest",
@@ -401,7 +412,8 @@
         "Missing a timed chest-opening window.",
         "Assuming Lucky Chest runs on the same cycle on every server."
       ],
-      "verification": "The 20-minute window and depot limit are single-source community notes; confirm the current client before relying on them."
+      "verification": "The 20-minute window and depot limit are single-source community notes; confirm the current client before relying on them.",
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "server-migration",
@@ -434,7 +446,8 @@
         "Trying to migrate while combat or an account status restriction is active.",
         "Moving without discussing the target server's rules and alliance situation."
       ],
-      "verification": "Migration phase names and ticket requirements are community-described. Current event panel governs the actual dates, power tiers, ticket count and restrictions."
+      "verification": "Migration phase names and ticket requirements are community-described. Current event panel governs the actual dates, power tiers, ticket count and restrictions.",
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "zombie-preparation",
@@ -465,7 +478,8 @@
         "Assuming one server's wave schedule or scoring applies to another.",
         "Spending healing or speedups before reading the live rules."
       ],
-      "verification": "The sources describe the objective at a high level only. Server-specific rules and exact score/reward values remain unverified."
+      "verification": "The sources describe the objective at a high level only. Server-specific rules and exact score/reward values remain unverified.",
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "corpse-hunter",
@@ -494,7 +508,8 @@
         "Assuming the shop and daily mission window close at the same time.",
         "Using old mission counts or token totals."
       ],
-      "verification": "Community calendar describes the daily token loop only. Current client is required for task and exchange details."
+      "verification": "Community calendar describes the daily token loop only. Current client is required for task and exchange details.",
+      "verificationStatus": "unconfirmed"
     },
     {
       "id": "camilas-shop",
@@ -525,7 +540,8 @@
         "Forgetting to exchange the second token type.",
         "Spending tokens on items that are already plentiful for your account."
       ],
-      "verification": "The reported extra shop day is a community reference; validate current timer and inventory in-game."
+      "verification": "The reported extra shop day is a community reference; validate current timer and inventory in-game.",
+      "verificationStatus": "unconfirmed"
     }
   ],
   "researchNote": "Event mechanics, schedule models and strategy are separated from live server dates, points and reward values. Check each event's own current panel. Community cycle references disagree; do not rely on a global calendar."

@@ -4,8 +4,9 @@
   const currentSelect=root.querySelector("#hq-current"), targetSelect=root.querySelector("#hq-target");
   const stepsNode=root.querySelector("#hq-steps"), totalsNode=root.querySelector("#hq-totals"), progressNode=root.querySelector("#hq-progress");
   const storageKey="lzcarry:hq-planner:v2";
-  let records=[], progress={};
+  let records=[], progress={}, profile={};
   try { progress=JSON.parse(localStorage.getItem(storageKey)||"{}")||{}; } catch (_) { progress={}; }
+  try { profile=JSON.parse(localStorage.getItem("lzcarry-player-profile-v1")||"{}")||{}; } catch (_) { profile={}; }
   const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const save=()=>{try{localStorage.setItem(storageKey,JSON.stringify(progress));}catch(_){}};
   const fmt=n=>new Intl.NumberFormat("en-US",{maximumFractionDigits:3}).format(n);
@@ -13,7 +14,10 @@
   const keyFor=(target,i)=>target+":"+i;
   const setOptions=()=>{
     currentSelect.innerHTML=Array.from({length:35},(_,i)=>'<option value="'+(i+1)+'">HQ '+(i+1)+'</option>').join("");
-    targetSelect.innerHTML=currentSelect.innerHTML; currentSelect.value="1"; targetSelect.value="10";
+    targetSelect.innerHTML=currentSelect.innerHTML;
+    const savedHq=Number(profile.currentHq), validHq=Number.isInteger(savedHq)&&savedHq>=1&&savedHq<=35;
+    currentSelect.value=validHq?String(savedHq):"1";
+    targetSelect.value=String(validHq?Math.min(35,Math.max(10,savedHq+1)):10);
   };
   const render=()=>{
     const from=Number(currentSelect.value);
@@ -31,7 +35,8 @@
       const costHtml=hasCosts?'<dl class="hq-cost-list"><div><dt>Food</dt><dd>'+money(x.foodMillions)+'</dd></div><div><dt>Wood</dt><dd>'+money(x.woodMillions)+'</dd></div><div><dt>Zent</dt><dd>'+money(x.zentMillions)+'</dd></div><div><dt>Steel</dt><dd>'+money(x.steelMillions)+'</dd></div></dl><p class="small muted">Base HQ construction cost. Source precision: '+esc(x.sourcePrecision||"as published")+'</p><p class="small muted">Base build time: <strong>'+esc(x.duration||"Not listed")+'</strong></p>':'<p class="hq-unknown">Cost not listed in the selected source.</p>';
       const alt=(r.alternateResourceSources||[]).find(s=>s.displayedResources);
       const comparison=alt?'<section class="hq-source-comparison"><h4>Alternate published figures</h4><p class="small muted">'+esc(alt.name)+'</p><dl class="hq-cost-list"><div><dt>Food</dt><dd>'+esc(alt.displayedResources.food)+'</dd></div><div><dt>Wood</dt><dd>'+esc(alt.displayedResources.wood)+'</dd></div><div><dt>Zent</dt><dd>'+esc(alt.displayedResources.zent)+'</dd></div><div><dt>Steel</dt><dd>'+esc(alt.displayedResources.steel)+'</dd></div></dl><p class="small muted">Shown as published (K/M/B); do not combine with the selected source total.</p></section>':'';
-      return '<article class="card hq-step"><div class="hq-step-head"><div><p class="eyebrow">Upgrade step</p><h3>HQ '+r.targetHq+'</h3></div><span class="pill">Community sourced</span></div><div class="hq-step-grid"><section><h4>Prerequisite buildings</h4>'+buildingHtml+'</section><section><h4>HQ upgrade resources</h4>'+costHtml+comparison+'</section></div><p class="small muted">Research references and comparison notes are retained internally by LZ Carry.</p><p class="small muted">'+esc(r.notes||"Community reference; compare values and confirm account-specific costs in game.")+'</p></article>';
+      const evidence=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(r.verificationStatus||"unconfirmed"):{label:"Unconfirmed",detail:"Community candidate; live-client verification pending.",className:"is-unconfirmed"};
+      return '<article class="card hq-step"><div class="hq-step-head"><div><p class="eyebrow">Upgrade step</p><h3>HQ '+r.targetHq+'</h3></div><span class="pill evidence-badge '+evidence.className+'" title="'+esc(evidence.detail)+'">'+esc(evidence.label)+'</span></div><div class="hq-step-grid"><section><h4>Prerequisite buildings</h4>'+buildingHtml+'</section><section><h4>HQ upgrade resources</h4>'+costHtml+comparison+'</section></div><p class="small muted">Research references and comparison notes are retained internally by LZ Carry.</p><p class="small muted">'+esc(r.notes||"Community reference; compare values and confirm account-specific costs in game.")+'</p></article>';
     }).join("");
     stepsNode.innerHTML=cards||'<div class="card"><h3>Choose a higher target HQ</h3><p>Select a target above your current level to see its upgrade steps.</p></div>';
     progressNode.textContent=total?done+" of "+total+" prerequisite checks marked complete":"No prerequisite checks listed in this range";
@@ -43,7 +48,7 @@
     } else totalsNode.innerHTML='<h3>Resource totals</h3><p class="hq-unknown">Incomplete — one or more selected levels lack published cost data.</p>';
     stepsNode.querySelectorAll('input[type="checkbox"][data-key]').forEach(input=>input.addEventListener("change",()=>{progress[input.dataset.key]=input.checked;save();render();}));
   };
-  setOptions(); currentSelect.addEventListener("change",render);targetSelect.addEventListener("change",render);
+  setOptions(); currentSelect.addEventListener("change",()=>{const level=Number(currentSelect.value);if(Number.isInteger(level)&&level>=1&&level<=35){profile.currentHq=level;profile.updatedAt=new Date().toISOString();try{localStorage.setItem("lzcarry-player-profile-v1",JSON.stringify(profile));}catch(_){}}render();});targetSelect.addEventListener("change",render);
   fetch("data/hq-requirements.json").then(r=>{if(!r.ok)throw new Error("Dataset unavailable");return r.json();}).then(d=>{
     if(d.schemaVersion!==4||!Array.isArray(d.levels))throw new Error("Unsupported dataset");
     records=d.levels.filter(r=>r.verificationStatus==="community-candidate").sort((a,b)=>a.targetHq-b.targetHq);render();

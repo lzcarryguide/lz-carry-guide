@@ -54,7 +54,7 @@ function render(){
   var note=document.createElement("p");note.textContent=item[4];card.append(note);
   var statusLine=document.createElement("div");statusLine.className="lab-plan-status";
   var select=document.createElement("select");select.setAttribute("aria-label",item[0]+" progress");["Not started","In progress","Done"].forEach(function(v){var o=document.createElement("option");o.value=v;o.textContent=v;select.append(o);});select.value=status(item[0]);select.addEventListener("change",function(){state[item[0]]=select.value;save();render();});statusLine.append(select);
-  var ready=document.createElement("span");ready.className="small "+(eligible(item)?"text-good":"muted");ready.textContent=item[1]===null?"Gate not mapped":eligible(item)?"Lab/HQ level gate reached":"Below reported Lab/HQ gate";statusLine.append(ready);card.append(statusLine);
+  var ready=document.createElement("span");ready.className="small "+(eligible(item)?"text-good":"muted");ready.textContent=item[1]===null?"Gate not mapped":eligible(item)?(item[3]==="free2"?"Reported Lab No. 2 / HQ / season gates reached":"Reported Lab/HQ level gate reached"):"Below reported Lab/HQ or Lab No. 2 / season gate";statusLine.append(ready);card.append(statusLine);
   if(item[3]==="disputed"||item[3]==="free2"||item[1]===null){var warn=document.createElement("p");warn.className="notice small";warn.textContent="Planning caution: community references conflict or omit a required condition. Your in-game Laboratory unlock panel takes priority.";card.append(warn);}
   list.append(card);
  });

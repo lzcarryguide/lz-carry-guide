@@ -23,6 +23,9 @@ style.css
 assets/js/guide-library.js
 assets/js/hq-planner.js
 assets/js/knowledge-hub.js
+assets/js/research-planner.js
+assets/js/event-prep-planner.js
+assets/js/formation-storage.js
 data/guides.json
 data/hq-requirements.json
 data/heroes.json
@@ -35,6 +38,8 @@ docs/troops-source-review.md
 docs/events-source-review.md
 docs/hq-source-review.md
 tests/branch-preview.spec.js
+tests/planner-tools.spec.js
+tests/formation-library.spec.js
 tests/hq-planner.spec.js
 playwright.config.js
 .github/workflows/branch-preview.yml
@@ -50,10 +55,10 @@ CONTENT RULES
 
 DEVELOPMENT AND RELEASE SAFETY
 ------------------------------
-Current development branch: research-ui-hero-formation
-Base: production main as of 2026-11-09
+Latest release: PR #7 merged to main on 2026-11-09 (`6ae8442252444b765b4a5c14d4398d160719d6e4`).
+Post-release maintenance is performed on a separate branch and reviewed through a pull request.
 Run browser tests with: npx playwright test
-The branch workflow runs Playwright and uploads screenshots/reports as artifacts.
+The pull-request workflow runs Playwright and uploads screenshots/reports as artifacts.
 The product owner has authorized autonomous development and release when quality criteria are met. Keep unresolved evidence gaps explicit; a passing test run alone is not sufficient.
 
 

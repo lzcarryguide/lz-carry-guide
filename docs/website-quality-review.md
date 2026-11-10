@@ -1,6 +1,6 @@
 # LZ Carry website quality review
 
-Checked: 2026-11-09 — development branch `research-ui-hero-formation`
+Checked: 2026-11-10 — post-release audit of `main` (`6ae8442252444b765b4a5c14d4398d160719d6e4`)
 
 ## Site areas reviewed
 - Homepage: quick-access content and channel link.
@@ -28,7 +28,14 @@ Checked: 2026-11-09 — development branch `research-ui-hero-formation`
 - Existing public page source links remain internal documentation only; public content does not redirect to third-party guides.
 - No numeric research costs, badge totals, battle win rates, event point values or server-specific schedules were added.
 
-## Automated validation and visual inspection (latest branch run)\n- GitHub Actions run: https://github.com/lzcarryguide/lz-carry-guide/actions/runs/42643113585\n- Tested commit: `e74e7410dc61316cf2c35725e1a052f9d5edb27a`.\n- Result: 19/19 Playwright tests passed (25.4 seconds), including existing navigation, HQ Planner, Research, Hero/Troop/Event data, hero selection/swap/remove/filter, and new planner persistence/share/compare flows.\n- New screenshot artifacts include `laboratory-route-planner.png`, `event-preparation-planner.png`, `formation-library.png`, plus homepage, HQ Planner, Research, Heroes, Events and Guides desktop/mobile screenshots.\n- The latest screenshot set was inspected: the Laboratory planner exposes the separate Lab No. 2 and Season 2 Day 50 controls; the Event planner shows the AT clock and local checklist; the formation library shows saved lineups and compare controls.\n\n## Test and inspection boundary
+## Automated validation and visual inspection (pre-merge branch run)
+- GitHub Actions run: https://github.com/lzcarryguide/lz-carry-guide/actions/runs/42643618110
+- Tested commit: `a41aa3e15945a02d80be80813536e7a8571d3467`.
+- Result: 19/19 Playwright tests passed (17.1 seconds), including existing navigation, HQ Planner, Research, Hero/Troop/Event data, hero selection/swap/remove/filter, and new planner persistence/share/compare flows.
+- Screenshot artifacts include `laboratory-route-planner.png`, `event-preparation-planner.png`, `formation-library.png`, plus homepage, HQ Planner, Research, Heroes, Events and Guides desktop/mobile screenshots.
+- The pre-merge screenshot set was inspected: the Laboratory planner exposes separate Lab No. 2 and Season 2 Day 50 controls; the Event planner shows the AT clock and local checklist; the formation library shows saved lineups and compare controls.
+
+## Test and inspection boundary
 GitHub Actions Playwright runs execute the static site locally in CI and upload screenshots and HTML reports. The 19/19 pass proves the automated browser flows in the runner; it does not prove a live game-client value. Browser console errors are asserted for the new planner and formation-library tests. Network requests for page data are exercised by existing tests.
 
 ## Remaining work / known limitations

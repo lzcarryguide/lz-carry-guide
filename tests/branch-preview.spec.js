@@ -351,7 +351,7 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry-event-prep-v2", JSON.stringify({ "20261110-Research-0": true }));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/4 of 6 saved data sets found/)).toBeVisible();
+  await expect(page.getByText(/4 of 7 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;

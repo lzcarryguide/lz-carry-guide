@@ -64,7 +64,7 @@ test("research database searches, filters and expands technology details", async
 test("mobile layouts fit viewport without page-level horizontal overflow", async ({ page }) => {
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
-    for (const target of ["/", "/guides.html", "/research.html", "/heroes.html", "/events.html"]) {
+    for (const target of ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/heroes.html", "/events.html"]) {
       await page.goto(target);
       const sizes = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, document: document.documentElement.scrollWidth }));
       expect(sizes.document, target + " at " + width + "px").toBeLessThanOrEqual(sizes.viewport + 1);
@@ -351,7 +351,7 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry-event-prep-v2", JSON.stringify({ "20261110-Research-0": true }));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/4 of 7 saved data sets found/)).toBeVisible();
+  await expect(page.getByText(/4 of 8 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;
@@ -403,10 +403,13 @@ test("Player Dashboard summarizes local progress and links to existing planners"
   await page.evaluate(() => {
     localStorage.setItem("lzcarry-formation-library-v1", JSON.stringify([{ id: "one", name: "Saved lineup", heroes: ["Bella"] }]));
     localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done", "Shelter Building": "In progress" }));
+    localStorage.setItem("lzcarry-troop-plan-v1", JSON.stringify({ classId: "assaulters", tier: "10", current: 120, target: 200 }));
   });
   await page.reload();
   await expect(page.locator("#dashboard-formation-value")).toHaveText("1");
+  await expect(page.locator("#dashboard-hero-value")).toHaveText("1");
   await expect(page.locator("#dashboard-research-value")).toHaveText("1 / 2");
+  await expect(page.locator("#dashboard-troop-value")).toHaveText("Assaulters T10");
   await expect(page.locator("#dashboard-recommendations")).toContainText("Review your saved formations");
   await expect(page.locator('a[href="heroes.html#formation-builder"]').first()).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "player-dashboard-desktop.png"), fullPage: true });
@@ -447,3 +450,21 @@ test("research resource calculator compares player-entered costs and persists in
   await page.getByRole("button", { name: "Clear calculator" }).click();
   await expect(input("food", "available")).toHaveValue("");
 });
+
+test("troop target planner tracks a player-entered goal without inventing costs", async ({ page }) => {
+  await page.goto("/heroes.html");
+  await expect(page.locator('#troop-plan-class option[value="assaulters"]')).toHaveCount(1);
+  await page.locator("#troop-plan-class").selectOption("assaulters");
+  await page.locator("#troop-plan-tier").selectOption("10");
+  await page.locator("#troop-plan-current").fill("120");
+  await page.locator("#troop-plan-target").fill("200");
+  await expect(page.locator("#troop-plan-result")).toContainText("80 more units needed");
+  await expect(page.locator("#troop-plan-result")).toContainText("quantity gap only");
+  await page.reload();
+  await expect(page.locator("#troop-plan-class")).toHaveValue("assaulters");
+  await expect(page.locator("#troop-plan-tier")).toHaveValue("10");
+  await expect(page.locator("#troop-plan-current")).toHaveValue("120");
+  await expect(page.locator("#troop-plan-target")).toHaveValue("200");
+  await expect(page.locator(".troop-tier-row").first()).toContainText("Name evidence");
+});
+

@@ -2,7 +2,7 @@
 (function(){
 "use strict";
 var script=document.currentScript;if(!script)return;var root=new URL("../../",script.src);
-var KEYS=["lzcarry-formation-library-v1","lzcarry:hq-planner:v2","lzcarry-research-plan-v1","lzcarry-event-prep-v2","lzcarry-player-profile-v1","lzcarry-beginner-mode-v1","lzcarry-research-resource-calculator-v1"];
+var KEYS=["lzcarry-formation-library-v1","lzcarry:hq-planner:v2","lzcarry-research-plan-v1","lzcarry-event-prep-v2","lzcarry-player-profile-v1","lzcarry-beginner-mode-v1","lzcarry-research-resource-calculator-v1","lzcarry-troop-plan-v1"];
 function el(t,c,s){var n=document.createElement(t);if(c)n.className=c;if(s!=null)n.textContent=s;return n;}
 var nav=document.querySelector("header nav");if(!nav)return;
 var css=document.createElement("link");css.rel="stylesheet";css.href=new URL("assets/css/player-data.css",root).href;document.head.append(css);

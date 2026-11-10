@@ -4,11 +4,11 @@ Checked 9 November 2026. This audit separates community evidence for identity fr
 
 ## Classification summary
 
-- **Verified: 33** — individually listed in current Last Z community hero references, with faction / troop line corroborated and no material identity conflict that prevents use in the builder.
-- **Needs confirmation: 12** — 9 legacy names from the previous 45-entry list plus 3 Season 4 records whose current field files explicitly flag season assignment as Verify.
+- **Community-supported: 33** — individually listed in current Last Z community hero references, with faction / troop line corroborated and no material identity conflict that prevents use in the builder. This is community evidence, not publisher or current-client verification.
+- **Unconfirmed: 12** — 9 legacy names from the previous 45-entry list plus 3 Season 4 records whose current field files explicitly flag season assignment as Verify.
 - **Invalid: 0** — no entry was conclusively shown to be fabricated or from another game. Lack of corroboration alone is not proof of invalidity.
 
-The public builder now exposes only the 33 Verified entries. Amber, Queenie and Yu Chan are temporarily excluded because SIN Command's current field files display “Verify Season 4” for all three. They are real community-indexed Last Z hero names, but their release-season metadata is not confirmed to the standard requested. This is deliberately more conservative than simply counting the 36 entries shown in a roster.
+The public builder now exposes only the 33 Community-supported entries. Amber, Queenie and Yu Chan are temporarily excluded because SIN Command's current field files display “Verify Season 4” for all three. They are real community-indexed Last Z hero names, but their release-season metadata is not confirmed to the standard requested. This is deliberately more conservative than simply counting the 36 entries shown in a roster.
 
 ## Individual audit of the 36 community-indexed heroes
 

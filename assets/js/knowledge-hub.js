@@ -33,7 +33,32 @@ para(b,"Exclusive Equipment","Not confirmed for this entry. A fourth-skill exclu
 para(b,"What to capture next","Current hero profile and troop type; all four skill panels with scope/trigger/target; fourth-skill conditions; Exclusive Equipment screen; fragment acquisition and star-up costs; tested formation row and troop restrictions.");
 d.appendChild(b);return d;
 }
-function troop(r){var c=el("article","card knowledge-card","");c.appendChild(el("span","pill",r.faction));c.appendChild(el("h3","",r.name));c.appendChild(el("p","","Camp: "+r.camp));c.appendChild(el("p","",r.summary));var t=el("div","troop-tier-list","");(r.tiers||[]).forEach(function(x){t.appendChild(el("p","small","T"+x.tier+" · "+(x.unitName||"Name pending")));if(x.reportedAlternativeNames&&x.reportedAlternativeNames.length)t.appendChild(el("p","small muted","Alternative community names: "+x.reportedAlternativeNames.join(", ")));});c.appendChild(t);c.appendChild(el("p","small muted","Tier statistics, unlock levels, costs and timers remain withheld until verified in-game."));c.appendChild(el("p","small muted",r.note||""));return c;}
+function troop(r){
+var c=el("article","card knowledge-card troop-class-card","");
+c.appendChild(el("span","pill",r.faction));
+c.appendChild(el("h3","",r.name));
+c.appendChild(el("p","","Camp: "+r.camp));
+c.appendChild(el("p","",r.summary||"Community-indexed troop class."));
+var t=el("div","troop-tier-list","");
+(r.tiers||[]).forEach(function(x){
+ var row=el("div","troop-tier-row","");
+ var head=el("div","troop-tier-head","");
+ head.appendChild(el("strong","","T"+x.tier+" · "+(x.unitName||"Name pending")));
+ var nameStatus=(x.nameStatus||"verification pending").toLowerCase();
+ var badge=/conflict|verify in client|pending|reported tier/.test(nameStatus)?"Unconfirmed":"Community-supported";
+ head.appendChild(el("span","pill troop-evidence-badge "+(badge==="Unconfirmed"?"is-unconfirmed":"is-community"),badge));
+ row.appendChild(head);
+ if(x.reportedAlternativeNames&&x.reportedAlternativeNames.length)row.appendChild(el("p","small muted","Alternative names reported: "+x.reportedAlternativeNames.join(", ")));
+ row.appendChild(el("p","small muted","Name evidence: "+(x.nameStatus||"Not reconciled.")));
+ row.appendChild(el("p","small muted","Statistics: "+(x.valuesStatus||"Not published; verify in game.")));
+ row.appendChild(el("p","small muted","Unlock: "+(x.unlockStatus||"Not published; verify in game.")));
+ t.appendChild(row);
+});
+c.appendChild(t);
+c.appendChild(el("p","small muted","Camp unlock levels, statistics, training and promotion costs, timers and research gates remain unpublished until checked against the current game client."));
+c.appendChild(el("p","small muted",r.note||""));
+return c;
+}
 function event(r){var d=document.createElement("details");d.className="card knowledge-card profile-card event-profile";var s=el("summary","profile-summary","");s.appendChild(el("span","pill",[r.type,r.frequency].filter(Boolean).join(" · ")));s.appendChild(el("h3","",r.name));s.appendChild(el("p","",r.objective||r.summary||"Read the live event panel before spending."));s.appendChild(el("p","small muted","Open event field guide"));d.appendChild(s);var b=el("div","profile-body","");ul(b,"How it works",r.mechanics||[]);if(!r.mechanics||!r.mechanics.length)para(b,"Mechanics status","Available sources do not support a complete description. Do not infer schedules, scores, rounds or entry rules from the event name.");ul(b,"Preparation",r.preparation||[]);para(b,"Participation and eligibility",r.participation||"Check current server, alliance, HQ, registration and personal eligibility in the Event Center.");para(b,"Scoring",r.scoring||"Not published. Read the current task and points panel; values and caps are not independently verified.");para(b,"Rewards",r.rewards||"Not published. Confirm current chests, ranking and milestone panels before spending.");para(b,"F2P strategy",r.f2pStrategy||"Prioritize free tasks and attainable personal milestones. Keep rare items for actions the live panel confirms will score.");para(b,"Spending strategy",r.spendingStrategy||"Do not buy currency on an old guide. Compare live thresholds with real cost and stop when the next reward is poor value.");ul(b,"Common mistakes",r.commonMistakes||["Assuming an old schedule or reward table is current.","Spending before checking task rules.","Confusing personal points with alliance-wide contribution."]);para(b,"Verification status",r.verification||"Confirm current rules in-game.");ul(b,"Known source conflicts",r.conflicts||[]);d.appendChild(b);return d;}
 function setup(c){var q=document.getElementById(c.searchId),count=document.getElementById(c.countId),out=document.getElementById(c.resultsId);var f=(c.filters||[]).map(function(x){return{field:x.field,node:document.getElementById(x.id)};}).filter(function(x){return x.node;});if(!f.length&&c.filterId){var n=document.getElementById(c.filterId);if(n)f.push({field:c.filterField,node:n});}if(!q||!count||!out)return;function render(){var term=q.value.trim().toLowerCase();var a=c.records.filter(function(r){var text=[r.name,(r.aliases||[]).join(" "),r.faction,r.troopType,r.camp,r.role,r.type,r.rarity,r.season!=null?"season "+r.season:"",r.objective,r.summary,(r.tags||[]).join(" ")].filter(Boolean).join(" ").toLowerCase();return f.every(function(x){return!x.node.value||String(r[x.field]==null?"":r[x.field])===x.node.value;})&&(!term||text.indexOf(term)>=0);});count.textContent=a.length+(a.length===1?" record":" records");out.replaceChildren();if(!a.length){out.appendChild(el("p","card knowledge-empty","No matching records. Try another search or filter."));return;}a.forEach(function(r){out.appendChild(c.kind==="hero"?hero(r):c.kind==="troop"?troop(r):event(r));});}q.addEventListener("input",render);f.forEach(function(x){x.node.addEventListener("change",render);});render();}
 function load(url,key,c,root){fetch(url).then(function(r){if(!r.ok)throw new Error("Database unavailable");return r.json();}).then(function(d){if(!d||d.schemaVersion!==2||!Array.isArray(d[key]))throw new Error("Invalid database");c.records=d[key];setup(c);}).catch(function(){root.replaceChildren(el("div","card","Directory unavailable. Please refresh to reload the local database."));});}
@@ -58,9 +83,9 @@ function intel(h){var box=$("hero-intel");if(!box)return;box.replaceChildren(nod
 function drawSlots(){slots.replaceChildren();chosen.forEach(function(h,i){var wrap=node("div","formation-slot-wrap",""),b=node("button","formation-slot","");b.type="button";b.setAttribute("aria-pressed",String(active===i));b.addEventListener("click",function(){active=i;drawSlots();drawResults();});b.append(node("span","slot-number","SLOT "+(i+1)),node("span","slot-avatar",h?h.name.split(/\s+/).map(function(x){return x[0];}).join("").slice(0,2):"+"),node("strong","",h?h.name:"Choose hero"),node("small","",h?h.faction:"Open slot"));wrap.append(b);if(h){var rm=node("button","slot-remove","Remove");rm.type="button";rm.setAttribute("aria-label","Remove "+h.name+" from slot "+(i+1));rm.addEventListener("click",function(){chosen[i]=null;drawSlots();drawResults();analyze();intel(null);});wrap.append(rm);}slots.append(wrap);});}
 function filtered(){var q=$("builder-search").value.toLowerCase(),f=$("builder-faction").value,s=$("builder-season").value,roleFilter=$("builder-role")?$("builder-role").value:"";return roster.filter(function(h){return(!q||[h.name,h.faction,h.role,h.season,h.awakeningSeason].join(" ").toLowerCase().includes(q))&&(!f||h.faction===f)&&(!roleFilter||h.role===roleFilter)&&(!s||(s==="5"?h.awakeningSeason===5:String(h.season)===s));});}
 function drawResults(){
-var a=filtered();var selectable=a.filter(function(h){return h.verificationStatus==="Verified";}).length;$("builder-count").textContent=a.length+" indexed heroes · "+selectable+" selectable";results.replaceChildren();
+var a=filtered();var selectable=a.filter(function(h){return h.verificationStatus==="Community-supported";}).length;$("builder-count").textContent=a.length+" indexed heroes · "+selectable+" selectable";results.replaceChildren();
 a.forEach(function(h){
-var selected=chosen.some(function(x){return x&&x.id===h.id;}),eligible=h.verificationStatus==="Verified",wrap=node("div","hero-directory-item"+(eligible?"":" is-pending"),"");
+var selected=chosen.some(function(x){return x&&x.id===h.id;}),eligible=h.verificationStatus==="Community-supported",wrap=node("div","hero-directory-item"+(eligible?"":" is-pending"),"");
 var details=node("details","hero-directory-details","");
 var summary=node("summary","hero-directory-summary","");
 summary.append(node("span","hero-portrait-pending","Portrait not verified"));

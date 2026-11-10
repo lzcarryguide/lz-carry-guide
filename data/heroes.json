@@ -1,8 +1,8 @@
 {
   "schemaVersion": 3,
   "lastUpdated": "2026-11-09",
-  "rosterStatus": "36 individually indexed community hero identities; 33 meet the current community-evidence threshold and are selectable. Three Season 4 records remain Needs confirmation pending season verification.",
-  "verificationPolicy": "Verified means individually listed in the current SIN Command Personnel Database and corroborated by a current Last Z roster/skill reference, with no unresolved identity issue blocking selection. This is community evidence, not publisher certification or current-client confirmation. Season, role, skill, equipment and availability fields may remain caveated.",
+  "rosterStatus": "36 individually indexed community hero identities; 33 are Community-supported and selectable. Three Season 4 records remain Unconfirmed pending season verification.",
+  "verificationPolicy": "Community-supported means individually listed in the current SIN Command Personnel Database and corroborated by community roster references, with no unresolved identity issue blocking selection. This is community evidence, not publisher certification or current-client confirmation. Unconfirmed entries are not selectable until identity/season evidence is reconciled. Season, role, skill, equipment and availability fields may remain caveated.",
   "heroes": [
     {
       "id": "audrey",
@@ -31,7 +31,7 @@
         "investment": "F2P: temporary use only. Spenders: preserve premium materials for the core S-rank faction.",
         "sourceConfidence": "Z Tools and Last Z Wiki disagree on Skill 3 and role."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -62,7 +62,7 @@
         "investment": "F2P: temporary early use only. Spending: compare with Blood Rose S heroes before committing fragments or exclusive gear.",
         "sourceConfidence": "Single community skill index."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -93,7 +93,7 @@
         "investment": "F2P: use as an early gatherer if confirmed, then keep fragments for the main S team. Spenders should not buy upgrades for a gathering-only slot.",
         "sourceConfidence": "Z Tools and Last Z Wiki agree on wood utility, but the overall role tag conflicts."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -127,7 +127,7 @@
       "aliases": [
         "Atenea"
       ],
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -158,7 +158,7 @@
         "investment": "F2P: reasonable temporary filler using free universal A fragments. Spenders: avoid heavy long-term investment.",
         "sourceConfidence": "Last Z Wiki and Z Tools support the defensive and faction-passive description; exact percentages omitted."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -189,7 +189,7 @@
         "investment": "F2P: temporary A-rank use. Spenders: prioritize the main S-rank Riders before investing.",
         "sourceConfidence": "Single community skill index."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -220,7 +220,7 @@
         "investment": "F2P: temporary secondary use at most. Spenders should preserve fragments and books for their deployed S-rank Riders.",
         "sourceConfidence": "Z Tools and Last Z Wiki conflict on the third skill and role."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -249,7 +249,7 @@
         "investment": "F2P: temporary use only while she fills a real roster need. Spenders: avoid premium investment until resolved.",
         "sourceConfidence": "Role and third-skill conflict across Last Z Wiki and Z Tools."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -283,7 +283,7 @@
       "aliases": [
         "Cristina"
       ],
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -314,7 +314,7 @@
         "investment": "F2P: temporary A-fragment use. Spenders: preserve rare materials for core S heroes.",
         "sourceConfidence": "Last Z Wiki and Z Tools broadly agree on the personal attack and faction-attack role; exact values omitted."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -345,7 +345,7 @@
         "investment": "F2P: temporary use with universal A fragments. Spending: preserve rare materials for core S heroes.",
         "sourceConfidence": "Last Z Wiki and Z Tools broadly agree on the attack, defence and faction-passive structure; exact text/values omitted."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -379,7 +379,7 @@
       "aliases": [
         "Natalia"
       ],
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -410,7 +410,7 @@
         "investment": "F2P: value depends on access to fragments and whether exploration progress matters. Spenders: do not assume exploration utility makes her a top PvP carry.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -441,7 +441,7 @@
         "investment": "F2P: reasonable temporary use with free/universal A fragments. Spenders: keep premium skill materials for the main S team.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -472,7 +472,7 @@
         "investment": "F2P: strong utility candidate if obtainable and if troop training is a real bottleneck. Spenders: compare the time value of training with combat upgrades.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
       "awakeningSeason": 5
     },
@@ -504,7 +504,7 @@
         "investment": "F2P: consider her if Blood Rose is your main faction and fragments are realistically obtainable. Low/high spend: prioritize only if she remains one of your best three S heroes for that faction.",
         "sourceConfidence": "Last Z Wiki and Z Tools both list the Assaulter/passive skill structure; live scope still needs client confirmation."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -539,7 +539,7 @@
         "Sofia",
         "Sofía"
       ],
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -570,7 +570,7 @@
         "investment": "F2P: use as a free specialist / secondary formation. Spenders: avoid expensive investment if outdoor zombie farming is not a bottleneck.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -601,7 +601,7 @@
         "investment": "F2P: do not commit fragments before she is obtainable and part of your main Blood Rose march. Spenders: compare with the strongest three Blood Rose S heroes rather than spreading fragments across all five.",
         "sourceConfidence": "One detailed Last Z Wiki profile (Portuguese/Spanish mixed language); current client transcription needed."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
     },
     {
@@ -627,7 +627,7 @@
         "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
     },
     {
@@ -658,7 +658,7 @@
         "investment": "F2P: invest only if access to fragments and the Wings of Dawn core makes her a realistic main hero. Spenders: compare against the strongest three faction heroes rather than building every S hero equally.",
         "sourceConfidence": "One detailed Last Z Wiki profile; all skill names and conditions require current-client confirmation."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
     },
     {
@@ -687,7 +687,7 @@
       "aliases": [
         "Emilia? (possible distinct/alternate entry; verify)"
       ],
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -718,7 +718,7 @@
         "investment": "F2P: compare her free/mission availability with the strength of other Wings of Dawn S heroes. Spenders: do not assume she is universally the only viable frontline after updates.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -749,7 +749,7 @@
         "investment": "F2P: prioritize only if she is obtainable and a core Wings of Dawn option. Spenders: weigh training utility against the next deployed Shooter upgrade.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
     },
     {
@@ -780,7 +780,7 @@
         "investment": "F2P: invest only if she is an accessible core Shooter and training passive is confirmed. Spenders: compare Skill 3 and equipment value against the main faction's next upgrade.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
       "awakeningSeason": 5
     },
@@ -807,7 +807,7 @@
         "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
     },
     {
@@ -833,7 +833,7 @@
         "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -859,7 +859,7 @@
         "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
     },
     {
@@ -885,7 +885,7 @@
         "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
       "awakeningSeason": 5
     },
@@ -912,7 +912,7 @@
         "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -938,7 +938,7 @@
         "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -964,7 +964,7 @@
         "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
     },
     {
@@ -990,7 +990,7 @@
         "investment": "F2P: reserve scarce fragments and skill books for a proven primary formation; use this hero only when their live kit fills a needed role. Low/high spend: do not pay to build a profile with unverified utility.",
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
-      "verificationStatus": "Verified",
+      "verificationStatus": "Community-supported",
       "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
     },
     {
@@ -1005,7 +1005,7 @@
       "skills": [],
       "exclusiveEquipment": null,
       "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
-      "verificationStatus": "Needs confirmation",
+      "verificationStatus": "Unconfirmed",
       "verificationBasis": "Listed by SIN Command as a Season 4 hero with faction and troop type, but the current field file explicitly marks the Season 4 assignment Verify. Identity is community-indexed; season metadata is not sufficiently established for the Verified-only builder.",
       "profileNotes": {
         "evidence": "SIN Command's current field file lists this hero but explicitly marks the Season 4 assignment Verify. Independent current-client confirmation is not available.",
@@ -1024,7 +1024,7 @@
       "skills": [],
       "exclusiveEquipment": null,
       "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
-      "verificationStatus": "Needs confirmation",
+      "verificationStatus": "Unconfirmed",
       "verificationBasis": "Listed by SIN Command as a Season 4 hero with faction and troop type, but the current field file explicitly marks the Season 4 assignment Verify. Identity is community-indexed; season metadata is not sufficiently established for the Verified-only builder.",
       "profileNotes": {
         "evidence": "SIN Command's current field file lists this hero but explicitly marks the Season 4 assignment Verify. Independent current-client confirmation is not available.",
@@ -1043,7 +1043,7 @@
       "skills": [],
       "exclusiveEquipment": null,
       "investmentNote": "No hero-specific investment ranking published until skill effects and current roster context are verified.",
-      "verificationStatus": "Needs confirmation",
+      "verificationStatus": "Unconfirmed",
       "verificationBasis": "Listed by SIN Command as a Season 4 hero with faction and troop type, but the current field file explicitly marks the Season 4 assignment Verify. Identity is community-indexed; season metadata is not sufficiently established for the Verified-only builder.",
       "profileNotes": {
         "evidence": "SIN Command's current field file lists this hero but explicitly marks the Season 4 assignment Verify. Independent current-client confirmation is not available.",

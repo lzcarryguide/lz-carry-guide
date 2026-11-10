@@ -60,12 +60,13 @@ function filtered(){var q=$("builder-search").value.toLowerCase(),f=$("builder-f
 function drawResults(){
 var a=filtered();$("builder-count").textContent=a.length+" community-corroborated heroes";results.replaceChildren();
 a.forEach(function(h){
-var selected=chosen.some(function(x){return x&&x.id===h.id;}),wrap=node("details","hero-directory-item","");
+var selected=chosen.some(function(x){return x&&x.id===h.id;}),wrap=node("div","hero-directory-item","");
+var details=node("details","hero-directory-details","");
 var summary=node("summary","hero-directory-summary","");
 summary.append(node("span","hero-portrait-pending","Portrait not verified"));
 var identity=node("span","hero-directory-identity","");
 identity.append(node("strong","",h.name),node("small","",h.faction+" · "+(h.season?"Season "+h.season:"Base")+(h.awakeningSeason===5?" · S5 awakening":"")+" · "+(h.role||"Role unconfirmed")));
-summary.append(identity);wrap.append(summary);
+summary.append(identity);details.append(summary);
 var p=h.profileNotes||{},body=node("div","hero-directory-detail","");
 function line(label,value){if(value){var row=node("p","hero-directory-note","");row.append(node("strong","",label+": "),document.createTextNode(value));body.append(row);}}
 line("Evidence",p.evidence||h.verificationBasis||h.dataStatus||"Community index entry; current-client verification pending");
@@ -76,9 +77,10 @@ body.append(node("p","small muted","Portrait status: no official or reliable por
 body.append(node("p","small muted","Exclusive Equipment: not confirmed for this hero. Verify availability, unlock conditions and effects in the current client."));
 body.append(node("p","small muted","Usefulness across early, mid and late game depends on the live skill text, your developed faction and the role this hero fills in your active march. Avoid investment from rarity alone."));
 body.append(node("p","small muted","Evidence still needed: current profile, all skill panels and triggers, fourth-skill conditions, equipment screen, fragment/star-up costs and tested formation restrictions."));
+details.append(body);
 var add=node("button","btn secondary builder-hero","");add.type="button";add.setAttribute("aria-pressed",String(selected));add.setAttribute("aria-label",(selected?"Selected: ":"Add ")+h.name+" "+(selected?"in formation":"to active formation"));add.textContent=selected?"Selected · "+h.name:"Add "+h.name+" to active slot";
 add.addEventListener("click",function(){var existing=chosen.findIndex(function(x){return x&&x.id===h.id;});if(existing>=0&&existing!==active){var tmp=chosen[active];chosen[active]=chosen[existing];chosen[existing]=tmp;}else chosen[active]=h;drawSlots();drawResults();analyze();intel(h);});
-body.append(add);wrap.append(body);results.append(wrap);
+wrap.append(details,add);results.append(wrap);
 });
 }
 function counter(major,enemy){var counteredBy={"Blood Rose":"Wings of Dawn","Wings of Dawn":"Guard of Order","Guard of Order":"Blood Rose"};if(major===counteredBy[enemy])return major+" is the community-listed counter to "+enemy+"; this is a matchup edge to test, not a guaranteed win.";if(counteredBy[major]===enemy)return major+" is countered by "+enemy+" in the commonly reported faction triangle. Consider a pivot only if it does not sacrifice developed heroes or skill synergy.";return major+" has no direct counter edge over "+enemy+" in the reported triangle.";}

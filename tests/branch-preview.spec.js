@@ -503,3 +503,14 @@ test("Lucky Rose tracker separates community candidates from in-game verificatio
   const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
   expect(size.page).toBeLessThanOrEqual(size.viewport + 1);
 });
+
+test("universal search indexes Lucky Rose candidates and evidence status", async ({ page }) => {
+  await page.goto("/events.html");
+  await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
+  const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
+  await search.fill("2026-11-09");
+  const result = page.locator(".universal-search-result").filter({ hasText: "Lucky Rose" }).first();
+  await expect(result).toBeVisible();
+  await expect(result).toHaveAttribute("href", /events\.html#lucky-rose-tracker/);
+  await expect(result.locator(".universal-search-result-status")).toHaveText("Community-supported");
+});

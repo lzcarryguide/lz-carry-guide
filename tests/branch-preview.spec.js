@@ -341,3 +341,53 @@ test("canonical evidence labels distinguish verified and community claims", asyn
   const event = page.locator('.universal-search-result[href*="events.html"]').filter({ hasText: "Canyon Clash" }).first();
   await expect(event.locator(".universal-search-result-status")).toHaveText("Community-supported");
 });
+
+test("player progress can be exported and safely imported across planners", async ({ page }) => {
+  await page.goto("/heroes.html");
+  await page.evaluate(() => {
+    localStorage.setItem("lzcarry-formation-library-v1", JSON.stringify([{ id: "test-formation", name: "Test formation", heroes: ["Bella", null, null, null, null] }]));
+    localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": true }));
+    localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done" }));
+    localStorage.setItem("lzcarry-event-prep-v2", JSON.stringify({ "20261110-Research-0": true }));
+  });
+  await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
+  await expect(page.getByText(/4 of 4 planner data sets found/)).toBeVisible();
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export my progress" }).click();
+  const download = await downloadPromise;
+  const stream = await download.createReadStream();
+  let json = "";
+  for await (const chunk of stream) json += chunk.toString();
+  const backup = JSON.parse(json);
+  expect(backup.format).toBe("lz-carry-player-data");
+  expect(backup.schemaVersion).toBe(1);
+  expect(backup.data["lzcarry-formation-library-v1"][0].name).toBe("Test formation");
+  expect(backup.data["lzcarry:hq-planner:v2"]["35:0"]).toBe(true);
+
+  await page.evaluate(() => localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": false })));
+  page.on("dialog", dialog => dialog.accept());
+  await page.locator(".player-data-file").setInputFiles({
+    name: "lz-carry-backup.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(JSON.stringify(backup))
+  });
+  await expect(page.locator(".player-data-summary")).toContainText("Progress imported successfully");
+  const restored = await page.evaluate(() => ({
+    hq: JSON.parse(localStorage.getItem("lzcarry:hq-planner:v2")),
+    research: JSON.parse(localStorage.getItem("lzcarry-research-plan-v1")),
+    rollback: JSON.parse(localStorage.getItem("lzcarry-player-data-rollback-v1"))
+  }));
+  expect(restored.hq["35:0"]).toBe(true);
+  expect(restored.research["New Home"]).toBe("Done");
+  expect(restored.rollback.values["lzcarry:hq-planner:v2"]).toContain("false");
+});
+
+test("progress manager is available on every primary page and fits mobile screens", async ({ page }) => {
+  for (const target of pages) {
+    await page.setViewportSize({ width: 320, height: 780 });
+    await page.goto("/" + target);
+    await expect(page.getByRole("button", { name: "Manage saved LZ Carry progress" })).toBeVisible();
+    const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+    expect(size.page, target + " mobile progress manager").toBeLessThanOrEqual(size.viewport + 1);
+  }
+});

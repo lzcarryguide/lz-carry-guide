@@ -2,7 +2,7 @@ const { test, expect } = require("@playwright/test");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const pages = ["index.html", "guides.html", "beginner.html", "research.html", "heroes.html", "events.html", "pilot.html"];
+const pages = ["index.html", "guides.html", "beginner.html", "dashboard.html", "research.html", "heroes.html", "events.html", "pilot.html"];
 const artifacts = path.join(process.cwd(), "artifacts");
 fs.mkdirSync(artifacts, { recursive: true });
 
@@ -390,4 +390,36 @@ test("progress manager is available on every primary page and fits mobile screen
     const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
     expect(size.page, target + " mobile progress manager").toBeLessThanOrEqual(size.viewport + 1);
   }
+});
+
+test("Player Dashboard summarizes local progress and links to existing planners", async ({ page }) => {
+  await page.goto("/dashboard.html");
+  await expect(page.getByRole("heading", { name: "Player Dashboard" })).toBeVisible();
+  await expect(page.getByText(/does not connect to your game account/i)).toBeVisible();
+  await page.locator("#dashboard-hq").selectOption("25");
+  await page.getByRole("button", { name: "Save account progress" }).click();
+  await expect(page.locator("#dashboard-hq-value")).toHaveText("HQ 25");
+  await page.evaluate(() => {
+    localStorage.setItem("lzcarry-formation-library-v1", JSON.stringify([{ id: "one", name: "Saved lineup", heroes: ["Bella"] }]));
+    localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done", "Shelter Building": "In progress" }));
+  });
+  await page.reload();
+  await expect(page.locator("#dashboard-formation-value")).toHaveText("1");
+  await expect(page.locator("#dashboard-research-value")).toHaveText("1 / 2");
+  await expect(page.locator("#dashboard-recommendations")).toContainText("Review your saved formations");
+  await expect(page.locator('a[href="heroes.html#formation-builder"]')).toBeVisible();
+});
+
+test("Beginner Mode checklist resumes and resets saved steps", async ({ page }) => {
+  await page.goto("/beginner.html");
+  await expect(page.getByRole("heading", { name: "Your first progression path" })).toBeVisible();
+  await page.locator('[data-step="account"]').check();
+  await page.locator('[data-step="hq"]').check();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("2 of 5 steps complete");
+  await page.reload();
+  await expect(page.locator('[data-step="account"]')).toBeChecked();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("2 of 5 steps complete");
+  page.on("dialog", dialog => dialog.accept());
+  await page.getByRole("button", { name: "Reset checklist" }).click();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("0 of 5 steps complete");
 });

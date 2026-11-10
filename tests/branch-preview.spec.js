@@ -590,3 +590,38 @@ test("HQ resource calculator compares saved holdings with selected published tot
   await expect(page.locator('.hq-resource-availability [data-hq-resource="food"]')).toHaveValue("0");
 });
 
+
+test("primary pages expose names for interactive controls and text alternatives", async ({ page }) => {
+  for (const target of pages) {
+    await page.goto("/" + target, { waitUntil: "domcontentloaded" });
+    const issues = await page.evaluate(() => {
+      const controls = Array.from(document.querySelectorAll('button, input:not([type="hidden"]), select, textarea, a[href]'));
+      return controls.filter(el => {
+        if (el.closest('[aria-hidden="true"]')) return false;
+        const tag = el.tagName.toLowerCase();
+        if (tag === "input" || tag === "select" || tag === "textarea") {
+          return !(el.getAttribute("aria-label") || el.getAttribute("aria-labelledby") || (el.labels && el.labels.length));
+        }
+        return !(el.getAttribute("aria-label") || el.getAttribute("title") || (el.textContent || "").trim());
+      }).map(el => ({ tag: el.tagName, type: el.getAttribute("type"), id: el.id, href: el.getAttribute("href") }));
+    });
+    expect(issues, "unnamed controls on " + target).toEqual([]);
+    const images = await page.locator("img").evaluateAll(nodes => nodes.filter(img => !img.hasAttribute("alt")).map(img => img.src));
+    expect(images, "images missing alt text on " + target).toEqual([]);
+    await expect(page.locator("html")).toHaveAttribute("lang", /.+/);
+  }
+});
+
+test("universal search is keyboard accessible and returns focus safely", async ({ page }) => {
+  await page.goto("/");
+  await page.keyboard.press("Control+k");
+  const dialog = page.getByRole("dialog");
+  await expect(dialog).toBeVisible();
+  const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
+  await expect(search).toBeFocused();
+  await search.fill("HQ 35");
+  await expect(page.locator(".universal-search-result").first()).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+});
+

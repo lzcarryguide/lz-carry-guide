@@ -627,10 +627,14 @@ test("universal search is keyboard accessible and returns focus safely", async (
 
 
 
-test("beginner formation CTA targets the existing Hero Formation Lab section", async ({ page }) => {
-  await page.goto("/beginner.html");
-  const cta = page.getByRole("link", { name: "Build a formation" });
-  await expect(cta).toHaveAttribute("href", "heroes.html#formation-lab");
-  await page.goto("/heroes.html#formation-lab");
-  await expect(page.locator("#formation-lab")).toBeVisible();
+test("beginner formation CTA targets the existing Hero Formation Lab section at desktop and mobile", async ({ page }) => {
+  for (const viewport of [{ width: 1440, height: 1000 }, { width: 375, height: 812 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/beginner.html");
+    const cta = page.getByRole("link", { name: "Build a formation" });
+    await expect(cta).toHaveAttribute("href", "heroes.html#formation-lab");
+    await cta.click();
+    await expect(page).toHaveURL(/heroes\.html#formation-lab$/);
+    await expect(page.locator("#formation-lab")).toBeVisible();
+  }
 });

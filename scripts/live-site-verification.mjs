@@ -116,12 +116,15 @@ for (const item of PAGES) {
           fontFamily: getComputedStyle(document.body).fontFamily,
           fontInterAvailable: document.fonts.check('12px Inter'),
           navExists: !!nav,
-          navVisible: !!nav && !!(nav.offsetWidth || nav.offsetHeight),
+          navVisible: !!nav && getComputedStyle(nav).display !== 'none' && getComputedStyle(nav).visibility !== 'hidden' && nav.getBoundingClientRect().width > 0 && nav.getBoundingClientRect().height > 0,
+          navDisplay: nav ? getComputedStyle(nav).display : null,
+          navVisibility: nav ? getComputedStyle(nav).visibility : null,
+          navRect: nav ? (() => { const r = nav.getBoundingClientRect(); return { x:r.x, y:r.y, width:r.width, height:r.height, right:r.right, bottom:r.bottom }; })() : null,
           navLinkCount: nav?.querySelectorAll('a').length || 0,
           navCurrent: nav?.querySelector('a[aria-current="page"]')?.getAttribute('href') || null,
           navScrollWidth: nav?.scrollWidth || 0,
           navClientWidth: nav?.clientWidth || 0,
-          navLastLinkText: nav?.querySelector('a:last-child')?.innerText?.trim() || null,
+          navLastLinkText: nav ? [...nav.querySelectorAll('a')].at(-1)?.innerText?.trim() || null : null,
           anchors, images, backgrounds
         };
       });
@@ -132,13 +135,23 @@ for (const item of PAGES) {
         snapshot.mobileNav = await page.evaluate(() => {
           const nav = document.querySelector('nav[aria-label="Main navigation"]');
           if (!nav) return { usable: false };
-          const last = nav.querySelector('a:last-child');
+          const links = [...nav.querySelectorAll('a')];
+          const last = links.at(-1);
+          const before = nav.getBoundingClientRect();
           nav.scrollTo({ left: nav.scrollWidth, behavior: 'instant' });
           const rect = last?.getBoundingClientRect();
+          const after = nav.getBoundingClientRect();
           return {
+            display: getComputedStyle(nav).display,
+            visibility: getComputedStyle(nav).visibility,
+            navRect: { x:after.x, y:after.y, width:after.width, height:after.height, right:after.right, bottom:after.bottom },
             overflowX: getComputedStyle(nav).overflowX,
+            scrollWidth: nav.scrollWidth,
+            clientWidth: nav.clientWidth,
+            scrollLeft: nav.scrollLeft,
             canScrollHorizontally: nav.scrollWidth > nav.clientWidth + 1,
-            lastLinkReachable: !!rect && rect.right <= innerWidth + 1 && rect.left >= 0,
+            linkCount: links.length,
+            lastLinkReachable: !!rect && rect.width > 0 && rect.right <= after.right + 1 && rect.left >= after.left - 1,
             lastLinkText: last?.innerText?.trim() || null
           };
         });
@@ -172,6 +185,9 @@ for (const item of PAGES) {
       required: snapshot?.required || [],
       horizontalOverflow: snapshot ? (snapshot.documentWidth > snapshot.viewportWidth + 1 || snapshot.bodyWidth > snapshot.viewportWidth + 1) : null,
       navCurrent: snapshot?.navCurrent || null,
+      navVisible: snapshot?.navVisible || false,
+      navDisplay: snapshot?.navDisplay || null,
+      navRect: snapshot?.navRect || null,
       navLinkCount: snapshot?.navLinkCount || 0,
       mobileNav: snapshot?.mobileNav || null,
       fontFamily: snapshot?.fontFamily || null,
@@ -206,6 +222,7 @@ for (const r of results) {
   if (r.required.some(x => !x.found)) failures.push(`${r.page} ${r.viewport}: required content selector missing`);
   if (r.horizontalOverflow) failures.push(`${r.page} ${r.viewport}: horizontal overflow`);
   if (!r.navCurrent) failures.push(`${r.page} ${r.viewport}: active navigation state missing`);
+  if (!r.navVisible) failures.push(`${r.page} ${r.viewport}: main navigation is not visible`);
   if (r.imageLoadFailures.length) failures.push(`${r.page} ${r.viewport}: image load failures`);
   if (r.localFragmentFailures?.length) failures.push(`${r.page} ${r.viewport}: local fragment target missing`);
   if (r.consoleErrors.length || r.pageErrors.length || r.failedRequests.length || r.badResponses.length) failures.push(`${r.page} ${r.viewport}: browser console/network errors`);

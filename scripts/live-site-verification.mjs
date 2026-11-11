@@ -89,6 +89,10 @@ for (const item of PAGES) {
     if (httpStatus && httpStatus < 400) {
       snapshot = await page.evaluate(() => {
         const nav = document.querySelector('nav[aria-label="Main navigation"]');
+        const brand = document.querySelector('header .brand');
+        const brandRect = brand ? brand.getBoundingClientRect() : null;
+        const navRect = nav ? nav.getBoundingClientRect() : null;
+        const brandNavOverlap = !!(brandRect && navRect && brandRect.right > navRect.left + 1 && brandRect.left < navRect.right && brandRect.bottom > navRect.top && brandRect.top < navRect.bottom);
         const anchors = [...document.querySelectorAll('a[href]')].map(a => ({
           href: a.getAttribute('href'),
           text: (a.innerText || a.getAttribute('aria-label') || '').trim().slice(0, 100)
@@ -119,7 +123,9 @@ for (const item of PAGES) {
           navVisible: !!nav && getComputedStyle(nav).display !== 'none' && getComputedStyle(nav).visibility !== 'hidden' && nav.getBoundingClientRect().width > 0 && nav.getBoundingClientRect().height > 0,
           navDisplay: nav ? getComputedStyle(nav).display : null,
           navVisibility: nav ? getComputedStyle(nav).visibility : null,
-          navRect: nav ? (() => { const r = nav.getBoundingClientRect(); return { x:r.x, y:r.y, width:r.width, height:r.height, right:r.right, bottom:r.bottom }; })() : null,
+          navRect: navRect ? { x:navRect.x, y:navRect.y, width:navRect.width, height:navRect.height, right:navRect.right, bottom:navRect.bottom } : null,
+          brandRect: brandRect ? { x:brandRect.x, y:brandRect.y, width:brandRect.width, height:brandRect.height, right:brandRect.right, bottom:brandRect.bottom } : null,
+          brandNavOverlap,
           navLinkCount: nav?.querySelectorAll('a').length || 0,
           navCurrent: nav?.querySelector('a[aria-current="page"]')?.getAttribute('href') || null,
           navScrollWidth: nav?.scrollWidth || 0,
@@ -198,6 +204,8 @@ for (const item of PAGES) {
       navVisible: snapshot?.navVisible || false,
       navDisplay: snapshot?.navDisplay || null,
       navRect: snapshot?.navRect || null,
+      brandRect: snapshot?.brandRect || null,
+      brandNavOverlap: snapshot?.brandNavOverlap || false,
       navLinkCount: snapshot?.navLinkCount || 0,
       mobileNav: snapshot?.mobileNav || null,
       fontFamily: snapshot?.fontFamily || null,
@@ -233,6 +241,7 @@ for (const r of results) {
   if (r.horizontalOverflow) failures.push(`${r.page} ${r.viewport}: horizontal overflow`);
   if (!r.navCurrent) failures.push(`${r.page} ${r.viewport}: active navigation state missing`);
   if (!r.navVisible) failures.push(`${r.page} ${r.viewport}: main navigation is not visible`);
+  if (r.viewport === 'desktop' && r.brandNavOverlap) failures.push(`${r.page} desktop: brand and navigation overlap`);
   if (r.imageLoadFailures.length) failures.push(`${r.page} ${r.viewport}: image load failures`);
   if (r.localFragmentFailures?.length) failures.push(`${r.page} ${r.viewport}: local fragment target missing`);
   if (r.consoleErrors.length || r.pageErrors.length || r.failedRequests.length || r.badResponses.length) failures.push(`${r.page} ${r.viewport}: browser console/network errors`);

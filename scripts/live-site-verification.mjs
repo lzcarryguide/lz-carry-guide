@@ -47,8 +47,7 @@ async function checkLink(raw, currentUrl) {
     if (fragment && u.origin === new URL(BASE).origin) {
       const html = await response.text();
       const id = decodeURIComponent(fragment.slice(1));
-      const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      r.fragmentFound = new RegExp('(?:id|name)=["\\']' + escaped + '["\\']', 'i').test(html);
+      r.fragmentFound = html.includes('id="' + id + '"') || html.includes("id='" + id + "'") || html.includes('name="' + id + '"') || html.includes("name='" + id + "'");
       if (!r.fragmentFound) r.status = 'missing-fragment';
     }
     linkCache.set(key, r);

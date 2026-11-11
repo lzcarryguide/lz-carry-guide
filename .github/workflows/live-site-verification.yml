@@ -1,0 +1,36 @@
+name: Live Pages browser verification
+
+on:
+  push:
+    branches:
+      - live-site-verification-20261111
+
+permissions:
+  contents: read
+
+jobs:
+  live-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out isolated verification branch
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Run live desktop and mobile checks
+        run: node scripts/live-site-verification.mjs
+      - name: Upload screenshots and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lz-carry-live-site-verification
+          path: artifacts/live-site/
+          if-no-files-found: warn
+          retention-days: 14

@@ -125,7 +125,8 @@ for (const item of PAGES) {
           anchors, images, backgrounds
         };
       });
-      const required = item.selectors.map(selector => ({ selector, found: !!(await page.$(selector)) }));
+      const required = [];
+      for (const selector of item.selectors) required.push({ selector, found: !!(await page.$(selector)) });
       snapshot.required = required;
       if (viewport.name === 'mobile' && snapshot.navExists) {
         snapshot.mobileNav = await page.evaluate(() => {

@@ -136,12 +136,18 @@ for (const item of PAGES) {
           const nav = document.querySelector('nav[aria-label="Main navigation"]');
           if (!nav) return { usable: false };
           const links = [...nav.querySelectorAll('a')];
+          const first = links[0];
           const last = links.at(-1);
-          const before = nav.getBoundingClientRect();
-          nav.scrollTo({ left: nav.scrollWidth, behavior: 'instant' });
-          const rect = last?.getBoundingClientRect();
+          const navRect = nav.getBoundingClientRect();
+          nav.scrollTo({ left: 0, behavior: 'instant' });
+          const firstRect = first?.getBoundingClientRect();
+          const firstLinkReachableAtStart = !!firstRect && firstRect.width > 0 && firstRect.left >= navRect.left - 1 && firstRect.right <= navRect.right + 1;
+          const lastBefore = last?.getBoundingClientRect();
+          const targetScroll = lastBefore ? nav.scrollLeft + lastBefore.right - navRect.right : 0;
+          nav.scrollTo({ left: Math.max(0, targetScroll), behavior: 'instant' });
+          const lastRect = last?.getBoundingClientRect();
           const after = nav.getBoundingClientRect();
-          return {
+          const result = {
             display: getComputedStyle(nav).display,
             visibility: getComputedStyle(nav).visibility,
             navRect: { x:after.x, y:after.y, width:after.width, height:after.height, right:after.right, bottom:after.bottom },
@@ -151,9 +157,13 @@ for (const item of PAGES) {
             scrollLeft: nav.scrollLeft,
             canScrollHorizontally: nav.scrollWidth > nav.clientWidth + 1,
             linkCount: links.length,
-            lastLinkReachable: !!rect && rect.width > 0 && rect.right <= after.right + 1 && rect.left >= after.left - 1,
+            firstLinkReachableAtStart,
+            lastLinkReachable: !!lastRect && lastRect.width > 0 && lastRect.right <= after.right + 1 && lastRect.left >= after.left - 1,
+            firstLinkText: first?.innerText?.trim() || null,
             lastLinkText: last?.innerText?.trim() || null
           };
+          nav.scrollTo({ left: 0, behavior: 'instant' });
+          return result;
         });
       }
       const uniqueLinks = [...new Set(snapshot.anchors.map(a => a.href).filter(Boolean))];

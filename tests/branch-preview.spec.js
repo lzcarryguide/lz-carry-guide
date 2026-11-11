@@ -625,3 +625,12 @@ test("universal search is keyboard accessible and returns focus safely", async (
   await expect(dialog).not.toBeVisible();
 });
 
+
+
+test("beginner formation CTA targets the existing Hero Formation Lab section", async ({ page }) => {
+  await page.goto("/beginner.html");
+  const cta = page.getByRole("link", { name: "Build a formation" });
+  await expect(cta).toHaveAttribute("href", "heroes.html#formation-lab");
+  await page.goto("/heroes.html#formation-lab");
+  await expect(page.locator("#formation-lab")).toBeVisible();
+});

@@ -152,7 +152,9 @@ for (const item of PAGES) {
         for (const img of document.images) img.loading = 'eager';
       });
       await page.waitForTimeout(700);
+      snapshot.images = await page.evaluate(() => [...document.images].map(img => ({ src: img.currentSrc || img.src, alt: img.alt, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight })));
       snapshot.imageLoadFailures = snapshot.images.filter(i => !i.naturalWidth).map(i => i.src);
+      snapshot.localFragmentFailures = await page.evaluate(() => [...document.querySelectorAll('a[href^="#"]')].map(a => a.getAttribute('href')).filter(h => h.length > 1 && !document.getElementById(decodeURIComponent(h.slice(1)))));
     }
 
     const screenshot = path.join(outDir, item.file.replace('.html', '') + '-' + viewport.name + '.png');
@@ -205,6 +207,7 @@ for (const r of results) {
   if (r.horizontalOverflow) failures.push(`${r.page} ${r.viewport}: horizontal overflow`);
   if (!r.navCurrent) failures.push(`${r.page} ${r.viewport}: active navigation state missing`);
   if (r.imageLoadFailures.length) failures.push(`${r.page} ${r.viewport}: image load failures`);
+  if (r.localFragmentFailures?.length) failures.push(`${r.page} ${r.viewport}: local fragment target missing`);
   if (r.consoleErrors.length || r.pageErrors.length || r.failedRequests.length || r.badResponses.length) failures.push(`${r.page} ${r.viewport}: browser console/network errors`);
   if (r.mobileNav && (!r.mobileNav.lastLinkReachable || !['auto','scroll'].includes(r.mobileNav.overflowX))) failures.push(`${r.page} mobile: navigation may not be scrollable/reachable`);
   if (r.linkResults.some(l => typeof l.status === 'number' && l.status >= 400 || l.status === 'request-failed' || l.status === 'missing-fragment')) failures.push(`${r.page} ${r.viewport}: broken/unreachable links`);

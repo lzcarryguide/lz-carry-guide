@@ -1,0 +1,51 @@
+/* Interactive companion UX — compact controls, quiet borders, accessible mobile layout */
+.research-progress-panel,.research-reference-disclosure,.hero-advanced-disclosure,.event-reference-disclosure,.event-personal-checklist,.pilot-summary-panel{border:1px solid rgba(143,190,224,.2);border-radius:12px;background:rgba(13,22,35,.72);padding:16px;margin:14px 0}
+.research-progress-top,.research-progress-meter,.event-checklist-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.research-progress-top h2{margin:.2rem 0}.research-progress-track{height:9px;flex:1;min-width:120px;border-radius:99px;background:#202d3c;overflow:hidden}.research-progress-track span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#5b91bd,#a8d7f4);transition:width .2s ease}
+.research-progress-meter{margin-top:12px}.research-progress-meter strong{font-variant-numeric:tabular-nums;color:#cceaff}
+.research-next{margin-top:12px;padding:11px 13px;border-left:3px solid #79b7e3;background:rgba(92,153,197,.09);border-radius:0 8px 8px 0}.research-next p{margin:4px 0 0}
+.research-tree-card summary{grid-template-columns:minmax(135px,180px) minmax(150px,.65fr) minmax(180px,1.2fr) auto auto!important}
+.research-progress-badge{font-size:.68rem;color:#c4d9ea;border:1px solid rgba(155,194,222,.25);border-radius:99px;padding:4px 8px;white-space:nowrap}
+.research-progress-badge[data-state="complete"]{color:#a8e7c1;border-color:rgba(117,208,161,.35)}
+.research-progress-badge[data-state="in-progress"]{color:#f0d49a;border-color:rgba(229,187,105,.35)}
+.research-entry-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:1px solid rgba(158,220,255,.12)}
+.research-entry-controls label{display:flex;align-items:center;gap:10px;font-weight:600}.research-entry-controls select{min-width:145px}
+.research-reference-disclosure>summary,.hero-advanced-disclosure>summary,.event-reference-disclosure>summary{cursor:pointer;list-style:none;font-weight:650;color:#d8eaff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px}
+.research-reference-disclosure>summary::-webkit-details-marker,.hero-advanced-disclosure>summary::-webkit-details-marker,.event-reference-disclosure>summary::-webkit-details-marker{display:none}
+.research-reference-disclosure>summary:after,.hero-advanced-disclosure>summary:after,.event-reference-disclosure>summary:after{content:"＋";color:#8ec9f0}
+.research-reference-disclosure[open]>summary:after,.hero-advanced-disclosure[open]>summary:after,.event-reference-disclosure[open]>summary:after{content:"−"}
+.research-reference-content,.hero-advanced-content,.event-reference-content{padding-top:12px}
+.formation-filters #builder-hero-troop{width:100%;min-height:40px;padding:9px 12px;color:var(--text);background:#0b121d;border:1px solid #52677f;border-radius:7px;font:inherit}
+.hero-advanced-disclosure{margin:14px 0}.hero-advanced-disclosure .wrap{padding:0}
+.event-personal-checklist{margin:14px 0;padding:13px}.event-checklist-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin-top:10px}
+.event-check-item{display:flex;align-items:flex-start;gap:9px;font-size:.88rem;line-height:1.4}.event-check-item input{margin-top:3px;accent-color:#80bde8}.event-personal-checklist[data-complete="true"]{border-color:rgba(117,208,161,.45)}
+.event-reference-disclosure{margin:12px 0}.event-reference-content{max-height:none}
+.pilot-config-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.8fr);gap:20px;align-items:start}
+.pilot-option-list{display:grid;gap:10px}
+.pilot-package-option{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:12px;padding:14px;border:1px solid rgba(143,190,224,.22);border-radius:10px;background:rgba(14,24,38,.72);cursor:pointer}
+.pilot-package-option:has(input:checked){border-color:#7dbbe6;background:rgba(74,135,180,.14);box-shadow:inset 0 0 0 1px rgba(125,187,230,.22)}
+.pilot-package-option input,.pilot-addon-option input{margin-top:4px;accent-color:#83c4f0}
+.pilot-package-option strong{display:block;color:#e7f3ff}.pilot-package-option small{display:block;color:var(--muted);margin-top:4px;line-height:1.45}
+.pilot-option-price{font-weight:750;color:#c6e8ff;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pilot-option-details{margin:8px 0 0 28px}.pilot-option-details summary{cursor:pointer;color:#a9d4f3;font-size:.84rem}
+.pilot-option-details ul{margin:8px 0;padding-left:18px}.pilot-option-details li{margin:4px 0;font-size:.88rem}
+.pilot-field{display:grid;gap:6px;max-width:260px;margin:10px 0}.pilot-field[hidden]{display:none}
+.pilot-addon-list{display:grid;gap:8px;margin-top:10px}
+.pilot-addon-option{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-bottom:1px solid rgba(143,190,224,.14);cursor:pointer}
+.pilot-addon-option span{flex:1}.pilot-addon-option strong{display:block}.pilot-addon-option small{display:block;color:var(--muted);margin-top:3px;line-height:1.45}
+.pilot-summary-panel{position:sticky;top:16px;margin:0}.pilot-summary-panel h2{margin:.2rem 0 .8rem}.pilot-summary-panel ul{padding-left:18px}.pilot-summary-panel li{margin:7px 0;line-height:1.45}
+.pilot-total-row{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid rgba(143,190,224,.2);padding-top:13px;margin-top:13px}
+.pilot-total-row strong{font-size:1.5rem;color:#d5efff;font-variant-numeric:tabular-nums}
+.pilot-actions{display:grid;gap:9px;margin-top:14px}.pilot-actions .btn{width:100%;text-align:center}.pilot-actions button:disabled{opacity:.48;cursor:not-allowed}
+.pilot-security-note{font-size:.78rem;color:var(--muted);line-height:1.5;margin-top:14px}
+@media(max-width:760px){
+ .research-tree-card summary{grid-template-columns:1fr auto!important;gap:7px 10px!important}
+ .research-tree-card summary .research-progress-badge{grid-column:2;grid-row:1}
+ .research-tree-card summary .pill{grid-column:1/-1}
+ .event-checklist-items{grid-template-columns:1fr}
+ .pilot-config-layout{grid-template-columns:minmax(0,1fr)}
+ .pilot-summary-panel{position:static;order:-1}
+ .pilot-package-option{grid-template-columns:auto minmax(0,1fr)}.pilot-option-price{grid-column:2}
+ .pilot-option-details{margin-left:26px}
+}
+@media(prefers-reduced-motion:reduce){.research-progress-track span{transition:none}}

@@ -1,0 +1,9 @@
+.guide-category-disclosure{margin:16px 0;border:1px solid #334b65;border-radius:10px;background:#0d1724;overflow:hidden}
+.guide-category-disclosure>summary{padding:12px 15px;cursor:pointer;list-style:none;color:#dceeff;font-weight:700}
+.guide-category-disclosure>summary::-webkit-details-marker{display:none}
+.guide-category-disclosure>summary:after{content:"Open categories";float:right;color:#91b6d7;font-size:.78rem;font-weight:500}
+.guide-category-disclosure[open]>summary:after{content:"Close categories"}
+.guide-category-disclosure .library-categories{padding:0 12px 12px}
+.guide-source-note{margin:8px 0;padding-top:6px;border-top:1px solid #30465e}
+.guide-source-note>summary{cursor:pointer;color:#b9d8f4;font-size:.8rem;font-weight:700}
+.guide-source-note p{margin:6px 0 0;line-height:1.5}

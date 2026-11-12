@@ -17,7 +17,7 @@
 
   const validSource = (source) => source &&
     typeof source.name === "string" && source.name.trim() &&
-    ["in-game", "official", "community"].includes(source.type) &&
+    ["in-game", "official", "community", "internal-tool-review"].includes(source.type) &&
     validDate(source.checkedAt) &&
     typeof source.note === "string" && source.note.trim();
 
@@ -46,12 +46,14 @@
     });
     count.textContent = visible.length + (visible.length === 1 ? " published guide" : " published guides");
     if (!visible.length) {
-      results.innerHTML = '<div class="library-empty card"><h2>No published guides match yet</h2><p>The searchable index is connected, but it will show only guides with a valid verification date and dated source checks. Try another category or check back as verified content is added.</p></div>';
+      results.innerHTML = '<div class="library-empty card"><h2>No guides match this search</h2><p>Clear the search or choose All categories to see the published quick-start guides.</p></div>';
       return;
     }
     results.innerHTML = visible.map((entry) => {
       const tags = (entry.tags || []).map((tag) => '<span class="pill">' + escapeHtml(tag) + '</span>').join(" ");
-      const sourceNote = '<p class="small muted">Verified: ' + escapeHtml(entry.verifiedAt) + '</p>';
+      const source = entry.sources.find(validSource);
+      const sourceType = source && source.type === "internal-tool-review" ? "LZ Carry tool review" : (source ? source.type : "");
+      const sourceNote = '<p class="small muted">Reviewed: ' + escapeHtml(entry.verifiedAt) + '</p>' + (source ? '<details class="guide-source-note"><summary>Source & review note</summary><p class="small muted">' + escapeHtml(source.name) + ' · ' + escapeHtml(sourceType) + ' · checked ' + escapeHtml(source.checkedAt) + '. ' + escapeHtml(source.note) + '</p></details>' : '');
       return '<article class="card"><p class="eyebrow">' + escapeHtml(entry.category) + '</p><h2>' + escapeHtml(entry.title) + '</h2><p>' + escapeHtml(entry.summary) + '</p><p class="small">' + tags + '</p>' + sourceNote + '<a class="btn" href="' + escapeHtml(entry.url) + '">Read guide</a></article>';
     }).join("");
   };

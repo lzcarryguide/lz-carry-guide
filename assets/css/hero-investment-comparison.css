@@ -23,9 +23,9 @@
 @media(max-width:640px){.hero-investment-selectors,.hero-investment-inputs,.hero-investment-results{grid-template-columns:1fr}.hero-investment-actions{align-items:stretch;flex-direction:column}.hero-investment-actions button{width:100%}}
 
 
-.hero-investment-skill-notes{margin-top:8px;border-top:1px solid #31465d;padding-top:8px}
-.hero-investment-skill-notes>summary{cursor:pointer;color:#c6e2ff;font-size:.84rem;font-weight:700}
-.hero-investment-skill-notes ul{margin:8px 0;padding-left:18px;color:#afbdce;font-size:.82rem;line-height:1.5}
-.hero-investment-skill-notes li+li{margin-top:5px}
+.hero-investment-evidence{margin-top:8px;border-top:1px solid #31465d;padding-top:8px}
+.hero-investment-evidence>summary{cursor:pointer;color:#c6e2ff;font-size:.84rem;font-weight:700}
+.hero-investment-evidence ul{margin:8px 0;padding-left:18px;color:#afbdce;font-size:.82rem;line-height:1.5}
+.hero-investment-evidence li+li{margin-top:5px}
 
 .hero-investment-results>p{grid-column:1/-1}

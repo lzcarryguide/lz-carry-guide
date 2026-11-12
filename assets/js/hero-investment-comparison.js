@@ -11,16 +11,20 @@ function field(card,label,value){var p=node("p","",label+": "+(value===null||val
 function profile(hero,side){
 var card=node("article","hero-investment-profile",""),title=node("h3","",hero.name),badge=node("span","pill",hero.verificationStatus||"Unconfirmed");
 card.append(title,badge);
-field(card,"Faction",hero.faction);field(card,"Troop type",hero.troopType);field(card,"Rarity",hero.rarity);field(card,"Indexed role",hero.role);field(card,"Season",hero.season===0?"Base roster":(hero.season===null||hero.season===undefined)?"Not confirmed":"Season "+hero.season);
 var notes=hero.profileNotes||{},skills=Array.isArray(notes.skills)?notes.skills:[];
-field(card,"Skill evidence",skills.length?skills.length+" community-indexed skill note(s)":"No reconciled skill notes");
-if(notes.fieldRole)field(card,"Role context",notes.fieldRole);
-if(skills.length){var disclosure=node("details","hero-investment-skill-notes","");var summary=node("summary","","Skill evidence notes · "+skills.length);var list=node("ul","","");skills.forEach(function(note){list.appendChild(node("li","",note));});disclosure.append(summary,list);card.appendChild(disclosure);}
+var identity=[hero.faction,hero.troopType,hero.rarity,hero.role,hero.season===0?"Base roster":(hero.season===null||hero.season===undefined)?"Season not confirmed":"Season "+hero.season].filter(Boolean).join(" · ");
+field(card,"Profile",identity||"Identity metadata not reconciled");
 field(card,"Investment note",notes.investment||hero.investmentNote||"No hero-specific investment note published");
-field(card,"Source confidence",notes.sourceConfidence||notes.evidence||"No separate source-confidence note");
-field(card,"Your current level",document.getElementById("hero-compare-"+side+"-current").value);
-field(card,"Your target level",document.getElementById("hero-compare-"+side+"-target").value);
-field(card,"Your star / skill note",document.getElementById("hero-compare-"+side+"-stars").value);
+var plan=[];
+var current=document.getElementById("hero-compare-"+side+"-current").value,target=document.getElementById("hero-compare-"+side+"-target").value,stars=document.getElementById("hero-compare-"+side+"-stars").value;
+if(current)plan.push("Current level: "+current);if(target)plan.push("Target level: "+target);if(stars)plan.push("Star / skill: "+stars);
+field(card,"Your plan",plan.join(" · ")||"No personal investment notes entered");
+var evidence=node("details","hero-investment-evidence",""),summary=node("summary","","Skill and source evidence · "+skills.length+" note(s)"),content=node("div","hero-investment-evidence-content","");
+field(content,"Skill evidence",skills.length?skills.length+" community-indexed skill note(s)":"No reconciled skill notes");
+if(notes.fieldRole)field(content,"Role context",notes.fieldRole);
+field(content,"Source confidence",notes.sourceConfidence||notes.evidence||"No separate source-confidence note");
+if(skills.length){var list=node("ul","","");skills.forEach(function(note){list.appendChild(node("li","",note));});content.appendChild(list);}
+evidence.append(summary,content);card.appendChild(evidence);
 return card;
 }
 function render(){

@@ -81,6 +81,11 @@ test("pilot selector calculates exact package and add-on totals without inventin
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/pilot.html");
   await expect(page.locator("#pilot-total")).toHaveText("$3");
+  const durationStyle = await page.locator("#pilot-days").evaluate(el => ({ background: getComputedStyle(el).backgroundColor, color: getComputedStyle(el).color, height: el.getBoundingClientRect().height }));
+  expect(durationStyle.background).toBe("rgb(11, 18, 29)");
+  expect(durationStyle.color).toBe("rgb(232, 239, 248)");
+  expect(durationStyle.height).toBeGreaterThanOrEqual(42);
+
   await page.getByLabel("Daily Pilot duration").fill("0");
   await expect(page.getByLabel("Daily Pilot duration")).toHaveValue("1");
   await expect(page.locator("#pilot-total")).toHaveText("$3");

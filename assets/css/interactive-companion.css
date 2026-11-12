@@ -30,6 +30,9 @@
 .pilot-option-details{margin:8px 0 0 28px}.pilot-option-details summary{cursor:pointer;color:#a9d4f3;font-size:.84rem}
 .pilot-option-details ul{margin:8px 0;padding-left:18px}.pilot-option-details li{margin:4px 0;font-size:.88rem}
 .pilot-field{display:grid;gap:6px;max-width:260px;margin:10px 0}.pilot-field[hidden]{display:none}
+.pilot-field input,.pilot-field select{width:100%;min-height:42px;padding:9px 11px;border:1px solid #52677f;border-radius:8px;background:#0b121d;color:#e8eff8;color-scheme:dark;font:inherit}
+.pilot-field input:focus-visible,.pilot-field select:focus-visible{outline:2px solid #83caff;outline-offset:2px}
+
 .pilot-addon-list{display:grid;gap:8px;margin-top:10px}
 .pilot-addon-option{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-bottom:1px solid rgba(143,190,224,.14);cursor:pointer}
 .pilot-addon-option span{flex:1}.pilot-addon-option strong{display:block}.pilot-addon-option small{display:block;color:var(--muted);margin-top:3px;line-height:1.45}

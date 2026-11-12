@@ -3,7 +3,7 @@ const { test, expect } = require("@playwright/test");
 test("research progress is interactive, saved locally and keeps long reference notes collapsed", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/research.html");
-  await page.evaluate(() => localStorage.removeItem("lzcarry-research-progress-v2"));
+  await page.evaluate(() => localStorage.removeItem("lzcarry-research-plan-v1"));
   await page.reload();
   await expect(page.locator(".research-progress-panel")).toBeVisible();
   await expect(page.locator("#research-progress-value")).toHaveText("0%");
@@ -11,7 +11,7 @@ test("research progress is interactive, saved locally and keeps long reference n
   await card.locator("summary").click();
   await expect(card.locator(".research-tree-body")).toBeVisible();
   await expect(card.locator(".research-entry-controls select")).toBeVisible();
-  await card.locator(".research-entry-controls select").selectOption("Complete");
+  await card.locator(".research-entry-controls select").selectOption("Done");
   await expect(page.locator("#research-progress-copy")).toContainText("1 of 22 research trees complete");
   await expect(page.locator("#research-progress-value")).toHaveText("5%");
   await expect(page.locator("#research-next")).toContainText("Recommended next research");

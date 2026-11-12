@@ -366,11 +366,12 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": true }));
     localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done" }));
     localStorage.setItem("lzcarry-event-prep-v2", JSON.stringify({ "20261110-Research-0": true }));
+    localStorage.setItem("lzcarry-event-checklists-v1", JSON.stringify({ "alliance-duel": { "0": true } }));
     localStorage.setItem("lzcarry-event-reminders-v1", JSON.stringify([{ id: "reminder-1", name: "Alliance Duel", when: "2026-11-12T18:00:00.000Z", note: "Check the live task panel" }]));
     localStorage.setItem("lzcarry-hq-resource-check-v1", JSON.stringify({ food: "120", wood: "80", zent: "10", steel: "5" }));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/6 of 10 saved data sets found/)).toBeVisible();
+  await expect(page.getByText(/7 of 11 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;
@@ -383,6 +384,7 @@ test("player progress can be exported and safely imported across planners", asyn
   expect(backup.data["lzcarry-formation-library-v1"][0].name).toBe("Test formation");
   expect(backup.data["lzcarry:hq-planner:v2"]["35:0"]).toBe(true);
   expect(backup.data["lzcarry-event-reminders-v1"][0].name).toBe("Alliance Duel");
+  expect(backup.data["lzcarry-event-checklists-v1"]["alliance-duel"]["0"]).toBe(true);
   expect(backup.data["lzcarry-hq-resource-check-v1"].food).toBe("120");
 
   await page.evaluate(() => localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": false })));

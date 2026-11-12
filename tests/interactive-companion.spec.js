@@ -232,3 +232,31 @@ test("player progress can be cleared and restored from a reversible local snapsh
   expect(restored.research["Alliance Recognition"]).toBe("Done");
   expect(restored.event["alliance-duel"]["0"]).toBe(true);
 });
+
+
+test("Player Dashboard prioritizes one next action and Speedup Planner persists player-entered timer math", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/dashboard.html");
+  await expect(page.getByRole("heading", { name: "Next Best Action" })).toBeVisible();
+  await expect(page.locator(".dashboard-next-action-card strong")).toHaveText("Set your current HQ");
+  await page.locator("#dashboard-hq").selectOption("25");
+  await page.getByRole("button", { name: "Save account progress" }).click();
+  await expect(page.locator(".dashboard-next-action-card strong")).toHaveText("Plan your next HQ upgrade");
+
+  await page.getByLabel("Timer type").selectOption("Research");
+  await page.getByLabel("Days remaining").fill("1");
+  await page.getByLabel("Hours remaining").fill("2");
+  await page.getByLabel("Minutes remaining").fill("30");
+  await page.getByLabel("Available speedup time (minutes)").fill("600");
+  await expect(page.locator("#speedup-results")).toContainText("Research timer · 1d 2h 30m");
+  await expect(page.locator("#speedup-results")).toContainText("Remaining: 16h 30m");
+  await expect(page.locator(".speedup-progress-track")).toHaveAttribute("aria-valuenow", "38");
+  await page.reload();
+  await expect(page.getByLabel("Timer type")).toHaveValue("Research");
+  await expect(page.getByLabel("Available speedup time (minutes)")).toHaveValue("600");
+  await page.getByLabel("Available speedup time (minutes)").fill("2000");
+  await expect(page.locator("#speedup-results")).toContainText("Your entered speedup time covers the full timer");
+  await page.getByRole("button", { name: "Reset speedup planner" }).click();
+  await expect(page.getByLabel("Timer type")).toHaveValue("Building");
+  await expect(page.getByLabel("Available speedup time (minutes)")).toHaveValue("0");
+});

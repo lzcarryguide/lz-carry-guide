@@ -909,7 +909,8 @@ footer p { max-width: 760px; margin: 7px 0 0; font-size: 13px; line-height: 1.55
 .mobile-nav-toggle{display:none;align-items:center;justify-content:center;gap:8px;padding:9px 13px;border:1px solid rgba(143,190,224,.36);border-radius:8px;background:#102033;color:#e6f4ff;font:600 .9rem/1.2 system-ui,sans-serif;cursor:pointer}
 .mobile-nav-toggle[aria-expanded="true"]{border-color:#83c4f0;background:#19334b}
 @media(max-width:760px){
-  header .nav{align-items:center;flex-wrap:wrap;min-width:0}
+  header .nav{align-items:center;flex-wrap:wrap;min-width:0;gap:8px}
+  header .nav>.player-data-trigger{font-size:.68rem;padding:6px 8px;min-height:34px}
   header .nav>.mobile-nav-toggle{display:inline-flex;margin-left:auto;order:2}
   header .nav>.player-data-trigger{order:2;margin-left:8px}
   header .nav>nav[aria-label="Main navigation"]{display:none;order:3;flex:1 0 100%;width:100%;min-width:0;max-width:100%;flex-wrap:wrap;justify-content:flex-start;gap:6px;overflow:visible;white-space:normal;padding:10px 0 8px}

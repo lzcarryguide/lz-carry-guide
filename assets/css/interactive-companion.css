@@ -49,3 +49,5 @@
  .pilot-option-details{margin-left:26px}
 }
 @media(prefers-reduced-motion:reduce){.research-progress-track span{transition:none}}
+
+.research-reference-disclosure>summary h2,.hero-advanced-disclosure>summary h2,.event-reference-disclosure>summary h2{font-size:1.05rem;margin:0;color:#d8eaff}

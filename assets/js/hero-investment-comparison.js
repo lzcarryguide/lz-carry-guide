@@ -14,6 +14,8 @@ card.append(title,badge);
 field(card,"Faction",hero.faction);field(card,"Troop type",hero.troopType);field(card,"Rarity",hero.rarity);field(card,"Indexed role",hero.role);field(card,"Season",hero.season===0?"Base roster":(hero.season===null||hero.season===undefined)?"Not confirmed":"Season "+hero.season);
 var notes=hero.profileNotes||{},skills=Array.isArray(notes.skills)?notes.skills:[];
 field(card,"Skill evidence",skills.length?skills.length+" community-indexed skill note(s)":"No reconciled skill notes");
+if(notes.fieldRole)field(card,"Role context",notes.fieldRole);
+if(skills.length){var disclosure=node("details","hero-investment-skill-notes","");var summary=node("summary","","Skill evidence notes · "+skills.length);var list=node("ul","","");skills.forEach(function(note){list.appendChild(node("li","",note));});disclosure.append(summary,list);card.appendChild(disclosure);}
 field(card,"Investment note",notes.investment||hero.investmentNote||"No hero-specific investment note published");
 field(card,"Source confidence",notes.sourceConfidence||notes.evidence||"No separate source-confidence note");
 field(card,"Your current level",document.getElementById("hero-compare-"+side+"-current").value);

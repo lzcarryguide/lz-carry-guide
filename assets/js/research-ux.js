@@ -19,7 +19,7 @@ if(fill)fill.style.width=pct+"%";
 var value=document.getElementById("research-progress-value");if(value)value.textContent=pct+"%";
 var copy=document.getElementById("research-progress-copy");if(copy)copy.textContent=done+" of "+cards.length+" research trees complete · "+active+" in progress";
 var next=document.getElementById("research-next");if(next){next.replaceChildren();var strong=document.createElement("strong");strong.textContent="Recommended next research";var p=document.createElement("p");p.textContent=high.length?high[0].name+" — "+high[0].note:"No high-priority incomplete entry is identified by the current research notes. Review your next unlock in the live Laboratory.";next.append(strong,p);}
-cards.forEach(function(card){var s=state[label(card)]||"Not started",summary=card.querySelector("summary");var badge=summary&&summary.querySelector(".research-progress-badge");if(!badge&&summary){badge=document.createElement("span");badge.className="research-progress-badge";summary.appendChild(badge);}if(badge){badge.textContent=s==="Complete"?"Complete":s==="In progress"?"In progress":"Not started";badge.dataset.state=s.toLowerCase().replace(/\s/g,"-");}});
+cards.forEach(function(card){var s=state[label(card)]||"Not started",summary=card.querySelector("summary");var badge=summary&&summary.querySelector(".research-progress-badge");if(!badge&&summary){badge=document.createElement("span");badge.className="research-progress-badge";summary.appendChild(badge);}if(badge){badge.textContent=s==="Done"?"Complete":s==="In progress"?"In progress":"Not started";badge.dataset.state=s==="Done"?"complete":s==="In progress"?"in-progress":"not-started";}});
 }
 cards.forEach(function(card){
 var body=card.querySelector(".research-tree-body");if(!body)return;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Configure LZ Carry daily, Saturday and weekly pilot services, add-ons and a clear booking summary.">
+<meta name="description" content="Review and configure LZ Carry daily, Saturday and weekly pilot services with optional add-ons and a clear booking summary.">
 <meta name="theme-color" content="#080c13"><title>Configure LZ Carry Services | LZ Carry</title>
 <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="assets/css/interactive-companion.css">
 </head>
@@ -17,16 +17,20 @@
 <form id="pilot-configurator">
 <div class="pilot-option-list">
 <h2>1. Choose a package</h2>
-<label class="pilot-package-option"><input type="radio" name="package" value="daily" checked><span><strong>Daily Pilot</strong><small>Full Preparedness, Boomer, Mines, Melee, Arena and Fury Lord.</small><details class="pilot-option-details"><summary>View included services</summary><ul><li>Full Preparedness</li><li>Boomer</li><li>Mines</li><li>Melee</li><li>Arena</li><li>Fury Lord</li></ul></details><span class="pilot-field" id="pilot-days-field"><label for="pilot-days">Number of days</label><select id="pilot-days" name="days"><option value="1">1 day</option><option value="2">2 days</option><option value="3">3 days</option><option value="4">4 days</option><option value="5">5 days</option><option value="6">6 days</option><option value="7">7 days</option></select></span></span><span class="pilot-option-price">$3/day</span></label>
-<label class="pilot-package-option"><input type="radio" name="package" value="saturday"><span><strong>Saturday Special</strong><small>All Daily Pilot services plus Enemy Buster RSS loot-cap assistance.</small><details class="pilot-option-details"><summary>View included services</summary><ul><li>All Daily Pilot services</li><li>Enemy Buster RSS loot-cap assistance</li></ul></details></span><span class="pilot-option-price">$8</span></label>
-<label class="pilot-package-option"><input type="radio" name="package" value="weekly"><span><strong>Weekly Elite Management</strong><small>Seven days of daily services, Saturday Enemy Buster assistance and account progression support.</small><details class="pilot-option-details"><summary>View included services</summary><ul><li>Daily Pilot services for 7 days</li><li>Saturday Enemy Buster RSS loot-cap assistance</li><li>Upgrade planning and prioritization</li><li>Account progression management</li><li>Resource usage guidance</li><li>Alliance vs Alliance tasks, Monday–Saturday</li></ul></details></span><span class="pilot-option-price">$30 / 7 days</span></label>
+<label class="pilot-package-option"><input type="radio" name="package" value="daily" checked><span><strong>Daily Pilot</strong><small>Full Preparedness, Boomer, Mines, Melee, Arena and Fury Lord.</small></span><span class="pilot-option-price">$3/day</span></label>
+<details class="pilot-option-details"><summary>Daily Pilot inclusions</summary><ul><li>Full Preparedness</li><li>Boomer</li><li>Mines</li><li>Melee</li><li>Arena</li><li>Fury Lord</li></ul></details>
+<div class="pilot-field" id="pilot-days-field"><label for="pilot-days">Daily Pilot duration</label><select id="pilot-days" name="days"><option value="1">1 day</option><option value="2">2 days</option><option value="3">3 days</option><option value="4">4 days</option><option value="5">5 days</option><option value="6">6 days</option><option value="7">7 days</option></select></div>
+<label class="pilot-package-option"><input type="radio" name="package" value="saturday"><span><strong>Saturday Special</strong><small>All Daily Pilot services plus Enemy Buster RSS loot-cap assistance.</small></span><span class="pilot-option-price">$8</span></label>
+<details class="pilot-option-details"><summary>Saturday Special inclusions</summary><ul><li>All Daily Pilot services</li><li>Enemy Buster RSS loot-cap assistance</li></ul></details>
+<label class="pilot-package-option"><input type="radio" name="package" value="weekly"><span><strong>Weekly Elite Management</strong><small>Seven days of daily services, Saturday Enemy Buster assistance and account progression support.</small></span><span class="pilot-option-price">$30 / 7 days</span></label>
+<details class="pilot-option-details"><summary>Weekly Elite Management inclusions</summary><ul><li>Daily Pilot services for 7 days</li><li>Saturday Enemy Buster RSS loot-cap assistance</li><li>Upgrade planning and prioritization</li><li>Account progression management</li><li>Resource usage guidance</li><li>Alliance vs Alliance tasks, Monday–Saturday</li></ul></details>
 </div>
 <div class="pilot-option-list" style="margin-top:24px">
 <h2>2. Optional add-ons</h2>
 <div class="pilot-addon-list">
-<label class="pilot-addon-option"><input type="checkbox" name="svs-chest"><span><strong>SVS Chest Opening — $5</strong><small>Covers 2–3 accounts. One flat add-on price.</small><span class="pilot-field" id="pilot-svs-accounts-field" hidden><label for="pilot-svs-accounts">Accounts covered</label><select name="svs-accounts" id="pilot-svs-accounts"><option value="2">2 accounts</option><option value="3">3 accounts</option></select></span></span></label>
-<label class="pilot-addon-option"><input type="checkbox" name="full-svs"><span><strong>Full SVS Participation — individual quote per account</strong><small>Price is confirmed individually; it is not included in the calculated subtotal.</small><span class="pilot-field" id="pilot-full-svs-accounts-field" hidden><label for="pilot-full-svs-accounts">Number of accounts for quote</label><input type="number" min="1" max="20" value="1" name="full-svs-accounts" id="pilot-full-svs-accounts"></span></span></label>
-<label class="pilot-addon-option"><input type="checkbox" name="canyon"><span><strong>Canyon Clash — $8/account</strong><small>Approximately 45 minutes of gameplay per account.</small><span class="pilot-field" id="pilot-canyon-accounts-field" hidden><label for="pilot-canyon-accounts">Number of accounts</label><input type="number" min="1" max="20" value="1" name="canyon-accounts" id="pilot-canyon-accounts"></span></span></label>
+<div class="pilot-addon-item"><label class="pilot-addon-option"><input type="checkbox" name="svs-chest"><span><strong>SVS Chest Opening — $5</strong><small>Covers 2–3 accounts. One flat add-on price.</small></span></label><div class="pilot-field" id="pilot-svs-accounts-field" hidden><label for="pilot-svs-accounts">Accounts covered</label><select name="svs-accounts" id="pilot-svs-accounts"><option value="2">2 accounts</option><option value="3">3 accounts</option></select></div></div>
+<div class="pilot-addon-item"><label class="pilot-addon-option"><input type="checkbox" name="full-svs"><span><strong>Full SVS Participation — individual quote per account</strong><small>Price is confirmed individually; it is not included in the calculated subtotal.</small></span></label><div class="pilot-field" id="pilot-full-svs-accounts-field" hidden><label for="pilot-full-svs-accounts">Number of accounts for quote</label><input type="number" min="1" max="20" value="1" name="full-svs-accounts" id="pilot-full-svs-accounts"></div></div>
+<div class="pilot-addon-item"><label class="pilot-addon-option"><input type="checkbox" name="canyon"><span><strong>Canyon Clash — $8/account</strong><small>Approximately 45 minutes of gameplay per account.</small></span></label><div class="pilot-field" id="pilot-canyon-accounts-field" hidden><label for="pilot-canyon-accounts">Number of accounts</label><input type="number" min="1" max="20" value="1" name="canyon-accounts" id="pilot-canyon-accounts"></div></div>
 </div>
 </div>
 </form>
@@ -35,7 +39,7 @@
 <div class="pilot-total-row"><span>Calculated total</span><strong id="pilot-total">$3</strong></div><p id="pilot-price-status" class="small muted">Calculated from the published package and add-on prices.</p>
 <button class="btn secondary" type="button" id="pilot-copy-summary">Copy booking summary</button>
 <div class="pilot-actions"><button class="btn" type="button" id="pilot-request" data-destination="" disabled>Request a Pilot</button><button class="btn secondary" type="button" id="pilot-assistance" data-destination="" disabled>Ask for Assistance</button></div>
-<p class="pilot-security-note">The Discord destinations for these two actions must be connected to the existing LZ Carry ticket and service channels. Never share account passwords, login codes or recovery credentials in a booking request.</p>
+<p class="pilot-security-note">These actions will open the existing LZ Carry Discord ticket and service channels once their confirmed destinations are configured. Never share account passwords, login codes or recovery credentials in a booking request.</p>
 </aside>
 </div></section>
 </main>

@@ -10,10 +10,10 @@
 .research-progress-badge[data-state="in-progress"]{color:#f0d49a;border-color:rgba(229,187,105,.35)}
 .research-entry-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:1px solid rgba(158,220,255,.12)}
 .research-entry-controls label{display:flex;align-items:center;gap:10px;font-weight:600}.research-entry-controls select{min-width:145px}
-.research-reference-disclosure>summary,.hero-advanced-disclosure>summary,.event-reference-disclosure>summary{cursor:pointer;list-style:none;font-weight:650;color:#d8eaff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px}
-.research-reference-disclosure>summary::-webkit-details-marker,.hero-advanced-disclosure>summary::-webkit-details-marker,.event-reference-disclosure>summary::-webkit-details-marker{display:none}
-.research-reference-disclosure>summary:after,.hero-advanced-disclosure>summary:after,.event-reference-disclosure>summary:after{content:"＋";color:#8ec9f0}
-.research-reference-disclosure[open]>summary:after,.hero-advanced-disclosure[open]>summary:after,.event-reference-disclosure[open]>summary:after{content:"−"}
+.research-reference-disclosure>summary,.hero-advanced-disclosure>summary,.hero-preset-disclosure>summary,.event-reference-disclosure>summary{cursor:pointer;list-style:none;font-weight:650;color:#d8eaff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px}
+.research-reference-disclosure>summary::-webkit-details-marker,.hero-advanced-disclosure>summary::-webkit-details-marker,.hero-preset-disclosure>summary::-webkit-details-marker,.event-reference-disclosure>summary::-webkit-details-marker{display:none}
+.research-reference-disclosure>summary:after,.hero-advanced-disclosure>summary:after,.hero-preset-disclosure>summary:after,.event-reference-disclosure>summary:after{content:"＋";color:#8ec9f0}
+.research-reference-disclosure[open]>summary:after,.hero-advanced-disclosure[open]>summary:after,.hero-preset-disclosure[open]>summary:after,.event-reference-disclosure[open]>summary:after{content:"−"}
 .research-reference-content,.hero-advanced-content,.event-reference-content{padding-top:12px}
 .formation-filters #builder-hero-troop{width:100%;min-height:40px;padding:9px 12px;color:var(--text);background:#0b121d;border:1px solid #52677f;border-radius:7px;font:inherit}
 .hero-advanced-disclosure{margin:14px 0}.hero-advanced-disclosure .wrap{padding:0}
@@ -50,6 +50,6 @@
 }
 @media(prefers-reduced-motion:reduce){.research-progress-track span{transition:none}}
 
-.research-reference-disclosure>summary h2,.hero-advanced-disclosure>summary h2,.event-reference-disclosure>summary h2{font-size:1.05rem;margin:0;color:#d8eaff}
+.research-reference-disclosure>summary h2,.hero-advanced-disclosure>summary h2,.hero-advanced-disclosure>summary h3,.hero-preset-disclosure>summary h3,.event-reference-disclosure>summary h2{font-size:1.05rem;margin:0;color:#d8eaff}
 
 .hero-load-more{grid-column:1/-1;justify-self:center;margin:8px auto 4px}

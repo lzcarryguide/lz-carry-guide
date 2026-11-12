@@ -41,7 +41,7 @@ var paths={
 };
 var state={};try{state=JSON.parse(localStorage.getItem(STORAGE)||"{}");}catch(e){state={};}
 var route=$("lab-route"),hq=$("lab-hq"),lab=$("lab-level"),lab2=$("lab-second"),lab2level=$("lab-second-level"),season50=$("lab-season-day50"),list=$("lab-plan-list"),next=$("lab-next"),summary=$("lab-plan-summary"),pathSelect=$("lab-path");
-function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch(e){}}
+function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch(e){}window.dispatchEvent(new CustomEvent("lzcarry-research-route-updated"));}
 function status(name){return state[name]||"Not started";}
 function eligible(item){var labOK=item[1]===null||Number(lab.value)>=item[1],hqOK=!item[2]||Number(hq.value)>=item[2];if(item[3]==="free2")return !!lab2.checked&&Number(lab2level.value)>=33&&Number(hq.value)>=18&&!!season50.checked;return labOK&&hqOK;}
 function render(){

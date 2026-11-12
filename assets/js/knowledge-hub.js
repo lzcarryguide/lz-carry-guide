@@ -91,7 +91,7 @@ var details=node("details","hero-directory-details","");
 var summary=node("summary","hero-directory-summary","");
 summary.append(node("span","hero-portrait-pending","Portrait not verified"));
 var identity=node("span","hero-directory-identity","");
-identity.append(node("strong","",h.name),node("small","",h.faction+" · "+(h.season?"Season "+h.season:"Base")+(h.awakeningSeason===5?" · S5 awakening":"")+" · "+(h.role||"Role unconfirmed")));
+identity.append(node("strong","",h.name),node("small","",h.faction+" · "+(h.troopType||"Troop type pending")+" · "+(h.season?"Season "+h.season:"Base")+(h.awakeningSeason===5?" · S5 awakening":"")+" · "+(h.role||"Role unconfirmed")));
 var heroEvidence=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(h.verification||h.verificationStatus||h.dataStatus,"unconfirmed"):{label:"Unconfirmed",detail:"Current-client verification pending.",className:"is-unconfirmed"};
 var heroBadge=node("span","pill evidence-badge "+heroEvidence.className,heroEvidence.label);heroBadge.title=heroEvidence.detail;heroBadge.setAttribute("aria-label",heroEvidence.label+". "+heroEvidence.detail);identity.append(heroBadge);
 summary.append(identity);details.append(summary);

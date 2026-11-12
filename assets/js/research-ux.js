@@ -25,7 +25,7 @@ cards.forEach(function(card){
 var body=card.querySelector(".research-tree-body");if(!body)return;
 var row=document.createElement("div");row.className="research-entry-controls";
 var labelNode=document.createElement("label");labelNode.textContent="My progress";
-var select=document.createElement("select");select.setAttribute("aria-label","Research tree "+label(card)+" progress");
+var select=document.createElement("select");select.setAttribute("aria-label","Research progress for "+label(card));
 ["Not started","In progress","Done"].forEach(function(v){var o=document.createElement("option");o.value=v;o.textContent=v;select.appendChild(o);});
 select.value=state[label(card)]||"Not started";
 select.addEventListener("change",function(){state[label(card)]=select.value;save();window.dispatchEvent(new CustomEvent("lzcarry-research-progress-change",{detail:state}));update();});

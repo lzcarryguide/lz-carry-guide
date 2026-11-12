@@ -40,6 +40,7 @@
     <article class="card dashboard-stat"><span class="eyebrow">Event checklist</span><strong id="dashboard-event-value">0</strong><small>Saved preparation checks</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Troop goal</span><strong id="dashboard-troop-value">Not set</strong><small>Personal quantity target</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Upcoming reminders</span><strong id="dashboard-reminder-value">0</strong><small>Personal event dates</small></article>
+    <article class="card dashboard-stat"><span class="eyebrow">Personal goals</span><strong id="dashboard-goal-value">0 / 0</strong><small>Completed / total goals</small></article>
   </div>
   <section class="card speedup-planner" id="speedup-planner" aria-labelledby="speedup-title">
     <p class="eyebrow">Player-entered timer calculator</p><h2 id="speedup-title">Speedup Planner</h2>
@@ -54,6 +55,20 @@
     <div class="speedup-results" id="speedup-results" aria-live="polite"><strong>Enter a timer from your game.</strong><p class="small muted">Your calculation will appear here and save on this device.</p></div>
     <div class="speedup-actions"><button class="btn secondary" id="speedup-reset" type="button">Reset speedup planner</button><span class="small muted" id="speedup-status" aria-live="polite">Values are saved locally.</span></div>
   </section>
+  <details class="card dashboard-goals" id="dashboard-goals">
+    <summary><span><span class="eyebrow">Your milestones · This device</span><h2>My Personal Goals</h2></span><span id="dashboard-goal-count" class="small muted">0 active · 0 complete</span></summary>
+    <p class="small muted">Set your own targets and link each one to an existing LZ Carry tool. Goals are player-entered, saved locally and included in My Progress backups.</p>
+    <form id="dashboard-goal-form" class="dashboard-goal-form">
+      <label for="dashboard-goal-title">Goal<input id="dashboard-goal-title" type="text" maxlength="100" required placeholder="e.g. Finish my next HQ upgrade"></label>
+      <label for="dashboard-goal-category">Planning area<select id="dashboard-goal-category"><option value="HQ">HQ</option><option value="Research">Research</option><option value="Heroes">Heroes</option><option value="Troops">Troops</option><option value="Events">Events</option><option value="Beginner">Beginner</option><option value="Other">Other</option></select></label>
+      <label for="dashboard-goal-due">Target date (optional)<input id="dashboard-goal-due" type="date"></label>
+      <label for="dashboard-goal-note">Planning note (optional)<input id="dashboard-goal-note" type="text" maxlength="200" placeholder="What will help you reach this goal?"></label>
+      <button class="btn" type="submit">Add personal goal</button>
+    </form>
+    <p id="dashboard-goal-status" class="small muted" aria-live="polite">Add a goal to create your own progression targets.</p>
+    <div id="dashboard-goal-list" class="dashboard-goal-list" aria-live="polite"></div>
+    <button class="btn secondary" id="dashboard-goal-clear-completed" type="button" disabled>Clear completed goals</button>
+  </details>
   <div class="dashboard-columns">
     <section class="card dashboard-next-action" aria-labelledby="dashboard-next-action-title"><p class="eyebrow">Your next move</p><h2 id="dashboard-next-action-title">Next Best Action</h2><div id="dashboard-next-action" aria-live="polite"></div><details class="dashboard-more-recommendations"><summary>More progression suggestions</summary><div id="dashboard-recommendations" class="dashboard-recommendations" aria-live="polite"></div></details></section>
     <section class="card"><p class="eyebrow">Pick up where you left off</p><h2>Continue planning</h2>

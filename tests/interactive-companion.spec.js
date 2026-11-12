@@ -310,6 +310,7 @@ test("Hero Investment Comparison shows source caveats and persists player-entere
   await expect(page.locator("#hero-investment-results")).toContainText("Audrey");
   await expect(page.locator("#hero-investment-results")).toContainText("Ava");
   await expect(page.locator("#hero-investment-results")).toContainText("Current level: 45");
+  await expect(page.locator(".hero-investment-caveat")).toContainText("No universal investment ranking is calculated");
   await page.screenshot({ path: "artifacts/hero-investment-comparison-desktop.png", fullPage: true });
   await expect(page.locator("#hero-investment-results")).not.toContainText("Winner:");
   await expect(page.locator("#hero-investment-results")).not.toContainText("Power score:");

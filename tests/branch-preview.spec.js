@@ -425,6 +425,13 @@ test("player progress can be exported and safely imported across planners", asyn
   expect(restored.goals[0].title).toBe("Finish research");
   expect(restored.hqResources.food).toBe("120");
   expect(restored.rollback.values["lzcarry:hq-planner:v2"]).toContain("false");
+  await page.getByRole("button", { name: "Clear all progress" }).click();
+  await expect(page.locator(".player-data-summary")).toContainText("All saved progress cleared");
+  await expect.poll(() => page.evaluate(() => localStorage.getItem("lzcarry-player-goals-v1"))).toBeNull();
+  await page.getByRole("button", { name: "Restore previous snapshot" }).click();
+  await expect(page.locator(".player-data-summary")).toContainText("Previous progress snapshot restored");
+  const goalsAfterReset = await page.evaluate(() => JSON.parse(localStorage.getItem("lzcarry-player-goals-v1") || "[]"));
+  expect(goalsAfterReset[0].title).toBe("Finish research");
 });
 
 test("progress manager is available on every primary page and fits mobile screens", async ({ page }) => {

@@ -73,14 +73,17 @@ test("mobile layouts fit viewport without page-level horizontal overflow", async
   }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/research.html");
-  const mobileNav = page.locator("header nav");
+  const toggle = page.getByRole("button", { name: "Menu" });
+  const mobileNav = page.locator('header nav[aria-label="Main navigation"]');
+  await expect(toggle).toBeVisible();
+  await expect(page.getByRole("button", { name: "Manage saved LZ Carry progress" })).toBeVisible();
+  await expect(mobileNav).toBeHidden();
+  await toggle.click();
+  await expect(mobileNav).toBeVisible();
+  await expect(mobileNav.getByRole("link", { name: "LZ Carry Service" })).toBeVisible();
   const navMetrics = await mobileNav.evaluate(node => ({ client: node.clientWidth, scroll: node.scrollWidth, overflow: getComputedStyle(node).overflowX }));
-  expect(navMetrics.scroll).toBeGreaterThan(navMetrics.client);
-  expect(navMetrics.overflow).toMatch(/auto|scroll/);
-  await mobileNav.evaluate(node => { node.scrollLeft = node.scrollWidth; });
-  const finalNavItem = await mobileNav.locator(":scope > *").last().evaluate(node => { const rect = node.getBoundingClientRect(); return { left: rect.left, right: rect.right }; });
-  expect(finalNavItem.left).toBeGreaterThanOrEqual(0);
-  expect(finalNavItem.right).toBeLessThanOrEqual(391);
+  expect(navMetrics.scroll).toBeLessThanOrEqual(navMetrics.client + 1);
+  expect(navMetrics.overflow).not.toMatch(/auto|scroll/);
 });
 
 test("heroes, troops and events databases load and search", async ({ page }) => {

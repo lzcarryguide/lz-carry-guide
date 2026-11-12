@@ -298,9 +298,9 @@ test("Beginner Mode checklist is the primary path and long reference sections st
 test("Hero Investment Comparison shows source caveats and persists player-entered notes", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/heroes.html");
-  const panel = page.locator(".hero-investment-disclosure");
+  const panel = page.locator("#hero-investment-compare .hero-investment-disclosure");
   await expect(panel).not.toHaveAttribute("open", "");
-  await panel.locator("summary").click();
+  await panel.locator(":scope > summary").click();
   await expect(page.locator('#hero-compare-a option[value="audrey"]')).toHaveCount(1);
   await page.locator("#hero-compare-a").selectOption("audrey");
   await page.locator("#hero-compare-b").selectOption("ava");

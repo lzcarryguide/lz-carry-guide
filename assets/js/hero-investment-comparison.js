@@ -11,7 +11,7 @@ function field(card,label,value){var p=node("p","",label+": "+(value===null||val
 function profile(hero,side){
 var card=node("article","hero-investment-profile",""),title=node("h3","",hero.name),badge=node("span","pill",hero.verificationStatus||"Unconfirmed");
 card.append(title,badge);
-field(card,"Faction",hero.faction);field(card,"Troop type",hero.troopType);field(card,"Rarity",hero.rarity);field(card,"Indexed role",hero.role);field(card,"Season",hero.season===0?"Base roster":hero.season===null?"Not confirmed":"Season "+hero.season);
+field(card,"Faction",hero.faction);field(card,"Troop type",hero.troopType);field(card,"Rarity",hero.rarity);field(card,"Indexed role",hero.role);field(card,"Season",hero.season===0?"Base roster":(hero.season===null||hero.season===undefined)?"Not confirmed":"Season "+hero.season);
 var notes=hero.profileNotes||{},skills=Array.isArray(notes.skills)?notes.skills:[];
 field(card,"Skill evidence",skills.length?skills.length+" community-indexed skill note(s)":"No reconciled skill notes");
 field(card,"Investment note",notes.investment||hero.investmentNote||"No hero-specific investment note published");

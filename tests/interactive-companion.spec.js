@@ -97,8 +97,9 @@ test("pilot selector calculates exact package and add-on totals without inventin
   await expect(page.locator("#pilot-total")).toHaveText("$51 + SVS quote");
   await expect(page.locator("#pilot-price-status")).toContainText("excludes the individually quoted Full SVS Participation");
   await expect(page.locator("#pilot-booking-summary")).toContainText("3 accounts");
-  await expect(page.locator("#pilot-request")).toBeDisabled();
-  await expect(page.locator("#pilot-assistance")).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Request a Pilot — unavailable" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Ask for Assistance — unavailable" })).toBeDisabled();
+  await expect(page.locator("#pilot-contact-status")).toContainText("No replacement invite or channel is being used.");
   await page.screenshot({ path: "artifacts/pilot-configurator-desktop.png", fullPage: true });
 });
 

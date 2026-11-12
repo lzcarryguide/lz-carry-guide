@@ -31,8 +31,8 @@ var svsField=document.getElementById("pilot-svs-accounts-field");if(svsField)svs
 var fullField=document.getElementById("pilot-full-svs-accounts-field");if(fullField)fullField.hidden=!checked("full-svs");
 var canyonField=document.getElementById("pilot-canyon-accounts-field");if(canyonField)canyonField.hidden=!checked("canyon");
 var req=document.getElementById("pilot-request");var help=document.getElementById("pilot-assistance");
-if(req){req.disabled=!req.dataset.destination;req.title=req.disabled?"The existing Discord ticket URL has not yet been configured.":"";}
-if(help){help.disabled=!help.dataset.destination;help.title=help.disabled?"The existing Discord service channel URL has not yet been configured.":"";}
+if(req){var requestReady=!!req.dataset.destination;req.disabled=!requestReady;req.textContent=requestReady?"Request a Pilot":"Request a Pilot — unavailable";req.title=requestReady?"":"The existing Discord ticket URL could not be recovered from the repository." ;if(requestReady)req.removeAttribute("aria-describedby");else req.setAttribute("aria-describedby","pilot-contact-status");}
+if(help){var helpReady=!!help.dataset.destination;help.disabled=!helpReady;help.textContent=helpReady?"Ask for Assistance":"Ask for Assistance — unavailable";help.title=helpReady?"":"The existing Discord service channel URL could not be recovered from the repository.";if(helpReady)help.removeAttribute("aria-describedby");else help.setAttribute("aria-describedby","pilot-contact-status");}
 }
 form.addEventListener("input",render);form.addEventListener("change",render);
 var copy=document.getElementById("pilot-copy-summary");if(copy)copy.addEventListener("click",function(){var text=output.innerText+"\nTotal: "+total.textContent;var area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();try{document.execCommand("copy");copy.textContent="Summary copied";}catch(e){copy.textContent="Select and copy the summary above";}area.remove();});

@@ -157,3 +157,37 @@ test("mobile navigation opens accessibly on every primary page and exposes every
     }
   }
 });
+
+
+test("primary pages load at desktop and mobile without first-party network or runtime errors", async ({ page }) => {
+  const targets = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/heroes.html", "/events.html", "/pilot.html"];
+  for (const width of [1440, 390]) {
+    for (const target of targets) {
+      const runtimeErrors = [];
+      const failedLocalRequests = [];
+      const badLocalResponses = [];
+      page.on("pageerror", error => runtimeErrors.push(error.message));
+      page.on("console", message => {
+        if (message.type() === "error") runtimeErrors.push(message.text());
+      });
+      page.on("requestfailed", request => {
+        if (request.url().startsWith("http://127.0.0.1:4173/")) failedLocalRequests.push(request.url() + " " + request.failure()?.errorText);
+      });
+      page.on("response", response => {
+        if (response.url().startsWith("http://127.0.0.1:4173/") && response.status() >= 400) badLocalResponses.push(response.status() + " " + response.url());
+      });
+      await page.setViewportSize({ width, height: width === 390 ? 844 : 1000 });
+      await page.goto(target, { waitUntil: "networkidle" });
+      await expect(page.locator("main")).toBeVisible();
+      const images = await page.locator("img").evaluateAll(nodes => nodes.filter(img => !img.complete || img.naturalWidth === 0).map(img => img.currentSrc || img.src));
+      expect(images, target + " images at " + width).toEqual([]);
+      expect(runtimeErrors, target + " runtime errors at " + width).toEqual([]);
+      expect(failedLocalRequests, target + " failed local requests at " + width).toEqual([]);
+      expect(badLocalResponses, target + " bad local responses at " + width).toEqual([]);
+      page.removeAllListeners("pageerror");
+      page.removeAllListeners("console");
+      page.removeAllListeners("requestfailed");
+      page.removeAllListeners("response");
+    }
+  }
+});

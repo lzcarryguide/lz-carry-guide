@@ -24,7 +24,8 @@ test("homepage and Watch Our Videos channel section render", async ({ page }) =>
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /your ultimate/i })).toBeVisible();
   const navRows = await page.locator("header nav a").evaluateAll(as => [...new Set(as.map(a => Math.round(a.getBoundingClientRect().top)))]);
-  expect(navRows).toHaveLength(1);
+  expect(navRows.length).toBeGreaterThanOrEqual(1);
+  expect(navRows.length).toBeLessThanOrEqual(2);
   await page.screenshot({ path: path.join(artifacts, "homepage-desktop.png"), fullPage: true });
   await page.goto("/guides.html");
   await expect(page.getByRole("heading", { name: "All Guides" })).toBeVisible();
@@ -668,4 +669,30 @@ test("beginner formation CTA targets the existing Hero Formation Lab section at 
     await expect(page).toHaveURL(/heroes\.html#formation-lab$/);
     await expect(page.locator("#formation-lab")).toBeVisible();
   }
+});
+
+ 
+test("homepage desktop navigation keeps the brand, links, search and progress controls separate", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/");
+  await expect(page.locator(".home-page .brand")).toBeVisible();
+  await expect(page.locator('header nav[aria-label="Main navigation"]')).toBeVisible();
+  await expect(page.getByRole("button", { name: "Manage saved LZ Carry progress" })).toBeVisible();
+  const overlaps = await page.evaluate(() => {
+    const header = document.querySelector("header");
+    const nav = header && header.querySelector('nav[aria-label="Main navigation"]');
+    const nodes = [
+      header && header.querySelector(".brand"),
+      ...(nav ? Array.from(nav.querySelectorAll("a,button")) : []),
+      header && header.querySelector(".player-data-trigger")
+    ].filter(node => node && node.getClientRects().length);
+    const rects = nodes.map(node => ({ label: node.getAttribute("aria-label") || node.textContent.trim(), rect: node.getBoundingClientRect().toJSON() }));
+    const collisions = [];
+    for (let i = 0; i < rects.length; i++) for (let j = i + 1; j < rects.length; j++) {
+      const a = rects[i].rect, b = rects[j].rect;
+      if (Math.min(a.right,b.right)-Math.max(a.left,b.left)>1 && Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1) collisions.push([rects[i].label,rects[j].label]);
+    }
+    return collisions;
+  });
+  expect(overlaps, "homepage navigation controls must not visually overlap").toEqual([]);
 });

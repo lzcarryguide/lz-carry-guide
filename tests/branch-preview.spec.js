@@ -73,14 +73,17 @@ test("mobile layouts fit viewport without page-level horizontal overflow", async
   }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/research.html");
-  const mobileNav = page.locator("header nav");
+  const toggle = page.getByRole("button", { name: "Menu" });
+  const mobileNav = page.locator('header nav[aria-label="Main navigation"]');
+  await expect(toggle).toBeVisible();
+  await expect(page.getByRole("button", { name: "Manage saved LZ Carry progress" })).toBeVisible();
+  await expect(mobileNav).toBeHidden();
+  await toggle.click();
+  await expect(mobileNav).toBeVisible();
+  await expect(mobileNav.getByRole("link", { name: "LZ Carry Service" })).toBeVisible();
   const navMetrics = await mobileNav.evaluate(node => ({ client: node.clientWidth, scroll: node.scrollWidth, overflow: getComputedStyle(node).overflowX }));
-  expect(navMetrics.scroll).toBeGreaterThan(navMetrics.client);
-  expect(navMetrics.overflow).toMatch(/auto|scroll/);
-  await mobileNav.evaluate(node => { node.scrollLeft = node.scrollWidth; });
-  const finalNavItem = await mobileNav.locator(":scope > *").last().evaluate(node => { const rect = node.getBoundingClientRect(); return { left: rect.left, right: rect.right }; });
-  expect(finalNavItem.left).toBeGreaterThanOrEqual(0);
-  expect(finalNavItem.right).toBeLessThanOrEqual(391);
+  expect(navMetrics.scroll).toBeLessThanOrEqual(navMetrics.client + 1);
+  expect(navMetrics.overflow).not.toMatch(/auto|scroll/);
 });
 
 test("heroes, troops and events databases load and search", async ({ page }) => {
@@ -91,10 +94,13 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.goto("/heroes.html");
   await expect(page.getByRole("heading",{name:"Hero Recommendations & Formation Builder"})).toBeVisible();
   await expect(page.locator("#formation-slots .formation-slot")).toHaveCount(5);
+  await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(12);
+  await expect(page.locator("#builder-count")).toContainText("Showing 12 of 36 indexed heroes · 33 selectable");
+  await page.getByRole("button", { name: /Show more heroes/ }).click();
+  await page.getByRole("button", { name: /Show more heroes/ }).click();
   await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(36);
   await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(33);
   await expect(page.locator("#builder-results .builder-hero:disabled")).toHaveCount(3);
-  await expect(page.locator("#builder-count")).toContainText("36 indexed heroes · 33 selectable");
   await page.locator("#builder-results .hero-directory-item").first().locator("summary").click();
   await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("Portrait not verified");
   await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("Portrait status: no official or reliable portrait asset has been verified");
@@ -196,22 +202,28 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
   await page.goto("/heroes.html");
   await expect(page.locator(".formation-slot")).toHaveCount(5);
   await page.locator(".formation-slot").nth(0).click();
+  await page.locator("#builder-search").fill("Katrina");
   await page.getByRole("button", { name: /Katrina/ }).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Katrina");
   await expect(page.locator("#hero-intel")).toContainText("Hero quick intel · Katrina");
   await page.screenshot({path:path.join(artifacts,"formation-builder-selected.png"),fullPage:true});
   await page.locator(".formation-slot").nth(1).click();
+  await page.locator("#builder-search").fill("Sophia");
   await page.getByRole("button", { name: /Sophia/ }).click();
   await page.locator(".formation-slot").nth(0).click();
+  await page.locator("#builder-search").fill("Sophia");
   await page.locator(".builder-hero").filter({hasText:"Sophia"}).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Sophia");
   await expect(page.locator(".formation-slot").nth(1)).toContainText("Katrina");
   await page.locator(".formation-slot").nth(0).click();
+  await page.locator("#builder-search").fill("Angelina");
   await page.locator(".builder-hero").filter({hasText:"Angelina"}).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Angelina");
   await page.locator(".slot-remove").nth(0).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
+  await page.locator("#builder-search").fill("Katrina");
   await expect(page.locator("#builder-results .builder-hero[aria-pressed=true]")).toHaveCount(1);
+  await page.locator("#builder-search").fill("");
   await page.locator("#builder-faction").selectOption("Wings of Dawn");
   await expect(page.locator(".builder-hero:not(:disabled)")).toHaveCount(11);
   await expect(page.getByText("Jack", { exact: true })).toHaveCount(0);
@@ -219,9 +231,9 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
 
 test("mixed-faction analysis explains pair signals, troop fit and counter matchups", async ({page})=>{
  await page.setViewportSize({width:390,height:844});await page.goto("/heroes.html");
- await page.locator(".formation-slot").nth(0).click();await page.getByRole("button",{name:/Bella/}).click();
- await page.locator(".formation-slot").nth(1).click();await page.getByRole("button",{name:/Licia/}).click();
- await page.locator(".formation-slot").nth(2).click();await page.getByRole("button",{name:/Scarlett/}).click();
+ await page.locator(".formation-slot").nth(0).click();await page.locator("#builder-search").fill("Bella");await page.getByRole("button",{name:/Bella/}).click();
+ await page.locator(".formation-slot").nth(1).click();await page.locator("#builder-search").fill("Licia");await page.getByRole("button",{name:/Licia/}).click();
+ await page.locator(".formation-slot").nth(2).click();await page.locator("#builder-search").fill("Scarlett");await page.getByRole("button",{name:/Scarlett/}).click();
  await expect(page.locator("#formation-advice")).toContainText("Mixed-faction formation");
  await expect(page.locator("#formation-advice")).toContainText("Bella + Licia");
  await page.getByLabel("March troop line").selectOption("Shooters");
@@ -229,11 +241,13 @@ test("mixed-faction analysis explains pair signals, troop fit and counter matchu
  await page.getByLabel("Opponent faction").selectOption("Guard of Order");
  await expect(page.locator("#formation-advice")).toContainText("Blood Rose is the community-listed counter");
  await page.screenshot({path:path.join(artifacts,"formation-mixed-feedback-mobile.png"),fullPage:true});
+ await page.locator(".hero-preset-disclosure > summary").click();
  await page.getByRole("button",{name:/Clear formation/}).click();
  await expect(page.locator("#formation-advice")).toContainText("Add heroes to compare");
 });
 test("source-backed faction presets populate named examples",async({page})=>{
  await page.goto("/heroes.html");
+ await page.locator(".hero-preset-disclosure > summary").click();
  await page.getByRole("button",{name:/Blood Rose.*SIN Command example/}).click();
  await expect(page.locator(".formation-slot").nth(0)).toContainText("Bella");
  await expect(page.locator(".formation-slot").nth(3)).toContainText("Licia");
@@ -256,8 +270,11 @@ test("GitHub Pages project subpath resolves scripts, styles and JSON data", asyn
     await page.getByLabel("Search research").fill("Alliance Recognition");
     await expect(page.locator(".research-tree-card:visible")).toHaveCount(1);
     await page.goto("/lz-carry-guide/heroes.html");
+    await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(12);
+    await page.getByRole("button", { name: /Show more heroes/ }).click();
+    await page.getByRole("button", { name: /Show more heroes/ }).click();
     await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(36);
-     await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(33);
+    await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(33);
     await page.goto("/lz-carry-guide/events.html");
     await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
     expect(errors).toEqual([]);
@@ -349,11 +366,12 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": true }));
     localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done" }));
     localStorage.setItem("lzcarry-event-prep-v2", JSON.stringify({ "20261110-Research-0": true }));
+    localStorage.setItem("lzcarry-event-checklists-v1", JSON.stringify({ "alliance-duel": { "0": true } }));
     localStorage.setItem("lzcarry-event-reminders-v1", JSON.stringify([{ id: "reminder-1", name: "Alliance Duel", when: "2026-11-12T18:00:00.000Z", note: "Check the live task panel" }]));
     localStorage.setItem("lzcarry-hq-resource-check-v1", JSON.stringify({ food: "120", wood: "80", zent: "10", steel: "5" }));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/6 of 10 saved data sets found/)).toBeVisible();
+  await expect(page.getByText(/7 of 11 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;
@@ -366,6 +384,7 @@ test("player progress can be exported and safely imported across planners", asyn
   expect(backup.data["lzcarry-formation-library-v1"][0].name).toBe("Test formation");
   expect(backup.data["lzcarry:hq-planner:v2"]["35:0"]).toBe(true);
   expect(backup.data["lzcarry-event-reminders-v1"][0].name).toBe("Alliance Duel");
+  expect(backup.data["lzcarry-event-checklists-v1"]["alliance-duel"]["0"]).toBe(true);
   expect(backup.data["lzcarry-hq-resource-check-v1"].food).toBe("120");
 
   await page.evaluate(() => localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": false })));
@@ -461,6 +480,7 @@ test("research resource calculator compares player-entered costs and persists in
 
 test("troop target planner tracks a player-entered goal without inventing costs", async ({ page }) => {
   await page.goto("/heroes.html");
+  await page.locator("#troop-progress-planner .hero-advanced-disclosure > summary").click();
   await expect(page.locator('#troop-plan-class option[value="assaulters"]')).toHaveCount(1);
   await page.locator("#troop-plan-class").selectOption("assaulters");
   await page.locator("#troop-plan-tier").selectOption("10");
@@ -469,6 +489,7 @@ test("troop target planner tracks a player-entered goal without inventing costs"
   await expect(page.locator("#troop-plan-result")).toContainText("80 more units needed");
   await expect(page.locator("#troop-plan-result")).toContainText("quantity gap only");
   await page.reload();
+  await page.locator("#troop-progress-planner .hero-advanced-disclosure > summary").click();
   await expect(page.locator("#troop-plan-class")).toHaveValue("assaulters");
   await expect(page.locator("#troop-plan-tier")).toHaveValue("10");
   await expect(page.locator("#troop-plan-current")).toHaveValue("120");
@@ -506,6 +527,7 @@ test("Lucky Rose tracker separates community candidates from in-game verificatio
   await expect(current.locator(".evidence-badge")).not.toContainText("Verified");
   await expect(current.locator("a[href*='lastz.gg']")).toBeVisible();
   await expect(current.locator("a[href*='ztools.co.uk']")).toBeVisible();
+  await page.locator("#lucky-rose-tracker .lucky-rose-reference-disclosure > summary").click();
   await expect(page.locator("#lucky-rose-scope-note")).toContainText("sender-only");
   await expect(page.locator("#lucky-rose-history .lucky-rose-history-row")).toHaveCount(2);
   const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
@@ -526,6 +548,7 @@ test("universal search indexes Lucky Rose candidates and evidence status", async
 test("canonical evidence labels appear on hero, research, HQ and event records", async ({ page }) => {
   await page.goto("/heroes.html");
   await expect(page.locator("#builder-results .hero-directory-item .evidence-badge").first()).toBeVisible();
+  await page.locator("#troop-database .hero-advanced-disclosure > summary").click();
   await expect(page.locator(".troop-tier-row .troop-evidence-badge").first()).toBeVisible();
   await page.goto("/research.html");
   await expect(page.locator(".lab-plan-item .evidence-badge").first()).toHaveText("Community-supported");

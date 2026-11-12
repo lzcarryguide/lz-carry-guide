@@ -195,7 +195,7 @@ test("published quick-start guide records retain dated sources and safe internal
     expect(["beginner","research","heroes","events"]).toContain(entry.category);
     expect(entry.url).toMatch(/^[a-z0-9._-]+(?:#[a-z0-9_-]+)?$/i);
     expect(entry.sources.length).toBeGreaterThan(0);
-    expect(entry.sources.every(source=>source.name&&source.checkedAt&&source.note&&["official","in-game","community"].includes(source.type))).toBeTruthy();
+    expect(entry.sources.every(source=>source.name&&source.checkedAt&&source.note&&["official","in-game","community","internal-tool-review"].includes(source.type))).toBeTruthy();
   }
 });
 

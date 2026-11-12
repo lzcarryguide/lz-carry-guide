@@ -260,3 +260,30 @@ test("Player Dashboard prioritizes one next action and Speedup Planner persists 
   await expect(page.getByLabel("Timer type")).toHaveValue("Building");
   await expect(page.getByLabel("Available speedup time (minutes)")).toHaveValue("0");
 });
+
+
+test("Beginner Mode checklist is the primary path and long reference sections start collapsed", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/beginner.html");
+  const order = await page.evaluate(() => {
+    const nodes = Array.from(document.querySelector("main").children);
+    return {
+      mode: nodes.indexOf(document.getElementById("beginner-mode")),
+      categories: nodes.indexOf(document.querySelector(".beginner-category-disclosure")?.closest("section")),
+      guide: nodes.indexOf(document.querySelector(".beginner-field-guide"))
+    };
+  });
+  expect(order.mode).toBeLessThan(order.categories);
+  expect(order.mode).toBeLessThan(order.guide);
+  await expect(page.locator("#beginner-mode")).toBeVisible();
+  await expect(page.locator(".beginner-category-disclosure")).not.toHaveAttribute("open", "");
+  await expect(page.locator(".beginner-reference-disclosure")).not.toHaveAttribute("open", "");
+  await page.locator("#beginner-account").check();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("1 of 5 steps complete");
+  await page.locator(".beginner-reference-disclosure > summary").click();
+  await expect(page.locator(".beginner-reference-disclosure")).toHaveAttribute("open", "");
+  await expect(page.locator(".beginner-guide-card")).toHaveCount(6);
+  page.on("dialog", dialog => dialog.accept());
+  await page.getByRole("button", { name: "Reset checklist" }).click();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("0 of 5 steps complete");
+});

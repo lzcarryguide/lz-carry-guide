@@ -91,10 +91,13 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.goto("/heroes.html");
   await expect(page.getByRole("heading",{name:"Hero Recommendations & Formation Builder"})).toBeVisible();
   await expect(page.locator("#formation-slots .formation-slot")).toHaveCount(5);
+  await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(12);
+  await expect(page.locator("#builder-count")).toContainText("Showing 12 of 36 indexed heroes · 33 selectable");
+  await page.getByRole("button", { name: /Show more heroes/ }).click();
+  await page.getByRole("button", { name: /Show more heroes/ }).click();
   await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(36);
   await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(33);
   await expect(page.locator("#builder-results .builder-hero:disabled")).toHaveCount(3);
-  await expect(page.locator("#builder-count")).toContainText("36 indexed heroes · 33 selectable");
   await page.locator("#builder-results .hero-directory-item").first().locator("summary").click();
   await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("Portrait not verified");
   await expect(page.locator("#builder-results .hero-directory-item").first()).toContainText("Portrait status: no official or reliable portrait asset has been verified");
@@ -256,8 +259,11 @@ test("GitHub Pages project subpath resolves scripts, styles and JSON data", asyn
     await page.getByLabel("Search research").fill("Alliance Recognition");
     await expect(page.locator(".research-tree-card:visible")).toHaveCount(1);
     await page.goto("/lz-carry-guide/heroes.html");
+    await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(12);
+    await page.getByRole("button", { name: /Show more heroes/ }).click();
+    await page.getByRole("button", { name: /Show more heroes/ }).click();
     await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(36);
-     await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(33);
+    await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(33);
     await page.goto("/lz-carry-guide/events.html");
     await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
     expect(errors).toEqual([]);

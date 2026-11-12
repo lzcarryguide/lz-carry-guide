@@ -82,7 +82,7 @@ test("pilot selector calculates exact package and add-on totals without inventin
   await page.getByLabel(/SVS Chest Opening/).check();
   await expect(page.locator("#pilot-total")).toHaveText("$35");
   await page.getByLabel(/Canyon Clash/).check();
-  await page.getByLabel("Number of accounts").fill("2");
+  await page.locator("#pilot-canyon-accounts").fill("2");
   await expect(page.locator("#pilot-total")).toHaveText("$51");
   await page.getByLabel(/Full SVS Participation/).check();
   await page.getByLabel("Number of accounts for quote").fill("3");

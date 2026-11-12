@@ -38,4 +38,5 @@ if(help){help.disabled=!help.dataset.destination;help.title=help.disabled?"The e
 form.addEventListener("input",render);form.addEventListener("change",render);
 var copy=document.getElementById("pilot-copy-summary");if(copy)copy.addEventListener("click",function(){var text=output.innerText+"\nTotal: "+total.textContent;var area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();try{document.execCommand("copy");copy.textContent="Summary copied";}catch(e){copy.textContent="Select and copy the summary above";}area.remove();});
 render();
+[["pilot-request","pilot-assistance"]].forEach(function(ids){ids.forEach(function(id){var button=document.getElementById(id);if(button)button.addEventListener("click",function(){if(button.dataset.destination)window.location.assign(button.dataset.destination);});});});
 })();

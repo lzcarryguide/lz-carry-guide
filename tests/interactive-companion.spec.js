@@ -310,7 +310,9 @@ test("Hero Investment Comparison shows source caveats and persists player-entere
   await expect(page.locator("#hero-investment-results")).toContainText("Audrey");
   await expect(page.locator("#hero-investment-results")).toContainText("Ava");
   await expect(page.locator("#hero-investment-results")).toContainText("Your current level: 45");
-  await expect(page.locator("#hero-investment-results")).toContainText("No hero-specific investment ranking published");
+  await expect(page.locator("#hero-investment-results")).toContainText("Source confidence:");
+  await expect(page.locator("#hero-investment-results")).not.toContainText("Winner:");
+  await expect(page.locator("#hero-investment-results")).not.toContainText("Power score:");
   const skillNotes = page.locator("#hero-investment-results .hero-investment-skill-notes").first();
   await expect(skillNotes).not.toHaveAttribute("open", "");
   await skillNotes.locator("summary").click();

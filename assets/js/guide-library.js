@@ -17,7 +17,7 @@
 
   const validSource = (source) => source &&
     typeof source.name === "string" && source.name.trim() &&
-    ["in-game", "official", "community"].includes(source.type) &&
+    ["in-game", "official", "community", "internal-tool-review"].includes(source.type) &&
     validDate(source.checkedAt) &&
     typeof source.note === "string" && source.note.trim();
 
@@ -52,7 +52,8 @@
     results.innerHTML = visible.map((entry) => {
       const tags = (entry.tags || []).map((tag) => '<span class="pill">' + escapeHtml(tag) + '</span>').join(" ");
       const source = entry.sources.find(validSource);
-      const sourceNote = '<p class="small muted">Reviewed: ' + escapeHtml(entry.verifiedAt) + '</p>' + (source ? '<details class="guide-source-note"><summary>Source & review note</summary><p class="small muted">' + escapeHtml(source.name) + ' · ' + escapeHtml(source.type) + ' · checked ' + escapeHtml(source.checkedAt) + '. ' + escapeHtml(source.note) + '</p></details>' : '');
+      const sourceType = source && source.type === "internal-tool-review" ? "LZ Carry tool review" : (source ? source.type : "");
+      const sourceNote = '<p class="small muted">Reviewed: ' + escapeHtml(entry.verifiedAt) + '</p>' + (source ? '<details class="guide-source-note"><summary>Source & review note</summary><p class="small muted">' + escapeHtml(source.name) + ' · ' + escapeHtml(sourceType) + ' · checked ' + escapeHtml(source.checkedAt) + '. ' + escapeHtml(source.note) + '</p></details>' : '');
       return '<article class="card"><p class="eyebrow">' + escapeHtml(entry.category) + '</p><h2>' + escapeHtml(entry.title) + '</h2><p>' + escapeHtml(entry.summary) + '</p><p class="small">' + tags + '</p>' + sourceNote + '<a class="btn" href="' + escapeHtml(entry.url) + '">Read guide</a></article>';
     }).join("");
   };

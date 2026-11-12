@@ -4,9 +4,9 @@
 var script=document.currentScript;if(!script)return;var root=new URL("../../",script.src);
 var KEYS=["lzcarry-formation-library-v1","lzcarry:hq-planner:v2","lzcarry-research-plan-v1","lzcarry-event-prep-v2","lzcarry-player-profile-v1","lzcarry-beginner-mode-v1","lzcarry-research-resource-calculator-v1","lzcarry-troop-plan-v1","lzcarry-event-reminders-v1","lzcarry-hq-resource-check-v1"];
 function el(t,c,s){var n=document.createElement(t);if(c)n.className=c;if(s!=null)n.textContent=s;return n;}
-var nav=document.querySelector("header nav");if(!nav)return;
+var nav=document.querySelector("header nav");if(!nav)return;var navShell=nav.parentElement;if(!navShell)return;
 var css=document.createElement("link");css.rel="stylesheet";css.href=new URL("assets/css/player-data.css",root).href;document.head.append(css);
-var trigger=el("button","player-data-trigger","My Progress");trigger.type="button";trigger.setAttribute("aria-haspopup","dialog");trigger.setAttribute("aria-label","Manage saved LZ Carry progress");nav.append(trigger);
+var trigger=el("button","player-data-trigger","My Progress");trigger.type="button";trigger.setAttribute("aria-haspopup","dialog");trigger.setAttribute("aria-label","Manage saved LZ Carry progress");navShell.append(trigger);
 var dialog=el("dialog","player-data-dialog");dialog.setAttribute("aria-labelledby","player-data-title");var panel=el("div","player-data-panel"),head=el("div","player-data-head"),title=el("h2","","Save & manage progress");title.id="player-data-title";var close=el("button","player-data-close","Close");close.type="button";head.append(title,close);
 var intro=el("p","small muted","Your planners save progress in this browser. Export a backup before changing devices or clearing browser data."),summary=el("p","player-data-summary","");summary.setAttribute("aria-live","polite");
 var exp=el("button","btn","Export my progress");exp.type="button";var imp=el("button","btn secondary","Import a backup");imp.type="button";var file=el("input","player-data-file");file.type="file";file.accept="application/json,.json";file.hidden=true;file.setAttribute("aria-label","Choose a LZ Carry progress backup JSON file");

@@ -6,6 +6,7 @@ test("Formation Lab saves, reloads and compares local lineups", async ({ page })
   await page.setViewportSize({width:1280,height:900});
   await page.goto("/heroes.html");
   await expect(page.getByRole("heading",{name:"Save, Share & Compare"})).toBeVisible();
+  await page.locator("#formation-library .hero-advanced-disclosure > summary").click();
   await expect(page.locator("#builder-results .builder-hero").first()).toBeVisible();
   await page.locator("#formation-slots .formation-slot").nth(0).click();
   await page.locator("#builder-results .builder-hero").nth(0).click();

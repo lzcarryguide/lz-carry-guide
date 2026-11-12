@@ -218,7 +218,7 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Angelina");
   await page.locator(".slot-remove").nth(0).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
-  await page.locator("#builder-search").fill("Sophia");
+  await page.locator("#builder-search").fill("Katrina");
   await expect(page.locator("#builder-results .builder-hero[aria-pressed=true]")).toHaveCount(1);
   await page.locator("#builder-search").fill("");
   await page.locator("#builder-faction").selectOption("Wings of Dawn");
@@ -238,6 +238,7 @@ test("mixed-faction analysis explains pair signals, troop fit and counter matchu
  await page.getByLabel("Opponent faction").selectOption("Guard of Order");
  await expect(page.locator("#formation-advice")).toContainText("Blood Rose is the community-listed counter");
  await page.screenshot({path:path.join(artifacts,"formation-mixed-feedback-mobile.png"),fullPage:true});
+ await page.locator(".hero-preset-disclosure > summary").click();
  await page.getByRole("button",{name:/Clear formation/}).click();
  await expect(page.locator("#formation-advice")).toContainText("Add heroes to compare");
 });

@@ -128,3 +128,26 @@ test("event directory progressively reveals records and resets after search", as
   await expect(page.locator("#event-results details.event-profile:visible")).toHaveCount(1);
   await expect(page.locator(".event-load-more")).toHaveCount(0);
 });
+
+
+test("mobile navigation opens accessibly, exposes every destination and closes after selection", async ({ page }) => {
+  for (const width of [390, 360]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto("/pilot.html");
+    const nav = page.locator('header nav[aria-label="Main navigation"]');
+    const toggle = page.getByRole("button", { name: "Menu" });
+    await expect(toggle).toBeVisible();
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await expect(nav).toBeHidden();
+    await toggle.click();
+    await expect(toggle).toHaveAttribute("aria-expanded", "true");
+    await expect(nav.locator("a")).toHaveCount(9);
+    await expect(nav.getByRole("link", { name: "LZ Carry Service" })).toHaveAttribute("aria-current", "page");
+    const dims = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+    expect(dims.page).toBeLessThanOrEqual(dims.viewport + 1);
+    await nav.getByRole("link", { name: "Research Center" }).click();
+    await expect(page).toHaveURL(/research\.html$/);
+    await expect(page.locator('header nav[aria-label="Main navigation"]')).toBeHidden();
+    await expect(page.getByRole("button", { name: "Menu" })).toHaveAttribute("aria-expanded", "false");
+  }
+});

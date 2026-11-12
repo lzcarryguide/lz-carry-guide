@@ -904,3 +904,16 @@ footer p { max-width: 760px; margin: 7px 0 0; font-size: 13px; line-height: 1.55
 .evidence-badge.is-estimated{border-color:rgba(229,187,105,.4);background:rgba(178,129,48,.13);color:#f1d39a}
 .evidence-badge.is-outdated{border-color:rgba(228,133,133,.4);background:rgba(170,70,70,.13);color:#f0b2b2}
 .evidence-badge.is-unconfirmed{border-color:rgba(166,178,195,.3);background:rgba(126,141,161,.1);color:#c0c9d5}
+
+/* Mobile navigation: a compact accessible disclosure replaces clipped horizontal link strips. */
+.mobile-nav-toggle{display:none;align-items:center;justify-content:center;gap:8px;padding:9px 13px;border:1px solid rgba(143,190,224,.36);border-radius:8px;background:#102033;color:#e6f4ff;font:600 .9rem/1.2 inherit;cursor:pointer}
+.mobile-nav-toggle[aria-expanded="true"]{border-color:#83c4f0;background:#19334b}
+@media(max-width:760px){
+  header .nav{align-items:center;flex-wrap:wrap;min-width:0}
+  header .nav>.mobile-nav-toggle{display:inline-flex;margin-left:auto;order:2}
+  header .nav>nav[aria-label="Main navigation"]{display:none;order:3;flex:1 0 100%;width:100%;min-width:0;max-width:100%;flex-wrap:wrap;justify-content:flex-start;gap:6px;overflow:visible;white-space:normal;padding:10px 0 8px}
+  header .nav>nav[aria-label="Main navigation"].is-open{display:flex}
+  header .nav>nav[aria-label="Main navigation"] a{flex:0 0 auto;white-space:normal;padding:8px 10px}
+  .home-page .nav>nav[aria-label="Main navigation"]{overflow:visible;flex-wrap:wrap;justify-content:flex-start}
+  .home-page .nav>nav[aria-label="Main navigation"].is-open{display:flex}
+}

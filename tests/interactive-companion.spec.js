@@ -232,3 +232,59 @@ test("player progress can be cleared and restored from a reversible local snapsh
   expect(restored.research["Alliance Recognition"]).toBe("Done");
   expect(restored.event["alliance-duel"]["0"]).toBe(true);
 });
+
+
+test("Player Dashboard prioritizes one next action and Speedup Planner persists player-entered timer math", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/dashboard.html");
+  await expect(page.getByRole("heading", { name: "Next Best Action" })).toBeVisible();
+  await expect(page.locator(".dashboard-next-action-card strong")).toHaveText("Set your current HQ");
+  await page.locator("#dashboard-hq").selectOption("25");
+  await page.getByRole("button", { name: "Save account progress" }).click();
+  await expect(page.locator(".dashboard-next-action-card strong")).toHaveText("Plan your next HQ upgrade");
+  await expect(page.locator("#dashboard-recommendations")).not.toContainText("Plan your next HQ upgrade");
+
+  await page.getByLabel("Timer type").selectOption("Research");
+  await page.getByLabel("Days remaining").fill("1");
+  await page.getByLabel("Hours remaining").fill("2");
+  await page.getByLabel("Minutes remaining").fill("30");
+  await page.getByLabel("Available speedup time (minutes)").fill("600");
+  await expect(page.locator("#speedup-results")).toContainText("Research timer · 1d 2h 30m");
+  await expect(page.locator("#speedup-results")).toContainText("Remaining: 16h 30m");
+  await expect(page.locator(".speedup-progress-track")).toHaveAttribute("aria-valuenow", "38");
+  await page.reload();
+  await expect(page.getByLabel("Timer type")).toHaveValue("Research");
+  await expect(page.getByLabel("Available speedup time (minutes)")).toHaveValue("600");
+  await page.getByLabel("Available speedup time (minutes)").fill("2000");
+  await expect(page.locator("#speedup-results")).toContainText("Your entered speedup time covers the full timer");
+  await page.getByRole("button", { name: "Reset speedup planner" }).click();
+  await expect(page.getByLabel("Timer type")).toHaveValue("Building");
+  await expect(page.getByLabel("Available speedup time (minutes)")).toHaveValue("0");
+});
+
+
+test("Beginner Mode checklist is the primary path and long reference sections start collapsed", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/beginner.html");
+  const order = await page.evaluate(() => {
+    const nodes = Array.from(document.querySelector("main").children);
+    return {
+      mode: nodes.indexOf(document.getElementById("beginner-mode")),
+      categories: nodes.indexOf(document.querySelector(".beginner-category-disclosure")?.closest("section")),
+      guide: nodes.indexOf(document.querySelector(".beginner-field-guide"))
+    };
+  });
+  expect(order.mode).toBeLessThan(order.categories);
+  expect(order.mode).toBeLessThan(order.guide);
+  await expect(page.locator("#beginner-mode")).toBeVisible();
+  await expect(page.locator(".beginner-category-disclosure")).not.toHaveAttribute("open", "");
+  await expect(page.locator(".beginner-reference-disclosure")).not.toHaveAttribute("open", "");
+  await page.locator("#beginner-account").check();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("1 of 5 steps complete");
+  await page.locator(".beginner-reference-disclosure > summary").click();
+  await expect(page.locator(".beginner-reference-disclosure")).toHaveAttribute("open", "");
+  await expect(page.locator(".beginner-guide-card")).toHaveCount(6);
+  page.on("dialog", dialog => dialog.accept());
+  await page.getByRole("button", { name: "Reset checklist" }).click();
+  await expect(page.locator("#beginner-progress-text")).toHaveText("0 of 5 steps complete");
+});

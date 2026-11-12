@@ -369,9 +369,10 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry-event-checklists-v1", JSON.stringify({ "alliance-duel": { "0": true } }));
     localStorage.setItem("lzcarry-event-reminders-v1", JSON.stringify([{ id: "reminder-1", name: "Alliance Duel", when: "2026-11-12T18:00:00.000Z", note: "Check the live task panel" }]));
     localStorage.setItem("lzcarry-hq-resource-check-v1", JSON.stringify({ food: "120", wood: "80", zent: "10", steel: "5" }));
+    localStorage.setItem("lzcarry-speedup-plan-v1", JSON.stringify({ "speedup-task": "Research", "speedup-days": "1", "speedup-hours": "2", "speedup-minutes": "30", "speedup-available": "600" }));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/7 of 11 saved data sets found/)).toBeVisible();
+  await expect(page.getByText(/8 of 12 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;
@@ -386,6 +387,7 @@ test("player progress can be exported and safely imported across planners", asyn
   expect(backup.data["lzcarry-event-reminders-v1"][0].name).toBe("Alliance Duel");
   expect(backup.data["lzcarry-event-checklists-v1"]["alliance-duel"]["0"]).toBe(true);
   expect(backup.data["lzcarry-hq-resource-check-v1"].food).toBe("120");
+  expect(backup.data["lzcarry-speedup-plan-v1"]["speedup-available"]).toBe("600");
 
   await page.evaluate(() => localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": false })));
   page.on("dialog", dialog => dialog.accept());
@@ -431,13 +433,16 @@ test("Player Dashboard summarizes local progress and links to existing planners"
     localStorage.setItem("lzcarry-formation-library-v1", JSON.stringify([{ id: "one", name: "Saved lineup", heroes: ["Bella"] }]));
     localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done", "Shelter Building": "In progress" }));
     localStorage.setItem("lzcarry-troop-plan-v1", JSON.stringify({ classId: "assaulters", tier: "10", current: 120, target: 200 }));
+    localStorage.setItem("lzcarry-event-checklists-v1", JSON.stringify({ "alliance-duel": { "0": true, "1": true } }));
   });
   await page.reload();
   await expect(page.locator("#dashboard-formation-value")).toHaveText("1");
   await expect(page.locator("#dashboard-hero-value")).toHaveText("1");
   await expect(page.locator("#dashboard-research-value")).toHaveText("1 / 2");
   await expect(page.locator("#dashboard-troop-value")).toHaveText("Assaulters T10");
+  await expect(page.locator("#dashboard-event-value")).toHaveText("2");
   await expect(page.locator("#dashboard-recommendations")).toContainText("Review your saved formations");
+  await page.locator(".dashboard-more-recommendations > summary").click();
   await expect(page.locator('a[href="heroes.html#formation-builder"]').first()).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "player-dashboard-desktop.png"), fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
@@ -500,6 +505,7 @@ test("troop target planner tracks a player-entered goal without inventing costs"
 test("beginner progression guide provides six usable linked learning steps", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/beginner.html");
+  await page.locator(".beginner-reference-disclosure > summary").click();
   await expect(page.getByRole("heading", { name: "A practical progression guide" })).toBeVisible();
   const steps = page.locator(".beginner-guide-card");
   await expect(steps).toHaveCount(6);

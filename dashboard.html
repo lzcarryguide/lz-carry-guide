@@ -41,13 +41,27 @@
     <article class="card dashboard-stat"><span class="eyebrow">Troop goal</span><strong id="dashboard-troop-value">Not set</strong><small>Personal quantity target</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Upcoming reminders</span><strong id="dashboard-reminder-value">0</strong><small>Personal event dates</small></article>
   </div>
+  <section class="card speedup-planner" id="speedup-planner" aria-labelledby="speedup-title">
+    <p class="eyebrow">Player-entered timer calculator</p><h2 id="speedup-title">Speedup Planner</h2>
+    <p class="small muted">Enter the remaining timer from your game and your total available speedup time in minutes. This is time arithmetic only; check item restrictions and event scoring in your live game.</p>
+    <div class="speedup-input-grid">
+      <label for="speedup-task">Timer type<select id="speedup-task"><option value="Building">Building</option><option value="Research">Research</option><option value="Training">Training</option><option value="Healing">Healing</option><option value="Other">Other</option></select></label>
+      <label for="speedup-days">Days remaining<input id="speedup-days" type="number" min="0" max="3650" step="1" value="0" inputmode="numeric"></label>
+      <label for="speedup-hours">Hours remaining<input id="speedup-hours" type="number" min="0" max="23" step="1" value="0" inputmode="numeric"></label>
+      <label for="speedup-minutes">Minutes remaining<input id="speedup-minutes" type="number" min="0" max="59" step="1" value="0" inputmode="numeric"></label>
+      <label for="speedup-available">Available speedup time (minutes)<input id="speedup-available" type="number" min="0" max="5256000" step="1" value="0" inputmode="numeric"></label>
+    </div>
+    <div class="speedup-results" id="speedup-results" aria-live="polite"><strong>Enter a timer from your game.</strong><p class="small muted">Your calculation will appear here and save on this device.</p></div>
+    <div class="speedup-actions"><button class="btn secondary" id="speedup-reset" type="button">Reset speedup planner</button><span class="small muted" id="speedup-status" aria-live="polite">Values are saved locally.</span></div>
+  </section>
   <div class="dashboard-columns">
-    <section class="card"><p class="eyebrow">Your next steps</p><h2>Progression recommendations</h2><div id="dashboard-recommendations" class="dashboard-recommendations" aria-live="polite"></div></section>
+    <section class="card dashboard-next-action" aria-labelledby="dashboard-next-action-title"><p class="eyebrow">Your next move</p><h2 id="dashboard-next-action-title">Next Best Action</h2><div id="dashboard-next-action" aria-live="polite"></div><details class="dashboard-more-recommendations"><summary>More progression suggestions</summary><div id="dashboard-recommendations" class="dashboard-recommendations" aria-live="polite"></div></details></section>
     <section class="card"><p class="eyebrow">Pick up where you left off</p><h2>Continue planning</h2>
       <div class="dashboard-links">
         <a href="beginner.html#hq-planner-section"><strong>HQ Upgrade Planner</strong><span>Review requirements, saved checklist and published cost comparisons</span></a>
         <a href="research.html#lab-planner"><strong>Laboratory Planner</strong><span>Resume your selected research route and saved progress</span></a>
         <a href="research.html#research-resource-calculator"><strong>Research Resource Calculator</strong><span>Compare your available resources with costs copied from your live research panel</span></a>
+        <a href="#speedup-planner"><strong>Speedup Planner</strong><span>Compare a live timer with the speedup minutes you have available</span></a>
         <a href="heroes.html#formation-builder"><strong>Hero Formation Builder</strong><span>Build or restore one of your saved lineups</span></a>
         <a href="heroes.html#troop-progress-planner"><strong>Troop Target Planner</strong><span>Track your desired unit count by troop class and tier</span></a>
         <a href="events.html#event-prep-planner"><strong>Event Preparation</strong><span>Continue your manually selected event checklist</span></a>
@@ -72,6 +86,7 @@
 </main>
 <footer><div class="wrap"><strong>LZ CARRY</strong><p>Independent community guide and gaming assistance service. Not affiliated with or endorsed by the game's publisher.</p><p class="small">Never share passwords, verification codes, or recovery information.</p></div></footer>
 <script src="assets/js/player-dashboard.js" defer></script>
+<script src="assets/js/speedup-planner.js" defer></script>
 <script src="assets/js/data-verification.js" defer></script>
 <script src="assets/js/player-data.js" defer></script>
 <script src="assets/js/universal-search.js" defer></script>

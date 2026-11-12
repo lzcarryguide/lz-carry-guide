@@ -31,7 +31,7 @@ function renderReminders(){
  var stat=$("dashboard-reminder-value");if(stat)stat.textContent=String(upcoming.length);
 }
 var goalLinks={HQ:["beginner.html#hq-planner-section","Open HQ planner"],Research:["research.html#lab-planner","Open Research Center"],Heroes:["heroes.html#formation-builder","Open Formation Lab"],Troops:["heroes.html#troop-progress-planner","Open Troop Planner"],Events:["events.html#event-prep-planner","Open Event Planner"],Beginner:["beginner.html#beginner-mode","Open Beginner Mode"],Other:["dashboard.html#speedup-planner","Open Dashboard tools"]};
-function validGoalDate(value){if(!value)return true;if(typeof value!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;var date=new Date(value+"T00:00:00");return !Number.isNaN(date.getTime())&&date.toISOString().slice(0,10)===value;}
+function validGoalDate(value){if(!value)return true;if(typeof value!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;var date=new Date(value+"T00:00:00Z");return !Number.isNaN(date.getTime())&&date.toISOString().slice(0,10)===value;}
 function readGoals(){var all=read(keys.goals,[]);if(!Array.isArray(all))return[];return all.filter(function(g){return g&&typeof g.id==="string"&&typeof g.title==="string"&&g.title.trim()&&["HQ","Research","Heroes","Troops","Events","Beginner","Other"].indexOf(g.category)>=0&&typeof g.dueDate==="string"&&validGoalDate(g.dueDate)&&typeof g.note==="string"&&typeof g.done==="boolean";});}
 function saveGoals(goals,message){try{localStorage.setItem(keys.goals,JSON.stringify(goals));if(goalStatus)goalStatus.textContent=message||"Goal saved on this device.";renderGoals();}catch(e){if(goalStatus)goalStatus.textContent="Browser storage unavailable; the goal was not saved.";}}
 function renderGoals(){

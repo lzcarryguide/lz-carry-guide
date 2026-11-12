@@ -218,6 +218,7 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Angelina");
   await page.locator(".slot-remove").nth(0).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
+  await page.locator("#builder-search").fill("Sophia");
   await expect(page.locator("#builder-results .builder-hero[aria-pressed=true]")).toHaveCount(1);
   await page.locator("#builder-search").fill("");
   await page.locator("#builder-faction").selectOption("Wings of Dawn");

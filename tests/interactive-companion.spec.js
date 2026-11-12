@@ -117,3 +117,14 @@ test("interactive tools fit narrow mobile viewports", async ({ page }) => {
   await expect(page.locator("#pilot-total")).toHaveText("$8");
   await page.screenshot({ path: "artifacts/pilot-configurator-mobile.png", fullPage: true });
 });
+
+test("event directory progressively reveals records and resets after search", async ({ page }) => {
+  await page.goto("/events.html");
+  await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
+  await expect(page.locator("#event-results details.event-profile:visible")).toHaveCount(8);
+  await page.getByRole("button", { name: /Show more events/ }).click();
+  await expect(page.locator("#event-results details.event-profile:visible")).toHaveCount(16);
+  await page.getByLabel("Search events").fill("Alliance Duel");
+  await expect(page.locator("#event-results details.event-profile:visible")).toHaveCount(1);
+  await expect(page.locator(".event-load-more")).toHaveCount(0);
+});

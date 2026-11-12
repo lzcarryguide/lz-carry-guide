@@ -440,6 +440,7 @@ test("Player Dashboard summarizes local progress and links to existing planners"
   await expect(page.locator("#dashboard-research-value")).toHaveText("1 / 2");
   await expect(page.locator("#dashboard-troop-value")).toHaveText("Assaulters T10");
   await expect(page.locator("#dashboard-recommendations")).toContainText("Review your saved formations");
+  await page.locator(".dashboard-more-recommendations > summary").click();
   await expect(page.locator('a[href="heroes.html#formation-builder"]').first()).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "player-dashboard-desktop.png"), fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
@@ -502,6 +503,7 @@ test("troop target planner tracks a player-entered goal without inventing costs"
 test("beginner progression guide provides six usable linked learning steps", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/beginner.html");
+  await page.locator(".beginner-reference-disclosure > summary").click();
   await expect(page.getByRole("heading", { name: "A practical progression guide" })).toBeVisible();
   const steps = page.locator(".beginner-guide-card");
   await expect(steps).toHaveCount(6);

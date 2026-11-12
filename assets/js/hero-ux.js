@@ -1,0 +1,7 @@
+/* LZ Carry Hero Encyclopedia — keep the formation workspace first */
+(function(){
+"use strict";
+var sectionIds=["formation-library","troop-database","troop-progress-planner","faction-recommendations"];
+sectionIds.forEach(function(id){var section=document.getElementById(id);if(!section||section.querySelector(".hero-advanced-disclosure"))return;var wrap=section.querySelector(".wrap");if(!wrap)return;var h=wrap.querySelector("h2");var title=h?h.textContent.trim():section.getAttribute("aria-label")||"Advanced tools";var details=document.createElement("details");details.className="hero-advanced-disclosure";var summary=document.createElement("summary");summary.textContent=title;var content=document.createElement("div");content.className="hero-advanced-content";while(wrap.firstChild)content.appendChild(wrap.firstChild);details.append(summary,content);wrap.appendChild(details);});
+var filters=document.querySelector(".formation-filters");if(filters&&!document.getElementById("builder-hero-troop")){var label=document.createElement("label");label.textContent="Hero troop type";var select=document.createElement("select");select.id="builder-hero-troop";select.innerHTML='<option value="">All troop types</option><option>Assaulters</option><option>Shooters</option><option>Riders</option>';label.appendChild(select);filters.appendChild(label);}
+})();

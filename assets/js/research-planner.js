@@ -71,6 +71,7 @@ function render(){
  summary.textContent=done+" marked done · "+active+" in progress · "+catalog.length+" indexed entries. This is a personal checklist, not a live unlock calculator.";
  route.textContent=chosen[1];
 }
+window.addEventListener("lzcarry-research-progress-change",function(event){state=event.detail||{};save();render();});
 function toggleSecond(){ $("lab-second-extra").hidden=!lab2.checked; $("lab-season-extra").hidden=!lab2.checked; render(); }
 [hq,lab,lab2level,season50,pathSelect].forEach(function(el){el.addEventListener("change",render);});
 lab2.addEventListener("change",toggleSecond);

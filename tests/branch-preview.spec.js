@@ -461,6 +461,7 @@ test("research resource calculator compares player-entered costs and persists in
 
 test("troop target planner tracks a player-entered goal without inventing costs", async ({ page }) => {
   await page.goto("/heroes.html");
+  await page.locator("#troop-progress-planner .hero-advanced-disclosure > summary").click();
   await expect(page.locator('#troop-plan-class option[value="assaulters"]')).toHaveCount(1);
   await page.locator("#troop-plan-class").selectOption("assaulters");
   await page.locator("#troop-plan-tier").selectOption("10");
@@ -469,6 +470,7 @@ test("troop target planner tracks a player-entered goal without inventing costs"
   await expect(page.locator("#troop-plan-result")).toContainText("80 more units needed");
   await expect(page.locator("#troop-plan-result")).toContainText("quantity gap only");
   await page.reload();
+  await page.locator("#troop-progress-planner .hero-advanced-disclosure > summary").click();
   await expect(page.locator("#troop-plan-class")).toHaveValue("assaulters");
   await expect(page.locator("#troop-plan-tier")).toHaveValue("10");
   await expect(page.locator("#troop-plan-current")).toHaveValue("120");
@@ -526,6 +528,7 @@ test("universal search indexes Lucky Rose candidates and evidence status", async
 test("canonical evidence labels appear on hero, research, HQ and event records", async ({ page }) => {
   await page.goto("/heroes.html");
   await expect(page.locator("#builder-results .hero-directory-item .evidence-badge").first()).toBeVisible();
+  await page.locator("#troop-database .hero-advanced-disclosure > summary").click();
   await expect(page.locator(".troop-tier-row .troop-evidence-badge").first()).toBeVisible();
   await page.goto("/research.html");
   await expect(page.locator(".lab-plan-item .evidence-badge").first()).toHaveText("Community-supported");

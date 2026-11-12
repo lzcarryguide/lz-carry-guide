@@ -48,6 +48,7 @@ function render(){
  renderReminders();
  var next=$("dashboard-next-action"),primary;
  if(!profile.currentHq)primary=card("Set your current HQ","Your HQ level is the starting point for useful upgrade planning. Add the level shown in your game; LZ Carry does not read your account automatically.","#dashboard-hq","Set HQ level");
+ else if(hqDone===0)primary=card("Plan your next HQ upgrade","Your HQ level is saved, but no prerequisite progress is marked yet. Review the next target and confirm each building requirement in game.","beginner.html#hq-planner-section","Open HQ planner");
  else if(researchNames.length===0)primary=card("Start a Laboratory route","No research progress is tracked yet. Choose a route in the Laboratory and record the steps you have verified in game.","research.html#lab-planner","Start research planning");
  else if(researchDone<researchNames.length)primary=card("Continue Laboratory research",researchNames.length-researchDone+" tracked research item(s) are not marked complete. Review the live prerequisites before committing resources.","research.html#lab-planner","Resume research");
  else if(formations.length===0)primary=card("Build your first hero formation","Save a first lineup to compare future changes and keep your hero investment decisions organized.","heroes.html#formation-builder","Build a formation");

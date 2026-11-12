@@ -1,5 +1,31 @@
 const { test, expect } = require("@playwright/test");
 
+
+test("personal goals save locally, link to the right planner and restore after reload", async ({ page }) => {
+  await page.goto("/dashboard.html");
+  await page.evaluate(() => localStorage.removeItem("lzcarry-player-goals-v1"));
+  await page.reload();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 0");
+  await page.locator("#dashboard-goals > summary").click();
+  await page.getByLabel("Goal", { exact: true }).fill("Finish my next research milestone");
+  await page.getByLabel("Planning area").selectOption("Research");
+  await page.getByLabel("Target date (optional)").fill("2027-02-01");
+  await page.getByLabel("Planning note (optional)").fill("Confirm the live Laboratory unlock first");
+  await page.getByRole("button", { name: "Add personal goal" }).click();
+  await expect(page.locator("#dashboard-goal-list")).toContainText("Finish my next research milestone");
+  await expect(page.locator('#dashboard-goal-list a[href="research.html#lab-planner"]')).toBeVisible();
+  const check = page.getByLabel("Complete goal: Finish my next research milestone");
+  await check.check();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("1 / 1");
+  await page.reload();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("1 / 1");
+  await page.locator("#dashboard-goals > summary").click();
+  await expect(page.getByLabel("Complete goal: Finish my next research milestone")).toBeChecked();
+  page.on("dialog", dialog => dialog.accept());
+  await page.getByRole("button", { name: "Clear completed goals" }).click();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 0");
+});
+
 test("research progress is interactive, saved locally and keeps long reference notes collapsed", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/research.html");

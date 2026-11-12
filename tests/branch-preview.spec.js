@@ -199,22 +199,27 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
   await page.goto("/heroes.html");
   await expect(page.locator(".formation-slot")).toHaveCount(5);
   await page.locator(".formation-slot").nth(0).click();
+  await page.locator("#builder-search").fill("Katrina");
   await page.getByRole("button", { name: /Katrina/ }).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Katrina");
   await expect(page.locator("#hero-intel")).toContainText("Hero quick intel · Katrina");
   await page.screenshot({path:path.join(artifacts,"formation-builder-selected.png"),fullPage:true});
   await page.locator(".formation-slot").nth(1).click();
+  await page.locator("#builder-search").fill("Sophia");
   await page.getByRole("button", { name: /Sophia/ }).click();
   await page.locator(".formation-slot").nth(0).click();
+  await page.locator("#builder-search").fill("Sophia");
   await page.locator(".builder-hero").filter({hasText:"Sophia"}).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Sophia");
   await expect(page.locator(".formation-slot").nth(1)).toContainText("Katrina");
   await page.locator(".formation-slot").nth(0).click();
+  await page.locator("#builder-search").fill("Angelina");
   await page.locator(".builder-hero").filter({hasText:"Angelina"}).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Angelina");
   await page.locator(".slot-remove").nth(0).click();
   await expect(page.locator(".formation-slot").nth(0)).toContainText("Choose hero");
   await expect(page.locator("#builder-results .builder-hero[aria-pressed=true]")).toHaveCount(1);
+  await page.locator("#builder-search").fill("");
   await page.locator("#builder-faction").selectOption("Wings of Dawn");
   await expect(page.locator(".builder-hero:not(:disabled)")).toHaveCount(11);
   await expect(page.getByText("Jack", { exact: true })).toHaveCount(0);
@@ -222,9 +227,9 @@ test("formation builder selects, replaces, swaps, removes and filters verified h
 
 test("mixed-faction analysis explains pair signals, troop fit and counter matchups", async ({page})=>{
  await page.setViewportSize({width:390,height:844});await page.goto("/heroes.html");
- await page.locator(".formation-slot").nth(0).click();await page.getByRole("button",{name:/Bella/}).click();
- await page.locator(".formation-slot").nth(1).click();await page.getByRole("button",{name:/Licia/}).click();
- await page.locator(".formation-slot").nth(2).click();await page.getByRole("button",{name:/Scarlett/}).click();
+ await page.locator(".formation-slot").nth(0).click();await page.locator("#builder-search").fill("Bella");await page.getByRole("button",{name:/Bella/}).click();
+ await page.locator(".formation-slot").nth(1).click();await page.locator("#builder-search").fill("Licia");await page.getByRole("button",{name:/Licia/}).click();
+ await page.locator(".formation-slot").nth(2).click();await page.locator("#builder-search").fill("Scarlett");await page.getByRole("button",{name:/Scarlett/}).click();
  await expect(page.locator("#formation-advice")).toContainText("Mixed-faction formation");
  await expect(page.locator("#formation-advice")).toContainText("Bella + Licia");
  await page.getByLabel("March troop line").selectOption("Shooters");
@@ -237,6 +242,7 @@ test("mixed-faction analysis explains pair signals, troop fit and counter matchu
 });
 test("source-backed faction presets populate named examples",async({page})=>{
  await page.goto("/heroes.html");
+ await page.locator(".hero-preset-disclosure > summary").click();
  await page.getByRole("button",{name:/Blood Rose.*SIN Command example/}).click();
  await expect(page.locator(".formation-slot").nth(0)).toContainText("Bella");
  await expect(page.locator(".formation-slot").nth(3)).toContainText("Licia");

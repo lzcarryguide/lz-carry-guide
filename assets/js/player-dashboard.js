@@ -3,7 +3,7 @@
 "use strict";
 var $=function(id){return document.getElementById(id);};
 var profileKey="lzcarry-player-profile-v1";
-var keys={formations:"lzcarry-formation-library-v1",hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",beginner:"lzcarry-beginner-mode-v1",troop:"lzcarry-troop-plan-v1",reminders:"lzcarry-event-reminders-v1"};
+var keys={formations:"lzcarry-formation-library-v1",hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",eventChecklists:"lzcarry-event-checklists-v1",beginner:"lzcarry-beginner-mode-v1",troop:"lzcarry-troop-plan-v1",reminders:"lzcarry-event-reminders-v1"};
 var select=$("dashboard-hq"),status=$("dashboard-status");
 var reminderForm=$("dashboard-reminder-form"),reminderList=$("dashboard-reminder-list"),reminderStatus=$("dashboard-reminder-status");
 if(!select)return;
@@ -30,12 +30,12 @@ function renderReminders(){
  var stat=$("dashboard-reminder-value");if(stat)stat.textContent=String(upcoming.length);
 }
 function render(){
- var formations=read(keys.formations,[]),hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),beginner=read(keys.beginner,{}),troop=read(keys.troop,{});
+ var formations=read(keys.formations,[]),hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),eventChecklists=read(keys.eventChecklists,{}),beginner=read(keys.beginner,{}),troop=read(keys.troop,{});
  if(!Array.isArray(formations))formations=[];
  var heroNames={};formations.forEach(function(f){if(f&&Array.isArray(f.heroes))f.heroes.forEach(function(name){if(typeof name==="string"&&name.trim())heroNames[name.trim()]=true;});});
  var researchNames=Object.keys(research).filter(function(k){return research[k]==="Done"||research[k]==="In progress";});
  var researchDone=researchNames.filter(function(k){return research[k]==="Done";}).length;
- var eventDone=Object.keys(events).filter(function(k){return events[k]===true;}).length;
+ var eventDone=Object.keys(events).filter(function(k){return events[k]===true;}).length;Object.keys(eventChecklists).forEach(function(eventId){var checks=eventChecklists[eventId]||{};eventDone+=Object.keys(checks).filter(function(k){return checks[k]===true;}).length;});
  var hqDone=Object.keys(hq).filter(function(k){return hq[k]===true;}).length;
  var beginnerDone=Object.keys(beginner).filter(function(k){return beginner[k]===true;}).length;
  $("dashboard-hq-value").textContent=profile.currentHq?"HQ "+profile.currentHq:"Not set";

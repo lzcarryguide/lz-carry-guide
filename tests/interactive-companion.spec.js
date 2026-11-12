@@ -191,3 +191,33 @@ test("primary pages load at desktop and mobile without first-party network or ru
     }
   }
 });
+
+
+test("player progress can be cleared and restored from a reversible local snapshot", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/dashboard.html");
+  await page.evaluate(() => {
+    localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": true }));
+    localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "Alliance Recognition": "Done" }));
+  });
+  await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
+  page.on("dialog", dialog => dialog.accept());
+  await page.getByRole("button", { name: "Clear all progress" }).click();
+  await expect(page.locator(".player-data-summary")).toContainText("All saved progress cleared");
+  const cleared = await page.evaluate(() => ({
+    hq: localStorage.getItem("lzcarry:hq-planner:v2"),
+    research: localStorage.getItem("lzcarry-research-plan-v1"),
+    snapshot: JSON.parse(localStorage.getItem("lzcarry-player-data-rollback-v1"))
+  }));
+  expect(cleared.hq).toBeNull();
+  expect(cleared.research).toBeNull();
+  expect(cleared.snapshot.values["lzcarry:hq-planner:v2"]).toContain("true");
+  await page.getByRole("button", { name: "Restore previous snapshot" }).click();
+  await expect(page.locator(".player-data-summary")).toContainText("Previous progress snapshot restored");
+  const restored = await page.evaluate(() => ({
+    hq: JSON.parse(localStorage.getItem("lzcarry:hq-planner:v2")),
+    research: JSON.parse(localStorage.getItem("lzcarry-research-plan-v1"))
+  }));
+  expect(restored.hq["35:0"]).toBe(true);
+  expect(restored.research["Alliance Recognition"]).toBe("Done");
+});

@@ -14,10 +14,9 @@ function num(name,min,max){var el=form.querySelector('[name="'+name+'"]'),v=el?N
 function line(label,value){var li=document.createElement("li");var strong=document.createElement("strong");strong.textContent=label+": ";li.append(strong,document.createTextNode(value));return li;}
 function render(){
 var pkg=val("package")||"daily",item=packages[pkg],days=num("days",1,Infinity),svsAccounts=num("svs-accounts",2,3),fullAccounts=num("full-svs-accounts",1,Infinity),canyonAccounts=num("canyon-accounts",1,Infinity);
-var base=pkg==="daily"?item.price*days:item.price,extras=0,quote=false,summary=document.createElement("div");
+var base=pkg==="daily"?item.price*days:item.price,extras=0,quote=false,summary=document.createElement("div"),addOns=[],summaryList=document.createElement("ul");
 summaryList.appendChild(line("Package",item.name+(pkg==="daily"?" · "+days+" day"+(days===1?"":"s"):"")));
 summaryList.appendChild(line("Included services",item.items.join(" · ")));
-var addOns=[],summaryList=document.createElement("ul");
 if(checked("svs-chest")){extras+=5;addOns.push("SVS Chest Opening — $5 (covers "+svsAccounts+" accounts)");}
 if(checked("full-svs")){quote=true;addOns.push("Full SVS Participation — individual quote for "+fullAccounts+" account"+(fullAccounts===1?"":"s"));}
 if(checked("canyon")){extras+=8*canyonAccounts;addOns.push("Canyon Clash — $8 × "+canyonAccounts+" account"+(canyonAccounts===1?"":"s")+" = $"+(8*canyonAccounts)+" (approximately 45 minutes per account)");}

@@ -242,6 +242,7 @@ test("Player Dashboard prioritizes one next action and Speedup Planner persists 
   await page.locator("#dashboard-hq").selectOption("25");
   await page.getByRole("button", { name: "Save account progress" }).click();
   await expect(page.locator(".dashboard-next-action-card strong")).toHaveText("Plan your next HQ upgrade");
+  await expect(page.locator("#dashboard-recommendations")).not.toContainText("Plan your next HQ upgrade");
 
   await page.getByLabel("Timer type").selectOption("Research");
   await page.getByLabel("Days remaining").fill("1");

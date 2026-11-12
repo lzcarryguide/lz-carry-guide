@@ -17,6 +17,11 @@ test("research progress is interactive, saved locally and keeps long reference n
   await expect(page.locator("#research-next")).toContainText("Recommended next research");
   await page.reload();
   await expect(page.locator("#research-progress-copy")).toContainText("1 of 22 research trees complete");
+  await page.locator("#lab-path").selectOption("early-low");
+  const routeCard = page.locator("#lab-plan-list .lab-plan-item").filter({ hasText: "New Home" });
+  await routeCard.locator("summary").click();
+  await routeCard.locator('select[aria-label="New Home progress"]').selectOption("In progress");
+  await expect(page.locator("#research-progress-copy")).toContainText("1 in progress");
   await expect(page.locator(".research-reference-disclosure")).not.toHaveAttribute("open", "");
   await page.screenshot({ path: "artifacts/research-interactive-desktop.png", fullPage: true });
 });

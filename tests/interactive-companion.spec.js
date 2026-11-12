@@ -293,3 +293,36 @@ test("Beginner Mode checklist is the primary path and long reference sections st
   await page.getByRole("button", { name: "Reset checklist" }).click();
   await expect(page.locator("#beginner-progress-text")).toHaveText("0 of 5 steps complete");
 });
+
+
+test("Hero Investment Comparison shows source caveats and persists player-entered notes", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/heroes.html");
+  const panel = page.locator(".hero-investment-disclosure");
+  await expect(panel).not.toHaveAttribute("open", "");
+  await panel.locator("summary").click();
+  await expect(page.locator('#hero-compare-a option[value="audrey"]')).toHaveCount(1);
+  await page.locator("#hero-compare-a").selectOption("audrey");
+  await page.locator("#hero-compare-b").selectOption("ava");
+  await page.locator("#hero-compare-a-current").fill("45");
+  await page.locator("#hero-compare-a-target").fill("60");
+  await page.locator("#hero-compare-a-stars").fill("3 stars; skill 2");
+  await expect(page.locator("#hero-investment-results")).toContainText("Audrey");
+  await expect(page.locator("#hero-investment-results")).toContainText("Ava");
+  await expect(page.locator("#hero-investment-results")).toContainText("Your current level: 45");
+  await expect(page.locator("#hero-investment-results")).toContainText("No hero-specific investment ranking published");
+  await page.locator("#hero-compare-b").selectOption("amber");
+  await expect(page.locator("#hero-investment-results")).toContainText("Unconfirmed");
+  await expect(page.locator("#hero-investment-results")).toContainText("provisional");
+  await page.reload();
+  await expect(page.locator("#hero-compare-a")).toHaveValue("audrey");
+  await expect(page.locator("#hero-compare-b")).toHaveValue("amber");
+  await expect(page.locator("#hero-compare-a-current")).toHaveValue("45");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator(".hero-investment-disclosure > summary").click();
+  const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+  expect(dimensions.page).toBeLessThanOrEqual(dimensions.viewport + 1);
+  await page.getByRole("button", { name: "Reset comparison" }).click();
+  await expect(page.locator("#hero-compare-a-current")).toHaveValue("");
+  await expect(page.locator("#hero-compare-a-stars")).toHaveValue("");
+});

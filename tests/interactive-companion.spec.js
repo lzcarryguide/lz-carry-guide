@@ -131,24 +131,29 @@ test("event directory progressively reveals records and resets after search", as
 });
 
 
-test("mobile navigation opens accessibly, exposes every destination and closes after selection", async ({ page }) => {
+test("mobile navigation opens accessibly on every primary page and exposes every destination", async ({ page }) => {
+  const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/heroes.html", "/events.html", "/pilot.html"];
   for (const width of [390, 360]) {
-    await page.setViewportSize({ width, height: 844 });
-    await page.goto("/pilot.html");
-    const nav = page.locator('header nav[aria-label="Main navigation"]');
-    const toggle = page.getByRole("button", { name: "Menu" });
-    await expect(toggle).toBeVisible();
-    await expect(toggle).toHaveAttribute("aria-expanded", "false");
-    await expect(nav).toBeHidden();
-    await toggle.click();
-    await expect(toggle).toHaveAttribute("aria-expanded", "true");
-    await expect(nav.locator("a")).toHaveCount(9);
-    await expect(nav.getByRole("link", { name: "LZ Carry Service" })).toHaveAttribute("aria-current", "page");
-    const dims = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
-    expect(dims.page).toBeLessThanOrEqual(dims.viewport + 1);
-    await nav.getByRole("link", { name: "Research Center" }).click();
-    await expect(page).toHaveURL(/research\.html$/);
-    await expect(page.locator('header nav[aria-label="Main navigation"]')).toBeHidden();
-    await expect(page.getByRole("button", { name: "Menu" })).toHaveAttribute("aria-expanded", "false");
+    for (const target of pages) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(target);
+      const nav = page.locator('header nav[aria-label="Main navigation"]');
+      const toggle = page.getByRole("button", { name: "Menu" });
+      await expect(toggle).toBeVisible();
+      await expect(toggle).toHaveAttribute("aria-expanded", "false");
+      await expect(nav).toBeHidden();
+      await expect(page.getByRole("button", { name: "Manage saved LZ Carry progress" })).toBeVisible();
+      await toggle.click();
+      await expect(toggle).toHaveAttribute("aria-expanded", "true");
+      await expect(nav.locator("a")).toHaveCount(9);
+      await expect(nav.locator('a[aria-current="page"]')).toHaveCount(1);
+      await expect(nav.locator('a[aria-current="page"]')).toBeVisible();
+      const dims = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+      expect(dims.page, target + " at " + width).toBeLessThanOrEqual(dims.viewport + 1);
+      await page.keyboard.press("Escape");
+      await expect(nav).toBeHidden();
+      await expect(toggle).toHaveAttribute("aria-expanded", "false");
+      await expect(toggle).toBeFocused();
+    }
   }
 });

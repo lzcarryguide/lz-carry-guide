@@ -2,8 +2,9 @@
 (function(){
 "use strict";
 var results=document.getElementById("event-results");if(!results)return;
-var storage="lzcarry-event-checklists-v1",saved={};try{saved=JSON.parse(localStorage.getItem(storage)||"{}")||{};}catch(e){saved={};}
+var storage="lzcarry-event-checklists-v1",saved={},pageSize=8,visibleCount=8,lastSignature="",lastPageState="";try{saved=JSON.parse(localStorage.getItem(storage)||"{}")||{};}catch(e){saved={};}
 function slug(s){return String(s||"event").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
+function paginate(){var cards=[].slice.call(results.querySelectorAll("details.event-profile")),signature=cards.map(function(card){return((card.querySelector("summary h3")||{}).textContent||"").trim();}).join("|");if(signature!==lastSignature){lastSignature=signature;visibleCount=pageSize;lastPageState="";}cards.forEach(function(card,index){card.hidden=index>=visibleCount;});var needMore=cards.length>visibleCount,button=results.querySelector(".event-load-more"),state=signature+"|"+visibleCount;if(state===lastPageState&&!!button===needMore)return;if(button)button.remove();if(needMore){button=document.createElement("button");button.type="button";button.className="btn secondary event-load-more";button.textContent="Show more events ("+(cards.length-visibleCount)+" remaining)";button.setAttribute("aria-controls","event-results");button.addEventListener("click",function(){visibleCount=Math.min(cards.length,visibleCount+pageSize);lastPageState="";paginate();});results.appendChild(button);}lastPageState=state;}
 function enhance(){
 [].slice.call(results.querySelectorAll("details.event-profile")).forEach(function(card){
 if(card.dataset.uxReady==="1")return;card.dataset.uxReady="1";
@@ -21,6 +22,7 @@ items.forEach(function(item,index){var label=document.createElement("label");lab
 function update(){var n=items.filter(function(_,i){return!!state[i];}).length;progress.textContent=n+" / "+items.length+" ready";wrap.dataset.complete=String(n===items.length);}
 update();source.insertAdjacentElement("afterend",wrap);
 });
+paginate();
 }
 var observer=new MutationObserver(enhance);observer.observe(results,{childList:true,subtree:true});enhance();
 var roseWrap=document.querySelector("#lucky-rose-tracker .wrap");

@@ -58,3 +58,5 @@
 
 .event-load-more{grid-column:1/-1;justify-self:center;margin:10px auto 4px}
 #formation-library,#troop-database,#troop-progress-planner,#faction-recommendations,#event-routines,#weekly-cycle,#event-planning{padding-top:14px;padding-bottom:14px}
+
+#event-results .event-profile[hidden]{display:none!important}

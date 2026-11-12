@@ -21,6 +21,9 @@ test("personal goals save locally, link to the right planner and restore after r
   await expect(page.locator("#dashboard-goal-value")).toHaveText("1 / 1");
   await page.locator("#dashboard-goals > summary").click();
   await expect(page.getByLabel("Complete goal: Finish my next research milestone")).toBeChecked();
+  await page.setViewportSize({ width: 360, height: 800 });
+  const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+  expect(dimensions.page).toBeLessThanOrEqual(dimensions.viewport + 1);
   page.on("dialog", dialog => dialog.accept());
   await page.getByRole("button", { name: "Clear completed goals" }).click();
   await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 0");

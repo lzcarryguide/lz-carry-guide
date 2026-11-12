@@ -514,6 +514,7 @@ test("Lucky Rose tracker separates community candidates from in-game verificatio
   await expect(current.locator(".evidence-badge")).not.toContainText("Verified");
   await expect(current.locator("a[href*='lastz.gg']")).toBeVisible();
   await expect(current.locator("a[href*='ztools.co.uk']")).toBeVisible();
+  await page.locator("#lucky-rose-tracker .lucky-rose-reference-disclosure > summary").click();
   await expect(page.locator("#lucky-rose-scope-note")).toContainText("sender-only");
   await expect(page.locator("#lucky-rose-history .lucky-rose-history-row")).toHaveCount(2);
   const size = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));

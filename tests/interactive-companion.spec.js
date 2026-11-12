@@ -311,6 +311,10 @@ test("Hero Investment Comparison shows source caveats and persists player-entere
   await expect(page.locator("#hero-investment-results")).toContainText("Ava");
   await expect(page.locator("#hero-investment-results")).toContainText("Your current level: 45");
   await expect(page.locator("#hero-investment-results")).toContainText("No hero-specific investment ranking published");
+  const skillNotes = page.locator("#hero-investment-results .hero-investment-skill-notes").first();
+  await expect(skillNotes).not.toHaveAttribute("open", "");
+  await skillNotes.locator("summary").click();
+  await expect(skillNotes).toHaveAttribute("open", "");
   await page.locator("#hero-compare-b").selectOption("amber");
   await expect(page.locator("#hero-investment-results")).toContainText("Unconfirmed");
   await expect(page.locator("#hero-investment-results")).toContainText("provisional");

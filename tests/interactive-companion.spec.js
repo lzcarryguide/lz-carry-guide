@@ -11,7 +11,7 @@ test("personal goals save locally, link to the right planner and restore after r
   await page.getByLabel("Goal", { exact: true }).fill("Finish my next research milestone");
   await page.getByLabel("Planning area").selectOption("Research");
   await page.getByLabel("Target date (optional)").fill("2027-02-01");
-  await page.getByLabel("Planning note (optional)").fill("Confirm the live Laboratory unlock first");
+  await page.locator("#dashboard-goal-note").fill("Confirm the live Laboratory unlock first");
   await page.getByRole("button", { name: "Add personal goal" }).click();
   await expect(page.locator("#dashboard-goal-list")).toContainText("Finish my next research milestone");
   await expect(page.locator('#dashboard-goal-list a[href="research.html#lab-planner"]')).toBeVisible();

@@ -1,0 +1,39 @@
+name: Live GitHub Pages Browser Verification
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-browser-verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      LZCARRY_LIVE_URL: ${{ github.event.repository.homepage || 'https://lzcarryguide.github.io/lz-carry-guide/' }}
+    steps:
+      - name: Check out published source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Playwright
+        run: npm install --no-save @playwright/test
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify the live website in Chromium
+        run: npx playwright test --config=playwright.live.config.js
+      - name: Upload live-site screenshots and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lz-carry-live-pages-verification
+          path: |
+            artifacts/live/
+            artifacts/live-report/
+          if-no-files-found: warn
+          retention-days: 14

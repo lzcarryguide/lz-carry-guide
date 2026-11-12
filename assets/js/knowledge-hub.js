@@ -72,7 +72,7 @@ r=document.getElementById("event-results");if(r)load("data/events.json","events"
 (function(){
 var $=function(id){return document.getElementById(id);},slots=$("formation-slots"),results=$("builder-results");
 if(!slots||!results)return;
-var roster=[],chosen=[null,null,null,null,null],active=0;
+var roster=[],chosen=[null,null,null,null,null],active=0,rosterPageSize=12,rosterVisible=12;
 var pairs=[
 {names:["Bella","Licia"],label:"Bella + Licia",why:"Community formation guides describe this as a Blood Rose seasonal pairing. Confirm the actual shared talent, star threshold and activation in your live client before counting its effect."},
 {names:["Alma","Liliana"],label:"Alma + Liliana",why:"Community formation guides identify this Wings of Dawn seasonal pair. Confirm its talent condition and actual skill scope in your live client."},
@@ -84,8 +84,8 @@ function intel(h){var box=$("hero-intel");if(!box)return;box.replaceChildren(nod
 function drawSlots(){slots.replaceChildren();chosen.forEach(function(h,i){var wrap=node("div","formation-slot-wrap",""),b=node("button","formation-slot","");b.type="button";b.setAttribute("aria-pressed",String(active===i));b.addEventListener("click",function(){active=i;drawSlots();drawResults();});b.append(node("span","slot-number","SLOT "+(i+1)),node("span","slot-avatar",h?h.name.split(/\s+/).map(function(x){return x[0];}).join("").slice(0,2):"+"),node("strong","",h?h.name:"Choose hero"),node("small","",h?h.faction:"Open slot"));wrap.append(b);if(h){var rm=node("button","slot-remove","Remove");rm.type="button";rm.setAttribute("aria-label","Remove "+h.name+" from slot "+(i+1));rm.addEventListener("click",function(){chosen[i]=null;drawSlots();drawResults();analyze();intel(null);});wrap.append(rm);}slots.append(wrap);});}
 function filtered(){var q=$("builder-search").value.toLowerCase(),f=$("builder-faction").value,s=$("builder-season").value,roleFilter=$("builder-role")?$("builder-role").value:"",troopFilter=$("builder-hero-troop")?$("builder-hero-troop").value:"";return roster.filter(function(h){return(!q||[h.name,h.faction,h.role,h.season,h.awakeningSeason,h.troopType].join(" ").toLowerCase().includes(q))&&(!f||h.faction===f)&&(!roleFilter||h.role===roleFilter)&&(!troopFilter||h.troopType===troopFilter)&&(!s||(s==="5"?h.awakeningSeason===5:String(h.season)===s));});}
 function drawResults(){
-var a=filtered();var selectable=a.filter(function(h){return h.verificationStatus==="Community-supported";}).length;$("builder-count").textContent=a.length+" indexed heroes · "+selectable+" selectable";results.replaceChildren();
-a.forEach(function(h){
+var a=filtered(),visible=a.slice(0,rosterVisible);var selectable=a.filter(function(h){return h.verificationStatus==="Community-supported";}).length;$("builder-count").textContent="Showing "+visible.length+" of "+a.length+" indexed heroes · "+selectable+" selectable";results.replaceChildren();
+visible.forEach(function(h){
 var selected=chosen.some(function(x){return x&&x.id===h.id;}),eligible=h.verificationStatus==="Community-supported",wrap=node("div","hero-directory-item"+(eligible?"":" is-pending"),"");
 var details=node("details","hero-directory-details","");
 var summary=node("summary","hero-directory-summary","");
@@ -110,6 +110,7 @@ var add=node("button","btn secondary builder-hero","");add.type="button";add.dis
 if(eligible)add.addEventListener("click",function(){var existing=chosen.findIndex(function(x){return x&&x.id===h.id;});if(existing>=0&&existing!==active){var tmp=chosen[active];chosen[active]=chosen[existing];chosen[existing]=tmp;}else chosen[active]=h;drawSlots();drawResults();analyze();intel(h);});
 wrap.append(details,add);results.append(wrap);
 });
+if(a.length>rosterVisible){var more=node("button","btn secondary hero-load-more","Show more heroes ("+(a.length-rosterVisible)+" remaining)");more.type="button";more.addEventListener("click",function(){rosterVisible=Math.min(a.length,rosterVisible+rosterPageSize);drawResults();});results.append(more);}
 }
 function counter(major,enemy){var counteredBy={"Blood Rose":"Wings of Dawn","Wings of Dawn":"Guard of Order","Guard of Order":"Blood Rose"};if(major===counteredBy[enemy])return major+" is the community-listed counter to "+enemy+"; this is a matchup edge to test, not a guaranteed win.";if(counteredBy[major]===enemy)return major+" is countered by "+enemy+" in the commonly reported faction triangle. Consider a pivot only if it does not sacrifice developed heroes or skill synergy.";return major+" has no direct counter edge over "+enemy+" in the reported triangle.";}
 function analyze(){var box=$("formation-advice"),a=chosen.filter(Boolean),counts={};box.replaceChildren(node("h3","","Formation analysis"));if(!a.length){box.append(node("p","","Add heroes to compare faction balance, documented pairs, troop alignment and matchup notes."));return;}a.forEach(function(h){counts[h.faction]=(counts[h.faction]||0)+1;});var fs=Object.keys(counts).sort(function(x,y){return counts[y]-counts[x];});box.append(node("p","",a.length+"/5 slots filled · "+fs.map(function(f){return f+" ×"+counts[f];}).join(" · ")+"."));
@@ -121,7 +122,7 @@ var roles={};a.forEach(function(h){roles[h.role||"Unclassified"]=(roles[h.role||
 var missing=a.filter(function(h){return!h.profileNotes||!h.profileNotes.skills||!h.profileNotes.skills.length;});if(missing.length)box.append(node("p","small muted","No hero-specific skill transcription is available for "+missing.map(function(h){return h.name;}).join(", ")+". No synergy is inferred for these entries."));
 box.append(node("p","small muted","Evidence: community formation guides. No battle simulator, win-rate model or exact synergy coefficient is claimed. Compare same-mode battle reports before investing."));}
 function preset(k){var picks={bloodrose:["Bella","Katrina","Selena","Licia","Oliveira"],wings:["Laura","Alma","Scarlett","Liliana","Amelia"],counter:["Scarlett","Alma","Liliana","Bella","Licia"]}[k];if(k==="clear"){chosen=[null,null,null,null,null];active=0;intel(null);}else if(picks){chosen=picks.map(function(n){return roster.find(function(h){return h.name===n;})||null;});active=0;intel(chosen[0]);if(k==="counter")$("builder-opponent").value="Blood Rose";}drawSlots();drawResults();analyze();}
-["builder-search","builder-faction","builder-role","builder-season","builder-hero-troop"].forEach(function(id){if($(id))$(id).addEventListener(id==="builder-search"?"input":"change",drawResults);});
+["builder-search","builder-faction","builder-role","builder-season","builder-hero-troop"].forEach(function(id){if($(id))$(id).addEventListener(id==="builder-search"?"input":"change",function(){rosterVisible=rosterPageSize;drawResults();});});
 ["builder-troop","builder-opponent"].forEach(function(id){$(id).addEventListener("change",analyze);});
 document.querySelectorAll("[data-preset]").forEach(function(b){b.addEventListener("click",function(){preset(b.dataset.preset);});});
 fetch("data/heroes.json").then(function(r){return r.json();}).then(function(d){roster=d.heroes;drawSlots();drawResults();analyze();}).catch(function(){results.textContent="Hero data could not be loaded.";});

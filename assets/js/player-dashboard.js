@@ -2,6 +2,7 @@
 (function(){
 "use strict";
 var $=function(id){return document.getElementById(id);};
+function el(tag,cls,text){var node=document.createElement(tag);if(cls)node.className=cls;if(text!=null)node.textContent=String(text);return node;}
 var profileKey="lzcarry-player-profile-v1";
 var keys={formations:"lzcarry-formation-library-v1",hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",eventChecklists:"lzcarry-event-checklists-v1",beginner:"lzcarry-beginner-mode-v1",troop:"lzcarry-troop-plan-v1",reminders:"lzcarry-event-reminders-v1",goals:"lzcarry-player-goals-v1"};
 var select=$("dashboard-hq"),status=$("dashboard-status");

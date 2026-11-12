@@ -433,12 +433,14 @@ test("Player Dashboard summarizes local progress and links to existing planners"
     localStorage.setItem("lzcarry-formation-library-v1", JSON.stringify([{ id: "one", name: "Saved lineup", heroes: ["Bella"] }]));
     localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({ "New Home": "Done", "Shelter Building": "In progress" }));
     localStorage.setItem("lzcarry-troop-plan-v1", JSON.stringify({ classId: "assaulters", tier: "10", current: 120, target: 200 }));
+    localStorage.setItem("lzcarry-event-checklists-v1", JSON.stringify({ "alliance-duel": { "0": true, "1": true } }));
   });
   await page.reload();
   await expect(page.locator("#dashboard-formation-value")).toHaveText("1");
   await expect(page.locator("#dashboard-hero-value")).toHaveText("1");
   await expect(page.locator("#dashboard-research-value")).toHaveText("1 / 2");
   await expect(page.locator("#dashboard-troop-value")).toHaveText("Assaulters T10");
+  await expect(page.locator("#dashboard-event-value")).toHaveText("2");
   await expect(page.locator("#dashboard-recommendations")).toContainText("Review your saved formations");
   await page.locator(".dashboard-more-recommendations > summary").click();
   await expect(page.locator('a[href="heroes.html#formation-builder"]').first()).toBeVisible();

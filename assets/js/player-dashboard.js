@@ -46,13 +46,22 @@ function render(){
  var troopNames={assaulters:"Assaulters",shooters:"Shooters",riders:"Riders"};
  $("dashboard-troop-value").textContent=troop.classId&&troop.tier?((troopNames[troop.classId]||troop.classId)+" T"+troop.tier):"Not set";
  renderReminders();
+ var next=$("dashboard-next-action"),primary;
+ if(!profile.currentHq)primary=card("Set your current HQ","Your HQ level is the starting point for useful upgrade planning. Add the level shown in your game; LZ Carry does not read your account automatically.","#dashboard-hq","Set HQ level");
+ else if(researchNames.length===0)primary=card("Start a Laboratory route","No research progress is tracked yet. Choose a route in the Laboratory and record the steps you have verified in game.","research.html#lab-planner","Start research planning");
+ else if(researchDone<researchNames.length)primary=card("Continue Laboratory research",researchNames.length-researchDone+" tracked research item(s) are not marked complete. Review the live prerequisites before committing resources.","research.html#lab-planner","Resume research");
+ else if(formations.length===0)primary=card("Build your first hero formation","Save a first lineup to compare future changes and keep your hero investment decisions organized.","heroes.html#formation-builder","Build a formation");
+ else if(beginnerDone<6)primary=card("Complete your next progression milestone",beginnerDone+" of 6 Beginner Mode milestones are checked. Continue the guided path at your own pace.","beginner.html#beginner-mode","Continue Beginner Mode");
+ else if(eventDone===0)primary=card("Prepare for your next event","Choose the active theme shown in your live Event Center and record the preparation tasks you have confirmed.","events.html#event-prep-planner","Prepare for an event");
+ else primary=card("Review your saved account plan","Your key trackers have saved progress. Recheck live game requirements and update your HQ, research and event plans after your next milestone.","beginner.html","Review progression");
+ if(next){primary.classList.add("dashboard-next-action-card");next.replaceChildren(primary);}
  var rec=$("dashboard-recommendations");rec.replaceChildren();
  if(!profile.currentHq)rec.append(card("Set your current HQ","Add your current HQ level to personalize your next planning steps. This is player-entered, not read from your game account.","#dashboard-hq","Set HQ level"));
  else rec.append(card("Plan your next HQ upgrade","Use the HQ planner to review community-reported prerequisites and compare source values before spending.","beginner.html#hq-planner-section","Open HQ planner"));
  if(researchNames.length===0||researchDone<researchNames.length)rec.append(card("Continue Laboratory research","Your research route is saved locally. Review disputed gates in the live Laboratory before committing resources.","research.html#lab-planner","Resume research"));
  if(formations.length===0)rec.append(card("Build your first hero formation","Create a lineup and save it so you can compare future changes.","heroes.html#formation-builder","Open formation builder"));
  else rec.append(card("Review your saved formations",formations.length+" formation(s) are saved in this browser. Compare them before replacing a lineup.","heroes.html#formation-builder","Review formations"));
- if(beginnerDone<5)rec.append(card("Follow Beginner Mode","Complete the guided foundations checklist at your own pace. It links to the existing planners rather than duplicating them.","beginner.html#beginner-mode","Continue beginner path"));
+ if(beginnerDone<6)rec.append(card("Follow Beginner Mode","Complete the guided foundations checklist at your own pace. It links to the existing planners rather than duplicating them.","beginner.html#beginner-mode","Continue beginner path"));
  if(eventDone===0)rec.append(card("Prepare for your next event","Choose the theme shown in your live Event Center; event rotations and dates are not automatically synchronized.","events.html#event-prep-planner","Open event planner"));
  if(!rec.children.length)rec.append(card("Review your saved progress","Your local trackers look complete. Recheck current game requirements and update your saved progress when your account changes.","beginner.html","Review progression"));
  $("dashboard-event-note").textContent=eventDone?eventDone+" preparation check(s) saved on this device. Confirm the live event theme and schedule in game. HQ checklist: "+hqDone+" prerequisite(s) marked complete.":"No event preparation checks are currently saved. Event schedules are not automatically synced; confirm dates and themes in the live game.";

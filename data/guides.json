@@ -1,5 +1,196 @@
 {
   "schemaVersion": 1,
-  "lastUpdated": null,
-  "entries": []
+  "lastUpdated": "2026-11-12",
+  "entries": [
+    {
+      "id": "player-dashboard",
+      "status": "published",
+      "title": "Start with your Player Dashboard",
+      "summary": "Set your current HQ, review the single Next Best Action, and use local backup controls to resume your plan. LZ Carry does not connect to your game account.",
+      "category": "beginner",
+      "stage": [
+        "New player",
+        "Returning player"
+      ],
+      "tags": [
+        "dashboard",
+        "progress",
+        "backup",
+        "planning"
+      ],
+      "url": "dashboard.html",
+      "verifiedAt": "2026-11-12",
+      "sources": [
+        {
+          "name": "LZ Carry Player Dashboard",
+          "type": "community",
+          "checkedAt": "2026-11-12",
+          "note": "Original interface walkthrough checked against the current published LZ Carry dashboard; no game mechanics or account data access are asserted."
+        }
+      ]
+    },
+    {
+      "id": "hq-upgrade-planner",
+      "status": "published",
+      "title": "Plan your next HQ upgrade",
+      "summary": "Enter your current HQ, inspect the next building requirements, and mark only prerequisites you have confirmed in game. Use the calculator with current player-entered resource balances.",
+      "category": "beginner",
+      "stage": [
+        "All stages"
+      ],
+      "tags": [
+        "HQ",
+        "buildings",
+        "requirements",
+        "resources",
+        "planner"
+      ],
+      "url": "beginner.html#hq-planner-section",
+      "verifiedAt": "2026-11-12",
+      "sources": [
+        {
+          "name": "LZ Carry HQ Upgrade Planner",
+          "type": "community",
+          "checkedAt": "2026-11-12",
+          "note": "Original tool-use instructions reviewed against the published planner; the guide does not publish new upgrade costs or requirements."
+        }
+      ]
+    },
+    {
+      "id": "research-center",
+      "status": "published",
+      "title": "Track research without guessing",
+      "summary": "Search a research tree, open its prerequisites and evidence notes, and record progress only after checking your in-game Laboratory. Copy current resource costs into the calculator rather than relying on stale estimates.",
+      "category": "research",
+      "stage": [
+        "All stages"
+      ],
+      "tags": [
+        "research",
+        "laboratory",
+        "prerequisites",
+        "progress",
+        "resources"
+      ],
+      "url": "research.html#lab-planner",
+      "verifiedAt": "2026-11-12",
+      "sources": [
+        {
+          "name": "LZ Carry Research Center",
+          "type": "community",
+          "checkedAt": "2026-11-12",
+          "note": "Original interface walkthrough checked against the current Research Center and Laboratory Planner; no unverified research costs are asserted."
+        }
+      ]
+    },
+    {
+      "id": "hero-formation",
+      "status": "published",
+      "title": "Build and save a hero formation",
+      "summary": "Filter the roster by faction, season, role and troop type, inspect evidence, fill the five formation slots, then save or compare your lineup. Unconfirmed records remain unavailable for formation selection.",
+      "category": "heroes",
+      "stage": [
+        "All stages"
+      ],
+      "tags": [
+        "heroes",
+        "formation",
+        "filters",
+        "save",
+        "comparison"
+      ],
+      "url": "heroes.html#formation-lab",
+      "verifiedAt": "2026-11-12",
+      "sources": [
+        {
+          "name": "LZ Carry Hero Formation Lab",
+          "type": "community",
+          "checkedAt": "2026-11-12",
+          "note": "Original tool-use instructions checked against the published Formation Lab and roster controls; no hero ranking or combat coefficient is introduced."
+        }
+      ]
+    },
+    {
+      "id": "hero-investment",
+      "status": "published",
+      "title": "Compare hero investment notes safely",
+      "summary": "Compare two indexed hero profiles and your own current and target notes. Open skill evidence when needed; the comparison does not declare a universal winner or calculate an invented power score.",
+      "category": "heroes",
+      "stage": [
+        "All stages"
+      ],
+      "tags": [
+        "heroes",
+        "investment",
+        "evidence",
+        "skills",
+        "comparison"
+      ],
+      "url": "heroes.html#hero-investment-compare",
+      "verifiedAt": "2026-11-12",
+      "sources": [
+        {
+          "name": "LZ Carry Hero Investment Comparison",
+          "type": "community",
+          "checkedAt": "2026-11-12",
+          "note": "Original interface walkthrough checked against the published comparison tool; all hero facts remain bounded by the existing roster evidence labels."
+        }
+      ]
+    },
+    {
+      "id": "event-preparation",
+      "status": "published",
+      "title": "Prepare for an event with a saved checklist",
+      "summary": "Choose an event, open its details, review the current in-game rules and use its personal preparation checklist. Verify live rewards, scoring and schedules before spending.",
+      "category": "events",
+      "stage": [
+        "All stages"
+      ],
+      "tags": [
+        "events",
+        "checklist",
+        "preparation",
+        "rewards",
+        "progress"
+      ],
+      "url": "events.html#event-prep-planner",
+      "verifiedAt": "2026-11-12",
+      "sources": [
+        {
+          "name": "LZ Carry Events Center",
+          "type": "community",
+          "checkedAt": "2026-11-12",
+          "note": "Original interface walkthrough checked against the current Events Center; the guide does not infer event schedules, rewards or scoring values."
+        }
+      ]
+    },
+    {
+      "id": "speedup-planner",
+      "status": "published",
+      "title": "Estimate timer coverage with speedups",
+      "summary": "Enter the remaining timer and total speedup minutes you have available. The calculator performs time arithmetic only; confirm item restrictions and event rules in your live game.",
+      "category": "beginner",
+      "stage": [
+        "All stages"
+      ],
+      "tags": [
+        "speedups",
+        "timer",
+        "calculator",
+        "building",
+        "research",
+        "training"
+      ],
+      "url": "dashboard.html#speedup-planner",
+      "verifiedAt": "2026-11-12",
+      "sources": [
+        {
+          "name": "LZ Carry Speedup Planner",
+          "type": "community",
+          "checkedAt": "2026-11-12",
+          "note": "Original tool-use instructions checked against the published player-entered timer calculator; no game-specific speedup item values or restrictions are assumed."
+        }
+      ]
+    }
+  ]
 }

@@ -179,15 +179,24 @@ test("guide directory filters search and only admits verified published records"
   await page.getByLabel("Search written guides").fill("hq");
   await expect(page.getByRole("heading",{name:"Verified HQ basics"})).toBeVisible();
   await page.getByLabel("Search written guides").fill("no match");
-  await expect(page.getByText("No published guides match yet")).toBeVisible();
+  await expect(page.getByText("No guides match this search")).toBeVisible();
 });
 
-test("existing guide database remains empty and unpublished", async ({ request }) => {
+test("published quick-start guide records retain dated sources and safe internal destinations", async ({ request }) => {
   const response=await request.get("/data/guides.json");
   expect(response.ok()).toBeTruthy();
   const data=await response.json();
   expect(data.schemaVersion).toBe(1);
-  expect(data.entries).toEqual([]);
+  expect(data.entries).toHaveLength(7);
+  expect(new Set(data.entries.map(entry=>entry.id)).size).toBe(7);
+  for(const entry of data.entries){
+    expect(entry.status).toBe("published");
+    expect(entry.verifiedAt).toMatch(/^2026-11-\d{2}$/);
+    expect(["beginner","research","heroes","events"]).toContain(entry.category);
+    expect(entry.url).toMatch(/^[a-z0-9._-]+(?:#[a-z0-9_-]+)?$/i);
+    expect(entry.sources.length).toBeGreaterThan(0);
+    expect(entry.sources.every(source=>source.name&&source.checkedAt&&source.note&&["official","in-game","community"].includes(source.type))).toBeTruthy();
+  }
 });
 
 test("research database search filters and expands only matching technologies", async ({ page }) => {
@@ -695,4 +704,26 @@ test("homepage desktop navigation keeps the brand, links, search and progress co
     return collisions;
   });
   expect(overlaps, "homepage navigation controls must not visually overlap").toEqual([]);
+});
+
+
+test("guide directory exposes original tool walkthroughs with expandable source notes", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/guides.html");
+  await expect(page.getByText("7 published guides")).toBeVisible();
+  await expect(page.locator("#guide-results article")).toHaveCount(7);
+  const categories = page.locator(".guide-category-disclosure");
+  await expect(categories).not.toHaveAttribute("open", "");
+  await categories.locator(":scope > summary").click();
+  await expect(categories).toHaveAttribute("open", "");
+  await page.getByLabel("Search written guides").fill("speedup");
+  await expect(page.locator("#guide-results article")).toHaveCount(1);
+  await expect(page.getByRole("heading", { name: "Estimate timer coverage with speedups" })).toBeVisible();
+  const source = page.locator("#guide-results .guide-source-note").first();
+  await expect(source).not.toHaveAttribute("open", "");
+  await source.locator("summary").click();
+  await expect(source).toContainText("LZ Carry Speedup Planner");
+  await expect(page.locator('#guide-results a[href="dashboard.html#speedup-planner"]')).toBeVisible();
+  const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+  expect(dimensions.page).toBeLessThanOrEqual(dimensions.viewport + 1);
 });

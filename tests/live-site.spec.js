@@ -77,6 +77,8 @@ test("published GitHub Pages site is live, responsive and serves every primary p
         await expect(nav).toBeVisible();
         await expect(nav.locator('a[aria-current="page"]')).toHaveCount(1);
         if (name === "home") await page.screenshot({ path: path.join(artifacts, "mobile-navigation-open.png") });
+        await toggle.click();
+        await expect(nav).toBeHidden();
       } else {
         await expect(page.locator('header nav[aria-label="Main navigation"]')).toBeVisible();
         await expect(page.locator('header nav a[aria-current="page"]')).toHaveCount(1);

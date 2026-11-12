@@ -310,6 +310,7 @@ test("Hero Investment Comparison shows source caveats and persists player-entere
   await expect(page.locator("#hero-investment-results")).toContainText("Audrey");
   await expect(page.locator("#hero-investment-results")).toContainText("Ava");
   await expect(page.locator("#hero-investment-results")).toContainText("Your current level: 45");
+  await page.screenshot({ path: "artifacts/hero-investment-comparison-desktop.png", fullPage: true });
   await expect(page.locator("#hero-investment-results")).toContainText("Source confidence:");
   await expect(page.locator("#hero-investment-results")).not.toContainText("Winner:");
   await expect(page.locator("#hero-investment-results")).not.toContainText("Power score:");
@@ -328,6 +329,7 @@ test("Hero Investment Comparison shows source caveats and persists player-entere
   await page.locator(".hero-investment-disclosure > summary").click();
   const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
   expect(dimensions.page).toBeLessThanOrEqual(dimensions.viewport + 1);
+  await page.screenshot({ path: "artifacts/hero-investment-comparison-mobile.png", fullPage: true });
   await page.getByRole("button", { name: "Reset comparison" }).click();
   await expect(page.locator("#hero-compare-a-current")).toHaveValue("");
   await expect(page.locator("#hero-compare-a-stars")).toHaveValue("");

@@ -32,6 +32,9 @@ test("hero roster supports troop-type filters while keeping formation builder fi
   await expect(page.locator("#formation-lab")).toBeVisible();
   await expect(page.locator("#formation-slots .formation-slot")).toHaveCount(5);
   await expect(page.getByLabel("Hero troop type")).toBeVisible();
+  await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(12);
+  await page.getByRole("button", { name: /Show more heroes/ }).click();
+  await page.getByRole("button", { name: /Show more heroes/ }).click();
   await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(36);
   await page.getByLabel("Hero troop type").selectOption("Assaulters");
   const names = await page.locator("#builder-results .hero-directory-identity small").allTextContents();
@@ -42,7 +45,7 @@ test("hero roster supports troop-type filters while keeping formation builder fi
   expect(shooters.length).toBeGreaterThan(0);
   expect(shooters.every(name => name.includes("Shooters"))).toBeTruthy();
   await page.getByLabel("Hero troop type").selectOption("");
-  await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(36);
+  await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(12);
   await expect(page.locator("#formation-library .hero-advanced-disclosure")).toBeVisible();
   await expect(page.locator("#formation-library .hero-advanced-disclosure")).not.toHaveAttribute("open", "");
   await page.screenshot({ path: "artifacts/heroes-interactive-desktop.png", fullPage: true });

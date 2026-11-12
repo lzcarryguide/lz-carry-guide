@@ -15,6 +15,8 @@ test("research progress is interactive, saved locally and keeps long reference n
   await expect(page.locator("#research-progress-copy")).toContainText("1 of 22 research trees complete");
   await expect(page.locator("#research-progress-value")).toHaveText("5%");
   await expect(page.locator("#research-next")).toContainText("Recommended next research");
+  await expect(page.locator("#research-next")).toContainText("Priority-based suggestion only");
+  await expect(page.locator("#research-next")).toContainText("verify prerequisite research");
   await page.reload();
   await expect(page.locator("#research-progress-copy")).toContainText("1 of 22 research trees complete");
   await page.locator("#lab-path").selectOption("early-low");

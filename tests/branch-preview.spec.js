@@ -372,7 +372,7 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry-speedup-plan-v1", JSON.stringify({ "speedup-task": "Research", "speedup-days": "1", "speedup-hours": "2", "speedup-minutes": "30", "speedup-available": "600" }));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/7 of 12 saved data sets found/)).toBeVisible();
+  await expect(page.getByText(/8 of 12 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;

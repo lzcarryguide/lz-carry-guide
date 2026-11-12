@@ -81,6 +81,9 @@ test("pilot selector calculates exact package and add-on totals without inventin
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/pilot.html");
   await expect(page.locator("#pilot-total")).toHaveText("$3");
+  await page.getByLabel("Daily Pilot duration").fill("0");
+  await expect(page.getByLabel("Daily Pilot duration")).toHaveValue("1");
+  await expect(page.locator("#pilot-total")).toHaveText("$3");
   await page.getByLabel("Daily Pilot duration").fill("4");
   await expect(page.locator("#pilot-total")).toHaveText("$12");
   await page.getByLabel("Saturday Special").check();
@@ -90,6 +93,9 @@ test("pilot selector calculates exact package and add-on totals without inventin
   await page.getByLabel(/SVS Chest Opening/).check();
   await expect(page.locator("#pilot-total")).toHaveText("$35");
   await page.getByLabel(/Canyon Clash/).check();
+  await page.locator("#pilot-canyon-accounts").fill("25");
+  await expect(page.locator("#pilot-canyon-accounts")).toHaveValue("20");
+  await expect(page.locator("#pilot-total")).toHaveText("$195");
   await page.locator("#pilot-canyon-accounts").fill("2");
   await expect(page.locator("#pilot-total")).toHaveText("$51");
   await page.getByLabel(/Full SVS Participation/).check();

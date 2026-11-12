@@ -55,3 +55,6 @@
 .hero-load-more{grid-column:1/-1;justify-self:center;margin:8px auto 4px}
 
 .hero-preset-disclosure{margin:12px 0;padding:12px 14px;border:1px solid rgba(143,190,224,.2);border-radius:10px;background:rgba(13,22,35,.62)}
+
+.event-load-more{grid-column:1/-1;justify-self:center;margin:10px auto 4px}
+#formation-library,#troop-database,#troop-progress-planner,#faction-recommendations,#event-routines,#weekly-cycle,#event-planning{padding-top:14px;padding-bottom:14px}

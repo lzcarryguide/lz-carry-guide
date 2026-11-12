@@ -55,7 +55,8 @@ test("published GitHub Pages site is live, responsive and serves every primary p
       await page.setViewportSize({ width, height: width === 390 ? 844 : 1000 });
       await page.goto(target, { waitUntil: "networkidle", timeout: 45000 });
       await expect(page.locator("main")).toBeVisible();
-      await page.evaluate(() => document.fonts.ready);
+      await page.evaluate(() => { document.querySelectorAll("img").forEach(img => { img.loading = "eager"; }); return document.fonts.ready; });
+      await page.waitForFunction(() => Array.from(document.images).every(img => img.complete));
       const diagnostics = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
         page: document.documentElement.scrollWidth,

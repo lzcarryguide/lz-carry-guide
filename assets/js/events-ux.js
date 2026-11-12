@@ -23,5 +23,11 @@ update();source.insertAdjacentElement("afterend",wrap);
 });
 }
 var observer=new MutationObserver(enhance);observer.observe(results,{childList:true,subtree:true});enhance();
+var roseWrap=document.querySelector("#lucky-rose-tracker .wrap");
+if(roseWrap&&!roseWrap.querySelector(".lucky-rose-reference-disclosure")){
+var history=document.getElementById("lucky-rose-history"),historyCard=history&&history.closest(".card"),scope=document.getElementById("lucky-rose-scope-note");
+var verification=[].slice.call(roseWrap.querySelectorAll(".card")).find(function(card){var h=card.querySelector("h3");return h&&/how lz carry verifies a weekly entry/i.test(h.textContent);});
+if(historyCard&&scope&&verification){var details=document.createElement("details");details.className="event-reference-disclosure lucky-rose-reference-disclosure";var summary=document.createElement("summary");summary.textContent="Recent community reports & verification notes";var content=document.createElement("div");content.className="event-reference-content";[historyCard,scope,verification].forEach(function(node){content.appendChild(node);});details.append(summary,content);roseWrap.appendChild(details);}
+}
 ["event-routines","weekly-cycle","event-planning"].forEach(function(id){var section=document.getElementById(id);if(!section||section.querySelector(".event-reference-disclosure"))return;var wrap=section.querySelector(".wrap");if(!wrap)return;var heading=wrap.querySelector("h2"),title=heading?heading.textContent.trim():"Additional event reference";var details=document.createElement("details");details.className="event-reference-disclosure";var summary=document.createElement("summary");var heading=wrap.querySelector("h2");if(heading)summary.appendChild(heading);else summary.textContent=title;var content=document.createElement("div");content.className="event-reference-content";while(wrap.firstChild){var node=wrap.firstChild;if(node===heading){wrap.removeChild(node);continue;}content.appendChild(node);}details.append(summary,content);wrap.appendChild(details);});
 })();

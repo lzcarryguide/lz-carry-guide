@@ -10,10 +10,10 @@ weekly:{name:"Weekly Elite Management",price:30,unit:"fixed",items:["Daily Pilot
 };
 function val(name){var el=form.querySelector('[name="'+name+'"]:checked')||form.querySelector('[name="'+name+'"]');return el?el.value:"";}
 function checked(name){var el=form.querySelector('[name="'+name+'"]');return!!(el&&el.checked);}
-function num(name,min,max){var el=form.querySelector('[name="'+name+'"]'),v=el?Number(el.value):min;return Math.floor(Math.min(max,Math.max(min,Number.isFinite(v)?v:min)));}
+function num(name,min,max){var el=form.querySelector('[name="'+name+'"]'),v=el?Number(el.value):min,result=Math.floor(Math.min(max,Math.max(min,Number.isFinite(v)?v:min)));if(el&&el.value!==String(result))el.value=String(result);return result;}
 function line(label,value){var li=document.createElement("li");var strong=document.createElement("strong");strong.textContent=label+": ";li.append(strong,document.createTextNode(value));return li;}
 function render(){
-var pkg=val("package")||"daily",item=packages[pkg],days=num("days",1,Infinity),svsAccounts=num("svs-accounts",2,3),fullAccounts=num("full-svs-accounts",1,Infinity),canyonAccounts=num("canyon-accounts",1,Infinity);
+var pkg=val("package")||"daily",item=packages[pkg],days=num("days",1,Infinity),svsAccounts=num("svs-accounts",2,3),fullAccounts=num("full-svs-accounts",1,20),canyonAccounts=num("canyon-accounts",1,20);
 var base=pkg==="daily"?item.price*days:item.price,extras=0,quote=false,summary=document.createElement("div"),addOns=[],summaryList=document.createElement("ul");
 summaryList.appendChild(line("Package",item.name+(pkg==="daily"?" · "+days+" day"+(days===1?"":"s"):"")));
 summaryList.appendChild(line("Included services",item.items.join(" · ")));

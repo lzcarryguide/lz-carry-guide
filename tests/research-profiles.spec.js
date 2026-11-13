@@ -18,7 +18,7 @@ test("Research Center profile selector presents differentiated routes", async ({
   const high = await page.locator("#research-profile-results").innerText();
   expect(high).toContain("Fully Armed Alliance");
   expect(high).toContain("Tactical Master");
-  await expect(page.locator("#lab-path")).toHaveValue("high");
+  await page.locator("#research-apply-profile").click();\n  await expect(page.locator("#lab-path")).toHaveValue("high");
 });
 
 test("Why this research opens the matching detailed entry and focuses its summary", async ({ page }) => {

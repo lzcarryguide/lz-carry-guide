@@ -17,9 +17,9 @@
   var datasets = [
     { file: "data/guides.json", page: "guides.html", title: "Guide", key: ["title", "name"] },
     { file: "data/hq-requirements.json", page: "beginner.html#hq-planner-section", title: "HQ requirement", key: ["targetHq", "hqLevel", "level", "title", "name"] },
-    { file: "data/heroes.json", page: "heroes.html", title: "Hero", key: ["name", "faction", "troopType", "rarity", "role"] },
-    { file: "data/troops.json", page: "heroes.html", title: "Troop", key: ["name", "title", "class", "faction"], fallbackStatus: "community-supported" },
-    { file: "data/events.json", page: "events.html", title: "Event", key: ["name", "title"] },
+    { file: "data/heroes.json", page: "heroes.html", title: "Hero", anchorPrefix: "hero", key: ["name", "faction", "troopType", "rarity", "role"] },
+    { file: "data/troops.json", page: "heroes.html", title: "Troop", anchorPrefix: "troop", key: ["name", "title", "class", "faction"], fallbackStatus: "community-supported" },
+    { file: "data/events.json", page: "events.html", title: "Event", anchorPrefix: "event", key: ["name", "title"] },
     { file: "data/lucky-rose-history.json", page: "events.html#lucky-rose-tracker", title: "Lucky Rose", key: ["weekOf", "number", "buff", "durationHours", "notes"] }
   ];
   var css = document.createElement("link");
@@ -27,6 +27,7 @@
   css.href = new URL("assets/css/universal-search.css", root).href;
   document.head.appendChild(css);
 
+  function slug(value) { return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
   function make(tag, cls, text) {
     var node = document.createElement(tag);
     if (cls) node.className = cls;
@@ -80,6 +81,7 @@
       var heading = block.querySelector("summary h3, summary h2, h3, h2, h1");
       var title = heading ? heading.textContent.trim() : page.title;
       var text = (block.textContent || "").replace(/\s+/g, " ").trim();
+      if (block.classList.contains("research-tree-card") && !block.id) block.id = "research-" + slug(title);
       var anchor = block.id ? "#" + block.id : "";
       if (text.length > 20) add({ title: title, category: page.title, text: text, url: page.file + anchor });
     });
@@ -115,7 +117,8 @@
       if (cfg.file === "data/hq-requirements.json" && value.targetHq != null) title = "HQ " + value.targetHq + " upgrade";
       var evidence = value.verification || value.verificationStatus || value.dataStatus || null;
       var status = window.LZCarryDataStatus ? window.LZCarryDataStatus.describe(evidence, cfg.fallbackStatus) : null;
-      add({ title: String(title), category: cfg.title, text: recordText(value), url: cfg.page, status: status });
+      var recordUrl = cfg.page + (cfg.anchorPrefix ? "#" + cfg.anchorPrefix + "-" + slug(value.id || title) : "");
+      add({ title: String(title), category: cfg.title, text: recordText(value), url: recordUrl, status: status });
     } else {
       Object.keys(value).forEach(function (k) { if (k !== "schemaVersion" && k !== "lastUpdated") collectRecords(value[k], cfg, value); });
     }

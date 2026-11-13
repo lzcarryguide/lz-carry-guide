@@ -22,7 +22,7 @@ test("pilot service descriptions and approved prices match the official referenc
   await expect(page.getByText("$30 / 7 days", { exact: true })).toBeVisible();
   await expect(page.getByText(/Full Preparedness \(FP\), Boomer, Mines, Melee, Arena and Fury Lord/)).toBeVisible();
   await expect(page.getByText(/Enemy Buster participation and RSS Loot-Cap assistance/).first()).toBeVisible();
-  await expect(page.getByText(/Upgrade planning and progression/).first()).toBeVisible();
+  await expect(page.locator(".pilot-package-option").filter({ hasText: "Weekly Elite Management" }).getByText(/upgrade planning and progression/i)).toBeVisible();
   await expect(page.getByText(/participation time and workload/)).toBeVisible();
   await expect(page.getByText(/Approximately 45 minutes of gameplay per account/)).toBeVisible();
   await expect(page.getByText(/Covers 2–3 accounts/)).toBeVisible();

@@ -117,7 +117,7 @@ test("heroes, troops and events databases load and search", async ({ page }) => 
   await page.getByLabel("Season").selectOption("");
   await page.screenshot({path:path.join(artifacts,"heroes-desktop.png"),fullPage:true});
   await page.goto("/events.html");
-  await expect(page.getByRole("heading",{name:"Events & Rewards"})).toBeVisible();
+  await expect(page.getByRole("heading",{name:"Events Center"})).toBeVisible();
   await expect(page.getByRole("heading",{name:"Weekly Alliance Duel and Full Preparedness"})).toBeVisible();
   await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
   await page.getByLabel("Search events").fill("bullseye");

@@ -32,6 +32,36 @@ test("personal goals save locally, link to the right planner and restore after r
   await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 0");
 });
 
+test("personal goal draft remains intact if browser storage fails and can be retried", async ({ page }) => {
+  await page.goto("/dashboard.html");
+  await page.locator("#dashboard-goals > summary").click();
+  await page.getByLabel("Goal", { exact: true }).fill("Keep this draft");
+  await page.getByLabel("Planning area").selectOption("Events");
+  await page.locator("#dashboard-goal-note").fill("Retry when browser storage is available");
+  await page.evaluate(() => {
+    const original = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (key, value) {
+      if (key === "lzcarry-player-goals-v1") {
+        throw new DOMException("Storage quota exceeded", "QuotaExceededError");
+      }
+      return original.call(this, key, value);
+    };
+    window.__restoreGoalStorage = () => { Storage.prototype.setItem = original; };
+  });
+  await page.getByRole("button", { name: "Add personal goal" }).click();
+  await expect(page.locator("#dashboard-goal-status")).toContainText("Browser storage unavailable");
+  await expect(page.getByLabel("Goal", { exact: true })).toHaveValue("Keep this draft");
+  await expect(page.locator("#dashboard-goal-note")).toHaveValue("Retry when browser storage is available");
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 0");
+
+  await page.evaluate(() => window.__restoreGoalStorage());
+  await page.getByRole("button", { name: "Add personal goal" }).click();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 1");
+  await expect(page.locator("#dashboard-goal-list")).toContainText("Keep this draft");
+  await expect(page.getByLabel("Goal", { exact: true })).toHaveValue("");
+});
+
+
 test("research progress is interactive, saved locally and keeps long reference notes collapsed", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/research.html");

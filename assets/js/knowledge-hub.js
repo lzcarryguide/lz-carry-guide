@@ -97,7 +97,7 @@ function drawSlots(){slots.replaceChildren();chosen.forEach(function(h,i){var wr
 function filtered(){var q=$("builder-search").value.toLowerCase(),f=$("builder-faction").value,s=$("builder-season").value,roleFilter=$("builder-role")?$("builder-role").value:"",troopFilter=$("builder-hero-troop")?$("builder-hero-troop").value:"";return roster.filter(function(h){return(!q||[h.name,h.faction,h.role,h.season,h.awakeningSeason,h.troopType].join(" ").toLowerCase().includes(q))&&(!f||h.faction===f)&&(!roleFilter||h.role===roleFilter)&&(!troopFilter||h.troopType===troopFilter)&&(!s||(s==="5"?h.awakeningSeason===5:String(h.season)===s));});}
 function drawResults(){
 var a=filtered(),hashId=decodeURIComponent((location.hash||"").slice(1));
-if(hashId.indexOf("hero-")===0){var targetIndex=a.findIndex(function(h){return slugId("hero",h.id||h.name)===hashId;});if(targetIndex>=0)rosterVisible=Math.max(rosterVisible,targetIndex+1);}
+if(hashId.indexOf("hero-")===0){var targetIndex=a.findIndex(function(h){return window.LZCarrySlugId("hero",h.id||h.name)===hashId;});if(targetIndex>=0)rosterVisible=Math.max(rosterVisible,targetIndex+1);}
 var visible=a.slice(0,rosterVisible);var selectable=a.filter(function(h){return h.verificationStatus==="Community-supported";}).length;$("builder-count").textContent="Showing "+visible.length+" of "+a.length+" indexed heroes · "+selectable+" selectable";results.replaceChildren();
 visible.forEach(function(h){
 var selected=chosen.some(function(x){return x&&x.id===h.id;}),eligible=h.verificationStatus==="Community-supported",wrap=node("div","hero-directory-item"+(eligible?"":" is-pending"),"");

@@ -3,6 +3,7 @@ function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;n.textCont
 function para(p,h,x){var s=el("section","profile-section","");s.appendChild(el("h4","",h));s.appendChild(el("p","",x));p.appendChild(s);}
 function ul(p,h,a){if(!Array.isArray(a)||!a.length)return;p.appendChild(el("h4","",h));var u=document.createElement("ul");a.forEach(function(x){u.appendChild(el("li","",x));});p.appendChild(u);}
 function evidenceBadge(status,fallback){var d=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(status,fallback):{label:"Unconfirmed",className:"is-unconfirmed",detail:"Evidence is incomplete or awaiting current-client confirmation."};var b=el("span","pill evidence-badge "+d.className,d.label);b.title=d.detail;return b;}
+function evidenceLine(label,status){var p=el("p","small muted",label+": ");p.appendChild(evidenceBadge(status||"unconfirmed"));return p;}
 function role(r){if(r==="Tank")return["The community index labels this entry Tank. If the live profile confirms that role, assess it for frontline or durability work. Verify actual skill targets, position restrictions and which allies are protected before assigning a formation slot.","Potential value: helping a march survive or protecting damage dealers. Trade-off: durability alone does not prove added damage, control or team utility.","Inspect defensive effects, protection, control resistance and recipients. Verify activation, duration, troop restrictions and mode scope."];if(r==="DPS")return["The community index labels this entry DPS. If the live profile confirms it, assess damage contribution by its targets, skill cycle and troop restrictions against other damage dealers you own.","Potential value: damage or damage amplification. Trade-off: burst numbers can mislead if triggers, cooldowns or targets rarely line up.","Inspect damage type, target count, activation chance, cooldown and whether the effect is march-wide or mode-specific."];if(r==="Support")return["The community index labels this entry Support. If confirmed, judge its team benefit, not just personal damage. Identify exactly which heroes or troops receive the effect.","Potential value: buffs, debuffs, healing, control or utility. Trade-off: value falls when the recipient or condition does not match your march.","Inspect scope, uptime, activation and recipients. A team-wide effect may matter more than a larger self-only number, but only when the skill text confirms it."];return["Role metadata is not reconciled. Do not assign frontline, damage or support duty from rarity or season alone. Capture the current client profile first.","No role-specific strength or weakness is assigned until the role is confirmed.","Confirm faction, troop type, rarity, role and every skill panel from the current game client."];}
 function hero(r){
 var d=document.createElement("details");d.className="knowledge-card profile-card hero-profile";
@@ -11,12 +12,16 @@ var portrait=el("span","hero-portrait-pending","Portrait not verified");portrait
 var identity=el("span","hero-profile-identity","");
 identity.appendChild(el("span","pill",[r.rarity,r.faction,r.season!=null?"Season "+r.season:""].filter(Boolean).join(" · ")||"Metadata pending"));
 identity.appendChild(el("h3","",r.name));
+var heroStatus=r.verificationStatus||r.dataStatus||"unconfirmed";
+d.setAttribute("data-verification-status",window.LZCarryDataStatus?window.LZCarryDataStatus.normalize(heroStatus):"unconfirmed");
+identity.appendChild(evidenceBadge(heroStatus));
 identity.appendChild(el("p","", [r.role,r.troopType].filter(Boolean).join(" · ")||"Role and troop line not reconciled"));
-identity.appendChild(el("p","small muted","Open profile · "+(r.dataStatus||"Verification pending")));
+identity.appendChild(el("p","small muted","Open profile · "+heroStatus));
 s.appendChild(identity);d.appendChild(s);
 var b=el("div","profile-body","");
 var p=r.profileNotes||{};
-para(b,"Evidence status",(p.evidence||"Roster metadata only; skill and formation evidence is not yet reconciled.")+" Current game-client confirmation is pending. Community references may be outdated or disagree.");
+var heroEvidence=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(r.verificationStatus||r.dataStatus||"unconfirmed"):{label:"Unconfirmed",detail:"Evidence is incomplete or awaiting current-client confirmation."};
+para(b,"Evidence status",(p.evidence||"Roster metadata only; skill and formation evidence is not yet reconciled.")+" "+heroEvidence.label+": "+heroEvidence.detail);
 para(b,"Indexed identity","Faction: "+(r.faction||"not reconciled")+". Troop type: "+(r.troopType||"not reconciled")+". Rarity: "+(r.rarity||"not reconciled")+". Indexed role: "+(r.role||"not reconciled")+". Release cohort: "+(r.season!=null?"Season "+r.season:"not reconciled")+". Null means unverified, not absent.");
 if(p.fieldRole)para(b,"Practical role and job",p.fieldRole);
 if(p.skills&&p.skills.length)ul(b,"Community-indexed skill snapshot (paraphrased)",p.skills);
@@ -45,14 +50,14 @@ var t=el("div","troop-tier-list","");
  var row=el("div","troop-tier-row","");
  var head=el("div","troop-tier-head","");
  head.appendChild(el("strong","","T"+x.tier+" · "+(x.unitName||"Name pending")));
- var nameStatus=(x.nameStatus||"verification pending").toLowerCase();
- var badge=/conflict|verify in client|pending|reported tier/.test(nameStatus)?"Unconfirmed":"Community-supported";
- head.appendChild(el("span","pill troop-evidence-badge "+(badge==="Unconfirmed"?"is-unconfirmed":"is-community"),badge));
+ var nameEvidence=evidenceBadge(x.nameStatus||"unconfirmed");
+ nameEvidence.setAttribute("aria-label","Name evidence: "+nameEvidence.textContent);
+ head.appendChild(nameEvidence);
  row.appendChild(head);
  if(x.reportedAlternativeNames&&x.reportedAlternativeNames.length)row.appendChild(el("p","small muted","Alternative names reported: "+x.reportedAlternativeNames.join(", ")));
- row.appendChild(el("p","small muted","Name evidence: "+(x.nameStatus||"Not reconciled.")));
- row.appendChild(el("p","small muted","Statistics: "+(x.valuesStatus||"Not published; verify in game.")));
- row.appendChild(el("p","small muted","Unlock: "+(x.unlockStatus||"Not published; verify in game.")));
+ row.appendChild(evidenceLine("Name evidence",x.nameStatus));
+ row.appendChild(evidenceLine("Statistics",x.valuesStatus));
+ row.appendChild(evidenceLine("Unlock",x.unlockStatus));
  t.appendChild(row);
 });
 c.appendChild(t);

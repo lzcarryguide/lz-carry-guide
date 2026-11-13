@@ -63,3 +63,7 @@
 #formation-library,#troop-database,#troop-progress-planner,#faction-recommendations,#event-routines,#weekly-cycle,#event-planning{padding-top:14px;padding-bottom:14px}
 
 #event-results .event-profile[hidden]{display:none!important}
+
+/* Keep the service configurator focused and compact above the package selector. */
+.hero.pilot-hero{padding:34px 0}
+@media(max-width:760px){.hero.pilot-hero{padding:26px 0}}

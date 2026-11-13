@@ -45,3 +45,40 @@ test("backup importer rejects duplicate goal IDs without overwriting current pro
   expect(unchanged.goals[0].title).toBe("Existing saved goal");
   expect(unchanged.hq["35:0"]).toBe(true);
 });
+
+test("failed partial backup import restores the existing goal and planner values", async ({ page }) => {
+  await page.goto("/dashboard.html");
+  await page.evaluate((goal) => {
+    localStorage.setItem("lzcarry-player-goals-v1", JSON.stringify([goal]));
+    localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": false }));
+    const original = Storage.prototype.setItem;
+    let failOnce = true;
+    Storage.prototype.setItem = function (key, value) {
+      if (key === "lzcarry-player-goals-v1" && failOnce) {
+        failOnce = false;
+        throw new DOMException("Simulated storage quota failure", "QuotaExceededError");
+      }
+      return original.call(this, key, value);
+    };
+  }, validGoal("existing", "Keep this saved goal"));
+  await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
+  page.on("dialog", dialog => dialog.accept());
+  const backup = {
+    format: "lz-carry-player-data", schemaVersion: 1, exportedAt: "2026-11-13T12:00:00.000Z",
+    data: {
+      "lzcarry:hq-planner:v2": { "35:0": true },
+      "lzcarry-player-goals-v1": [validGoal("incoming", "Imported goal")]
+    }
+  };
+  await page.locator(".player-data-file").setInputFiles({
+    name: "quota-failure.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(backup))
+  });
+  await expect(page.locator(".player-data-summary")).toContainText("Simulated storage quota failure");
+  const restored = await page.evaluate(() => ({
+    goals: JSON.parse(localStorage.getItem("lzcarry-player-goals-v1")),
+    hq: JSON.parse(localStorage.getItem("lzcarry:hq-planner:v2"))
+  }));
+  expect(restored.goals).toHaveLength(1);
+  expect(restored.goals[0].title).toBe("Keep this saved goal");
+  expect(restored.hq["35:0"]).toBe(false);
+});

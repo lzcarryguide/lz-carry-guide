@@ -6,7 +6,7 @@ var output=document.getElementById("pilot-booking-summary"),total=document.getEl
 var packages={
 daily:{name:"Daily Pilot",price:3,unit:"day",items:["Full Preparedness","Boomer","Mines","Melee","Arena","Fury Lord"]},
 saturday:{name:"Saturday Special",price:8,unit:"fixed",items:["All Daily Pilot services","Enemy Buster RSS loot-cap assistance"]},
-weekly:{name:"Weekly Elite Management",price:30,unit:"fixed",items:["Daily Pilot services for 7 days","Saturday Enemy Buster RSS loot-cap assistance","Upgrade planning and prioritization","Account progression management","Resource usage guidance","Alliance vs Alliance tasks, Monday–Saturday"]}
+weekly:{name:"Weekly Elite Management",price:30,unit:"fixed",items:["7 days of Daily Piloting (Full Preparedness, Boomer, Mines, Melee, Arena and Fury Lord)","Saturday Enemy Buster participation and RSS Loot-Cap assistance","Upgrade planning and progression","Account management","Alliance tasks, Monday–Saturday"]}
 };
 function val(name){var el=form.querySelector('[name="'+name+'"]:checked')||form.querySelector('[name="'+name+'"]');return el?el.value:"";}
 function checked(name){var el=form.querySelector('[name="'+name+'"]');return!!(el&&el.checked);}
@@ -18,7 +18,7 @@ var base=pkg==="daily"?item.price*days:item.price,extras=0,quote=false,summary=d
 summaryList.appendChild(line("Package",item.name+(pkg==="daily"?" · "+days+" day"+(days===1?"":"s"):"")));
 summaryList.appendChild(line("Included services",item.items.join(" · ")));
 if(checked("svs-chest")){extras+=5;addOns.push("SVS Chest Opening — $5 (covers "+svsAccounts+" accounts)");}
-if(checked("full-svs")){quote=true;addOns.push("Full SVS Participation — individual quote for "+fullAccounts+" account"+(fullAccounts===1?"":"s"));}
+if(checked("full-svs")){quote=true;addOns.push("Full SVS Participation — individual quote for "+fullAccounts+" account"+(fullAccounts===1?"":"s")+" (participation time and workload)");}
 if(checked("canyon")){extras+=8*canyonAccounts;addOns.push("Canyon Clash — $8 × "+canyonAccounts+" account"+(canyonAccounts===1?"":"s")+" = $"+(8*canyonAccounts)+" (approximately 45 minutes per account)");}
 summaryList.appendChild(line("Optional add-ons",addOns.length?addOns.join(" · "):"None selected"));
 summaryList.appendChild(line("Known subtotal","$"+(base+extras)));

@@ -598,7 +598,7 @@ test("dashboard stores personal event reminders without implying an official sch
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/dashboard.html");
   await page.locator("#dashboard-reminder-name").fill("Alliance Duel");
-  await page.locator("#dashboard-reminder-when").fill("2026-11-12T18:00");
+  const reminderDate = new Date(Date.now() + 24 * 60 * 60 * 1000);\n  const reminderLocal = new Date(reminderDate.getTime() - reminderDate.getTimezoneOffset() * 60000).toISOString().slice(0, 16);\n  await page.locator("#dashboard-reminder-when").fill(reminderLocal);
   await page.locator("#dashboard-reminder-note").fill("Confirm the live task before spending");
   await page.getByRole("button", { name: "Add reminder" }).click();
   await expect(page.locator("#dashboard-reminder-list")).toContainText("Alliance Duel");

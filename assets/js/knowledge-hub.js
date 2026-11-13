@@ -93,6 +93,7 @@ function drawResults(){
 var a=filtered(),visible=a.slice(0,rosterVisible);var selectable=a.filter(function(h){return h.verificationStatus==="Community-supported";}).length;$("builder-count").textContent="Showing "+visible.length+" of "+a.length+" indexed heroes · "+selectable+" selectable";results.replaceChildren();
 visible.forEach(function(h){
 var selected=chosen.some(function(x){return x&&x.id===h.id;}),eligible=h.verificationStatus==="Community-supported",wrap=node("div","hero-directory-item"+(eligible?"":" is-pending"),"");
+wrap.setAttribute("data-verification-status",window.LZCarryDataStatus?window.LZCarryDataStatus.normalize(h.verification||h.verificationStatus||h.dataStatus,"unconfirmed"):"unconfirmed");
 var details=node("details","hero-directory-details","");
 var summary=node("summary","hero-directory-summary","");
 summary.append(node("span","hero-portrait-pending","Portrait not verified"));

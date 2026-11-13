@@ -152,7 +152,8 @@
       var hay = (item.title + " " + item.category + " " + item.text).toLowerCase();
       var score = terms.reduce(function (n, term) { return n + (hay.includes(term) ? 1 : 0); }, 0);
       if (score !== terms.length) return null;
-      score += item.title.toLowerCase().includes(query.toLowerCase()) ? 3 : 0;
+      var title = item.title.toLowerCase(), exactQuery = query.toLowerCase();
+      score += title === exactQuery ? 8 : title.startsWith(exactQuery) ? 4 : title.includes(exactQuery) ? 2 : 0;
       return { item: item, score: score };
     }).filter(Boolean).sort(function (a, b) { return b.score - a.score; }).slice(0, 40);
     if (!matches.length) {

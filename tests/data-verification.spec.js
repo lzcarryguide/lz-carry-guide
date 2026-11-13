@@ -26,7 +26,8 @@ test("hero encyclopedia renders shared community evidence labels", async ({ page
 
 test("troop directory does not promote provisional statistics to verified", async ({ page }) => {
   await page.goto("/heroes.html");
-  await page.locator("#troop-database .hero-advanced-disclosure > summary").click();\n  await expect(page.locator("#troop-results .troop-tier-row .troop-evidence-badge").first()).toBeVisible();
+  await page.locator("#troop-database .hero-advanced-disclosure > summary").click();
+  await expect(page.locator("#troop-results .troop-tier-row .troop-evidence-badge").first()).toBeVisible();
   const data = await page.request.get("/data/troops.json");
   expect(data.ok()).toBeTruthy();
   const json = await data.json();

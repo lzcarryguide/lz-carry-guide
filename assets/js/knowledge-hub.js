@@ -1,7 +1,8 @@
 (function(){
 function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;n.textContent=x==null?"":String(x);return n;}
 function slugId(prefix,value){return prefix+"-"+String(value||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
-function openDeepLink(){var id=decodeURIComponent((location.hash||"").slice(1));if(!id)return;var target=document.getElementById(id);if(!target)return;if(target.tagName==="DETAILS")target.open=true;var nested=target.querySelector("details");if(nested)nested.open=true;var parent=target.parentElement;while(parent){if(parent.tagName==="DETAILS")parent.open=true;parent=parent.parentElement;}target.setAttribute("tabindex","-1");target.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});target.focus({preventScroll:true});}
+var lastDeepLinkTarget="";
+function openDeepLink(){var id=decodeURIComponent((location.hash||"").slice(1));if(!id||id===lastDeepLinkTarget)return;var target=document.getElementById(id);if(!target)return;lastDeepLinkTarget=id;if(target.tagName==="DETAILS")target.open=true;var nested=target.querySelector("details");if(nested)nested.open=true;var parent=target.parentElement;while(parent){if(parent.tagName==="DETAILS")parent.open=true;parent=parent.parentElement;}target.setAttribute("tabindex","-1");target.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});target.focus({preventScroll:true});}
 function para(p,h,x){var s=el("section","profile-section","");s.appendChild(el("h4","",h));s.appendChild(el("p","",x));p.appendChild(s);}
 function ul(p,h,a){if(!Array.isArray(a)||!a.length)return;p.appendChild(el("h4","",h));var u=document.createElement("ul");a.forEach(function(x){u.appendChild(el("li","",x));});p.appendChild(u);}
 function evidenceBadge(status,fallback){var d=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(status,fallback):{label:"Unconfirmed",className:"is-unconfirmed",detail:"Evidence is incomplete or awaiting current-client confirmation."};var b=el("span","pill evidence-badge "+d.className,d.label);b.title=d.detail;return b;}
@@ -74,7 +75,7 @@ function load(url,key,c,root){fetch(url).then(function(r){if(!r.ok)throw new Err
 var r=document.getElementById("hero-results");if(r)load("data/heroes.json","heroes",{kind:"hero",searchId:"hero-search",countId:"hero-count",resultsId:"hero-results",filters:[{id:"hero-faction",field:"faction"},{id:"hero-role",field:"role"},{id:"hero-season",field:"season"}]},r);
 r=document.getElementById("troop-results");if(r)load("data/troops.json","classes",{kind:"troop",searchId:"troop-search",filterId:"troop-faction",countId:"troop-count",resultsId:"troop-results",filterField:"faction"},r);
 r=document.getElementById("event-results");if(r)load("data/events.json","events",{kind:"event",searchId:"event-search",filterId:"event-type",countId:"event-count",resultsId:"event-results",filterField:"type"},r);
-window.addEventListener("hashchange",openDeepLink);
+window.addEventListener("hashchange",function(){lastDeepLinkTarget="";openDeepLink();});
 })();
 
 /* LZ Carry Formation Lab */

@@ -9,6 +9,7 @@ var profiles={
  "high":{title:"Big Spend · parallel badge routes",items:["Alliance Recognition","Fully Armed Alliance","Military Strategies","Peace Shield","Siege to Seize","Field Research","Army Building","Tactical Master"],why:"Higher badge income can support more parallel badge branches, but spending does not remove prerequisites or resource bottlenecks. Prioritize only branches that serve your alliance role and combat goals."}
 };
 function text(node){return node?(node.textContent||"").trim():"";}
+function savedProgress(name){try{var state=JSON.parse(localStorage.getItem("lzcarry-research-plan-v1")||"{}");var value=state&&state[name];return value==="Done"||value==="In progress"?value:"Not started";}catch(e){return"Not started";}}
 function researchCard(name){return [].slice.call(document.querySelectorAll("#tree-map .research-tree-card")).find(function(card){var h=card.querySelector("summary h3");return h&&text(h)===name;});}
 function detail(card,label){if(!card)return"Research entry not indexed in the current directory.";var p=[].slice.call(card.querySelectorAll(".research-tree-body p")).find(function(n){return new RegExp("^"+label+":","i").test(text(n));});return p?text(p).replace(new RegExp("^"+label+":\\s*","i"),""):"See the expanded research notes and confirm in-game.";}
 function openResearch(name){var card=researchCard(name);if(!card)return;card.open=true;card.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});var summary=card.querySelector("summary");if(summary){summary.setAttribute("tabindex","-1");summary.focus({preventScroll:true});}}
@@ -23,11 +24,14 @@ var number=document.createElement("span");number.className="research-profile-ord
 var title=document.createElement("h3");title.textContent=name;head.append(number,title);
 var priority=document.createElement("p");priority.className="small muted";priority.textContent="Priority: "+detail(card,"Priority");
 var prereq=document.createElement("p");prereq.className="small muted";prereq.textContent="Prerequisite: "+detail(card,"Prerequisite");
+var progress=document.createElement("p");progress.className="small muted research-profile-progress";progress.textContent="Your progress: "+savedProgress(name);
 var why=document.createElement("button");why.type="button";why.className="btn secondary research-why-button";why.textContent="Why this research?";why.addEventListener("click",function(){openResearch(name);});
-item.append(head,priority,prereq,why);out.append(item);
+item.append(head,priority,prereq,progress,why);out.append(item);
 });
 }
 select.addEventListener("change",render);
+window.addEventListener("lzcarry-research-progress-change",render);
+window.addEventListener("storage",function(event){if(event.key==="lzcarry-research-plan-v1")render();});
 var apply=document.getElementById("research-apply-profile");
 if(apply)apply.addEventListener("click",function(){var path=document.getElementById("lab-path");if(path){path.value=select.value;path.dispatchEvent(new Event("change",{bubbles:true}));}var planner=document.getElementById("lab-planner");if(planner)planner.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});});
 render();

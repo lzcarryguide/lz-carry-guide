@@ -21,7 +21,7 @@ test("pilot service descriptions and approved prices match the official referenc
   await expect(page.getByText("$8", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("$30 / 7 days", { exact: true })).toBeVisible();
   await expect(page.getByText(/Full Preparedness \(FP\), Boomer, Mines, Melee, Arena and Fury Lord/)).toBeVisible();
-  await expect(page.getByText(/Enemy Buster participation and RSS Loot-Cap assistance/)).toBeVisible();
+  await expect(page.getByText(/Enemy Buster participation and RSS Loot-Cap assistance/).first()).toBeVisible();
   await expect(page.getByText(/Upgrade planning and progression/)).toBeVisible();
   await expect(page.getByText(/participation time and workload/)).toBeVisible();
   await expect(page.getByText(/Approximately 45 minutes of gameplay per account/)).toBeVisible();

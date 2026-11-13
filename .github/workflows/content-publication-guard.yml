@@ -1,0 +1,30 @@
+name: Public content publication guard
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "data/**/*.json"
+      - "scripts/validate-public-content.js"
+      - ".github/workflows/content-publication-guard.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/**/*.json"
+      - "scripts/validate-public-content.js"
+      - ".github/workflows/content-publication-guard.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publication-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Reject draft or unpublished public records
+        run: node scripts/validate-public-content.js

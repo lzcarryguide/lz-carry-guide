@@ -110,9 +110,11 @@ test("pilot selector calculates exact package and add-on totals without inventin
   await expect(page.locator("#pilot-total")).toHaveText("$51 + SVS quote");
   await expect(page.locator("#pilot-price-status")).toContainText("excludes the individually quoted Full SVS Participation");
   await expect(page.locator("#pilot-booking-summary")).toContainText("3 accounts");
-  await expect(page.getByRole("button", { name: "Request a Pilot — unavailable" })).toBeDisabled();
-  await expect(page.getByRole("button", { name: "Ask for Assistance — unavailable" })).toBeDisabled();
-  await expect(page.locator("#pilot-contact-status")).toContainText("No replacement invite or channel is being used.");
+  await expect(page.locator("#pilot-request")).toBeEnabled();
+  await expect(page.locator("#pilot-assistance")).toBeEnabled();
+  await expect(page.locator("#pilot-request")).toHaveAttribute("data-destination", "https://discord.gg/kVmN6e7Rm");
+  await expect(page.locator("#pilot-assistance")).toHaveAttribute("data-destination", "https://discord.gg/kVmN6e7Rm");
+  await expect(page.locator("#pilot-contact-status")).toContainText("official LZ Carry customer Discord invite");
   await page.screenshot({ path: "artifacts/pilot-configurator-desktop.png", fullPage: true });
 });
 

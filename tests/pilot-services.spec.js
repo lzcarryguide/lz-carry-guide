@@ -3,14 +3,14 @@ const { test, expect } = require("@playwright/test");
 const invite = "https://discord.gg/kVmN6e7Rm";
 
 test("official pilot contact buttons use the approved Discord invite", async ({ page }) => {
-  await page.route(invite, route => route.fulfill({ status: 200, contentType: "text/html", body: "<title>Discord invite test</title>" }));
+  await page.route("https://discord.gg/**", route => route.fulfill({ status: 200, contentType: "text/html", body: "<title>Discord invite test</title>" }));
   await page.goto("/pilot.html");
   for (const [id, label] of [["pilot-request", "Request a Pilot"], ["pilot-assistance", "Ask for Assistance"]]) {
     const button = page.locator("#" + id);
     await expect(button).toBeEnabled();
     await expect(button).toHaveAttribute("data-destination", invite);
     await button.click();
-    await expect(page).toHaveURL(invite);
+    await expect(page).toHaveURL(/https:\/\/discord\.gg\/kVmN6e7Rm\/?$/);
     await page.goto("/pilot.html");
   }
 });
@@ -22,7 +22,7 @@ test("pilot service descriptions and approved prices match the official referenc
   await expect(page.getByText("$30 / 7 days", { exact: true })).toBeVisible();
   await expect(page.getByText(/Full Preparedness \(FP\), Boomer, Mines, Melee, Arena and Fury Lord/)).toBeVisible();
   await expect(page.getByText(/Enemy Buster participation and RSS Loot-Cap assistance/).first()).toBeVisible();
-  await expect(page.getByText(/Upgrade planning and progression/)).toBeVisible();
+  await expect(page.getByText(/Upgrade planning and progression/).first()).toBeVisible();
   await expect(page.getByText(/participation time and workload/)).toBeVisible();
   await expect(page.getByText(/Approximately 45 minutes of gameplay per account/)).toBeVisible();
   await expect(page.getByText(/Covers 2–3 accounts/)).toBeVisible();

@@ -51,6 +51,7 @@ var t=el("div","troop-tier-list","");
  var head=el("div","troop-tier-head","");
  head.appendChild(el("strong","","T"+x.tier+" · "+(x.unitName||"Name pending")));
  var nameEvidence=evidenceBadge(x.nameStatus||"unconfirmed");
+ nameEvidence.className+=" troop-evidence-badge";
  nameEvidence.setAttribute("aria-label","Name evidence: "+nameEvidence.textContent);
  head.appendChild(nameEvidence);
  row.appendChild(head);

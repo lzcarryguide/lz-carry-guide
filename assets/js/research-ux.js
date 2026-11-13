@@ -4,6 +4,10 @@
 var root=document.getElementById("tree-map");if(!root)return;
 var cards=[].slice.call(root.querySelectorAll(".research-tree-card"));
 if(!cards.length)return;
+function slug(value){return String(value||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
+function openDeepLink(){var id=decodeURIComponent((location.hash||"").slice(1));if(!id)return;var target=document.getElementById(id);if(!target)return;if(target.tagName==="DETAILS")target.open=true;var parent=target.parentElement;while(parent){if(parent.tagName==="DETAILS")parent.open=true;parent=parent.parentElement;}target.setAttribute("tabindex","-1");target.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});target.focus({preventScroll:true});}
+cards.forEach(function(card){var heading=card.querySelector("summary h3");if(heading&&!card.id)card.id="research-"+slug(heading.textContent);});
+window.addEventListener("hashchange",openDeepLink);
 var key="lzcarry-research-plan-v1",state={};
 try{state=JSON.parse(localStorage.getItem(key)||"{}")||{};}catch(e){state={};}
 var panel=document.createElement("section");panel.className="research-progress-panel";panel.setAttribute("aria-label","Research progress");
@@ -35,6 +39,7 @@ body.appendChild(row);
 });
 var reset=document.getElementById("research-progress-reset");if(reset)reset.addEventListener("click",function(){if(!window.confirm("Reset your research progress on this device?"))return;state={};save();window.dispatchEvent(new CustomEvent("lzcarry-research-progress-change",{detail:state}));cards.forEach(function(c){var s=c.querySelector(".research-entry-controls select");if(s)s.value="Not started";});update();});
 update();
+openDeepLink();
 window.addEventListener("lzcarry-research-route-updated",function(){try{state=JSON.parse(localStorage.getItem(key)||"{}")||{};}catch(e){state={};}cards.forEach(function(card){var select=card.querySelector(".research-entry-controls select");if(select)select.value=state[label(card)]||"Not started";});update();});
 var optional=[].slice.call(document.querySelectorAll("main>section")).find(function(s){var h=s.querySelector("h2");return h&&/optional reference panels/i.test(h.textContent);});
 if(optional&&!optional.querySelector(".research-reference-disclosure")){var wrap=optional.querySelector(".wrap");if(wrap){var details=document.createElement("details");details.className="research-reference-disclosure";var summary=document.createElement("summary");var heading=wrap.querySelector("h2");if(heading)summary.appendChild(heading);else summary.textContent="Advanced research notes & reference panels";var content=document.createElement("div");content.className="research-reference-content";while(wrap.firstChild){var node=wrap.firstChild;if(node===heading){wrap.removeChild(node);continue;}content.appendChild(node);}details.append(summary,content);wrap.appendChild(details);}}

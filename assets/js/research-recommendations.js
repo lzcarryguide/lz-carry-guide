@@ -13,8 +13,7 @@ function researchCard(name){return [].slice.call(document.querySelectorAll("#tre
 function detail(card,label){if(!card)return"Research entry not indexed in the current directory.";var p=[].slice.call(card.querySelectorAll(".research-tree-body p")).find(function(n){return new RegExp("^"+label+":","i").test(text(n));});return p?text(p).replace(new RegExp("^"+label+":\\s*","i"),""):"See the expanded research notes and confirm in-game.";}
 function openResearch(name){var card=researchCard(name);if(!card)return;card.open=true;card.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});var summary=card.querySelector("summary");if(summary){summary.setAttribute("tabindex","-1");summary.focus({preventScroll:true});}}
 function render(){
-var profile=profiles[select.value]||profiles["early-low"],path=document.getElementById("lab-path");
-if(path){path.value=select.value;path.dispatchEvent(new Event("change",{bubbles:true}));}
+var profile=profiles[select.value]||profiles["early-low"];
 note.textContent=profile.why;
 out.replaceChildren();
 profile.items.forEach(function(name,index){
@@ -29,5 +28,7 @@ item.append(head,priority,prereq,why);out.append(item);
 });
 }
 select.addEventListener("change",render);
+var apply=document.getElementById("research-apply-profile");
+if(apply)apply.addEventListener("click",function(){var path=document.getElementById("lab-path");if(path){path.value=select.value;path.dispatchEvent(new Event("change",{bubbles:true}));}var planner=document.getElementById("lab-planner");if(planner)planner.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});});
 render();
 })();

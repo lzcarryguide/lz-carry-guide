@@ -90,7 +90,12 @@ test("published GitHub Pages site is live, responsive and serves every primary p
         await expect(page.locator("#formation-lab")).toBeVisible();
         await expect(page.locator("#formation-slots .formation-slot")).toHaveCount(5);
       }
-      if (name === "events") await expect(page.locator("#event-results details.event-profile").first()).toBeVisible();
+      if (name === "events") {
+        await expect(page.getByRole("heading", { name: "Events Center" })).toBeVisible();
+        await expect(page.locator("#event-results details.event-profile").first()).toBeVisible();
+        const order = await page.evaluate(() => ({ directory: document.getElementById("event-directory").getBoundingClientRect().top, history: document.getElementById("lucky-rose-tracker").getBoundingClientRect().top }));
+        expect(order.directory, "event directory should precede historical Lucky Rose reference").toBeLessThan(order.history);
+      }
       if (name === "pilot") {
         await expect(page.locator("#pilot-configurator")).toBeVisible();
         for (const [id, label] of [["pilot-request", "Request a Pilot"], ["pilot-assistance", "Ask for Assistance"]]) {

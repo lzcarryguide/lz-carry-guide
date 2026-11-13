@@ -381,9 +381,10 @@ test("player progress can be exported and safely imported across planners", asyn
     localStorage.setItem("lzcarry-hq-resource-check-v1", JSON.stringify({ food: "120", wood: "80", zent: "10", steel: "5" }));
     localStorage.setItem("lzcarry-speedup-plan-v1", JSON.stringify({ "speedup-task": "Research", "speedup-days": "1", "speedup-hours": "2", "speedup-minutes": "30", "speedup-available": "600" }));
     localStorage.setItem("lzcarry-hero-investment-compare-v1", JSON.stringify({ a: "audrey", b: "ava", "hero-compare-a-current": "45" }));
+    localStorage.setItem("lzcarry-player-goals-v1", JSON.stringify([{ id: "goal-backup-1", title: "Finish research", category: "Research", dueDate: "2026-12-01", note: "Check the live Laboratory", done: false, createdAt: "2026-11-13T00:00:00.000Z" }]));
   });
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
-  await expect(page.getByText(/9 of 13 saved data sets found/)).toBeVisible();
+  await expect(page.getByText(/10 of 14 saved data sets found/)).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export my progress" }).click();
   const download = await downloadPromise;
@@ -400,6 +401,7 @@ test("player progress can be exported and safely imported across planners", asyn
   expect(backup.data["lzcarry-hq-resource-check-v1"].food).toBe("120");
   expect(backup.data["lzcarry-speedup-plan-v1"]["speedup-available"]).toBe("600");
   expect(backup.data["lzcarry-hero-investment-compare-v1"].a).toBe("audrey");
+  expect(backup.data["lzcarry-player-goals-v1"][0].title).toBe("Finish research");
 
   await page.evaluate(() => localStorage.setItem("lzcarry:hq-planner:v2", JSON.stringify({ "35:0": false })));
   page.on("dialog", dialog => dialog.accept());
@@ -414,13 +416,22 @@ test("player progress can be exported and safely imported across planners", asyn
     research: JSON.parse(localStorage.getItem("lzcarry-research-plan-v1")),
     rollback: JSON.parse(localStorage.getItem("lzcarry-player-data-rollback-v1")),
     reminders: JSON.parse(localStorage.getItem("lzcarry-event-reminders-v1")),
+    goals: JSON.parse(localStorage.getItem("lzcarry-player-goals-v1")),
     hqResources: JSON.parse(localStorage.getItem("lzcarry-hq-resource-check-v1"))
   }));
   expect(restored.hq["35:0"]).toBe(true);
   expect(restored.research["New Home"]).toBe("Done");
   expect(restored.reminders[0].name).toBe("Alliance Duel");
+  expect(restored.goals[0].title).toBe("Finish research");
   expect(restored.hqResources.food).toBe("120");
   expect(restored.rollback.values["lzcarry:hq-planner:v2"]).toContain("false");
+  await page.getByRole("button", { name: "Clear all progress" }).click();
+  await expect(page.locator(".player-data-summary")).toContainText("All saved progress cleared");
+  await expect.poll(() => page.evaluate(() => localStorage.getItem("lzcarry-player-goals-v1"))).toBeNull();
+  await page.getByRole("button", { name: "Restore previous snapshot" }).click();
+  await expect(page.locator(".player-data-summary")).toContainText("Previous progress snapshot restored");
+  const goalsAfterReset = await page.evaluate(() => JSON.parse(localStorage.getItem("lzcarry-player-goals-v1") || "[]"));
+  expect(goalsAfterReset[0].title).toBe("Finish research");
 });
 
 test("progress manager is available on every primary page and fits mobile screens", async ({ page }) => {
@@ -598,7 +609,9 @@ test("dashboard stores personal event reminders without implying an official sch
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/dashboard.html");
   await page.locator("#dashboard-reminder-name").fill("Alliance Duel");
-  await page.locator("#dashboard-reminder-when").fill("2026-11-12T18:00");
+  const reminderDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+  const reminderLocal = new Date(reminderDate.getTime() - reminderDate.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+  await page.locator("#dashboard-reminder-when").fill(reminderLocal);
   await page.locator("#dashboard-reminder-note").fill("Confirm the live task before spending");
   await page.getByRole("button", { name: "Add reminder" }).click();
   await expect(page.locator("#dashboard-reminder-list")).toContainText("Alliance Duel");

@@ -1,5 +1,67 @@
 const { test, expect } = require("@playwright/test");
 
+
+test("personal goals save locally, link to the right planner and restore after reload", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/dashboard.html");
+  await page.evaluate(() => localStorage.removeItem("lzcarry-player-goals-v1"));
+  await page.reload();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 0");
+  await page.locator("#dashboard-goals > summary").click();
+  await page.getByLabel("Goal", { exact: true }).fill("Finish my next research milestone");
+  await page.getByLabel("Planning area").selectOption("Research");
+  await page.getByLabel("Target date (optional)").fill("2027-02-01");
+  await page.locator("#dashboard-goal-note").fill("Confirm the live Laboratory unlock first");
+  await page.getByRole("button", { name: "Add personal goal" }).click();
+  await expect(page.locator("#dashboard-goal-list")).toContainText("Finish my next research milestone");
+  await expect(page.locator('#dashboard-goal-list a[href="research.html#lab-planner"]')).toBeVisible();
+  const check = page.getByLabel("Complete goal: Finish my next research milestone");
+  await check.check();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("1 / 1");
+  await page.reload();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("1 / 1");
+  await page.locator("#dashboard-goals > summary").click();
+  await expect(page.getByLabel("Complete goal: Finish my next research milestone")).toBeChecked();
+  await page.screenshot({ path: "artifacts/dashboard-personal-goals-desktop.png", fullPage: true });
+  await page.setViewportSize({ width: 360, height: 800 });
+  const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+  expect(dimensions.page).toBeLessThanOrEqual(dimensions.viewport + 1);
+  await page.screenshot({ path: "artifacts/dashboard-personal-goals-mobile.png", fullPage: true });
+  page.on("dialog", dialog => dialog.accept());
+  await page.getByRole("button", { name: "Clear completed goals" }).click();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 0");
+});
+
+test("personal goal draft remains intact if browser storage fails and can be retried", async ({ page }) => {
+  await page.goto("/dashboard.html");
+  await page.locator("#dashboard-goals > summary").click();
+  await page.getByLabel("Goal", { exact: true }).fill("Keep this draft");
+  await page.getByLabel("Planning area").selectOption("Events");
+  await page.locator("#dashboard-goal-note").fill("Retry when browser storage is available");
+  await page.evaluate(() => {
+    const original = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (key, value) {
+      if (key === "lzcarry-player-goals-v1") {
+        throw new DOMException("Storage quota exceeded", "QuotaExceededError");
+      }
+      return original.call(this, key, value);
+    };
+    window.__restoreGoalStorage = () => { Storage.prototype.setItem = original; };
+  });
+  await page.getByRole("button", { name: "Add personal goal" }).click();
+  await expect(page.locator("#dashboard-goal-status")).toContainText("Browser storage unavailable");
+  await expect(page.getByLabel("Goal", { exact: true })).toHaveValue("Keep this draft");
+  await expect(page.locator("#dashboard-goal-note")).toHaveValue("Retry when browser storage is available");
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 0");
+
+  await page.evaluate(() => window.__restoreGoalStorage());
+  await page.getByRole("button", { name: "Add personal goal" }).click();
+  await expect(page.locator("#dashboard-goal-value")).toHaveText("0 / 1");
+  await expect(page.locator("#dashboard-goal-list")).toContainText("Keep this draft");
+  await expect(page.getByLabel("Goal", { exact: true })).toHaveValue("");
+});
+
+
 test("research progress is interactive, saved locally and keeps long reference notes collapsed", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/research.html");

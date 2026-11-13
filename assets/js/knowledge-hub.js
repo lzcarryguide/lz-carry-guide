@@ -1,7 +1,7 @@
 (function(){
 function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;n.textContent=x==null?"":String(x);return n;}
 function slugId(prefix,value){return prefix+"-"+String(value||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
-function openDeepLink(){var id=decodeURIComponent((location.hash||"").slice(1));if(!id)return;var target=document.getElementById(id);if(!target)return;if(target.tagName==="DETAILS")target.open=true;var parent=target.parentElement;while(parent){if(parent.tagName==="DETAILS")parent.open=true;parent=parent.parentElement;}target.setAttribute("tabindex","-1");target.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});target.focus({preventScroll:true});}
+function openDeepLink(){var id=decodeURIComponent((location.hash||"").slice(1));if(!id)return;var target=document.getElementById(id);if(!target)return;if(target.tagName==="DETAILS")target.open=true;var nested=target.querySelector("details");if(nested)nested.open=true;var parent=target.parentElement;while(parent){if(parent.tagName==="DETAILS")parent.open=true;parent=parent.parentElement;}target.setAttribute("tabindex","-1");target.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});target.focus({preventScroll:true});}
 function para(p,h,x){var s=el("section","profile-section","");s.appendChild(el("h4","",h));s.appendChild(el("p","",x));p.appendChild(s);}
 function ul(p,h,a){if(!Array.isArray(a)||!a.length)return;p.appendChild(el("h4","",h));var u=document.createElement("ul");a.forEach(function(x){u.appendChild(el("li","",x));});p.appendChild(u);}
 function evidenceBadge(status,fallback){var d=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(status,fallback):{label:"Unconfirmed",className:"is-unconfirmed",detail:"Evidence is incomplete or awaiting current-client confirmation."};var b=el("span","pill evidence-badge "+d.className,d.label);b.title=d.detail;return b;}
@@ -96,6 +96,7 @@ function drawResults(){
 var a=filtered(),visible=a.slice(0,rosterVisible);var selectable=a.filter(function(h){return h.verificationStatus==="Community-supported";}).length;$("builder-count").textContent="Showing "+visible.length+" of "+a.length+" indexed heroes · "+selectable+" selectable";results.replaceChildren();
 visible.forEach(function(h){
 var selected=chosen.some(function(x){return x&&x.id===h.id;}),eligible=h.verificationStatus==="Community-supported",wrap=node("div","hero-directory-item"+(eligible?"":" is-pending"),"");
+wrap.id=slugId("hero",h.id||h.name);
 wrap.setAttribute("data-verification-status",window.LZCarryDataStatus?window.LZCarryDataStatus.normalize(h.verification||h.verificationStatus||h.dataStatus,"unconfirmed"):"unconfirmed");
 var details=node("details","hero-directory-details","");
 var summary=node("summary","hero-directory-summary","");
@@ -121,6 +122,7 @@ if(eligible)add.addEventListener("click",function(){var existing=chosen.findInde
 wrap.append(details,add);results.append(wrap);
 });
 if(a.length>rosterVisible){var more=node("button","btn secondary hero-load-more","Show more heroes ("+(a.length-rosterVisible)+" remaining)");more.type="button";more.addEventListener("click",function(){rosterVisible=Math.min(a.length,rosterVisible+rosterPageSize);drawResults();});results.append(more);}
+openDeepLink();
 }
 function counter(major,enemy){var counteredBy={"Blood Rose":"Wings of Dawn","Wings of Dawn":"Guard of Order","Guard of Order":"Blood Rose"};if(major===counteredBy[enemy])return major+" is the community-listed counter to "+enemy+"; this is a matchup edge to test, not a guaranteed win.";if(counteredBy[major]===enemy)return major+" is countered by "+enemy+" in the commonly reported faction triangle. Consider a pivot only if it does not sacrifice developed heroes or skill synergy.";return major+" has no direct counter edge over "+enemy+" in the reported triangle.";}
 function analyze(){var box=$("formation-advice"),a=chosen.filter(Boolean),counts={};box.replaceChildren(node("h3","","Formation analysis"));if(!a.length){box.append(node("p","","Add heroes to compare faction balance, documented pairs, troop alignment and matchup notes."));return;}a.forEach(function(h){counts[h.faction]=(counts[h.faction]||0)+1;});var fs=Object.keys(counts).sort(function(x,y){return counts[y]-counts[x];});box.append(node("p","",a.length+"/5 slots filled · "+fs.map(function(f){return f+" ×"+counts[f];}).join(" · ")+"."));

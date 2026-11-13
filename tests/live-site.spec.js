@@ -93,8 +93,14 @@ test("published GitHub Pages site is live, responsive and serves every primary p
       if (name === "events") await expect(page.locator("#event-results details.event-profile").first()).toBeVisible();
       if (name === "pilot") {
         await expect(page.locator("#pilot-configurator")).toBeVisible();
-        await expect(page.getByRole("button", { name: "Request a Pilot — unavailable" })).toBeDisabled();
-        await expect(page.getByRole("button", { name: "Ask for Assistance — unavailable" })).toBeDisabled();
+        for (const [id, label] of [["pilot-request", "Request a Pilot"], ["pilot-assistance", "Ask for Assistance"]]) {
+          const contact = page.locator("#" + id);
+          if (await contact.isDisabled()) {
+            await expect(contact).toHaveAccessibleName(label + " — unavailable");
+          } else {
+            await expect(contact).toHaveAttribute("data-destination", "https://discord.gg/kVmN6e7Rm");
+          }
+        }
       }
       await page.screenshot({ path: path.join(artifacts, name + "-" + width + ".png"), fullPage: true });
       expect(runtimeErrors, name + " console/runtime errors at " + width).toEqual([]);

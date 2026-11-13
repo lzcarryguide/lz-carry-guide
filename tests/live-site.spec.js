@@ -21,13 +21,17 @@ test("published GitHub Pages site is live, responsive and serves every primary p
   let observation = "";
   for (let attempt = 1; attempt <= 20; attempt++) {
     try {
-      const response = await request.get("pilot.html?pages-verification=" + attempt, { timeout: 15000 });
-      const body = await response.text();
-      if (response.ok() && body.includes("Build your pilot package")) {
+      const [pilotResponse, eventsResponse] = await Promise.all([
+        request.get("pilot.html?pages-verification=" + attempt, { timeout: 15000 }),
+        request.get("events.html?pages-verification=" + attempt, { timeout: 15000 })
+      ]);
+      const [pilotBody, eventsBody] = await Promise.all([pilotResponse.text(), eventsResponse.text()]);
+      if (pilotResponse.ok() && pilotBody.includes("Build your pilot package") &&
+          eventsResponse.ok() && eventsBody.includes("<h1>Events Center</h1>")) {
         deployed = true;
         break;
       }
-      observation = "HTTP " + response.status() + " or Pilot configurator marker not present";
+      observation = "Pilot HTTP " + pilotResponse.status() + " / Events HTTP " + eventsResponse.status() + " or expected release markers not present";
     } catch (error) {
       observation = error.message;
     }

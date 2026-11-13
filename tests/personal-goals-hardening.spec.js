@@ -82,3 +82,5 @@ test("failed partial backup import restores the existing goal and planner values
   expect(restored.goals[0].title).toBe("Keep this saved goal");
   expect(restored.hq["35:0"]).toBe(false);
 });
+
+// Regression coverage includes local corruption, duplicate IDs, invalid imports and partial quota-failure rollback.

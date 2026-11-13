@@ -11,8 +11,10 @@ async function searchAndOpen(page, query, hrefPattern, targetId) {
   await expect(page).toHaveURL(hrefPattern);
   const target = page.locator("#" + targetId);
   await expect(target).toBeVisible();
-  if (await target.evaluate(node => node.querySelector("details") || node.tagName === "DETAILS")) {
-    await expect(target.locator("details").first().or(target)).toHaveAttribute("open", "");
+  if (await target.evaluate(node => node.tagName === "DETAILS")) {
+    await expect(target).toHaveAttribute("open", "");
+  } else if (await target.locator("details").count()) {
+    await expect(target.locator("details").first()).toHaveAttribute("open", "");
   }
 }
 

@@ -258,10 +258,10 @@ test("mixed-faction analysis explains pair signals, troop fit and counter matchu
 test("source-backed faction presets populate named examples",async({page})=>{
  await page.goto("/heroes.html");
  await page.locator(".hero-preset-disclosure > summary").click();
- await page.getByRole("button",{name:/Blood Rose.*SIN Command example/}).click();
+ await page.getByRole("button",{name:/Blood Rose.*draft template/}).click();
  await expect(page.locator(".formation-slot").nth(0)).toContainText("Bella");
  await expect(page.locator(".formation-slot").nth(3)).toContainText("Licia");
- await page.getByRole("button",{name:/Wings of Dawn.*SIN Command example/}).click();
+ await page.getByRole("button",{name:/Wings of Dawn.*draft template/}).click();
  await expect(page.locator(".formation-slot").nth(0)).toContainText("Laura");
  await expect(page.locator(".formation-slot").nth(3)).toContainText("Liliana");
 });

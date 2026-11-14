@@ -100,7 +100,7 @@ test("published GitHub Pages site is live, responsive and serves every primary p
       }
       if (name === "pilot") {
         await expect(page.locator("#pilot-configurator")).toBeVisible();
-        await expect(page.getByLabel(/SVS Chest Opening/)).toContainText("Each account is charged separately");
+        await expect(page.locator(".pilot-addon-item").filter({ hasText: "SVS Chest Opening" })).toContainText("Each account is charged separately");
         await expect(page.locator("#pilot-svs-accounts option")).toHaveCount(3);
         for (const [id, label] of [["pilot-request", "Request a Pilot"], ["pilot-assistance", "Ask for Assistance"]]) {
           const contact = page.locator("#" + id);

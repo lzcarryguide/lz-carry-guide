@@ -72,7 +72,7 @@
     var doc = new DOMParser().parseFromString(html, "text/html");
     doc.querySelectorAll("script,style,noscript,header,footer,nav,svg").forEach(function (n) { n.remove(); });
     var body = doc.body;
-    var blocks = body.querySelectorAll(".research-tree-card, .research-extra, .event-profile, article.card, main section[id]");
+    var blocks = body.querySelectorAll(".research-tree-card, .research-extra, article.card, main section[id]");
     blocks.forEach(function (block) {
       var heading = block.querySelector("summary h3, summary h2, h3, h2, h1");
       var title = heading ? heading.textContent.trim() : page.title;

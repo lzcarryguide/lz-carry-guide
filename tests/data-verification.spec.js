@@ -7,7 +7,7 @@ test("Troop database renders evidence labels and tier caveats", async ({ page })
   await expect(cards.first().locator(".evidence-badge").first()).toBeVisible();
   await expect(cards.first()).toContainText("Statistics");
   await expect(cards.first()).toContainText("Unlock");
-  await expect(cards.first()).toContainText("provisional");
+  await expect(cards.first()).toContainText("Unconfirmed");
 });
 
 test("event directory retains shared community evidence labels", async ({ page }) => {

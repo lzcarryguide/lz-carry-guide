@@ -87,10 +87,13 @@ test("older backups skip retired Troops progress and migrate old goals to Other"
     format: "lz-carry-player-data", schemaVersion: 1, exportedAt: "2026-11-14T00:00:00.000Z", app: "LZ Carry",
     data: {
       "lzcarry-troop-plan-v1": { classId: "assaulters", tier: "1", current: 100, target: 250 },
-      "lzcarry-player-goals-v1": [{
-        id: "old-troop-goal", title: "Old troop target", category: "Troops", dueDate: "",
-        note: "Keep this personal goal", done: false, createdAt: "2026-11-13T00:00:00.000Z"
-      }]
+      "lzcarry-event-prep-v2": { active: "alliance-duel" },
+      "lzcarry-event-checklists-v1": { "alliance-duel": { task1: true } },
+      "lzcarry-event-reminders-v1": [{ id: "old-event", name: "Old reminder", when: "2026-11-20T00:00:00.000Z" }],
+      "lzcarry-player-goals-v1": [
+        { id: "old-troop-goal", title: "Old troop target", category: "Troops", dueDate: "", note: "Keep this personal goal", done: false, createdAt: "2026-11-13T00:00:00.000Z" },
+        { id: "old-event-goal", title: "Old event goal", category: "Events", dueDate: "", note: "Keep this personal goal too", done: false, createdAt: "2026-11-13T00:00:00.000Z" }
+      ]
     }
   };
   await page.getByLabel("Choose a LZ Carry progress backup JSON file").setInputFiles({
@@ -99,13 +102,18 @@ test("older backups skip retired Troops progress and migrate old goals to Other"
   await expect(page.locator(".player-data-summary")).toContainText("Progress imported successfully");
   const stored = await page.evaluate(() => ({
     troop: localStorage.getItem("lzcarry-troop-plan-v1"),
+    events: localStorage.getItem("lzcarry-event-prep-v2"),
+    reminders: localStorage.getItem("lzcarry-event-reminders-v1"),
     goals: JSON.parse(localStorage.getItem("lzcarry-player-goals-v1") || "[]")
   }));
   expect(stored.troop).toBeNull();
-  expect(stored.goals).toHaveLength(1);
-  expect(stored.goals[0].category).toBe("Other");
+  expect(stored.events).toBeNull();
+  expect(stored.reminders).toBeNull();
+  expect(stored.goals).toHaveLength(2);
+  expect(stored.goals.every(goal => goal.category === "Other")).toBeTruthy();
   await page.reload();
   await page.locator("#dashboard-goals > summary").click();
   await expect(page.locator("#dashboard-goal-list")).toContainText("Old troop target");
   await expect(page.locator("#dashboard-goal-list")).toContainText("Other");
+  await expect(page.locator("#dashboard-goal-list")).toContainText("Old event goal");
 });

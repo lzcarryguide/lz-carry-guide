@@ -24,7 +24,9 @@ Updated: 2026-11-14 — Heroes feature retirement and standalone Troops release 
 ## Validation status
 - Static internal-link audit: all local HTML links resolve against the current branch tree; no broken internal links found.
 - Removed-feature path audit: no remaining repository paths named for Heroes or Formation.
-- Automated browser tests are running in GitHub Actions at desktop and mobile viewports. The final passing run and artifact report will be recorded before merge.
+- GitHub Actions preview run: https://github.com/lzcarryguide/lz-carry-guide/actions/runs/43579426033
+- Result: 41/41 Playwright tests passed (37.2 seconds), including desktop and 390px/320px mobile layouts, standalone Troops search/filtering, quantity planner calculations and local saves, universal-search deep links, guide-category filtering, legacy backup compatibility, Research, HQ, Events, Dashboard, Beginner Mode and Pilot checks.
+- Screenshots and the HTML test report were uploaded as the workflow artifact.
 - The live GitHub Pages browser smoke test runs automatically after a successful main-branch deployment.
 
 ## Evidence and product boundaries

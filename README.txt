@@ -10,6 +10,7 @@ CURRENT FEATURES
 - Beginner guide and searchable 22-entry community-indexed Laboratory research guide, with personal Laboratory route and progress planner.
 - HQ progression planner and local checklist.
 - Standalone Flowers Count tool with weekly Lucky Rose evidence log and historical records.
+- Daily Pilot — $3/day; Saturday Special — $8; Weekly Elite Management — $30 / 7 days; Canyon Clash — $8/account.
 - SVS Chest Opening — $5 per account, each account billed separately; maximum service capacity is 2–3 accounts.
 - Existing Daily Pilot, Saturday Special, Weekly Elite Management and Canyon Clash prices are unchanged.
 - Responsive dark-blue visual system.

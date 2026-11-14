@@ -4,7 +4,7 @@
 var $=function(id){return document.getElementById(id);};
 function el(tag,cls,text){var node=document.createElement(tag);if(cls)node.className=cls;if(text!=null)node.textContent=String(text);return node;}
 var profileKey="lzcarry-player-profile-v1";
-var keys={hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",eventChecklists:"lzcarry-event-checklists-v1",beginner:"lzcarry-beginner-mode-v1",troop:"lzcarry-troop-plan-v1",reminders:"lzcarry-event-reminders-v1",goals:"lzcarry-player-goals-v1"};
+var keys={hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",eventChecklists:"lzcarry-event-checklists-v1",beginner:"lzcarry-beginner-mode-v1",reminders:"lzcarry-event-reminders-v1",goals:"lzcarry-player-goals-v1"};
 var select=$("dashboard-hq"),status=$("dashboard-status");
 var reminderForm=$("dashboard-reminder-form"),reminderList=$("dashboard-reminder-list"),reminderStatus=$("dashboard-reminder-status");
 var goalForm=$("dashboard-goal-form"),goalList=$("dashboard-goal-list"),goalStatus=$("dashboard-goal-status"),goalClear=$("dashboard-goal-clear-completed");
@@ -31,10 +31,10 @@ function renderReminders(){
  });
  var stat=$("dashboard-reminder-value");if(stat)stat.textContent=String(upcoming.length);
 }
-var goalLinks={HQ:["beginner.html#hq-planner-section","Open HQ planner"],Research:["research.html#lab-planner","Open Research Center"],Troops:["troops.html#troop-progress-planner","Open Troop Planner"],Events:["events.html#event-prep-planner","Open Event Planner"],Beginner:["beginner.html#beginner-mode","Open Beginner Mode"],Other:["dashboard.html#speedup-planner","Open Dashboard tools"]};
+var goalLinks={HQ:["beginner.html#hq-planner-section","Open HQ planner"],Research:["research.html#lab-planner","Open Research Center"],Events:["events.html#event-prep-planner","Open Event Planner"],Beginner:["beginner.html#beginner-mode","Open Beginner Mode"],Other:["dashboard.html#speedup-planner","Open Dashboard tools"]};
 function validGoalDate(value){if(!value)return true;if(typeof value!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;var date=new Date(value+"T00:00:00Z");return !Number.isNaN(date.getTime())&&date.toISOString().slice(0,10)===value;}
-function validGoalRecord(g){return!!(g&&typeof g.id==="string"&&g.id.length>0&&g.id.length<=128&&typeof g.title==="string"&&g.title.trim()&&g.title.length<=100&&["HQ","Research","Troops","Events","Beginner","Other"].indexOf(g.category)>=0&&typeof g.dueDate==="string"&&validGoalDate(g.dueDate)&&typeof g.note==="string"&&g.note.length<=200&&typeof g.done==="boolean"&&typeof g.createdAt==="string"&&Number.isFinite(Date.parse(g.createdAt))&&new Date(g.createdAt).toISOString()===g.createdAt);}
-function readGoals(){var all=read(keys.goals,[]);if(!Array.isArray(all))return[];var seen=Object.create(null);return all.filter(function(g){if(!validGoalRecord(g)||seen[g.id])return false;seen[g.id]=true;return true;});}
+function validGoalRecord(g){return!!(g&&typeof g.id==="string"&&g.id.length>0&&g.id.length<=128&&typeof g.title==="string"&&g.title.trim()&&g.title.length<=100&&["HQ","Research","Events","Beginner","Other"].indexOf(g.category)>=0&&typeof g.dueDate==="string"&&validGoalDate(g.dueDate)&&typeof g.note==="string"&&g.note.length<=200&&typeof g.done==="boolean"&&typeof g.createdAt==="string"&&Number.isFinite(Date.parse(g.createdAt))&&new Date(g.createdAt).toISOString()===g.createdAt);}
+function readGoals(){var all=read(keys.goals,[]);if(!Array.isArray(all))return[];var seen=Object.create(null),changed=false;var valid=all.filter(function(g){if(g&&g.category==="Troops"){g.category="Other";changed=true;}if(!validGoalRecord(g)||seen[g.id])return false;seen[g.id]=true;return true;});if(changed){try{localStorage.setItem(keys.goals,JSON.stringify(valid));}catch(e){}}return valid;}
 function saveGoals(goals,message){try{localStorage.setItem(keys.goals,JSON.stringify(goals));if(goalStatus)goalStatus.textContent=message||"Goal saved on this device.";renderGoals();return true;}catch(e){if(goalStatus)goalStatus.textContent="Browser storage unavailable; the goal was not saved.";return false;}}
 function renderGoals(){
  if(!goalList)return;
@@ -61,7 +61,7 @@ function renderGoals(){
  if(goalClear)goalClear.disabled=done===0;
 }
 function render(){
- var hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),eventChecklists=read(keys.eventChecklists,{}),beginner=read(keys.beginner,{}),troop=read(keys.troop,{});
+ var hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),eventChecklists=read(keys.eventChecklists,{}),beginner=read(keys.beginner,{});
  var researchNames=Object.keys(research).filter(function(k){return research[k]==="Done"||research[k]==="In progress";});
  var researchDone=researchNames.filter(function(k){return research[k]==="Done";}).length;
  var eventDone=Object.keys(events).filter(function(k){return events[k]===true;}).length;Object.keys(eventChecklists).forEach(function(eventId){var checks=eventChecklists[eventId]||{};eventDone+=Object.keys(checks).filter(function(k){return checks[k]===true;}).length;});
@@ -70,8 +70,6 @@ function render(){
  $("dashboard-hq-value").textContent=profile.currentHq?"HQ "+profile.currentHq:"Not set";
  $("dashboard-research-value").textContent=researchDone+" / "+researchNames.length;
  $("dashboard-event-value").textContent=String(eventDone);
- var troopNames={assaulters:"Assaulters",shooters:"Shooters",riders:"Riders"};
- $("dashboard-troop-value").textContent=troop.classId&&troop.tier?((troopNames[troop.classId]||troop.classId)+" T"+troop.tier):"Not set";
  renderReminders();
  renderGoals();
  var next=$("dashboard-next-action"),primary;
@@ -89,7 +87,7 @@ function render(){
  else rec.append(card("Plan your next HQ upgrade","Use the HQ planner to review community-reported prerequisites and compare source values before spending.","beginner.html#hq-planner-section","Open HQ planner"));
  if(researchNames.length===0||researchDone<researchNames.length)rec.append(card("Continue Laboratory research","Your research route is saved locally. Review disputed gates in the live Laboratory before committing resources.","research.html#lab-planner","Resume research"));
 
- if(beginnerDone<5)rec.append(card("Follow Beginner Mode","Complete the guided foundations checklist at your own pace. It links to the existing planners rather than duplicating them.","beginner.html#beginner-mode","Continue beginner path"));
+ if(beginnerDone<4)rec.append(card("Follow Beginner Mode","Complete the guided foundations checklist at your own pace. It links to the existing planners rather than duplicating them.","beginner.html#beginner-mode","Continue beginner path"));
  if(eventDone===0)rec.append(card("Prepare for your next event","Choose the theme shown in your live Event Center; event rotations and dates are not automatically synchronized.","events.html#event-prep-planner","Open event planner"));
  if(!rec.children.length)rec.append(card("Review your saved progress","Your local trackers look complete. Recheck current game requirements and update your saved progress when your account changes.","beginner.html","Review progression"));
  if(primary){var primaryTitle=(primary.querySelector("strong")||{}).textContent;[].slice.call(rec.children).forEach(function(item){var title=(item.querySelector("strong")||{}).textContent;if(title===primaryTitle)item.remove();});}

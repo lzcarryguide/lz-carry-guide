@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
-async function searchAndOpen(page, query, hrefPattern, targetId) {
+async function searchAndOpen(page, query, hrefPattern, targetId, openNestedDetails = true) {
   await page.goto("/");
   await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
   const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
@@ -13,7 +13,7 @@ async function searchAndOpen(page, query, hrefPattern, targetId) {
   await expect(target).toBeVisible();
   if (await target.evaluate(node => node.tagName === "DETAILS")) {
     await expect(target).toHaveAttribute("open", "");
-  } else if (await target.locator("details").count()) {
+  } else if (openNestedDetails && await target.locator("details").count()) {
     await expect(target.locator("details").first()).toHaveAttribute("open", "");
   }
 }

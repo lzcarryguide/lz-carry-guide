@@ -10,14 +10,13 @@
     { file: "beginner.html", title: "Beginner's Guide", category: "Page" },
     { file: "dashboard.html", title: "Player Dashboard", category: "Page" },
     { file: "research.html", title: "Research Center", category: "Page" },
-    { file: "events.html", title: "Events Center", category: "Page" },
+    { file: "flowers-count.html", title: "Flowers Count · Lucky Rose", category: "Tool" },
     { file: "pilot.html", title: "LZ Carry Service", category: "Page" }
   ];
   var datasets = [
     { file: "data/guides.json", page: "guides.html", title: "Guide", key: ["title", "name"] },
     { file: "data/hq-requirements.json", page: "beginner.html#hq-planner-section", title: "HQ requirement", key: ["targetHq", "hqLevel", "level", "title", "name"] },
-    { file: "data/events.json", page: "events.html", title: "Event", anchorPrefix: "event", key: ["name", "title"] },
-    { file: "data/lucky-rose-history.json", page: "events.html#lucky-rose-tracker", title: "Lucky Rose", key: ["weekOf", "number", "buff", "durationHours", "notes"] }
+    { file: "data/lucky-rose-history.json", page: "flowers-count.html#lucky-rose-tracker", title: "Flowers Count · Lucky Rose", key: ["weekOf", "number", "buff", "durationHours", "notes"] }
   ];
   var css = document.createElement("link");
   css.rel = "stylesheet";
@@ -54,10 +53,10 @@
   heading.appendChild(close);
   var input = make("input", "universal-search-input");
   input.type = "search";
-  input.placeholder = "Search research, HQ levels, events, Lucky Rose…";
+  input.placeholder = "Search research, HQ levels, Flowers Count, Lucky Rose…";
   input.setAttribute("aria-label", "Search all LZ Carry content");
   input.autocomplete = "off";
-  var hint = make("p", "universal-search-hint", "Search across guides, planners, research, events and Lucky Rose. Press Escape to close.");
+  var hint = make("p", "universal-search-hint", "Search across guides, planners, research and Flowers Count. Press Escape to close.");
   var results = make("div", "universal-search-results");
   results.setAttribute("aria-live", "polite");
   results.setAttribute("aria-label", "Search results");
@@ -154,7 +153,7 @@
       return { item: item, score: score };
     }).filter(Boolean).sort(function (a, b) { return b.score - a.score; }).slice(0, 40);
     if (!matches.length) {
-      results.appendChild(make("p", "universal-search-empty", "No matches found. Try a guide, research tree, HQ level or event keyword."));
+      results.appendChild(make("p", "universal-search-empty", "No matches found. Try a guide, research tree, HQ level or Flowers Count keyword."));
       return;
     }
     matches.forEach(function (match) {

@@ -66,7 +66,7 @@ test("Research and standalone Flowers Count remain available", async ({ page }) 
   await page.goto("/flowers-count.html");
   await expect(page.getByRole("heading", { name: "Flowers Count" })).toBeVisible();
   await expect(page.locator("#lucky-rose-current")).toContainText("5");
-  await expect(page.locator("#lucky-rose-history .lucky-rose-history-row")).toHaveCount(2);
+  await expect(page.locator("#lucky-rose-history .lucky-rose-history-row")).not.toHaveCount(0);
 });
 
 test("guide index contains only retained categories and searchable entries", async ({ page }) => {

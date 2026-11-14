@@ -1,7 +1,7 @@
 (function(){
 function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;n.textContent=x==null?"":String(x);return n;}
 function portraitFrame(hero,extraClass){
-var name=hero&&hero.name?hero.name:"Hero",initials=name.split(/\\s+/).map(function(part){return part.charAt(0);}).join("").slice(0,2).toUpperCase();
+var name=hero&&hero.name?hero.name:"Hero",initials=name.split(/\s+/).map(function(part){return part.charAt(0);}).join("").slice(0,2).toUpperCase();
 var frame=el("span","hero-portrait-frame is-placeholder"+(extraClass?" "+extraClass:""),"");
 frame.setAttribute("role","img");frame.setAttribute("aria-label",name+" portrait placeholder; licensed artwork not yet available");
 frame.title=name+" · portrait awaiting documented permission";

@@ -23,5 +23,5 @@ test("universal search opens the matching research tree", async ({ page }) => {
 });
 
 test("universal search opens standalone Flowers Count", async ({ page }) => {
-  await searchAndOpen(page, "Flowers Count", /flowers-count\\.html#lucky-rose-tracker/, "lucky-rose-tracker");
+  await searchAndOpen(page, "Lucky Rose", /flowers-count\.html#lucky-rose-tracker/, "lucky-rose-tracker");
 });

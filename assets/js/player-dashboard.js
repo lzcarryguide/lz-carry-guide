@@ -4,7 +4,7 @@
 var $=function(id){return document.getElementById(id);};
 function el(tag,cls,text){var node=document.createElement(tag);if(cls)node.className=cls;if(text!=null)node.textContent=String(text);return node;}
 var profileKey="lzcarry-player-profile-v1";
-var keys={formations:"lzcarry-formation-library-v1",hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",eventChecklists:"lzcarry-event-checklists-v1",beginner:"lzcarry-beginner-mode-v1",troop:"lzcarry-troop-plan-v1",reminders:"lzcarry-event-reminders-v1",goals:"lzcarry-player-goals-v1"};
+var keys={hq:"lzcarry:hq-planner:v2",research:"lzcarry-research-plan-v1",events:"lzcarry-event-prep-v2",eventChecklists:"lzcarry-event-checklists-v1",beginner:"lzcarry-beginner-mode-v1",troop:"lzcarry-troop-plan-v1",reminders:"lzcarry-event-reminders-v1",goals:"lzcarry-player-goals-v1"};
 var select=$("dashboard-hq"),status=$("dashboard-status");
 var reminderForm=$("dashboard-reminder-form"),reminderList=$("dashboard-reminder-list"),reminderStatus=$("dashboard-reminder-status");
 var goalForm=$("dashboard-goal-form"),goalList=$("dashboard-goal-list"),goalStatus=$("dashboard-goal-status"),goalClear=$("dashboard-goal-clear-completed");
@@ -31,9 +31,9 @@ function renderReminders(){
  });
  var stat=$("dashboard-reminder-value");if(stat)stat.textContent=String(upcoming.length);
 }
-var goalLinks={HQ:["beginner.html#hq-planner-section","Open HQ planner"],Research:["research.html#lab-planner","Open Research Center"],Heroes:["heroes.html#formation-builder","Open Formation Lab"],Troops:["heroes.html#troop-progress-planner","Open Troop Planner"],Events:["events.html#event-prep-planner","Open Event Planner"],Beginner:["beginner.html#beginner-mode","Open Beginner Mode"],Other:["dashboard.html#speedup-planner","Open Dashboard tools"]};
+var goalLinks={HQ:["beginner.html#hq-planner-section","Open HQ planner"],Research:["research.html#lab-planner","Open Research Center"],Troops:["troops.html#troop-progress-planner","Open Troop Planner"],Events:["events.html#event-prep-planner","Open Event Planner"],Beginner:["beginner.html#beginner-mode","Open Beginner Mode"],Other:["dashboard.html#speedup-planner","Open Dashboard tools"]};
 function validGoalDate(value){if(!value)return true;if(typeof value!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;var date=new Date(value+"T00:00:00Z");return !Number.isNaN(date.getTime())&&date.toISOString().slice(0,10)===value;}
-function validGoalRecord(g){return!!(g&&typeof g.id==="string"&&g.id.length>0&&g.id.length<=128&&typeof g.title==="string"&&g.title.trim()&&g.title.length<=100&&["HQ","Research","Heroes","Troops","Events","Beginner","Other"].indexOf(g.category)>=0&&typeof g.dueDate==="string"&&validGoalDate(g.dueDate)&&typeof g.note==="string"&&g.note.length<=200&&typeof g.done==="boolean"&&typeof g.createdAt==="string"&&Number.isFinite(Date.parse(g.createdAt))&&new Date(g.createdAt).toISOString()===g.createdAt);}
+function validGoalRecord(g){return!!(g&&typeof g.id==="string"&&g.id.length>0&&g.id.length<=128&&typeof g.title==="string"&&g.title.trim()&&g.title.length<=100&&["HQ","Research","Troops","Events","Beginner","Other"].indexOf(g.category)>=0&&typeof g.dueDate==="string"&&validGoalDate(g.dueDate)&&typeof g.note==="string"&&g.note.length<=200&&typeof g.done==="boolean"&&typeof g.createdAt==="string"&&Number.isFinite(Date.parse(g.createdAt))&&new Date(g.createdAt).toISOString()===g.createdAt);}
 function readGoals(){var all=read(keys.goals,[]);if(!Array.isArray(all))return[];var seen=Object.create(null);return all.filter(function(g){if(!validGoalRecord(g)||seen[g.id])return false;seen[g.id]=true;return true;});}
 function saveGoals(goals,message){try{localStorage.setItem(keys.goals,JSON.stringify(goals));if(goalStatus)goalStatus.textContent=message||"Goal saved on this device.";renderGoals();return true;}catch(e){if(goalStatus)goalStatus.textContent="Browser storage unavailable; the goal was not saved.";return false;}}
 function renderGoals(){
@@ -61,17 +61,13 @@ function renderGoals(){
  if(goalClear)goalClear.disabled=done===0;
 }
 function render(){
- var formations=read(keys.formations,[]),hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),eventChecklists=read(keys.eventChecklists,{}),beginner=read(keys.beginner,{}),troop=read(keys.troop,{});
- if(!Array.isArray(formations))formations=[];
- var heroNames={};formations.forEach(function(f){if(f&&Array.isArray(f.heroes))f.heroes.forEach(function(name){if(typeof name==="string"&&name.trim())heroNames[name.trim()]=true;});});
+ var hq=read(keys.hq,{}),research=read(keys.research,{}),events=read(keys.events,{}),eventChecklists=read(keys.eventChecklists,{}),beginner=read(keys.beginner,{}),troop=read(keys.troop,{});
  var researchNames=Object.keys(research).filter(function(k){return research[k]==="Done"||research[k]==="In progress";});
  var researchDone=researchNames.filter(function(k){return research[k]==="Done";}).length;
  var eventDone=Object.keys(events).filter(function(k){return events[k]===true;}).length;Object.keys(eventChecklists).forEach(function(eventId){var checks=eventChecklists[eventId]||{};eventDone+=Object.keys(checks).filter(function(k){return checks[k]===true;}).length;});
  var hqDone=Object.keys(hq).filter(function(k){return hq[k]===true;}).length;
  var beginnerDone=Object.keys(beginner).filter(function(k){return beginner[k]===true;}).length;
  $("dashboard-hq-value").textContent=profile.currentHq?"HQ "+profile.currentHq:"Not set";
- $("dashboard-formation-value").textContent=String(formations.length);
- $("dashboard-hero-value").textContent=String(Object.keys(heroNames).length);
  $("dashboard-research-value").textContent=researchDone+" / "+researchNames.length;
  $("dashboard-event-value").textContent=String(eventDone);
  var troopNames={assaulters:"Assaulters",shooters:"Shooters",riders:"Riders"};
@@ -83,7 +79,7 @@ function render(){
  else if(hqDone===0)primary=card("Plan your next HQ upgrade","Your HQ level is saved, but no prerequisite progress is marked yet. Review the next target and confirm each building requirement in game.","beginner.html#hq-planner-section","Open HQ planner");
  else if(researchNames.length===0)primary=card("Start a Laboratory route","No research progress is tracked yet. Choose a route in the Laboratory and record the steps you have verified in game.","research.html#lab-planner","Start research planning");
  else if(researchDone<researchNames.length)primary=card("Continue Laboratory research",researchNames.length-researchDone+" tracked research item(s) are not marked complete. Review the live prerequisites before committing resources.","research.html#lab-planner","Resume research");
- else if(formations.length===0)primary=card("Build your first hero formation","Save a first lineup to compare future changes and keep your hero investment decisions organized.","heroes.html#formation-builder","Build a formation");
+
  else if(beginnerDone<5)primary=card("Complete your next progression milestone",beginnerDone+" of 5 Beginner Mode milestones are checked. Continue the guided path at your own pace.","beginner.html#beginner-mode","Continue Beginner Mode");
  else if(eventDone===0)primary=card("Prepare for your next event","Choose the active theme shown in your live Event Center and record the preparation tasks you have confirmed.","events.html#event-prep-planner","Prepare for an event");
  else primary=card("Review your saved account plan","Your key trackers have saved progress. Recheck live game requirements and update your HQ, research and event plans after your next milestone.","beginner.html","Review progression");
@@ -92,8 +88,7 @@ function render(){
  if(!profile.currentHq)rec.append(card("Set your current HQ","Add your current HQ level to personalize your next planning steps. This is player-entered, not read from your game account.","#dashboard-hq","Set HQ level"));
  else rec.append(card("Plan your next HQ upgrade","Use the HQ planner to review community-reported prerequisites and compare source values before spending.","beginner.html#hq-planner-section","Open HQ planner"));
  if(researchNames.length===0||researchDone<researchNames.length)rec.append(card("Continue Laboratory research","Your research route is saved locally. Review disputed gates in the live Laboratory before committing resources.","research.html#lab-planner","Resume research"));
- if(formations.length===0)rec.append(card("Build your first hero formation","Create a lineup and save it so you can compare future changes.","heroes.html#formation-builder","Open formation builder"));
- else rec.append(card("Review your saved formations",formations.length+" formation(s) are saved in this browser. Compare them before replacing a lineup.","heroes.html#formation-builder","Review formations"));
+
  if(beginnerDone<5)rec.append(card("Follow Beginner Mode","Complete the guided foundations checklist at your own pace. It links to the existing planners rather than duplicating them.","beginner.html#beginner-mode","Continue beginner path"));
  if(eventDone===0)rec.append(card("Prepare for your next event","Choose the theme shown in your live Event Center; event rotations and dates are not automatically synchronized.","events.html#event-prep-planner","Open event planner"));
  if(!rec.children.length)rec.append(card("Review your saved progress","Your local trackers look complete. Recheck current game requirements and update your saved progress when your account changes.","beginner.html","Review progression"));

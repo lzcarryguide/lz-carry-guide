@@ -113,3 +113,45 @@ test("Research and Events directories remain available", async ({ page, request 
   await page.goto("/events.html");
   await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
 });
+
+test("guide index replaces Hero tool guides with searchable Troops guides", async ({ page }) => {
+  await page.goto("/guides.html");
+  await page.getByLabel("Category").selectOption("troops");
+  const cards = page.locator("#guide-results article.card");
+  await expect(cards).toHaveCount(2);
+  await expect(cards).toContainText("Browse troop classes and tier evidence");
+  await expect(cards).toContainText("Track a troop quantity target");
+  await expect(cards.locator('a[href^="troops.html"]')).toHaveCount(2);
+});
+
+test("older progress backups skip retired Hero fields without losing Troop progress", async ({ page }) => {
+  await page.goto("/troops.html");
+  page.on("dialog", dialog => dialog.accept());
+  await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
+  await page.getByRole("button", { name: "Import a backup" }).click();
+  const backup = {
+    format: "lz-carry-player-data",
+    schemaVersion: 1,
+    exportedAt: "2026-11-14T00:00:00.000Z",
+    app: "LZ Carry",
+    data: {
+      "lzcarry-troop-plan-v1": { classId: "assaulters", tier: "1", current: 100, target: 250 },
+      "lzcarry-formation-library-v1": [{ id: "old", name: "Retired", heroes: ["Bella"] }],
+      "lzcarry-hero-investment-compare-v1": { a: "audrey", b: "ava" }
+    }
+  };
+  await page.locator("#player-data-file").setInputFiles({
+    name: "old-progress-backup.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(JSON.stringify(backup))
+  });
+  await expect(page.locator(".player-data-summary")).toContainText("Progress imported successfully");
+  const stored = await page.evaluate(() => ({
+    troop: JSON.parse(localStorage.getItem("lzcarry-troop-plan-v1") || "{}"),
+    formations: localStorage.getItem("lzcarry-formation-library-v1"),
+    heroComparison: localStorage.getItem("lzcarry-hero-investment-compare-v1")
+  }));
+  expect(stored.troop.target).toBe(250);
+  expect(stored.formations).toBeNull();
+  expect(stored.heroComparison).toBeNull();
+});

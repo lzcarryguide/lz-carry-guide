@@ -12,17 +12,14 @@ test("Laboratory planner records player progress", async ({ page }) => {
   await expect(page.locator("#research-progress-copy")).toContainText("1 in progress");
 });
 
-test("dashboard personal goals can be created, completed and removed", async ({ page }) => {
+test("dashboard retains personal goals and a Troops shortcut without Hero controls", async ({ page }) => {
   await page.goto("/dashboard.html");
-  await page.locator("#dashboard-goal-title").fill("Reach next HQ milestone");
-  await page.locator("#dashboard-goal-category").selectOption("HQ");
-  await page.getByRole("button", { name: "Add personal goal" }).click();
-  const goal = page.locator("#dashboard-goal-list .dashboard-goal-item").first();
-  await expect(goal).toContainText("Reach next HQ milestone");
-  await goal.locator('input[type="checkbox"]').check();
-  await expect(goal).toHaveClass(/is-complete/);
-  await goal.getByRole("button", { name: "Remove" }).click();
-  await expect(page.locator("#dashboard-goal-list .dashboard-goal-item")).toHaveCount(0);
+  await expect(page.locator("#dashboard-goal-form")).toBeVisible();
+  await expect(page.locator("#dashboard-goal-category option")).toHaveCount(6);
+  await expect(page.locator("#dashboard-goal-category")).not.toContainText("Heroes");
+  await expect(page.locator('a[href="troops.html#troop-progress-planner"]')).toBeVisible();
+  await expect(page.locator("#dashboard-formation-value")).toHaveCount(0);
+  await expect(page.locator("#dashboard-hero-value")).toHaveCount(0);
 });
 
 test("Beginner Mode preserves a four-step non-Hero progression checklist", async ({ page }) => {

@@ -9,27 +9,26 @@ CURRENT FEATURES
 - Searchable guide directory.
 - Beginner guide and searchable 22-entry community-indexed Laboratory research guide, with personal Laboratory route and progress planner.
 - HQ progression planner and local checklist.
-- Searchable event directory, weekly Alliance Duel / Full Preparedness reference, live Apocalypse Time clock and browser-saved preparation checklist.
-- Weekly Pilot — $30 (Sunday–Saturday).
-- Weekly + Canyon Clash — $35 (Sunday–Saturday).
+- Standalone Flowers Count tool with weekly Lucky Rose evidence log and historical records.
+- SVS Chest Opening — $5 per account, each account billed separately; maximum service capacity is 2–3 accounts.
+- Existing Daily Pilot, Saturday Special, Weekly Elite Management and Canyon Clash prices are unchanged.
 - Responsive dark-blue visual system.
 
 PROJECT STRUCTURE
 -----------------
 index.html, guides.html, beginner.html, dashboard.html, research.html
-events.html, pilot.html
+flowers-count.html, pilot.html
 style.css
 assets/js/guide-library.js
 assets/js/hq-planner.js
-assets/js/knowledge-hub.js
+assets/js/lucky-rose-tracker.js
 assets/js/research-planner.js
-assets/js/event-prep-planner.js
+assets/css/lucky-rose-tracker.css
 data/guides.json
 data/hq-requirements.json
-data/events.json
+data/lucky-rose-history.json
 docs/guide-database-schema.md
 docs/knowledge-hub-data-spec.md
-docs/events-source-review.md
 docs/hq-source-review.md
 tests/branch-preview.spec.js
 tests/planner-tools.spec.js
@@ -62,5 +61,5 @@ The Research Guide maps 22 named trees across community indexes (including Allie
 PLANNER TOOL NOTES
 ------------------
 - Laboratory route suggestions use community-reported gates and intentionally omit exact node costs, badge totals, percentages and timers until current-client evidence is available. The second Laboratory is tracked separately, including the reported Season 2 Day 50 condition.
-- Full Preparedness planner displays Apocalypse Time (UTC-2), four-hour windows and a local checklist. It does not infer the active server theme or scoring tasks.
+- Flowers Count checks its stored week against the Monday 00:00 UTC reset and flags stale entries. New weekly numbers are recorded manually after in-game verification; no future value is guessed.
 - See docs/laboratory-planner-review.md, docs/event-planner-review.md and docs/website-quality-review.md for evidence and remaining verification.

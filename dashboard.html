@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Your LZ Carry player dashboard for saved progression, research, heroes and event preparation.">
+  <meta name="description" content="Your LZ Carry player dashboard for saved progression, research, troop goals and event preparation.">
   <title>Player Dashboard | LZ Carry</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="assets/css/player-dashboard.css">
@@ -14,7 +14,7 @@
   <nav aria-label="Main navigation">
     <a href="index.html">Home</a><a href="guides.html">Guides</a><a href="beginner.html">Beginner</a>
     <a href="dashboard.html" aria-current="page">Dashboard</a><a href="beginner.html#hq-planner-section">HQ Planner</a>
-    <a href="research.html">Research Center</a><a href="heroes.html">Hero Formation Lab</a>
+    <a href="research.html">Research Center</a><a href="troops.html">Troops</a>
     <a href="events.html">Events Center</a><a href="pilot.html">LZ Carry Service</a>
   </nav>
 </div></header>
@@ -34,8 +34,6 @@
   </div>
   <div class="dashboard-stats" aria-label="Saved account progress">
     <article class="card dashboard-stat"><span class="eyebrow">Headquarters</span><strong id="dashboard-hq-value">Not set</strong><small>Player-entered level</small></article>
-    <article class="card dashboard-stat"><span class="eyebrow">Saved formations</span><strong id="dashboard-formation-value">0</strong><small>Saved hero lineups</small></article>
-    <article class="card dashboard-stat"><span class="eyebrow">Heroes</span><strong id="dashboard-hero-value">0</strong><small>Unique heroes in saved lineups</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Research</span><strong id="dashboard-research-value">0 / 0</strong><small>Tracked routes completed</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Event checklist</span><strong id="dashboard-event-value">0</strong><small>Saved preparation checks</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Troop goal</span><strong id="dashboard-troop-value">Not set</strong><small>Personal quantity target</small></article>
@@ -60,7 +58,7 @@
     <p class="small muted">Set your own targets and link each one to an existing LZ Carry tool. Goals are player-entered, saved locally and included in My Progress backups.</p>
     <form id="dashboard-goal-form" class="dashboard-goal-form">
       <label for="dashboard-goal-title">Goal<input id="dashboard-goal-title" type="text" maxlength="100" required placeholder="e.g. Finish my next HQ upgrade"></label>
-      <label for="dashboard-goal-category">Planning area<select id="dashboard-goal-category"><option value="HQ">HQ</option><option value="Research">Research</option><option value="Heroes">Heroes</option><option value="Troops">Troops</option><option value="Events">Events</option><option value="Beginner">Beginner</option><option value="Other">Other</option></select></label>
+      <label for="dashboard-goal-category">Planning area<select id="dashboard-goal-category"><option value="HQ">HQ</option><option value="Research">Research</option><option value="Troops">Troops</option><option value="Events">Events</option><option value="Beginner">Beginner</option><option value="Other">Other</option></select></label>
       <label for="dashboard-goal-due">Target date (optional)<input id="dashboard-goal-due" type="date"></label>
       <label for="dashboard-goal-note">Planning note (optional)<input id="dashboard-goal-note" type="text" maxlength="200" placeholder="What will help you reach this goal?"></label>
       <button class="btn" type="submit">Add personal goal</button>
@@ -77,9 +75,7 @@
         <a href="research.html#lab-planner"><strong>Laboratory Planner</strong><span>Resume your selected research route and saved progress</span></a>
         <a href="research.html#research-resource-calculator"><strong>Research Resource Calculator</strong><span>Compare your available resources with costs copied from your live research panel</span></a>
         <a href="#speedup-planner"><strong>Speedup Planner</strong><span>Compare a live timer with the speedup minutes you have available</span></a>
-        <a href="heroes.html#formation-builder"><strong>Hero Formation Builder</strong><span>Build or restore one of your saved lineups</span></a>
-        <a href="heroes.html#hero-investment-compare"><strong>Hero Investment Comparison</strong><span>Compare indexed evidence and your own investment notes</span></a>
-        <a href="heroes.html#troop-progress-planner"><strong>Troop Target Planner</strong><span>Track your desired unit count by troop class and tier</span></a>
+        <a href="troops.html#troop-progress-planner"><strong>Troop Target Planner</strong><span>Track your desired unit count by troop class and tier</span></a>
         <a href="events.html#event-prep-planner"><strong>Event Preparation</strong><span>Continue your manually selected event checklist</span></a>
         <a href="beginner.html#beginner-mode"><strong>Beginner Mode</strong><span>Follow the guided account progression checklist</span></a>
       </div>

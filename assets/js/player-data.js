@@ -3,6 +3,8 @@
 "use strict";
 var script=document.currentScript;if(!script)return;var root=new URL("../../",script.src);
 var KEYS=["lzcarry:hq-planner:v2","lzcarry-research-plan-v1","lzcarry-player-profile-v1","lzcarry-beginner-mode-v1","lzcarry-research-resource-calculator-v1","lzcarry-hq-resource-check-v1","lzcarry-speedup-plan-v1","lzcarry-player-goals-v1"];
+var RETIRED_KEYS=["lzcarry-event-prep-v2","lzcarry-event-checklists-v1","lzcarry-event-reminders-v1"];
+try{RETIRED_KEYS.forEach(function(k){localStorage.removeItem(k);});}catch(e){}
 function el(t,c,s){var n=document.createElement(t);if(c)n.className=c;if(s!=null)n.textContent=s;return n;}
 function validGoalDate(v){if(v==="")return true;if(typeof v!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(v))return false;var d=new Date(v+"T00:00:00Z");return Number.isFinite(d.getTime())&&d.toISOString().slice(0,10)===v;}
 function validGoalRecord(x){return!!(x&&typeof x.id==="string"&&x.id.length>0&&x.id.length<=128&&typeof x.title==="string"&&x.title.trim()&&x.title.length<=100&&["HQ","Research","Beginner","Other"].indexOf(x.category)>=0&&typeof x.dueDate==="string"&&validGoalDate(x.dueDate)&&typeof x.note==="string"&&x.note.length<=200&&typeof x.done==="boolean"&&typeof x.createdAt==="string"&&Number.isFinite(Date.parse(x.createdAt))&&new Date(x.createdAt).toISOString()===x.createdAt);}

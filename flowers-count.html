@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Flowers Count: check the weekly Lucky Rose number, buff details, evidence and historical records for Last Z.">
+  <meta name="theme-color" content="#080d18">
+  <title>Flowers Count | LZ Carry</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/lucky-rose-tracker.css">
+  <script src="assets/js/data-verification.js" defer></script>
+  <script src="assets/js/lucky-rose-tracker.js" defer></script>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">LAST Z <span>CARRY</span></a>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home</a><a href="guides.html">Guides</a><a href="dashboard.html">Dashboard</a>
+    <a href="beginner.html">Beginner</a><a href="beginner.html#hq-planner-section">HQ Planner</a>
+    <a href="research.html">Research Center</a><a href="flowers-count.html" aria-current="page">Flowers Count</a>
+    <a href="pilot.html">LZ Carry Service</a>
+  </nav>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">Standalone player tool · Weekly flower reference</p>
+  <h1>Flowers Count</h1>
+  <p class="lead">Check the current Lucky Rose number before sending Yellow Roses. Review the buff, evidence status and previous weekly records in one place.</p>
+</div></section>
+<section id="lucky-rose-tracker"><div class="wrap">
+  <p class="eyebrow">Lucky Rose · Weekly count</p><h2>This week's number</h2>
+  <p class="section-intro">The in-game Lucky Rose number changes at the weekly reset. LZ Carry records the new value manually after it is observed; the tool never guesses a new number.</p>
+  <div class="lucky-rose-panel">
+    <article class="lucky-rose-current" id="lucky-rose-current" aria-live="polite"><p>Loading current evidence…</p></article>
+    <section class="card"><p class="eyebrow">Running history</p><h3>Recent weekly records</h3><div class="lucky-rose-history" id="lucky-rose-history" aria-live="polite"><p class="small muted">Loading history…</p></div></section>
+  </div>
+  <p class="notice lucky-rose-scope" id="lucky-rose-scope-note">Weekly reset: Monday at 00:00 UTC. New counts are manually verified from the in-game panel.</p>
+  <div class="card"><p class="eyebrow">Update schedule</p><h3>Monday weekly reset · 00:00 UTC</h3><p>The week rolls over at the game's weekly reset. The tracker checks whether its recorded week matches the current Monday-start week and flags an old value as out of date. A new lucky number is not generated automatically; it is added after current in-game evidence is checked.</p><p class="small muted">Community references agree on Monday reset. The tracker keeps buff scope cautious where sources disagree; always check the live game before sending roses.</p></div>
+  <details class="card"><summary><strong>How the weekly entry is verified</strong></summary><ol><li>Capture the Lucky Rose number, buff wording and duration from the current in-game panel for the relevant week.</li><li>Cross-check the same week against an independent, current community report.</li><li>Record the week start, checked date, source links and any server or reset scope.</li><li>If sources disagree, keep the entry Unconfirmed and show the conflict. Never infer the next number from a past rotation.</li></ol><p class="small muted">Community reports are references, not a substitute for checking the current in-game Lucky Rose panel.</p></details>
+</div></section>
+</main>
+<footer><div class="wrap"><strong>LZ CARRY</strong><p>Independent community guide and gaming assistance service. Not affiliated with or endorsed by the game's publisher.</p><p class="small">Always follow the game's rules and protect your account. Never publish passwords, verification codes, or recovery information.</p></div></footer>
+<script src="assets/js/player-data.js" defer></script>
+<script src="assets/js/universal-search.js" defer></script>
+<script src="assets/js/mobile-nav.js" defer></script>
+</body></html>

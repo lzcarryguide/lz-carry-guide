@@ -4,7 +4,7 @@
 var root=document.getElementById("lucky-rose-tracker");if(!root)return;
 function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=String(text);return n;}
 function badge(status,label){var info=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(status):{label:label||"Unconfirmed",className:"is-unconfirmed",detail:"Evidence is incomplete."};var b=el("span","pill evidence-badge "+info.className,label||info.label);b.title=info.detail;return b;}
-function weekStartUTC(){var d=new Date();d.setUTCHours(0,0,0,0);d.setUTCDate(d.getUTCDate()-((d.getUTCDay()+6)%7));return d.toISOString().slice(0,10);}
+function weekStartUTC(){var d=new Date(Date.now()-2*60*60*1000);d.setUTCHours(0,0,0,0);d.setUTCDate(d.getUTCDate()-((d.getUTCDay()+6)%7));return d.toISOString().slice(0,10);}
 function link(source){var a=el("a","lucky-rose-source",source.name+" · checked "+source.checkedAt);try{var u=new URL(source.url,location.href);if(u.protocol!=="https:"&&u.protocol!=="http:")throw Error("Unsafe source URL");a.href=u.href;a.target="_blank";a.rel="noopener noreferrer";}catch(_){a.removeAttribute("href");}return a;}
 fetch("data/lucky-rose-history.json").then(function(r){if(!r.ok)throw Error("Lucky Rose data unavailable");return r.json();}).then(function(d){
 if(d.schemaVersion!==1||!Array.isArray(d.history))throw Error("Unsupported Lucky Rose dataset");
@@ -27,7 +27,7 @@ active.append(el("p","small muted","This previous-week value is retained as hist
 active.append(badge("unconfirmed","Awaiting verification"));
 active.append(el("p","","No current-week candidate is recorded. Check the in-game Lucky Rose panel before sending Yellow Roses."));
 }
-note.textContent="Weekly reset: Monday at 00:00 UTC. The new count is recorded manually after it is observed in game. "+((d.policy&&d.policy.scope)||"Buff scope is not confirmed. Check the live client.");
+note.textContent="Weekly reset: Monday at 00:00 Apocalypse Time (02:00 UTC). The new count is recorded manually after it is observed in game. "+((d.policy&&d.policy.scope)||"Buff scope is not confirmed. Check the live client.");
 history.replaceChildren();
 var entries=d.history.slice().sort(function(a,b){return b.weekOf.localeCompare(a.weekOf);});
 if(!entries.length)history.append(el("p","small muted","No historical observations have been recorded yet."));

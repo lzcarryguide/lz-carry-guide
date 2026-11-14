@@ -32,7 +32,14 @@
         "sourceConfidence": "Z Tools and Last Z Wiki disagree on Skill 3 and role."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "ava",
@@ -63,7 +70,14 @@
         "sourceConfidence": "Single community skill index."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "giselle",
@@ -94,7 +108,14 @@
         "sourceConfidence": "Z Tools and Last Z Wiki agree on wood utility, but the overall role tag conflicts."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "athena",
@@ -128,7 +149,14 @@
         "Atenea"
       ],
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "elizabeth",
@@ -159,7 +187,14 @@
         "sourceConfidence": "Last Z Wiki and Z Tools support the defensive and faction-passive description; exact percentages omitted."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "leah",
@@ -190,7 +225,14 @@
         "sourceConfidence": "Single community skill index."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "william",
@@ -221,7 +263,14 @@
         "sourceConfidence": "Z Tools and Last Z Wiki conflict on the third skill and role."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "angelina",
@@ -250,7 +299,14 @@
         "sourceConfidence": "Role and third-skill conflict across Last Z Wiki and Z Tools."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "christina",
@@ -284,7 +340,14 @@
         "Cristina"
       ],
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "fiona",
@@ -315,7 +378,14 @@
         "sourceConfidence": "Last Z Wiki and Z Tools broadly agree on the personal attack and faction-attack role; exact values omitted."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "isabella",
@@ -346,7 +416,14 @@
         "sourceConfidence": "Last Z Wiki and Z Tools broadly agree on the attack, defence and faction-passive structure; exact text/values omitted."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "natalie",
@@ -380,7 +457,14 @@
         "Natalia"
       ],
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "katrina",
@@ -411,7 +495,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "miranda",
@@ -442,7 +533,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "oliveira",
@@ -474,7 +572,14 @@
       },
       "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
-      "awakeningSeason": 5
+      "awakeningSeason": 5,
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "selena",
@@ -505,7 +610,14 @@
         "sourceConfidence": "Last Z Wiki and Z Tools both list the Assaulter/passive skill structure; live scope still needs client confirmation."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "sophia",
@@ -540,7 +652,14 @@
         "Sofía"
       ],
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "vivian",
@@ -571,7 +690,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "bella",
@@ -602,7 +728,14 @@
         "sourceConfidence": "One detailed Last Z Wiki profile (Portuguese/Spanish mixed language); current client transcription needed."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "harleyna",
@@ -628,7 +761,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "alma",
@@ -659,7 +799,14 @@
         "sourceConfidence": "One detailed Last Z Wiki profile; all skill names and conditions require current-client confirmation."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "amelia",
@@ -688,7 +835,14 @@
         "Emilia? (possible distinct/alternate entry; verify)"
       ],
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "laura",
@@ -719,7 +873,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "nyx",
@@ -750,7 +911,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "scarlett",
@@ -782,7 +950,14 @@
       },
       "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
-      "awakeningSeason": 5
+      "awakeningSeason": 5,
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "licia",
@@ -808,7 +983,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "chinatsu",
@@ -834,7 +1016,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "dodemeki",
@@ -860,7 +1049,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "evelyn",
@@ -887,7 +1083,14 @@
       },
       "verificationStatus": "Community-supported",
       "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
-      "awakeningSeason": 5
+      "awakeningSeason": 5,
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "maria",
@@ -913,7 +1116,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "mia",
@@ -939,7 +1149,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "sakura",
@@ -965,7 +1182,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable."
+      "verificationBasis": "Cross-listed in SIN Command and Z Tools; corroborated by additional current community references for seasonal releases where applicable.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "liliana",
@@ -991,7 +1215,14 @@
         "sourceConfidence": "Metadata index only; hero-specific profile evidence is pending."
       },
       "verificationStatus": "Community-supported",
-      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail."
+      "verificationBasis": "Season 4 identity, faction and season independently cross-listed by SIN Command, Last Z Guides and current hero references; in-game screenshot still desirable for skill-level detail.",
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
+      }
     },
     {
       "id": "amber",
@@ -1010,6 +1241,13 @@
       "profileNotes": {
         "evidence": "SIN Command's current field file lists this hero but explicitly marks the Season 4 assignment Verify. Independent current-client confirmation is not available.",
         "limitations": "Season/release assignment remains unconfirmed; do not treat this as a completed seasonal profile."
+      },
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
       }
     },
     {
@@ -1029,6 +1267,13 @@
       "profileNotes": {
         "evidence": "SIN Command's current field file lists this hero but explicitly marks the Season 4 assignment Verify. Independent current-client confirmation is not available.",
         "limitations": "Season/release assignment remains unconfirmed; do not treat this as a completed seasonal profile."
+      },
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
       }
     },
     {
@@ -1048,6 +1293,13 @@
       "profileNotes": {
         "evidence": "SIN Command's current field file lists this hero but explicitly marks the Season 4 assignment Verify. Independent current-client confirmation is not available.",
         "limitations": "Season/release assignment remains unconfirmed; do not treat this as a completed seasonal profile."
+      },
+      "portrait": {
+        "asset": null,
+        "status": "placeholder",
+        "licenseStatus": "not-cleared",
+        "source": null,
+        "permissionEvidence": null
       }
     }
   ]

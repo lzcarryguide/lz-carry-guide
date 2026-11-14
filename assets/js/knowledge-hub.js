@@ -2,11 +2,16 @@
 function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;n.textContent=x==null?"":String(x);return n;}
 function portraitFrame(hero,extraClass){
 var name=hero&&hero.name?hero.name:"Hero",initials=name.split(/\s+/).map(function(part){return part.charAt(0);}).join("").slice(0,2).toUpperCase();
-var frame=el("span","hero-portrait-frame is-placeholder"+(extraClass?" "+extraClass:""),"");
-frame.setAttribute("role","img");frame.setAttribute("aria-label",name+" portrait placeholder; licensed artwork not yet available");
+var frame=el("span","hero-portrait-frame"+(extraClass?" "+extraClass:""),"");
+var portrait=hero&&hero.portrait,approved=portrait&&portrait.asset&&portrait.status==="licensed"&&portrait.licenseStatus==="cleared"&&portrait.permissionEvidence;
+frame.setAttribute("data-hero-id",hero&&hero.id||"");
+if(approved){
+var img=document.createElement("img");img.src=portrait.asset;img.alt=name+" hero portrait";img.loading="lazy";img.decoding="async";img.width=512;img.height=640;img.addEventListener("error",function(){frame.classList.add("is-placeholder");frame.replaceChildren(el("span","hero-portrait-monogram",initials),el("span","hero-portrait-caption","Portrait unavailable"));});frame.appendChild(img);frame.setAttribute("role","img");frame.setAttribute("aria-label",name+" licensed portrait");
+}else{
+frame.classList.add("is-placeholder");frame.setAttribute("role","img");frame.setAttribute("aria-label",name+" portrait placeholder; licensed artwork not yet available");
 frame.title=name+" · portrait awaiting documented permission";
-frame.appendChild(el("span","hero-portrait-monogram",initials));
-frame.appendChild(el("span","hero-portrait-caption","Portrait pending"));
+frame.appendChild(el("span","hero-portrait-monogram",initials));frame.appendChild(el("span","hero-portrait-caption","Portrait pending"));
+}
 return frame;
 }
 function slugId(prefix,value){return prefix+"-"+String(value||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}

@@ -9,37 +9,9 @@ function para(p,h,x){var s=el("section","profile-section","");s.appendChild(el("
 function ul(p,h,a){if(!Array.isArray(a)||!a.length)return;p.appendChild(el("h4","",h));var u=document.createElement("ul");a.forEach(function(x){u.appendChild(el("li","",x));});p.appendChild(u);}
 function evidenceBadge(status,fallback){var d=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(status,fallback):{label:"Unconfirmed",className:"is-unconfirmed",detail:"Evidence is incomplete or awaiting current-client confirmation."};var b=el("span","pill evidence-badge "+d.className,d.label);b.title=d.detail;return b;}
 function evidenceLine(label,status){var p=el("p","small muted",label+": ");p.appendChild(evidenceBadge(status||"unconfirmed"));return p;}
-function troop(r){
-var c=el("article","card knowledge-card troop-class-card","");c.id=slugId("troop",r.id||r.name);
-c.appendChild(el("span","pill",r.faction));
-c.appendChild(el("h3","",r.name));
-c.appendChild(el("p","","Camp: "+r.camp));
-c.appendChild(el("p","",r.summary||"Community-indexed troop class."));
-var t=el("div","troop-tier-list","");
-(r.tiers||[]).forEach(function(x){
- var row=el("div","troop-tier-row","");
- var head=el("div","troop-tier-head","");
- head.appendChild(el("strong","","T"+x.tier+" · "+(x.unitName||"Name pending")));
- var nameEvidence=evidenceBadge(x.nameStatus||"unconfirmed");
- nameEvidence.className+=" troop-evidence-badge";
- nameEvidence.setAttribute("aria-label","Name evidence: "+nameEvidence.textContent);
- head.appendChild(nameEvidence);
- row.appendChild(head);
- if(x.reportedAlternativeNames&&x.reportedAlternativeNames.length)row.appendChild(el("p","small muted","Alternative names reported: "+x.reportedAlternativeNames.join(", ")));
- row.appendChild(evidenceLine("Name evidence",x.nameStatus));
- row.appendChild(evidenceLine("Statistics",x.valuesStatus));
- row.appendChild(evidenceLine("Unlock",x.unlockStatus));
- t.appendChild(row);
-});
-c.appendChild(t);
-c.appendChild(el("p","small muted","Camp unlock levels, statistics, training and promotion costs, timers and research gates remain unpublished until checked against the current game client."));
-c.appendChild(el("p","small muted",r.note||""));
-return c;
-}
 function event(r){var d=document.createElement("details");d.id=slugId("event",r.id||r.name);d.className="card knowledge-card profile-card event-profile";var s=el("summary","profile-summary","");s.appendChild(el("span","pill",[r.type,r.frequency].filter(Boolean).join(" · ")));s.appendChild(evidenceBadge(r.verificationStatus||r.evidenceStatus||"unconfirmed","unconfirmed"));s.appendChild(el("h3","",r.name));s.appendChild(el("p","",r.objective||r.summary||"Read the live event panel before spending."));s.appendChild(el("p","small muted","Open event field guide"));d.appendChild(s);var b=el("div","profile-body","");ul(b,"How it works",r.mechanics||[]);if(!r.mechanics||!r.mechanics.length)para(b,"Mechanics status","Available sources do not support a complete description. Do not infer schedules, scores, rounds or entry rules from the event name.");ul(b,"Preparation",r.preparation||[]);para(b,"Participation and eligibility",r.participation||"Check current server, alliance, HQ, registration and personal eligibility in the Event Center.");para(b,"Scoring",r.scoring||"Not published. Read the current task and points panel; values and caps are not independently verified.");para(b,"Rewards",r.rewards||"Not published. Confirm current chests, ranking and milestone panels before spending.");para(b,"F2P strategy",r.f2pStrategy||"Prioritize free tasks and attainable personal milestones. Keep rare items for actions the live panel confirms will score.");para(b,"Spending strategy",r.spendingStrategy||"Do not buy currency on an old guide. Compare live thresholds with real cost and stop when the next reward is poor value.");ul(b,"Common mistakes",r.commonMistakes||["Assuming an old schedule or reward table is current.","Spending before checking task rules.","Confusing personal points with alliance-wide contribution."]);para(b,"Verification status",r.verification||"Confirm current rules in-game.");ul(b,"Known source conflicts",r.conflicts||[]);d.appendChild(b);return d;}
-function setup(c){var q=document.getElementById(c.searchId),count=document.getElementById(c.countId),out=document.getElementById(c.resultsId);var f=(c.filters||[]).map(function(x){return{field:x.field,node:document.getElementById(x.id)};}).filter(function(x){return x.node;});if(!f.length&&c.filterId){var n=document.getElementById(c.filterId);if(n)f.push({field:c.filterField,node:n});}if(!q||!count||!out)return;function render(){var term=q.value.trim().toLowerCase();var a=c.records.filter(function(r){var text=[r.name,(r.aliases||[]).join(" "),r.faction,r.troopType,r.camp,r.role,r.type,r.rarity,r.season!=null?"season "+r.season:"",r.objective,r.summary,(r.tags||[]).join(" ")].filter(Boolean).join(" ").toLowerCase();return f.every(function(x){return!x.node.value||String(r[x.field]==null?"":r[x.field])===x.node.value;})&&(!term||text.indexOf(term)>=0);});count.textContent=a.length+(a.length===1?" record":" records");out.replaceChildren();if(!a.length){out.appendChild(el("p","card knowledge-empty","No matching records. Try another search or filter."));return;}a.forEach(function(r){out.appendChild(c.kind==="troop"?troop(r):event(r));});}q.addEventListener("input",render);f.forEach(function(x){x.node.addEventListener("change",render);});render();}
+function setup(c){var q=document.getElementById(c.searchId),count=document.getElementById(c.countId),out=document.getElementById(c.resultsId);var f=(c.filters||[]).map(function(x){return{field:x.field,node:document.getElementById(x.id)};}).filter(function(x){return x.node;});if(!f.length&&c.filterId){var n=document.getElementById(c.filterId);if(n)f.push({field:c.filterField,node:n});}if(!q||!count||!out)return;function render(){var term=q.value.trim().toLowerCase();var a=c.records.filter(function(r){var text=[r.name,(r.aliases||[]).join(" "),r.faction,r.troopType,r.camp,r.role,r.type,r.rarity,r.season!=null?"season "+r.season:"",r.objective,r.summary,(r.tags||[]).join(" ")].filter(Boolean).join(" ").toLowerCase();return f.every(function(x){return!x.node.value||String(r[x.field]==null?"":r[x.field])===x.node.value;})&&(!term||text.indexOf(term)>=0);});count.textContent=a.length+(a.length===1?" record":" records");out.replaceChildren();if(!a.length){out.appendChild(el("p","card knowledge-empty","No matching records. Try another search or filter."));return;}a.forEach(function(r){out.appendChild(event(r));});}q.addEventListener("input",render);f.forEach(function(x){x.node.addEventListener("change",render);});render();}
 function load(url,key,c,root){fetch(url).then(function(r){if(!r.ok)throw new Error("Database unavailable");return r.json();}).then(function(d){if(!d||d.schemaVersion!==2||!Array.isArray(d[key]))throw new Error("Invalid database");c.records=d[key];setup(c);openDeepLink();}).catch(function(){root.replaceChildren(el("div","card","Directory unavailable. Please refresh to reload the local database."));});}
-var r=document.getElementById("troop-results");if(r)load("data/troops.json","classes",{kind:"troop",searchId:"troop-search",filterId:"troop-faction",countId:"troop-count",resultsId:"troop-results",filterField:"faction"},r);
 r=document.getElementById("event-results");if(r)load("data/events.json","events",{kind:"event",searchId:"event-search",filterId:"event-type",countId:"event-count",resultsId:"event-results",filterField:"type"},r);
 window.addEventListener("hashchange",function(){lastDeepLinkTarget="";openDeepLink();});
 })();

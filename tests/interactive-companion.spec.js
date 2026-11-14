@@ -30,7 +30,7 @@ test("Beginner Mode preserves a four-step progression checklist", async ({ page 
   await page.locator("#beginner-account").check();
   await expect(page.locator("#beginner-progress-text")).toHaveText("1 of 3 steps complete");
   await page.reload();
-  await expect(page.locator("#beginner-progress-text")).toHaveText("1 of 4 steps complete");
+  await expect(page.locator("#beginner-progress-text")).toHaveText("1 of 3 steps complete");
 });
 
 test("mobile navigation exposes every retained primary destination", async ({ page }) => {

@@ -38,8 +38,8 @@ test("published GitHub Pages site is live, responsive and serves every primary p
   }
   expect(deployed, "Pages deployment was not updated at " + baseURL + ": " + observation).toBeTruthy();
   expect((await request.get("troops.html")).status()).toBe(404);
-  expect((await request.get("events.html")).status()).toBe(404);
-  expect((await request.get("data/events.json")).status()).toBe(404);
+  expect((await request.get("events.html?retired-feature-check=1")).status()).toBe(404);
+  expect((await request.get("data/events.json?retired-feature-check=1")).status()).toBe(404);
 
   for (const width of [1440, 390]) {
     for (const [target, name] of pages) {

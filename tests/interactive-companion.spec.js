@@ -23,7 +23,7 @@ test("dashboard retains personal goals without retired Troops controls", async (
   await expect(page.locator('a[href*="troops.html"]')).toHaveCount(0);
 });
 
-test("Beginner Mode preserves a four-step progression checklist", async ({ page }) => {
+test("Beginner Mode preserves a three-step progression checklist", async ({ page }) => {
   await page.goto("/beginner.html");
   await expect(page.locator("#beginner-steps .beginner-step")).toHaveCount(3);
   await expect(page.locator("#beginner-progress-text")).toHaveText("0 of 3 steps complete");

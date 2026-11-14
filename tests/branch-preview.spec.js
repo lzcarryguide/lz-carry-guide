@@ -5,11 +5,11 @@ const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/resea
 const artifacts = path.join(process.cwd(), "artifacts");
 fs.mkdirSync(artifacts, { recursive: true });
 
-test("primary navigation and internal links resolve without the retired Troops page", async ({ page, request }) => {
+test("primary navigation and internal links resolve without retired Troops or Event Center pages", async ({ page, request }) => {
   await page.goto("/");
   const links = await page.locator("header nav a").evaluateAll(as => as.map(a => a.getAttribute("href")));
   expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "flowers-count.html", "pilot.html"]));
-  expect(links.some(href => /troops\\.html|events?\\.html/i.test(href))).toBeFalsy();
+  expect(links.some(href => /troops\.html|events?\.html/i.test(href))).toBeFalsy();
   for (const target of pages) {
     expect((await request.get(target)).status(), target).toBe(200);
     await page.goto(target);
@@ -61,13 +61,16 @@ test("mobile layouts and navigation work at 390px and 320px", async ({ page }) =
 });
 
 test("Flowers Count respects the Monday 00:00 Apocalypse Time reset without inventing a new number", async ({ page }) => {
-  await page.addInitScript(() => { Date.now = () => Date.parse("2026-11-09T01:59:59Z"); });
+  await page.addInitScript(() => {
+    const afterReset = sessionStorage.getItem("lz-test-after-reset") === "yes";
+    Date.now = () => Date.parse(afterReset ? "2026-11-09T02:00:00Z" : "2026-11-09T01:59:59Z");
+    sessionStorage.setItem("lz-test-after-reset", "yes");
+  });
   await page.goto("/flowers-count.html");
   await expect(page.locator("#lucky-rose-current")).toContainText("Previous week");
   await expect(page.locator("#lucky-rose-current")).toContainText("Last recorded #5");
   await expect(page.locator("#lucky-rose-current")).not.toContainText("Community-supported · awaiting in-game confirmation");
 
-  await page.addInitScript(() => { Date.now = () => Date.parse("2026-11-09T02:00:00Z"); });
   await page.reload();
   await expect(page.locator("#lucky-rose-current")).toContainText("Community-supported · awaiting in-game confirmation");
   await expect(page.locator("#lucky-rose-current")).toContainText("#5");

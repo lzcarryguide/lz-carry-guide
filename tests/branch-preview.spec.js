@@ -140,7 +140,7 @@ test("older progress backups skip retired Hero fields without losing Troop progr
       "lzcarry-hero-investment-compare-v1": { a: "audrey", b: "ava" }
     }
   };
-  await page.locator("#player-data-file").setInputFiles({
+  await page.getByLabel("Choose a LZ Carry progress backup JSON file").setInputFiles({
     name: "old-progress-backup.json",
     mimeType: "application/json",
     buffer: Buffer.from(JSON.stringify(backup))

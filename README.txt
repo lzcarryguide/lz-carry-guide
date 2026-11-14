@@ -9,7 +9,6 @@ CURRENT FEATURES
 - Searchable guide directory.
 - Beginner guide and searchable 22-entry community-indexed Laboratory research guide, with personal Laboratory route and progress planner.
 - HQ progression planner and local checklist.
-- Standalone searchable Troops Database and local Troop Target Planner.
 - Searchable event directory, weekly Alliance Duel / Full Preparedness reference, live Apocalypse Time clock and browser-saved preparation checklist.
 - Weekly Pilot — $30 (Sunday–Saturday).
 - Weekly + Canyon Clash — $35 (Sunday–Saturday).
@@ -18,21 +17,18 @@ CURRENT FEATURES
 PROJECT STRUCTURE
 -----------------
 index.html, guides.html, beginner.html, dashboard.html, research.html
-troops.html, events.html, pilot.html
+events.html, pilot.html
 style.css
 assets/js/guide-library.js
 assets/js/hq-planner.js
 assets/js/knowledge-hub.js
-assets/js/troop-progress-planner.js
 assets/js/research-planner.js
 assets/js/event-prep-planner.js
 data/guides.json
 data/hq-requirements.json
-data/troops.json
 data/events.json
 docs/guide-database-schema.md
 docs/knowledge-hub-data-spec.md
-docs/troops-source-review.md
 docs/events-source-review.md
 docs/hq-source-review.md
 tests/branch-preview.spec.js
@@ -46,7 +42,6 @@ CONTENT RULES
 - Public explanations and data must be original LZ Carry content.
 - External research URLs and disagreements stay in internal docs only.
 - Do not publish skill details, costs, requirements, schedules, point values, or reward quantities without current evidence.
-- Mark community-indexed troop names and unlock details with their evidence limits.
 - Re-check season/server-sensitive information against in-game panels.
 - Never publish credentials, account recovery information, or private client details.
 
@@ -68,5 +63,4 @@ PLANNER TOOL NOTES
 ------------------
 - Laboratory route suggestions use community-reported gates and intentionally omit exact node costs, badge totals, percentages and timers until current-client evidence is available. The second Laboratory is tracked separately, including the reported Season 2 Day 50 condition.
 - Full Preparedness planner displays Apocalypse Time (UTC-2), four-hour windows and a local checklist. It does not infer the active server theme or scoring tasks.
-- Troop Target Planner stores player-entered current and target quantities locally; it does not infer training costs, promotion ratios or unlock levels.
 - See docs/laboratory-planner-review.md, docs/event-planner-review.md and docs/website-quality-review.md for evidence and remaining verification.

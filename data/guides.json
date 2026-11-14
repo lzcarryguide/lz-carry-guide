@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastUpdated": "2026-11-12",
+  "lastUpdated": "2026-11-14",
   "entries": [
     {
       "id": "player-dashboard",
@@ -135,60 +135,6 @@
           "type": "internal-tool-review",
           "checkedAt": "2026-11-12",
           "note": "Original tool-use instructions checked against the published player-entered timer calculator; no game-specific speedup item values or restrictions are assumed."
-        }
-      ]
-    },
-    {
-      "id": "troop-database",
-      "status": "published",
-      "title": "Browse troop classes and tier evidence",
-      "summary": "Search the three troop classes, compare community-indexed unit names by tier, and review the evidence limits for statistics and camp unlocks. Confirm current names and unlocks in your live game.",
-      "category": "troops",
-      "stage": [
-        "All stages"
-      ],
-      "tags": [
-        "troops",
-        "classes",
-        "tiers",
-        "faction",
-        "evidence"
-      ],
-      "url": "troops.html#troop-database",
-      "verifiedAt": "2026-11-14",
-      "sources": [
-        {
-          "name": "LZ Carry Troops Database",
-          "type": "internal-tool-review",
-          "checkedAt": "2026-11-14",
-          "note": "Standalone Troops database and its searchable records checked against the published troop dataset; no unverified costs or statistics are introduced."
-        }
-      ]
-    },
-    {
-      "id": "troop-target-planner",
-      "status": "published",
-      "title": "Track a troop quantity target",
-      "summary": "Choose a troop class and tier, enter your current count and target quantity, and track the remaining gap locally. The planner does not infer training costs, promotion ratios or unlock levels.",
-      "category": "troops",
-      "stage": [
-        "All stages"
-      ],
-      "tags": [
-        "troops",
-        "target",
-        "quantity",
-        "planner",
-        "progress"
-      ],
-      "url": "troops.html#troop-progress-planner",
-      "verifiedAt": "2026-11-14",
-      "sources": [
-        {
-          "name": "LZ Carry Troop Target Planner",
-          "type": "internal-tool-review",
-          "checkedAt": "2026-11-14",
-          "note": "Standalone Troop Target Planner checked against the published troop data and local progress controls; the calculation is quantity-only."
         }
       ]
     }

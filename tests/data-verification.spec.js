@@ -1,43 +1,16 @@
 const { test, expect } = require("@playwright/test");
 
-test("shared evidence labels distinguish cross-source agreement from verified game data", async ({ page }) => {
-  await page.goto("/heroes.html");
-  const result = await page.evaluate(() => ({
-    crossSource: window.LZCarryDataStatus.normalize("cross-source agreement"),
-    provisional: window.LZCarryDataStatus.normalize("PROVISIONAL — community-reported; not published as a verified value"),
-    community: window.LZCarryDataStatus.normalize("Community-supported"),
-    verifiedWithoutMethod: window.LZCarryDataStatus.normalize("Verified"),
-    verifiedInGame: window.LZCarryDataStatus.normalize({ status: "verified", method: "current in-game client" })
-  }));
-  expect(result).toEqual({
-    crossSource: "community-supported",
-    provisional: "unconfirmed",
-    community: "community-supported",
-    verifiedWithoutMethod: "community-supported",
-    verifiedInGame: "verified"
-  });
+test("Troop database renders evidence labels and tier caveats", async ({ page }) => {
+  await page.goto("/troops.html");
+  const cards = page.locator("#troop-results .troop-class-card");
+  await expect(cards).toHaveCount(3);
+  await expect(cards.first().locator(".evidence-badge").first()).toBeVisible();
+  await expect(cards.first()).toContainText("Statistics");
+  await expect(cards.first()).toContainText("Unlock");
+  await expect(cards.first()).toContainText("Unconfirmed");
 });
 
-test("hero encyclopedia renders shared community evidence labels", async ({ page }) => {
-  await page.goto("/heroes.html");
-  await expect(page.locator("#builder-results .hero-directory-item .evidence-badge").first()).toHaveText("Community-supported");
-  await expect(page.locator("#builder-results .hero-directory-item").first()).toHaveAttribute("data-verification-status", "community-supported");
-});
-
-test("troop directory does not promote provisional statistics to verified", async ({ page }) => {
-  await page.goto("/heroes.html");
-  await page.locator("#troop-database .hero-advanced-disclosure > summary").click();
-  await expect(page.locator("#troop-results .troop-tier-row .troop-evidence-badge").first()).toBeVisible();
-  const data = await page.request.get("/data/troops.json");
-  expect(data.ok()).toBeTruthy();
-  const json = await data.json();
-  const firstTier = json.classes[0].tiers[0];
-  expect(await page.evaluate(status => window.LZCarryDataStatus.normalize(status), firstTier.nameStatus)).toBe("community-supported");
-  expect(await page.evaluate(status => window.LZCarryDataStatus.normalize(status), firstTier.valuesStatus)).toBe("unconfirmed");
-  expect(await page.evaluate(status => window.LZCarryDataStatus.normalize(status), firstTier.unlockStatus)).toBe("unconfirmed");
-});
-
-test("event directory labels community-supported and unconfirmed entries consistently", async ({ page }) => {
+test("event directory retains shared community evidence labels", async ({ page }) => {
   await page.goto("/events.html");
   await expect(page.locator("#event-results .evidence-badge").first()).toBeVisible();
   const statuses = await page.evaluate(async () => {

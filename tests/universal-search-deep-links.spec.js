@@ -1,7 +1,7 @@
 const { test, expect } = require("@playwright/test");
 
 async function searchAndOpen(page, query, hrefPattern, targetId) {
-  await page.goto("/heroes.html");
+  await page.goto("/troops.html");
   await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
   const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
   await search.fill(query);
@@ -18,8 +18,8 @@ async function searchAndOpen(page, query, hrefPattern, targetId) {
   }
 }
 
-test("universal search opens the matching hero profile", async ({ page }) => {
-  await searchAndOpen(page, "Bella", /heroes\.html#hero-bella/, "hero-bella");
+test("universal search opens the matching Troop class reference", async ({ page }) => {
+  await searchAndOpen(page, "Assaulters", /troops\.html#troop-assaulters/, "troop-assaulters");
 });
 
 test("universal search opens the matching research tree", async ({ page }) => {
@@ -28,8 +28,4 @@ test("universal search opens the matching research tree", async ({ page }) => {
 
 test("universal search opens the matching event field guide", async ({ page }) => {
   await searchAndOpen(page, "Canyon Clash", /events\.html#event-canyon-clash/, "event-canyon-clash");
-});
-
-test("universal search opens the troop class reference", async ({ page }) => {
-  await searchAndOpen(page, "Assaulters", /heroes\.html#troop-assaulters/, "troop-assaulters");
 });

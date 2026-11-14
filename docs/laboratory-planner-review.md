@@ -26,7 +26,7 @@ Checked: 2026-11-09
 - The planner does not invent node costs, research times, badge totals, percentages, exact unlocks, or server-specific requirements.
 
 ## Research media
-Google-indexed community pages were reviewed. Targeted YouTube searches for current Laboratory screens, Alliance Duel / Full Preparedness walkthroughs and hero formation footage returned no directly usable video results in this research pass. No YouTube creator, timestamp or gameplay footage is claimed as reviewed. Current in-game screenshots remain required to certify the gates and exact values.
+Google-indexed community pages were reviewed. Targeted YouTube searches for current Laboratory screens and Alliance Duel / Full Preparedness walkthroughs returned no directly usable video results in this research pass. No YouTube creator, timestamp or gameplay footage is claimed as reviewed. Current in-game screenshots remain required to certify the gates and exact values.
 
 ## Next evidence needed
 1. Current client Laboratory tree list and node panels.

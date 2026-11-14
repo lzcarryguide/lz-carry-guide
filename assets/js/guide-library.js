@@ -31,7 +31,7 @@
     entry.status === "published" &&
     typeof entry.title === "string" && entry.title.trim() &&
     typeof entry.summary === "string" && entry.summary.trim() &&
-    ["beginner", "research", "heroes", "events"].includes(entry.category) &&
+    ["beginner", "research", "troops", "events"].includes(entry.category) &&
     safeGuideUrl(entry.url) &&
     validDate(entry.verifiedAt) &&
     Array.isArray(entry.sources) && entry.sources.some(validSource);

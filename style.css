@@ -839,22 +839,10 @@ footer p { max-width: 760px; margin: 7px 0 0; font-size: 13px; line-height: 1.55
 @media(max-width:760px){.research-principles{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:560px){.research-hero-actions{flex-direction:column;align-items:stretch;max-width:340px}.research-hero-actions .btn{width:100%;text-align:center}}
 
-/* Search-first Research Database + Formation Lab */
-.research-quick,.preset-buttons{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1rem}.research-quick span{border:1px solid var(--line);background:var(--panel);padding:.55rem .8rem;border-radius:999px;color:var(--silver);font-size:.9rem}
+/* Search-first Research Database */
+.research-quick{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1rem}.research-quick span{border:1px solid var(--line);background:var(--panel);padding:.55rem .8rem;border-radius:999px;color:var(--silver);font-size:.9rem}
 .research-directory{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:1rem;margin-top:1rem}.research-tree-card{margin:0;align-self:start}.research-tree-card summary,.research-extra summary{cursor:pointer;list-style:none}.research-tree-card summary::-webkit-details-marker,.research-extra summary::-webkit-details-marker{display:none}.research-tree-card summary h3,.research-extra summary h3{margin:.45rem 0}.research-tree-card summary p{margin:.35rem 0;color:var(--muted)}.research-tree-body{padding-top:.6rem}.research-tree-body p{margin:.5rem 0}.research-extra{margin:.7rem 0}.research-extras{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1rem}.research-tree-card[hidden]{display:none!important}.detail-line{font-size:.94rem}
-.formation-filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;margin:1rem 0}.formation-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:1rem}.formation-slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.7rem}.formation-slot{min-width:0;border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,var(--panel2),var(--panel));padding:.75rem;text-align:left;color:var(--text);cursor:pointer}.formation-slot[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}.slot-number{display:block;color:var(--muted);font-size:.75rem}.slot-avatar,.builder-avatar{display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:#101c2a;color:var(--accent);font-weight:800;width:42px;height:42px;margin:.5rem auto}.formation-slot strong,.formation-slot small{display:block;text-align:center;overflow-wrap:anywhere}.formation-slot small{color:var(--muted)}.formation-slot .slot-remove{display:block;margin:.5rem auto 0;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:.25rem .5rem;cursor:pointer}.formation-advice{margin-top:1rem}.builder-results{display:grid;gap:.5rem;max-height:480px;overflow:auto}.builder-hero{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:.65rem;text-align:left;width:100%;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);padding:.6rem;cursor:pointer}.builder-hero:hover{border-color:var(--accent)}.builder-hero .builder-avatar{margin:0}.builder-hero small{display:block;color:var(--muted)}.hero-picker{align-self:start}.preset-buttons button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:8px;padding:.65rem .8rem;cursor:pointer}.preset-buttons button:hover{border-color:var(--accent)}.formation-presets{margin-top:1.5rem}.formation-presets h3{margin-bottom:.5rem}
-@media(max-width:760px){.formation-filters{grid-template-columns:1fr 1fr}.formation-filters label:first-child{grid-column:1/-1}.formation-layout{grid-template-columns:1fr}.formation-slots{grid-template-columns:repeat(2,minmax(0,1fr))}.formation-slot:last-child{grid-column:1/-1;max-width:50%;justify-self:center}.builder-results{max-height:380px}}
 
-/* Formation Lab interaction and evidence review */
-.formation-filters{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));}
-.formation-slot-wrap{display:flex;flex-direction:column;gap:.35rem;min-width:0;}
-.formation-slot{width:100%;min-width:0;}
-.slot-remove{align-self:center;border:1px solid var(--line,#334155);border-radius:7px;background:transparent;color:var(--muted,#aab6c7);font:inherit;font-size:.72rem;padding:.25rem .55rem;cursor:pointer;}
-.slot-remove:hover,.slot-remove:focus-visible{border-color:var(--accent,#77c8ff);color:var(--text,#eef6ff);}
-.builder-hero[aria-pressed="true"]{border-color:var(--accent,#77c8ff);background:rgba(89,169,225,.13);}
-#formation-advice h4{margin:.9rem 0 .25rem;color:var(--accent,#8fd1ff);}
-#formation-advice p{line-height:1.5;}
-@media(max-width:640px){.formation-filters{grid-template-columns:1fr 1fr;}.formation-slot-wrap{min-width:0;}.slot-remove{font-size:.68rem;padding:.2rem .4rem;}}
 
 
 /* Laboratory route planner */
@@ -878,17 +866,6 @@ footer p { max-width: 760px; margin: 7px 0 0; font-size: 13px; line-height: 1.55
 .event-check-row{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.018);cursor:pointer}
 .event-check-row input{margin-top:.22rem;accent-color:var(--accent);flex:0 0 auto}
 @media(max-width:640px){.lab-plan-status{align-items:flex-start;flex-direction:column}.lab-plan-status select{width:100%;max-width:none}.lab-plan-item-head{flex-direction:column}.event-clock-grid{grid-template-columns:1fr}}
-
-/* Formation library */
-.formation-library-card{display:grid;gap:1rem}
-.formation-save-controls,.formation-compare-controls{display:flex;align-items:end;gap:.75rem;flex-wrap:wrap}
-.formation-save-controls label,.formation-compare-controls label{display:grid;gap:.4rem;flex:1 1 210px}
-.formation-saved-list{display:grid;gap:.65rem}
-.formation-saved-row{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;padding:.75rem;border:1px solid var(--line);border-radius:8px}
-.formation-saved-row strong{margin-right:auto}
-.formation-saved-row .btn{padding:.5rem .75rem}
-#formation-compare-result{min-height:3rem}
-@media(max-width:560px){.formation-saved-row{align-items:stretch}.formation-saved-row strong{flex-basis:100%}.formation-saved-row .btn{flex:1}.formation-save-controls .btn,.formation-compare-controls .btn{width:100%}}
 
 /* Keep expanded site navigation inside narrow phone viewports. */
 @media(max-width:760px){

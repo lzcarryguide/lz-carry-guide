@@ -8,7 +8,7 @@ const pages = [
   ["beginner.html", "beginner"],
   ["dashboard.html", "dashboard"],
   ["research.html", "research"],
-  ["heroes.html", "heroes"],
+  ["troops.html", "troops"],
   ["events.html", "events"],
   ["pilot.html", "pilot"]
 ];
@@ -90,9 +90,9 @@ test("published GitHub Pages site is live, responsive and serves every primary p
       }
 
       if (name === "research") await expect(page.locator(".research-tree-card")).toHaveCount(22);
-      if (name === "heroes") {
-        await expect(page.locator("#formation-lab")).toBeVisible();
-        await expect(page.locator("#formation-slots .formation-slot")).toHaveCount(5);
+      if (name === "troops") {
+        await expect(page.locator("#troop-results .troop-class-card")).toHaveCount(3);
+        await expect(page.locator("#troop-progress-planner")).toBeVisible();
       }
       if (name === "events") {
         await expect(page.getByRole("heading", { name: "Events Center" })).toBeVisible();

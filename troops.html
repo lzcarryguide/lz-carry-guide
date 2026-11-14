@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Last Z troop class database and personal troop quantity planner."><title>Troops Database &amp; Planner | LZ Carry</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="assets/css/knowledge-hub-ux.css"><link rel="stylesheet" href="assets/css/troop-progress-planner.css"><script src="assets/js/data-verification.js" defer></script><script src="assets/js/knowledge-hub.js" defer></script></head>
+<body><header><div class="wrap nav"><a class="brand" href="index.html">LAST Z <span>CARRY</span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="guides.html">Guides</a><a href="dashboard.html">Dashboard</a><a href="beginner.html">Beginner</a><a href="beginner.html#hq-planner-section">HQ Planner</a><a href="research.html">Research Center</a><a href="troops.html" aria-current="page">Troops</a><a href="events.html">Events Center</a><a href="pilot.html">LZ Carry Service</a></nav></div></header><main><section class="hero"><div class="wrap"><p class="eyebrow">Troop reference · Player tools</p><h1>Troops Database &amp; Target Planner</h1><p class="lead">Browse community-indexed troop classes and track a personal quantity goal. Confirm unit names, unlocks and costs in your live game before committing resources.</p></div></section>
+<section id="troop-database"><div class="wrap"><p class="eyebrow">Troop reference</p><h2>Choose your troop line</h2>
+  <p class="section-intro">Review the community-indexed unit names by class and tier. Camp unlock levels, statistics, costs and timers are not published until verified in-game. Camp upgrade costs, training and promotion costs, timers and detailed research prerequisites remain withheld pending current in-game verification.</p>
+  <div class="knowledge-tools">
+    <label>Search troop classes<input id="troop-search" type="search" placeholder="Search class, faction, or camp…" autocomplete="off"></label>
+    <label>Faction<select id="troop-faction"><option value="">All factions</option><option>Blood Rose</option><option>Guard of Order</option><option>Wings of Dawn</option></select></label>
+  </div>
+  <p class="small muted" id="troop-count" aria-live="polite">Loading troop records…</p>
+  <div class="knowledge-grid" id="troop-results" aria-live="polite"><div class="card"><p>Loading troop records…</p></div></div>
+</div></section>
+<section id="troop-progress-planner"><div class="wrap">
+  <p class="eyebrow">Player progress tool</p><h2>Troop Target Planner</h2>
+  <p class="section-intro">Set a personal troop quantity goal for one class and tier. The planner tracks your current count and remaining gap without inventing training costs, promotion ratios or camp unlock levels.</p>
+  <div class="notice"><strong>Player-entered target only.</strong> Troop tier names are community-indexed and may be provisional. Confirm the exact unit name, tier, camp availability and promotion rules in your live game before training or promoting.</div>
+  <div class="card troop-progress-controls">
+    <label for="troop-plan-class">Troop class<select id="troop-plan-class"><option value="">Loading troop classes…</option></select></label>
+    <label for="troop-plan-tier">Target tier<select id="troop-plan-tier" disabled><option value="">Choose class first</option></select></label>
+    <label for="troop-plan-current">Current units at target tier<input id="troop-plan-current" type="number" min="0" step="1" inputmode="numeric" placeholder="Enter current count"></label>
+    <label for="troop-plan-target">Desired total units<input id="troop-plan-target" type="number" min="0" step="1" inputmode="numeric" placeholder="Enter target count"></label>
+  </div>
+  <div class="card troop-progress-result" id="troop-plan-result" aria-live="polite"><h3>Troop goal</h3><p>Choose a troop class and tier, then enter your current and target quantities.</p></div>
+  <button class="btn secondary" id="troop-plan-reset" type="button">Clear troop goal</button>
+</div></section>
+</main><footer><div class="wrap"><strong>LZ CARRY</strong><p>Independent community guide. Not affiliated with the game's publisher.</p></div></footer>
+<script src="assets/js/troop-progress-planner.js" defer></script><script src="assets/js/player-data.js" defer></script><script src="assets/js/universal-search.js" defer></script><script src="assets/js/mobile-nav.js" defer></script></body></html>

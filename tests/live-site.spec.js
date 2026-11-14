@@ -96,7 +96,7 @@ test("published GitHub Pages site is live, responsive and serves every primary p
         await expect(page.getByRole("heading", { name: "Flowers Count" })).toBeVisible();
         await expect(page.locator("#lucky-rose-current")).toBeVisible();
         await expect(page.locator("#lucky-rose-history")).toBeVisible();
-        await expect(page.locator("#lucky-rose-scope-note")).toContainText("Monday at 00:00 UTC");
+        await expect(page.locator("#lucky-rose-scope-note")).toContainText("Monday at 00:00 Apocalypse Time (02:00 UTC)");
       }
       if (name === "pilot") {
         await expect(page.locator("#pilot-configurator")).toBeVisible();

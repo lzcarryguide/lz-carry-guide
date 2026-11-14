@@ -14,7 +14,7 @@ Useful patterns observed:
 - Detailed HQ requirements, research priorities, event schedules, and written explainers alongside tools.
 - Strong cross-linking between related guides and calculators.
 
-Opportunity for LZ Carry: make the four requested categories the primary navigation, add a genuinely searchable guide library, and connect every guide to relevant tables, tools, and related topics. Keep our own wording, layouts, graphics, and editorial voice.
+Opportunity for LZ Carry: make the retained beginner, research and events categories easy to find, add a genuinely searchable guide library, and connect every guide to relevant tables, tools, and related topics. Keep our own wording, layouts, graphics, and editorial voice.
 
 ### Wild Hoggs — practical calculators and persistent planning
 Useful patterns observed:
@@ -32,11 +32,10 @@ The current site already has the seven-page static structure: Home, All Guides, 
 Main gaps found:
 - Most category cards are topic placeholders, not complete written guides.
 - Beginner has no HQ1–35 requirements table or persistent progression checklist.
-- Research has no verified cost dataset, calculators, tree dependency model, or saved planner.
-- 
+- Research retains its own Laboratory planner and resource calculator.
 - Events has no structured schedule, requirements, reward tables, or trackers.
 - Video placeholders are embedded in the guide cards rather than separated into a supplementary video library.
-- The guide directory is only a four-card category landing page, with no search or filters.
+- The guide directory is a searchable, filterable index of the retained published guides.
 - The homepage and footers still display Last Z Pilot branding in places.
 - The Pilot page contains the existing $30 Weekly Pilot and $35 Weekly + Canyon Clash packages. Its Discord CTA currently points to the generic Discord homepage; preserve it for now and request the owner's actual invite/profile URL before replacing it. Keep scope, booking, and account-safety notices intact.
 

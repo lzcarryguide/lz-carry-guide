@@ -14,6 +14,7 @@ test("Laboratory planner records player progress", async ({ page }) => {
 
 test("dashboard retains personal goals and a Troops shortcut without Hero controls", async ({ page }) => {
   await page.goto("/dashboard.html");
+  await page.locator("#dashboard-goals > summary").click();
   await expect(page.locator("#dashboard-goal-form")).toBeVisible();
   await expect(page.locator("#dashboard-goal-category option")).toHaveCount(6);
   await expect(page.locator("#dashboard-goal-category")).not.toContainText("Heroes");

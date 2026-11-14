@@ -82,6 +82,7 @@ test("published GitHub Pages site is live, responsive and serves every primary p
         await toggle.click();
         await expect(nav).toBeVisible();
         await expect(nav.locator('a[aria-current="page"]')).toHaveCount(1);
+        await expect(nav.getByRole("link", { name: /Event Center|Events/ })).toHaveCount(0);
         if (name === "home") await page.screenshot({ path: path.join(artifacts, "mobile-navigation-open.png") });
         await toggle.click();
         await expect(nav).toBeHidden();

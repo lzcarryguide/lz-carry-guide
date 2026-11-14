@@ -1,0 +1,26 @@
+
+/* Hero Portrait Collection — rights-safe portrait system */
+.hero-portrait-frame{--portrait-accent:#83caff;position:relative;display:flex;flex:0 0 auto;align-items:center;justify-content:center;aspect-ratio:4/5;width:100%;max-width:116px;min-width:0;overflow:hidden;border:1px solid rgba(137,199,239,.42);border-radius:12px;background:radial-gradient(ellipse at 50% 24%,rgba(95,151,197,.24),transparent 54%),linear-gradient(155deg,#17283a 0%,#0b1420 62%,#080e17 100%);box-shadow:inset 0 0 0 3px rgba(255,255,255,.025),0 8px 22px rgba(0,0,0,.2);color:#e7f4ff}
+.hero-portrait-frame:before{content:"";position:absolute;inset:7px;border:1px solid rgba(151,205,244,.14);border-radius:8px;pointer-events:none}
+.hero-portrait-frame:after{content:"";position:absolute;left:16%;right:16%;bottom:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(150,207,247,.5),transparent)}
+.hero-portrait-monogram{font-size:clamp(1rem,2.2vw,1.55rem);font-weight:800;letter-spacing:.08em;text-shadow:0 2px 16px rgba(112,184,236,.45)}
+.hero-portrait-caption{position:absolute;bottom:18%;left:5px;right:5px;text-align:center;font-size:.52rem;letter-spacing:.13em;text-transform:uppercase;color:#9eb9d1}
+.hero-portrait-frame.is-placeholder{background-image:radial-gradient(ellipse at 50% 30%,rgba(105,170,219,.22),transparent 54%),linear-gradient(155deg,#17283a,#0b1420 65%,#080e17)}
+.hero-profile-summary>.hero-portrait-frame{width:100%;max-width:116px}
+.hero-directory-summary>.hero-portrait-frame{width:100%;max-width:116px}
+.hero-directory-summary{grid-template-columns:116px minmax(0,1fr) auto}
+.hero-profile-summary{grid-template-columns:116px minmax(0,1fr) auto}
+.slot-avatar.hero-portrait-frame{width:58px;max-width:58px;min-width:58px;border-radius:9px}
+.slot-avatar.hero-portrait-frame .hero-portrait-monogram{font-size:1rem}
+.hero-intel-portrait{display:flex;align-items:flex-start;gap:12px;margin:0 0 12px}
+.hero-intel-portrait .hero-portrait-frame{width:76px;max-width:76px}
+.hero-intel-portrait-copy{min-width:0}
+.hero-intel-portrait-copy strong{display:block;color:#e7f4ff}
+.hero-intel-portrait-copy small{display:block;margin-top:4px;color:#9eb1c4;line-height:1.45}
+@media(max-width:760px){
+ .hero-profile-summary{grid-template-columns:76px minmax(0,1fr) auto}
+ .hero-directory-summary{grid-template-columns:76px minmax(0,1fr) auto}
+ .hero-portrait-frame{border-radius:9px}
+ .hero-portrait-caption{font-size:.43rem}
+ .slot-avatar.hero-portrait-frame{width:48px;max-width:48px;min-width:48px}
+}

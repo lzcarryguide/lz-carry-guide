@@ -23,6 +23,7 @@ style.css
 assets/js/guide-library.js
 assets/js/hq-planner.js
 assets/js/knowledge-hub.js
+assets/js/troop-progress-planner.js
 assets/js/research-planner.js
 assets/js/event-prep-planner.js
 data/guides.json

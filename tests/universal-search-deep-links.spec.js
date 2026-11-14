@@ -22,6 +22,6 @@ test("universal search opens the matching research tree", async ({ page }) => {
   await searchAndOpen(page, "Alliance Recognition", /research\.html#research-alliance-recognition/, "research-alliance-recognition");
 });
 
-test("universal search opens the matching event field guide", async ({ page }) => {
-  await searchAndOpen(page, "Canyon Clash", /events\.html#event-canyon-clash/, "event-canyon-clash");
+test("universal search opens standalone Flowers Count", async ({ page }) => {
+  await searchAndOpen(page, "Flowers Count", /flowers-count\\.html#lucky-rose-tracker/, "lucky-rose-tracker");
 });

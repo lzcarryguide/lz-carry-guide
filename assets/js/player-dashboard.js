@@ -66,7 +66,7 @@ function render(){
  var researchDone=researchNames.filter(function(k){return research[k]==="Done";}).length;
  var eventDone=Object.keys(events).filter(function(k){return events[k]===true;}).length;Object.keys(eventChecklists).forEach(function(eventId){var checks=eventChecklists[eventId]||{};eventDone+=Object.keys(checks).filter(function(k){return checks[k]===true;}).length;});
  var hqDone=Object.keys(hq).filter(function(k){return hq[k]===true;}).length;
- var beginnerDone=Object.keys(beginner).filter(function(k){return beginner[k]===true;}).length;
+ var beginnerDone=["account","hq","research","events"].filter(function(k){return beginner[k]===true;}).length;
  $("dashboard-hq-value").textContent=profile.currentHq?"HQ "+profile.currentHq:"Not set";
  $("dashboard-research-value").textContent=researchDone+" / "+researchNames.length;
  $("dashboard-event-value").textContent=String(eventDone);
@@ -80,7 +80,7 @@ function render(){
  else if(researchNames.length===0)primary=card("Start a Laboratory route","No research progress is tracked yet. Choose a route in the Laboratory and record the steps you have verified in game.","research.html#lab-planner","Start research planning");
  else if(researchDone<researchNames.length)primary=card("Continue Laboratory research",researchNames.length-researchDone+" tracked research item(s) are not marked complete. Review the live prerequisites before committing resources.","research.html#lab-planner","Resume research");
 
- else if(beginnerDone<5)primary=card("Complete your next progression milestone",beginnerDone+" of 5 Beginner Mode milestones are checked. Continue the guided path at your own pace.","beginner.html#beginner-mode","Continue Beginner Mode");
+ else if(beginnerDone<4)primary=card("Complete your next progression milestone",beginnerDone+" of 4 Beginner Mode milestones are checked. Continue the guided path at your own pace.","beginner.html#beginner-mode","Continue Beginner Mode");
  else if(eventDone===0)primary=card("Prepare for your next event","Choose the active theme shown in your live Event Center and record the preparation tasks you have confirmed.","events.html#event-prep-planner","Prepare for an event");
  else primary=card("Review your saved account plan","Your key trackers have saved progress. Recheck live game requirements and update your HQ, research and event plans after your next milestone.","beginner.html","Review progression");
  if(next){primary.classList.add("dashboard-next-action-card");next.replaceChildren(primary);}

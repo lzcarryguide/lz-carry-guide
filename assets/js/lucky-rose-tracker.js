@@ -4,13 +4,13 @@
 var root=document.getElementById("lucky-rose-tracker");if(!root)return;
 function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=String(text);return n;}
 function badge(status,label){var info=window.LZCarryDataStatus?window.LZCarryDataStatus.describe(status):{label:label||"Unconfirmed",className:"is-unconfirmed",detail:"Evidence is incomplete."};var b=el("span","pill evidence-badge "+info.className,label||info.label);b.title=info.detail;return b;}
-function weekStartUTC(){var d=new Date(Date.now()-2*60*60*1000);d.setUTCHours(0,0,0,0);d.setUTCDate(d.getUTCDate()-((d.getUTCDay()+6)%7));return d.toISOString().slice(0,10);}
+function weekStartAT(){var d=new Date(Date.now()-2*60*60*1000);d.setUTCHours(0,0,0,0);d.setUTCDate(d.getUTCDate()-((d.getUTCDay()+6)%7));return d.toISOString().slice(0,10);}
 function link(source){var a=el("a","lucky-rose-source",source.name+" · checked "+source.checkedAt);try{var u=new URL(source.url,location.href);if(u.protocol!=="https:"&&u.protocol!=="http:")throw Error("Unsafe source URL");a.href=u.href;a.target="_blank";a.rel="noopener noreferrer";}catch(_){a.removeAttribute("href");}return a;}
 fetch("data/lucky-rose-history.json").then(function(r){if(!r.ok)throw Error("Lucky Rose data unavailable");return r.json();}).then(function(d){
 if(d.schemaVersion!==1||!Array.isArray(d.history))throw Error("Unsupported Lucky Rose dataset");
 var candidate=d.activeCandidate,active=root.querySelector("#lucky-rose-current"),history=root.querySelector("#lucky-rose-history"),note=root.querySelector("#lucky-rose-scope-note");
 active.replaceChildren();
-if(candidate&&candidate.weekOf===weekStartUTC()){
+if(candidate&&candidate.weekOf===weekStartAT()){
 var head=el("div","lucky-rose-current-head");head.append(el("p","eyebrow","Week of "+candidate.weekOf),badge(candidate.status,"Community-supported · awaiting in-game confirmation"));active.append(head);
 var number=el("strong","lucky-rose-number","#"+candidate.number);active.append(number);
 active.append(el("h3","",candidate.buff+" · "+candidate.durationHours+" hours"));

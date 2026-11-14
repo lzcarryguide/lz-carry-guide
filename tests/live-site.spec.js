@@ -90,6 +90,7 @@ test("published GitHub Pages site is live, responsive and serves every primary p
       } else {
         await expect(page.locator('header nav[aria-label="Main navigation"]')).toBeVisible();
         await expect(page.locator('header nav a[aria-current="page"]')).toHaveCount(1);
+        await expect(page.locator('header nav').getByRole("link", { name: /Event Center|Events/ })).toHaveCount(0);
       }
 
       if (name === "research") await expect(page.locator(".research-tree-card")).toHaveCount(22);

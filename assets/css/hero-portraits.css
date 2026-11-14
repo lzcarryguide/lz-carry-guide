@@ -24,3 +24,8 @@
  .hero-portrait-caption{font-size:.43rem}
  .slot-avatar.hero-portrait-frame{width:48px;max-width:48px;min-width:48px}
 }
+
+.seasonal-pair-portrait-row{display:flex;align-items:center;gap:12px;margin:10px 0 14px;padding:10px;border:1px solid rgba(137,199,239,.16);border-radius:10px;background:rgba(137,199,239,.035)}
+.seasonal-pair-portrait-row .seasonal-pair-portrait{width:48px;max-width:48px;border-radius:7px}
+.seasonal-pair-portrait-row p{flex:1;min-width:0;margin:0;line-height:1.5}
+@media(max-width:520px){.seasonal-pair-portrait-row{align-items:flex-start;gap:8px;padding:8px}.seasonal-pair-portrait-row .seasonal-pair-portrait{width:42px;max-width:42px}}

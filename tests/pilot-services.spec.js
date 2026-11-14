@@ -25,7 +25,9 @@ test("pilot service descriptions and approved prices match the official referenc
   await expect(page.locator(".pilot-package-option").filter({ hasText: "Weekly Elite Management" }).getByText(/upgrade planning and progression/i)).toBeVisible();
   await expect(page.getByText(/participation time and workload/)).toBeVisible();
   await expect(page.getByText(/Approximately 45 minutes of gameplay per account/)).toBeVisible();
-  await expect(page.getByText(/Covers 2–3 accounts/)).toBeVisible();
+  await expect(page.locator(".pilot-addon-item").filter({ hasText: "SVS Chest Opening" })).toContainText("$5 per account");
+  await expect(page.locator(".pilot-addon-item").filter({ hasText: "SVS Chest Opening" })).toContainText("Each account is charged separately");
+  await expect(page.locator(".pilot-addon-item").filter({ hasText: "SVS Chest Opening" })).toContainText("Maximum service capacity: 2–3 accounts");
 });
 
 test("pilot pricing calculator preserves flat packages, per-day and per-account totals, and quote exclusion", async ({ page }) => {
@@ -39,6 +41,9 @@ test("pilot pricing calculator preserves flat packages, per-day and per-account 
   await expect(page.locator("#pilot-total")).toHaveText("$30");
   await page.getByLabel(/SVS Chest Opening/).check();
   await expect(page.locator("#pilot-total")).toHaveText("$35");
+  await page.locator("#pilot-svs-accounts").selectOption("3");
+  await expect(page.locator("#pilot-total")).toHaveText("$45");
+  await page.locator("#pilot-svs-accounts").selectOption("1");
   await page.getByLabel(/Canyon Clash/).check();
   await page.locator("#pilot-canyon-accounts").fill("3");
   await expect(page.locator("#pilot-total")).toHaveText("$59");

@@ -119,8 +119,8 @@ test("guide index replaces Hero tool guides with searchable Troops guides", asyn
   await page.getByLabel("Category").selectOption("troops");
   const cards = page.locator("#guide-results article.card");
   await expect(cards).toHaveCount(2);
-  await expect(cards).toContainText("Browse troop classes and tier evidence");
-  await expect(cards).toContainText("Track a troop quantity target");
+  await expect(cards.nth(0)).toContainText("Browse troop classes and tier evidence");
+  await expect(cards.nth(1)).toContainText("Track a troop quantity target");
   await expect(cards.locator('a[href^="troops.html"]')).toHaveCount(2);
 });
 

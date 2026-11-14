@@ -19,9 +19,9 @@ async function searchAndOpen(page, query, hrefPattern, targetId) {
 }
 
 test("universal search opens the matching research tree", async ({ page }) => {
-  await searchAndOpen(page, "Alliance Recognition", /research\\.html#research-alliance-recognition/, "research-alliance-recognition");
+  await searchAndOpen(page, "Alliance Recognition", /research\.html#research-alliance-recognition/, "research-alliance-recognition");
 });
 
 test("universal search opens the matching event field guide", async ({ page }) => {
-  await searchAndOpen(page, "Canyon Clash", /events\\.html#event-canyon-clash/, "event-canyon-clash");
+  await searchAndOpen(page, "Canyon Clash", /events\.html#event-canyon-clash/, "event-canyon-clash");
 });

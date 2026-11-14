@@ -8,7 +8,6 @@ const pages = [
   ["beginner.html", "beginner"],
   ["dashboard.html", "dashboard"],
   ["research.html", "research"],
-  ["troops.html", "troops"],
   ["events.html", "events"],
   ["pilot.html", "pilot"]
 ];
@@ -38,6 +37,7 @@ test("published GitHub Pages site is live, responsive and serves every primary p
     await page.waitForTimeout(15000);
   }
   expect(deployed, "Pages deployment was not updated at " + baseURL + ": " + observation).toBeTruthy();
+  expect((await request.get("troops.html")).status()).toBe(404);
 
   for (const width of [1440, 390]) {
     for (const [target, name] of pages) {
@@ -90,10 +90,6 @@ test("published GitHub Pages site is live, responsive and serves every primary p
       }
 
       if (name === "research") await expect(page.locator(".research-tree-card")).toHaveCount(22);
-      if (name === "troops") {
-        await expect(page.locator("#troop-results .troop-class-card")).toHaveCount(3);
-        await expect(page.locator("#troop-progress-planner")).toBeVisible();
-      }
       if (name === "events") {
         await expect(page.getByRole("heading", { name: "Events Center" })).toBeVisible();
         await expect(page.locator("#event-results details.event-profile").first()).toBeVisible();

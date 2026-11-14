@@ -1,14 +1,14 @@
 const { test, expect } = require("@playwright/test");
 const fs = require("node:fs");
 const path = require("node:path");
-const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/events.html", "/pilot.html"];
+const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/flowers-count.html", "/pilot.html"];
 const artifacts = path.join(process.cwd(), "artifacts");
 fs.mkdirSync(artifacts, { recursive: true });
 
 test("primary navigation and internal links resolve without the retired Troops page", async ({ page, request }) => {
   await page.goto("/");
   const links = await page.locator("header nav a").evaluateAll(as => as.map(a => a.getAttribute("href")));
-  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "events.html", "pilot.html"]));
+  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "flowers-count.html", "pilot.html"]));
   expect(links.some(href => /troops\\.html/i.test(href))).toBeFalsy();
   for (const target of pages) {
     expect((await request.get(target)).status(), target).toBe(200);
@@ -18,6 +18,8 @@ test("primary navigation and internal links resolve without the retired Troops p
   }
   expect((await request.get("/troops.html")).status()).toBe(404);
   expect((await request.get("/data/troops.json")).status()).toBe(404);
+  expect((await request.get("/events.html")).status()).toBe(404);
+  expect((await request.get("/data/events.json")).status()).toBe(404);
 });
 
 test("desktop pages load without runtime errors or horizontal overflow", async ({ page }) => {
@@ -58,18 +60,20 @@ test("mobile layouts and navigation work at 390px and 320px", async ({ page }) =
   await page.screenshot({ path: path.join(artifacts, "home-mobile.png"), fullPage: true });
 });
 
-test("Research and Events directories remain available", async ({ page }) => {
+test("Research and standalone Flowers Count remain available", async ({ page }) => {
   await page.goto("/research.html");
   await expect(page.locator(".research-tree-card")).toHaveCount(22);
-  await page.goto("/events.html");
-  await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
+  await page.goto("/flowers-count.html");
+  await expect(page.getByRole("heading", { name: "Flowers Count" })).toBeVisible();
+  await expect(page.locator("#lucky-rose-current")).toContainText("5");
+  await expect(page.locator("#lucky-rose-history .lucky-rose-history-row")).toHaveCount(2);
 });
 
 test("guide index contains only retained categories and searchable entries", async ({ page }) => {
   await page.goto("/guides.html");
   const categories = await page.locator("#guide-category option").evaluateAll(nodes => nodes.map(node => node.value));
-  expect(categories).toEqual(["", "beginner", "research", "events"]);
-  await expect(page.locator("#guide-results article.card")).toHaveCount(5);
+  expect(categories).toEqual(["", "beginner", "research"]);
+  await expect(page.locator("#guide-results article.card")).toHaveCount(4);
   await page.getByLabel("Category").selectOption("research");
   await expect(page.locator("#guide-results article.card")).toHaveCount(1);
 });

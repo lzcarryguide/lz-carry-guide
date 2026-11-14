@@ -29,7 +29,6 @@ data/guides.json
 data/hq-requirements.json
 data/lucky-rose-history.json
 docs/guide-database-schema.md
-docs/knowledge-hub-data-spec.md
 docs/hq-source-review.md
 tests/branch-preview.spec.js
 tests/planner-tools.spec.js
@@ -62,5 +61,5 @@ The Research Guide maps 22 named trees across community indexes (including Allie
 PLANNER TOOL NOTES
 ------------------
 - Laboratory route suggestions use community-reported gates and intentionally omit exact node costs, badge totals, percentages and timers until current-client evidence is available. The second Laboratory is tracked separately, including the reported Season 2 Day 50 condition.
-- Flowers Count checks its stored week against the Monday 00:00 UTC reset and flags stale entries. New weekly numbers are recorded manually after in-game verification; no future value is guessed.
-- See docs/laboratory-planner-review.md, docs/event-planner-review.md and docs/website-quality-review.md for evidence and remaining verification.
+- Flowers Count checks its stored week against the Monday 00:00 Apocalypse Time (02:00 UTC) reset and flags stale entries. New weekly numbers are recorded manually after in-game verification; no future value is guessed.
+- See docs/laboratory-planner-review.md and docs/website-quality-review.md for evidence and remaining verification.

@@ -18,7 +18,7 @@ Opportunity for LZ Carry: make the four requested categories the primary navigat
 
 ### Wild Hoggs — practical calculators and persistent planning
 Useful patterns observed:
-- Dedicated tools for research trees, building upgrades, heroes, equipment, and event resources.
+- Dedicated tools for research trees, building upgrades, troop classes, equipment, and event resources.
 - Current-versus-target planning, prerequisite paths, remaining-cost summaries, per-level detail, and progress indicators.
 - Searchable hero information, event/code/rose hubs, changelog, and multilingual presentation.
 - Mobile-specific interaction patterns and saved progress.
@@ -27,13 +27,13 @@ Opportunity for LZ Carry: build focused tools with transparent inputs, prerequis
 
 ## Current LZ Carry baseline audit
 
-The current site already has the seven-page static structure: Home, All Guides, Beginner, Research, Heroes & Troops, Events, and Book a Pilot, with a shared stylesheet and the approved dark/silver/icy-blue Weeping Angel look.
+The current site already has the seven-page static structure: Home, All Guides, Beginner, Research, Troops, Events, and Book a Pilot, with a shared stylesheet and the approved dark/silver/icy-blue Weeping Angel look.
 
 Main gaps found:
 - Most category cards are topic placeholders, not complete written guides.
 - Beginner has no HQ1–35 requirements table or persistent progression checklist.
 - Research has no verified cost dataset, calculators, tree dependency model, or saved planner.
-- Heroes & Troops has no hero dataset, filters, comparison, equipment, or formation references.
+- Heroes & Troops previously lacked an independent searchable database and quantity planner.
 - Events has no structured schedule, requirements, reward tables, or trackers.
 - Video placeholders are embedded in the guide cards rather than separated into a supplementary video library.
 - The guide directory is only a four-card category landing page, with no search or filters.
@@ -47,7 +47,7 @@ Primary navigation:
 2. Guides (searchable directory)
 3. Beginner & HQ
 4. Research & Progression
-5. Heroes, Troops & Power
+5. Troops & Power
 6. Events & Rewards
 7. Videos (separate supplementary library)
 8. LZ Carry Service
@@ -80,10 +80,10 @@ Each category page should have:
 - Show spent versus remaining amounts and clearly disclose when speed bonuses or server/season variations are not included.
 - Launch with verified trees/nodes first; expand coverage as data is validated.
 
-### Phase 4 — Heroes, troops, and power
-- Add a searchable hero dataset with faction/role, skills, stars, level caps, and source/update metadata.
-- Add filters and side-by-side comparison; avoid unsupported universal tier rankings.
-- Add troop classes, march composition notes, equipment progression, formations, and combat fundamentals.
+### Phase 4 — Troops and power
+- Maintain an independent searchable troop-class database with faction, tier names and evidence/update metadata.
+- Keep the Troop Target Planner focused on player-entered current and target quantities; do not infer costs, unlocks or promotion ratios.
+- Add troop composition notes, equipment progression and combat fundamentals only when supported by reliable evidence.
 - Use text/neutral icons initially; only add game artwork when licensing/reuse permission is clear.
 
 ### Phase 5 — Events and rewards
@@ -108,8 +108,7 @@ Each category page should have:
 Keep game data separate from HTML and presentation. Proposed static JSON files:
 - `data/hq-requirements.json`
 - `data/research-trees.json`
-- `data/heroes.json`
-- `data/troops-formations.json`
+- `data/troops.json`
 - `data/events.json`
 - `data/lucky-rose-history.json`
 - `data/guides.json`

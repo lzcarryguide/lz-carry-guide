@@ -1,3 +1,5 @@
+const { test, expect } = require("@playwright/test");
+
 test("event directory retains shared community evidence labels", async ({ page }) => {
   await page.goto("/events.html");
   await expect(page.locator("#event-results .evidence-badge").first()).toBeVisible();

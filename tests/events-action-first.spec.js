@@ -1,20 +1,10 @@
 const { test, expect } = require("@playwright/test");
 
-test("Events Center puts the event directory before historical weekly references", async ({ page }) => {
-  await page.goto("/events.html");
-  const order = await page.evaluate(() => ({
-    directory: document.getElementById("event-directory").getBoundingClientRect().top,
-    luckyRose: document.getElementById("lucky-rose-tracker").getBoundingClientRect().top
-  }));
-  expect(order.directory).toBeLessThan(order.luckyRose);
-  await expect(page.getByRole("heading", { name: "Events Center" })).toBeVisible();
-  await expect(page.locator("#event-results .event-profile").first()).toBeVisible();
-});
-
-test("selecting an event reveals its personal preparation checklist", async ({ page }) => {
-  await page.goto("/events.html");
-  const first = page.locator("#event-results .event-profile").first();
-  await first.locator("summary").click();
-  await expect(first.locator(".event-personal-checklist")).toBeVisible();
-  await expect(first.locator(".event-personal-checklist input[type=checkbox]").first()).toBeVisible();
+test("Flowers Count remains a standalone weekly tool outside the Event Center", async ({ page, request }) => {
+  await page.goto("/flowers-count.html");
+  await expect(page.getByRole("heading", { name: "Flowers Count" })).toBeVisible();
+  await expect(page.locator("#lucky-rose-current")).toBeVisible();
+  await expect(page.locator("#lucky-rose-history .lucky-rose-history-row").first()).toBeVisible();
+  await expect(page.locator("#lucky-rose-scope-note")).toContainText("Monday at 00:00 Apocalypse Time (02:00 UTC)");
+  expect((await request.get("/events.html")).status()).toBe(404);
 });

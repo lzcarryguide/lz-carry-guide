@@ -1,157 +1,107 @@
 const { test, expect } = require("@playwright/test");
 const fs = require("node:fs");
 const path = require("node:path");
-
-const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/troops.html", "/events.html", "/pilot.html"];
+const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/events.html", "/pilot.html"];
 const artifacts = path.join(process.cwd(), "artifacts");
 fs.mkdirSync(artifacts, { recursive: true });
 
-test("primary navigation and internal page links resolve", async ({ page, request }) => {
+test("primary navigation and internal links resolve without the retired Troops page", async ({ page, request }) => {
   await page.goto("/");
   const links = await page.locator("header nav a").evaluateAll(as => as.map(a => a.getAttribute("href")));
-  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "troops.html", "events.html", "pilot.html"]));
-  expect(links.some(href => /heroes\.html/i.test(href))).toBeFalsy();
+  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "events.html", "pilot.html"]));
+  expect(links.some(href => /troops\\.html/i.test(href))).toBeFalsy();
   for (const target of pages) {
-    const response = await request.get(target);
-    expect(response.status(), target).toBe(200);
+    expect((await request.get(target)).status(), target).toBe(200);
     await page.goto(target);
-    const localLinks = await page.locator("a[href]").evaluateAll(as => as.map(a => a.getAttribute("href")).filter(h => h && !h.startsWith("#") && !/^(https?:|mailto:|tel:|javascript:)/i.test(h)).map(h => h.split("#")[0] || location.pathname.slice(1)));
+    const localLinks = await page.locator("a[href]").evaluateAll(as => as.map(a => a.getAttribute("href")).filter(h => h && !h.startsWith("#") && !/^(https?:|mailto:|tel:|javascript:)/i.test(h)).map(h => h.split("#")[0]));
     for (const href of localLinks) expect((await request.get("/" + href)).status(), target + " -> " + href).toBe(200);
   }
-  expect((await request.get("/heroes.html")).status()).toBe(404);
+  expect((await request.get("/troops.html")).status()).toBe(404);
+  expect((await request.get("/data/troops.json")).status()).toBe(404);
 });
 
-test("desktop pages load without runtime errors", async ({ page }) => {
+test("desktop pages load without runtime errors or horizontal overflow", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   for (const target of pages) {
     const errors = [];
-    page.on("pageerror", error => errors.push(error.message));
+    const onError = error => errors.push(error.message);
+    page.on("pageerror", onError);
     await page.goto(target);
     await expect(page.locator("main")).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow, target + " desktop overflow").toBeLessThanOrEqual(1);
     expect(errors, target + " runtime errors").toEqual([]);
-    if (target === "/troops.html") await page.screenshot({ path: path.join(artifacts, "troops-desktop.png"), fullPage: true });
+    if (target === "/") await page.screenshot({ path: path.join(artifacts, "home-desktop.png"), fullPage: true });
+    page.off("pageerror", onError);
   }
 });
 
-test("mobile layouts and navigation work at narrow widths", async ({ page }) => {
+test("mobile layouts and navigation work at 390px and 320px", async ({ page }) => {
   for (const width of [390, 320]) {
     for (const target of pages) {
       await page.setViewportSize({ width, height: 844 });
       await page.goto(target);
       const sizes = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
       expect(sizes.page, target + " at " + width).toBeLessThanOrEqual(sizes.viewport + 1);
-      if (width === 390 && target === "/troops.html") await page.screenshot({ path: path.join(artifacts, "troops-mobile.png"), fullPage: true });
     }
   }
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/troops.html");
+  await page.goto("/");
   const toggle = page.getByRole("button", { name: "Menu" });
   const nav = page.locator('header nav[aria-label="Main navigation"]');
   await expect(toggle).toBeVisible();
   await expect(nav).toBeHidden();
   await toggle.click();
   await expect(nav).toBeVisible();
-  await expect(nav.getByRole("link", { name: "Troops" })).toBeVisible();
-  await expect(nav.locator("a")).toHaveCount(9);
+  await expect(nav.locator("a")).toHaveCount(8);
+  await expect(nav.getByRole("link", { name: "Troops" })).toHaveCount(0);
+  await page.screenshot({ path: path.join(artifacts, "home-mobile.png"), fullPage: true });
 });
 
-test("standalone Troops database searches and filters its preserved records", async ({ page }) => {
-  const errors = [];
-  page.on("pageerror", error => errors.push(error.message));
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/troops.html");
-  await expect(page.getByRole("heading", { name: "Troops Database & Target Planner" })).toBeVisible();
-  await expect(page.locator("#troop-results .troop-class-card")).toHaveCount(3);
-  await expect(page.locator("#troop-count")).toHaveText("3 records");
-  await page.getByLabel("Search troop classes").fill("Assaulter");
-  await expect(page.locator("#troop-results .troop-class-card")).toHaveCount(1);
-  await expect(page.locator("#troop-results")).toContainText("Blood Rose");
-  await page.getByLabel("Search troop classes").fill("");
-  await page.getByLabel("Faction").selectOption("Wings of Dawn");
-  await expect(page.locator("#troop-results .troop-class-card")).toHaveCount(1);
-  await expect(page.locator("#troop-results")).toContainText("Shooters");
-  await page.getByLabel("Faction").selectOption("");
-  await expect(page.locator("#troop-results .troop-class-card")).toHaveCount(3);
-  expect(errors).toEqual([]);
-});
-
-test("Troop Target Planner calculates a player-entered quantity gap and saves locally", async ({ page }) => {
-  await page.goto("/troops.html");
-  await expect(page.locator("#troop-plan-class option")).toHaveCount(4);
-  await page.locator("#troop-plan-class").selectOption("assaulters");
-  await page.locator("#troop-plan-tier").selectOption("1");
-  await page.locator("#troop-plan-current").fill("125");
-  await page.locator("#troop-plan-target").fill("200");
-  await expect(page.locator("#troop-plan-result")).toContainText("75 more units needed");
-  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem("lzcarry-troop-plan-v1") || "{}").target)).toBe(200);
-  await page.locator("#troop-plan-reset").click();
-  await expect(page.locator("#troop-plan-current")).toHaveValue("");
-  await expect(page.locator("#troop-plan-target")).toHaveValue("");
-});
-
-test("universal search indexes Troops and retains Research and Events", async ({ page }) => {
-  await page.goto("/");
-  await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
-  const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
-  await search.fill("Assaulters");
-  const result = page.locator(".universal-search-result").filter({ hasText: "Assaulters" }).first();
-  await expect(result).toHaveAttribute("href", /troops\.html#troop-assaulters/);
-  await result.click();
-  await expect(page).toHaveURL(/troops\.html#troop-assaulters$/);
-  await expect(page.locator("#troop-assaulters")).toBeVisible();
-});
-
-test("Research and Events directories remain available", async ({ page, request }) => {
-  const troopData = await (await request.get("/data/troops.json")).json();
-  expect(troopData.classes).toHaveLength(3);
-  expect(troopData.classes.every(record => record.tiers.length === 10)).toBeTruthy();
-  expect((await request.get("/data/heroes.json")).status()).toBe(404);
+test("Research and Events directories remain available", async ({ page }) => {
   await page.goto("/research.html");
   await expect(page.locator(".research-tree-card")).toHaveCount(22);
   await page.goto("/events.html");
   await expect(page.locator("#event-results details.event-profile")).toHaveCount(16);
 });
 
-test("guide index replaces Hero tool guides with searchable Troops guides", async ({ page }) => {
+test("guide index contains only retained categories and searchable entries", async ({ page }) => {
   await page.goto("/guides.html");
-  await page.getByLabel("Category").selectOption("troops");
-  const cards = page.locator("#guide-results article.card");
-  await expect(cards).toHaveCount(2);
-  await expect(cards.nth(0)).toContainText("Browse troop classes and tier evidence");
-  await expect(cards.nth(1)).toContainText("Track a troop quantity target");
-  await expect(cards.locator('a[href^="troops.html"]')).toHaveCount(2);
+  const categories = await page.locator("#guide-category option").evaluateAll(nodes => nodes.map(node => node.value));
+  expect(categories).toEqual(["", "beginner", "research", "events"]);
+  await expect(page.locator("#guide-results article.card")).toHaveCount(5);
+  await page.getByLabel("Category").selectOption("research");
+  await expect(page.locator("#guide-results article.card")).toHaveCount(1);
 });
 
-test("older progress backups skip retired Hero fields without losing Troop progress", async ({ page }) => {
-  await page.goto("/troops.html");
+test("older backups skip retired Troops progress and migrate old goals to Other", async ({ page }) => {
+  await page.goto("/dashboard.html");
   page.on("dialog", dialog => dialog.accept());
   await page.getByRole("button", { name: "Manage saved LZ Carry progress" }).click();
   await page.getByRole("button", { name: "Import a backup" }).click();
   const backup = {
-    format: "lz-carry-player-data",
-    schemaVersion: 1,
-    exportedAt: "2026-11-14T00:00:00.000Z",
-    app: "LZ Carry",
+    format: "lz-carry-player-data", schemaVersion: 1, exportedAt: "2026-11-14T00:00:00.000Z", app: "LZ Carry",
     data: {
       "lzcarry-troop-plan-v1": { classId: "assaulters", tier: "1", current: 100, target: 250 },
-      "lzcarry-formation-library-v1": [{ id: "old", name: "Retired", heroes: ["Bella"] }],
-      "lzcarry-hero-investment-compare-v1": { a: "audrey", b: "ava" }
+      "lzcarry-player-goals-v1": [{
+        id: "old-troop-goal", title: "Old troop target", category: "Troops", dueDate: "",
+        note: "Keep this personal goal", done: false, createdAt: "2026-11-13T00:00:00.000Z"
+      }]
     }
   };
   await page.getByLabel("Choose a LZ Carry progress backup JSON file").setInputFiles({
-    name: "old-progress-backup.json",
-    mimeType: "application/json",
-    buffer: Buffer.from(JSON.stringify(backup))
+    name: "old-progress-backup.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(backup))
   });
   await expect(page.locator(".player-data-summary")).toContainText("Progress imported successfully");
   const stored = await page.evaluate(() => ({
-    troop: JSON.parse(localStorage.getItem("lzcarry-troop-plan-v1") || "{}"),
-    formations: localStorage.getItem("lzcarry-formation-library-v1"),
-    heroComparison: localStorage.getItem("lzcarry-hero-investment-compare-v1")
+    troop: localStorage.getItem("lzcarry-troop-plan-v1"),
+    goals: JSON.parse(localStorage.getItem("lzcarry-player-goals-v1") || "[]")
   }));
-  expect(stored.troop.target).toBe(250);
-  expect(stored.formations).toBeNull();
-  expect(stored.heroComparison).toBeNull();
+  expect(stored.troop).toBeNull();
+  expect(stored.goals).toHaveLength(1);
+  expect(stored.goals[0].category).toBe("Other");
+  await page.reload();
+  await page.locator("#dashboard-goals > summary").click();
+  await expect(page.locator("#dashboard-goal-list")).toContainText("Old troop target");
+  await expect(page.locator("#dashboard-goal-list")).toContainText("Other");
 });

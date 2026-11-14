@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Your LZ Carry player dashboard for saved progression, research and event preparation.">
+  <meta name="description" content="Your LZ Carry player dashboard for saved HQ, research and personal progression.">
   <title>Player Dashboard | LZ Carry</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="assets/css/player-dashboard.css">
@@ -15,7 +15,7 @@
     <a href="index.html">Home</a><a href="guides.html">Guides</a><a href="beginner.html">Beginner</a>
     <a href="dashboard.html" aria-current="page">Dashboard</a><a href="beginner.html#hq-planner-section">HQ Planner</a>
     <a href="research.html">Research Center</a>
-    <a href="events.html">Events Center</a><a href="pilot.html">LZ Carry Service</a>
+    <a href="flowers-count.html">Flowers Count</a><a href="pilot.html">LZ Carry Service</a>
   </nav>
 </div></header>
 <main>
@@ -35,8 +35,6 @@
   <div class="dashboard-stats" aria-label="Saved account progress">
     <article class="card dashboard-stat"><span class="eyebrow">Headquarters</span><strong id="dashboard-hq-value">Not set</strong><small>Player-entered level</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Research</span><strong id="dashboard-research-value">0 / 0</strong><small>Tracked routes completed</small></article>
-    <article class="card dashboard-stat"><span class="eyebrow">Event checklist</span><strong id="dashboard-event-value">0</strong><small>Saved preparation checks</small></article>
-    <article class="card dashboard-stat"><span class="eyebrow">Upcoming reminders</span><strong id="dashboard-reminder-value">0</strong><small>Personal event dates</small></article>
     <article class="card dashboard-stat"><span class="eyebrow">Personal goals</span><strong id="dashboard-goal-value">0 / 0</strong><small>Completed / total goals</small></article>
   </div>
   <section class="card speedup-planner" id="speedup-planner" aria-labelledby="speedup-title">
@@ -57,7 +55,7 @@
     <p class="small muted">Set your own targets and link each one to an existing LZ Carry tool. Goals are player-entered, saved locally and included in My Progress backups.</p>
     <form id="dashboard-goal-form" class="dashboard-goal-form">
       <label for="dashboard-goal-title">Goal<input id="dashboard-goal-title" type="text" maxlength="100" required placeholder="e.g. Finish my next HQ upgrade"></label>
-      <label for="dashboard-goal-category">Planning area<select id="dashboard-goal-category"><option value="HQ">HQ</option><option value="Research">Research</option><option value="Events">Events</option><option value="Beginner">Beginner</option><option value="Other">Other</option></select></label>
+      <label for="dashboard-goal-category">Planning area<select id="dashboard-goal-category"><option value="HQ">HQ</option><option value="Research">Research</option><option value="Beginner">Beginner</option><option value="Other">Other</option></select></label>
       <label for="dashboard-goal-due">Target date (optional)<input id="dashboard-goal-due" type="date"></label>
       <label for="dashboard-goal-note">Planning note (optional)<input id="dashboard-goal-note" type="text" maxlength="200" placeholder="What will help you reach this goal?"></label>
       <button class="btn" type="submit">Add personal goal</button>
@@ -74,24 +72,10 @@
         <a href="research.html#lab-planner"><strong>Laboratory Planner</strong><span>Resume your selected research route and saved progress</span></a>
         <a href="research.html#research-resource-calculator"><strong>Research Resource Calculator</strong><span>Compare your available resources with costs copied from your live research panel</span></a>
         <a href="#speedup-planner"><strong>Speedup Planner</strong><span>Compare a live timer with the speedup minutes you have available</span></a>
-        <a href="events.html#event-prep-planner"><strong>Event Preparation</strong><span>Continue your manually selected event checklist</span></a>
         <a href="beginner.html#beginner-mode"><strong>Beginner Mode</strong><span>Follow the guided account progression checklist</span></a>
       </div>
     </section>
   </div>
-  <section class="card dashboard-events"><p class="eyebrow">Event readiness</p><h2>Preparation status</h2><p id="dashboard-event-note" class="small muted">No event schedule is automatically synced. Use the live Event Center in your game to confirm the active theme and dates.</p><a class="btn secondary" href="events.html">Open Events Center</a></section>
-  <section class="card dashboard-reminders" aria-labelledby="dashboard-reminders-title">
-    <p class="eyebrow">Your calendar · Local only</p><h2 id="dashboard-reminders-title">My upcoming events</h2>
-    <p class="small muted">Add dates you have confirmed in your own game or alliance calendar. These are personal reminders, not an official LZ Carry event schedule.</p>
-    <form id="dashboard-reminder-form" class="dashboard-reminder-form">
-      <label for="dashboard-reminder-name">Event name<input id="dashboard-reminder-name" type="text" maxlength="80" required placeholder="e.g. Alliance Duel"></label>
-      <label for="dashboard-reminder-when">Starts in your local time<input id="dashboard-reminder-when" type="datetime-local" required></label>
-      <label for="dashboard-reminder-note">Planning note (optional)<input id="dashboard-reminder-note" type="text" maxlength="160" placeholder="e.g. Confirm current task before spending"></label>
-      <button class="btn" type="submit">Add reminder</button>
-    </form>
-    <p id="dashboard-reminder-status" class="small muted" aria-live="polite">Reminders are saved in this browser and included in My Progress backups.</p>
-    <div id="dashboard-reminder-list" class="dashboard-reminder-list" aria-live="polite"></div>
-  </section>
 </div></section>
 </main>
 <footer><div class="wrap"><strong>LZ CARRY</strong><p>Independent community guide and gaming assistance service. Not affiliated with or endorsed by the game's publisher.</p><p class="small">Never share passwords, verification codes, or recovery information.</p></div></footer>

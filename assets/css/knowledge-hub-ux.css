@@ -10,7 +10,7 @@
 .research-tree-body p{margin:9px 0!important;line-height:1.55}
 .research-controls,.knowledge-tools,.lab-planner-controls{align-items:end;gap:14px!important;padding:16px 0!important}
 .research-controls label,.knowledge-tools label,.lab-planner-controls label{min-width:0}
-#research-count,#event-count{margin:0 0 5px!important}
+#research-count{margin:0 0 5px!important}
 .lab-plan-grid{display:flex!important;flex-direction:column;gap:0!important;border-top:1px solid rgba(158,220,255,.12)}
 #lab-plan-list{display:flex!important;flex-direction:column;gap:0!important;border-top:1px solid rgba(158,220,255,.12)}
 .lab-plan-list{display:flex;flex-direction:column;gap:0}

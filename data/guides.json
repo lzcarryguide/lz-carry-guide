@@ -84,33 +84,6 @@
       ]
     },
     {
-      "id": "event-preparation",
-      "status": "published",
-      "title": "Prepare for an event with a saved checklist",
-      "summary": "Choose an event, open its details, review the current in-game rules and use its personal preparation checklist. Verify live rewards, scoring and schedules before spending.",
-      "category": "events",
-      "stage": [
-        "All stages"
-      ],
-      "tags": [
-        "events",
-        "checklist",
-        "preparation",
-        "rewards",
-        "progress"
-      ],
-      "url": "events.html#event-prep-planner",
-      "verifiedAt": "2026-11-12",
-      "sources": [
-        {
-          "name": "LZ Carry Events Center",
-          "type": "internal-tool-review",
-          "checkedAt": "2026-11-12",
-          "note": "Original interface walkthrough checked against the current Events Center; the guide does not infer event schedules, rewards or scoring values."
-        }
-      ]
-    },
-    {
       "id": "speedup-planner",
       "status": "published",
       "title": "Estimate timer coverage with speedups",

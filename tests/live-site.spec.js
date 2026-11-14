@@ -8,7 +8,7 @@ const pages = [
   ["beginner.html", "beginner"],
   ["dashboard.html", "dashboard"],
   ["research.html", "research"],
-  ["events.html", "events"],
+  ["flowers-count.html", "flowers"],
   ["pilot.html", "pilot"]
 ];
 const artifacts = path.join(process.cwd(), "artifacts", "live");
@@ -20,17 +20,17 @@ test("published GitHub Pages site is live, responsive and serves every primary p
   let observation = "";
   for (let attempt = 1; attempt <= 20; attempt++) {
     try {
-      const [pilotResponse, eventsResponse] = await Promise.all([
+      const [pilotResponse, flowersResponse] = await Promise.all([
         request.get("pilot.html?pages-verification=" + attempt, { timeout: 15000 }),
-        request.get("events.html?pages-verification=" + attempt, { timeout: 15000 })
+        request.get("flowers-count.html?pages-verification=" + attempt, { timeout: 15000 })
       ]);
-      const [pilotBody, eventsBody] = await Promise.all([pilotResponse.text(), eventsResponse.text()]);
+      const [pilotBody, flowersBody] = await Promise.all([pilotResponse.text(), flowersResponse.text()]);
       if (pilotResponse.ok() && pilotBody.includes("Build your pilot package") &&
-          eventsResponse.ok() && eventsBody.includes("<h1>Events Center</h1>")) {
+          flowersResponse.ok() && flowersBody.includes("<h1>Flowers Count</h1>")) {
         deployed = true;
         break;
       }
-      observation = "Pilot HTTP " + pilotResponse.status() + " / Events HTTP " + eventsResponse.status() + " or expected release markers not present";
+      observation = "Pilot HTTP " + pilotResponse.status() + " / Flowers Count HTTP " + flowersResponse.status() + " or expected release markers not present";
     } catch (error) {
       observation = error.message;
     }
@@ -38,6 +38,8 @@ test("published GitHub Pages site is live, responsive and serves every primary p
   }
   expect(deployed, "Pages deployment was not updated at " + baseURL + ": " + observation).toBeTruthy();
   expect((await request.get("troops.html")).status()).toBe(404);
+  expect((await request.get("events.html")).status()).toBe(404);
+  expect((await request.get("data/events.json")).status()).toBe(404);
 
   for (const width of [1440, 390]) {
     for (const [target, name] of pages) {
@@ -90,14 +92,16 @@ test("published GitHub Pages site is live, responsive and serves every primary p
       }
 
       if (name === "research") await expect(page.locator(".research-tree-card")).toHaveCount(22);
-      if (name === "events") {
-        await expect(page.getByRole("heading", { name: "Events Center" })).toBeVisible();
-        await expect(page.locator("#event-results details.event-profile").first()).toBeVisible();
-        const order = await page.evaluate(() => ({ directory: document.getElementById("event-directory").getBoundingClientRect().top, history: document.getElementById("lucky-rose-tracker").getBoundingClientRect().top }));
-        expect(order.directory, "event directory should precede historical Lucky Rose reference").toBeLessThan(order.history);
+      if (name === "flowers") {
+        await expect(page.getByRole("heading", { name: "Flowers Count" })).toBeVisible();
+        await expect(page.locator("#lucky-rose-current")).toBeVisible();
+        await expect(page.locator("#lucky-rose-history")).toBeVisible();
+        await expect(page.locator("#lucky-rose-scope-note")).toContainText("Monday at 00:00 Apocalypse Time (02:00 UTC)");
       }
       if (name === "pilot") {
         await expect(page.locator("#pilot-configurator")).toBeVisible();
+        await expect(page.locator(".pilot-addon-item").filter({ hasText: "SVS Chest Opening" })).toContainText("Each account is charged separately");
+        await expect(page.locator("#pilot-svs-accounts option")).toHaveCount(3);
         for (const [id, label] of [["pilot-request", "Request a Pilot"], ["pilot-assistance", "Ask for Assistance"]]) {
           const contact = page.locator("#" + id);
           if (await contact.isDisabled()) {

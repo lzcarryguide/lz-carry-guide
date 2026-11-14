@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
-async function searchAndOpen(page, query, hrefPattern, targetId) {
+async function searchAndOpen(page, query, hrefPattern, targetId, openNestedDetails = true) {
   await page.goto("/");
   await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
   const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
@@ -13,7 +13,7 @@ async function searchAndOpen(page, query, hrefPattern, targetId) {
   await expect(target).toBeVisible();
   if (await target.evaluate(node => node.tagName === "DETAILS")) {
     await expect(target).toHaveAttribute("open", "");
-  } else if (await target.locator("details").count()) {
+  } else if (openNestedDetails && await target.locator("details").count()) {
     await expect(target.locator("details").first()).toHaveAttribute("open", "");
   }
 }
@@ -22,6 +22,6 @@ test("universal search opens the matching research tree", async ({ page }) => {
   await searchAndOpen(page, "Alliance Recognition", /research\.html#research-alliance-recognition/, "research-alliance-recognition");
 });
 
-test("universal search opens the matching event field guide", async ({ page }) => {
-  await searchAndOpen(page, "Canyon Clash", /events\.html#event-canyon-clash/, "event-canyon-clash");
+test("universal search opens standalone Flowers Count", async ({ page }) => {
+  await searchAndOpen(page, "This week's number", /flowers-count\.html#lucky-rose-tracker/, "lucky-rose-tracker", false);
 });

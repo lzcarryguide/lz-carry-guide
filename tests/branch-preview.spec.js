@@ -79,7 +79,7 @@ test("standalone Troops database searches and filters its preserved records", as
 
 test("Troop Target Planner calculates a player-entered quantity gap and saves locally", async ({ page }) => {
   await page.goto("/troops.html");
-  await expect(page.locator("#troop-plan-class option")).toHaveCount(3);
+  await expect(page.locator("#troop-plan-class option")).toHaveCount(4);
   await page.locator("#troop-plan-class").selectOption("assaulters");
   await page.locator("#troop-plan-tier").selectOption("1");
   await page.locator("#troop-plan-current").fill("125");

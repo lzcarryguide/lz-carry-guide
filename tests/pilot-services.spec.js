@@ -41,8 +41,12 @@ test("pilot pricing calculator preserves flat packages, per-day and per-account 
   await expect(page.locator("#pilot-total")).toHaveText("$30");
   await page.getByLabel(/SVS Chest Opening/).check();
   await expect(page.locator("#pilot-total")).toHaveText("$35");
+  await page.locator("#pilot-svs-accounts").selectOption("2");
+  await expect(page.locator("#pilot-total")).toHaveText("$40");
+  await expect(page.locator("#pilot-booking-summary")).toContainText("$5 per account × 2 accounts = $10");
   await page.locator("#pilot-svs-accounts").selectOption("3");
   await expect(page.locator("#pilot-total")).toHaveText("$45");
+  await expect(page.locator("#pilot-booking-summary")).toContainText("$5 per account × 3 accounts = $15");
   await page.locator("#pilot-svs-accounts").selectOption("1");
   await page.getByLabel(/Canyon Clash/).check();
   await page.locator("#pilot-canyon-accounts").fill("3");

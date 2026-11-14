@@ -8,7 +8,7 @@ Grow the existing static LZ Carry site into an original, mobile-friendly Last Z 
 
 ### Last Z Guides — editorial discovery and learning paths
 Useful patterns observed:
-- A clear guide taxonomy spanning progression, research, heroes, PvP, events, and economy.
+- A clear guide taxonomy spanning progression, research, troops, PvP, events, and economy.
 - Featured guides and player-intent entry paths (new player, F2P, PvP, long-term progression).
 - Search and a searchable/structured guide index.
 - Detailed HQ requirements, research priorities, event schedules, and written explainers alongside tools.
@@ -20,7 +20,7 @@ Opportunity for LZ Carry: make the four requested categories the primary navigat
 Useful patterns observed:
 - Dedicated tools for research trees, building upgrades, troop classes, equipment, and event resources.
 - Current-versus-target planning, prerequisite paths, remaining-cost summaries, per-level detail, and progress indicators.
-- Searchable hero information, event/code/rose hubs, changelog, and multilingual presentation.
+- Searchable troop-class information, event/code/rose hubs, changelog, and multilingual presentation.
 - Mobile-specific interaction patterns and saved progress.
 
 Opportunity for LZ Carry: build focused tools with transparent inputs, prerequisites, remaining totals, reset/export options, and local browser saves. Avoid copying their interface, code, data presentation, or artwork.
@@ -33,7 +33,7 @@ Main gaps found:
 - Most category cards are topic placeholders, not complete written guides.
 - Beginner has no HQ1–35 requirements table or persistent progression checklist.
 - Research has no verified cost dataset, calculators, tree dependency model, or saved planner.
-- Heroes & Troops previously lacked an independent searchable database and quantity planner.
+- Troops previously lacked an independent searchable database and quantity planner.
 - Events has no structured schedule, requirements, reward tables, or trackers.
 - Video placeholders are embedded in the guide cards rather than separated into a supplementary video library.
 - The guide directory is only a four-card category landing page, with no search or filters.

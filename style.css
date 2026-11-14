@@ -889,3 +889,6 @@ footer p { max-width: 760px; margin: 7px 0 0; font-size: 13px; line-height: 1.55
   .home-page .nav>nav[aria-label="Main navigation"]{overflow:visible;flex-wrap:wrap;justify-content:flex-start}
   .home-page .nav>nav[aria-label="Main navigation"].is-open{display:flex}
 }
+
+/* Keep Laboratory planner controls usable on narrow screens after retiring Event Center styles. */
+@media(max-width:640px){.lab-plan-status{align-items:flex-start;flex-direction:column}.lab-plan-status select{width:100%;max-width:none}.lab-plan-item-head{flex-direction:column}}

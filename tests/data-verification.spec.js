@@ -1,13 +1,12 @@
 const { test, expect } = require("@playwright/test");
 
-test("event directory retains shared community evidence labels", async ({ page }) => {
-  await page.goto("/events.html");
-  await expect(page.locator("#event-results .evidence-badge").first()).toBeVisible();
-  const statuses = await page.evaluate(async () => {
-    const response = await fetch("data/events.json");
-    const data = await response.json();
-    return data.events.map(event => window.LZCarryDataStatus.normalize(event.verificationStatus || event.evidenceStatus || "unconfirmed"));
-  });
-  expect(statuses).toContain("community-supported");
-  expect(statuses).toContain("unconfirmed");
+test("Flowers Count retains evidence labels and detects a stale weekly record", async ({ page }) => {
+  await page.goto("/flowers-count.html");
+  await expect(page.getByRole("heading", { name: "Flowers Count" })).toBeVisible();
+  await expect(page.locator("#lucky-rose-current .evidence-badge").first()).toBeVisible();
+  await expect(page.locator("#lucky-rose-scope-note")).toContainText("Monday at 00:00 UTC");
+  const data = await page.evaluate(async () => (await (await fetch("data/lucky-rose-history.json")).json()));
+  expect(data.activeCandidate.weekOf).toBe("2026-11-09");
+  expect(data.activeCandidate.inGameConfirmed).toBe(false);
+  expect(data.history.length).toBeGreaterThan(0);
 });

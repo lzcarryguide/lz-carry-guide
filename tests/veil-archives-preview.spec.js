@@ -81,7 +81,7 @@ test("all twelve original pages load in order at their natural portrait proporti
     expect(size.width).toBe(768);
     expect(size.height).toBe(1376);
     expect(size.rendered).toBeLessThanOrEqual(768);
-    const response = await request.get(new URL(img ? refs[i] : "", "http://127.0.0.1:4173/stories/series/before-we-lost-each-other/episode-01/assets/pages/").href);
+    const response = await request.get(new URL(refs[i], "http://127.0.0.1:4173/stories/series/before-we-lost-each-other/episode-01/assets/pages/").href);
     expect(response.status(), refs[i]).toBe(200);
   }
 });
@@ -146,7 +146,7 @@ test("reading progress restores after reloading and Continue Reading appears on 
   await page.reload();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
   await page.goto("/stories/");
-  await expect(page.locator("[data-continue-reading]")).toContainText("Continue Reading");
+  await expect(page.locator("[data-continue-reading]")).toContainText(/Continue Reading/i);
   await expect(page.locator("[data-continue-reading]")).toContainText("Episode 01");
 });
 

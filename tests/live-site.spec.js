@@ -15,6 +15,9 @@ const artifacts = path.join(process.cwd(), "artifacts", "live");
 fs.mkdirSync(artifacts, { recursive: true });
 
 test("published GitHub Pages site is live, responsive and serves every primary page", async ({ page, request, baseURL }) => {
+  if (baseURL.startsWith("http://127.0.0.1") || baseURL.startsWith("http://localhost")) {
+    await page.route("https://cloudflareinsights.com/cdn-cgi/rum", route => route.fulfill({ status: 204, body: "" }));
+  }
   test.setTimeout(600000);
   let deployed = false;
   let observation = "";
@@ -135,7 +138,7 @@ test("Cloudflare Web Analytics beacon loads once on every published public page"
     await page.goto(target, { waitUntil: "networkidle", timeout: 60000 });
     const script = page.locator("script[type='module'][src='" + src + "']");
     await expect(script, target + " beacon count").toHaveCount(1);
-    await expect(script).toHaveAttribute("data-cf-beacon", JSON.stringify({ token }));
+    await expect(script).toHaveAttribute("data-cf-beacon", '{"token": "' + token + ''}');
     const response = await beaconResponse;
     expect(response.ok(), target + " Cloudflare beacon HTTP status").toBeTruthy();
     const placement = await script.evaluate(element => ({

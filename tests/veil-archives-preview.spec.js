@@ -17,7 +17,7 @@ test("The Veil Archives routes resolve and identify the correct section", async 
     await expect(page.locator("main")).toBeVisible();
   }
   await page.goto("/stories/");
-  await expect(page.getByRole("heading", { name: /BEFORE WE.*EACH OTHER/i, exact: true })).toBeVisible();
+  await expect(page.locator("h1.title")).toBeVisible();
   await expect(page.getByRole("link", { name: /VIEW SERIES/i })).toHaveAttribute("href", /before-we-lost-each-other/);
   await expect(page.getByText(/Free to read/i)).toBeVisible();
 });

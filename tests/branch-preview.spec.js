@@ -8,7 +8,7 @@ fs.mkdirSync(artifacts, { recursive: true });
 test("primary navigation and internal links resolve without retired Troops or Event Center pages", async ({ page, request }) => {
   await page.goto("/");
   const links = await page.locator("header nav a").evaluateAll(as => as.map(a => a.getAttribute("href")));
-  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "flowers-count.html", "pilot.html"]));
+  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "flowers-count.html", "pilot.html", "stories/index.html"]));
   expect(links.some(href => /troops\.html|events?\.html/i.test(href))).toBeFalsy();
   for (const target of pages) {
     expect((await request.get(target)).status(), target).toBe(200);
@@ -55,8 +55,9 @@ test("mobile layouts and navigation work at 390px and 320px", async ({ page }) =
   await expect(nav).toBeHidden();
   await toggle.click();
   await expect(nav).toBeVisible();
-  await expect(nav.locator("a")).toHaveCount(8);
+  await expect(nav.locator("a")).toHaveCount(9);
   await expect(nav.getByRole("link", { name: "Troops" })).toHaveCount(0);
+  await expect(nav.getByRole("link", { name: "The Veil Archives" })).toHaveAttribute("href", "stories/index.html");
   await page.screenshot({ path: path.join(artifacts, "home-mobile.png"), fullPage: true });
 });
 

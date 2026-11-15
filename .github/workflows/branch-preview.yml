@@ -8,6 +8,19 @@ on:
 permissions:
   contents: read
 jobs:
+  veil-media-integrity:
+    name: Verify Veil Archives original media
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - name: Require all 15 approved media files and verify SHA-256
+        run: |
+          test -f docs/veil-archives-assets.sha256
+          test "$(wc -l < docs/veil-archives-assets.sha256)" -eq 15
+          sha256sum --check docs/veil-archives-assets.sha256
+
   preview-test:
     runs-on: ubuntu-latest
     steps:

@@ -42,9 +42,10 @@ test("mobile navigation exposes every retained primary destination", async ({ pa
   await expect(nav).toBeHidden();
   await toggle.click();
   await expect(nav).toBeVisible();
-  await expect(nav.locator("a")).toHaveCount(8);
+  await expect(nav.locator("a")).toHaveCount(9);
   await expect(nav.getByRole("link", { name: "Troops" })).toHaveCount(0);
   await expect(nav.getByRole("link", { name: "Flowers Count" })).toBeVisible();
+  await expect(nav.getByRole("link", { name: "The Veil Archives" })).toHaveAttribute("href", "stories/index.html");
   await expect(nav.getByRole("link", { name: "Events Center" })).toHaveCount(0);
   const dims = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
   expect(dims.page).toBeLessThanOrEqual(dims.viewport + 1);

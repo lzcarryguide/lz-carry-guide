@@ -124,3 +124,24 @@ test("published GitHub Pages site is live, responsive and serves every primary p
     }
   }
 });
+
+
+test("Cloudflare Web Analytics beacon loads once on every published public page", async ({ page }) => {
+  const pages = ["index.html", "guides.html", "beginner.html", "dashboard.html", "research.html", "flowers-count.html", "pilot.html"];
+  const token = "97e4ffc3f5e84e6387c02ef53bdf981c";
+  const src = "https://static.cloudflareinsights.com/beacon.min.js";
+  for (const target of pages) {
+    const beaconResponse = page.waitForResponse(response => response.url() === src, { timeout: 45000 });
+    await page.goto(target, { waitUntil: "networkidle", timeout: 60000 });
+    const script = page.locator("script[type='module'][src='" + src + "']");
+    await expect(script, target + " beacon count").toHaveCount(1);
+    await expect(script).toHaveAttribute("data-cf-beacon", JSON.stringify({ token }));
+    const response = await beaconResponse;
+    expect(response.ok(), target + " Cloudflare beacon HTTP status").toBeTruthy();
+    const placement = await script.evaluate(element => ({
+      inBody: element.parentElement === document.body,
+      lastElement: element === document.body.lastElementChild
+    }));
+    expect(placement, target + " beacon placement").toEqual({ inBody: true, lastElement: true });
+  }
+});

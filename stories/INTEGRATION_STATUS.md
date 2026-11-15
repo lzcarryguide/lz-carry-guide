@@ -1,7 +1,8 @@
 THE VEIL ARCHIVES — INTEGRATION STATUS
 Repository: lzcarryguide/lz-carry-guide
 Development branch: the-veil-archives-integration
-Last verified branch head before this status update: a648de4254cd4846566f782639c2195174b3565e
+Latest implementation commit: 08f7048ab1c09e77a4079482b74e04dd2047a2e9
+Previous hosted test baseline: run 43722577735 on a648de4254cd4846566f782639c2195174b3565e (41 passed, 5 failed, 1 skipped; all five failures depend on binary assets not yet on the branch).
 
 PLATFORM IMPLEMENTATION
 The Veil Archives is an integrated section in the existing LZ Carry static HTML/CSS/JavaScript site under stories/. Parent navigation is present on the seven existing LZ Carry public pages. The six routes are implemented: homepage, Discover, series detail, Episode 01 reader, My Library, and Updates.

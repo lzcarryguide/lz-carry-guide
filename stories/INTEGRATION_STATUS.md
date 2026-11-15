@@ -1,8 +1,8 @@
 THE VEIL ARCHIVES — INTEGRATION STATUS
 Repository: lzcarryguide/lz-carry-guide
 Development branch: the-veil-archives-integration
-Latest implementation commit: 08f7048ab1c09e77a4079482b74e04dd2047a2e9
-Previous hosted test baseline: run 43722577735 on a648de4254cd4846566f782639c2195174b3565e (41 passed, 5 failed, 1 skipped; all five failures depend on binary assets not yet on the branch).
+Latest implementation commit: 4dca5bb8e6e1b64bb8e1cde40928e7fd87a9e53b
+Previous hosted test baseline: run 43723351168 on 8d39e8411e5b297030ece841275ed91eb1aa1ec1 (41 passed, 5 failed, 1 skipped; the five failures depend on binary assets not yet on the branch).
 
 PLATFORM IMPLEMENTATION
 The Veil Archives is an integrated section in the existing LZ Carry static HTML/CSS/JavaScript site under stories/. Parent navigation is present on the seven existing LZ Carry public pages. The six routes are implemented: homepage, Discover, series detail, Episode 01 reader, My Library, and Updates.
@@ -12,7 +12,7 @@ The homepage, Discover page, and series page reference the official cover WebP. 
 SOUNDTRACK BEHAVIOR
 - Sound does not start on initial page load and the audio element has no autoplay attribute.
 - The original loop starts on the first trusted interaction with the reader content (pointer, touch, keyboard, wheel, or scrolling while the reader is in view), subject to browser autoplay policy.
-- The visible music toggle is available throughout the episode. Readers can mute or re-enable playback.
+- The visible music toggle is available throughout the episode. Readers can mute or re-enable playback. The page counter and bookmark action now sit in a sticky reader toolbar, separated from the floating audio panel on mobile.
 - A saved mute preference is respected on the next visit. Sound preference and volume are saved in browser localStorage.
 - Default volume is 18%; the volume control can be adjusted by the reader.
 - Audio errors are reported without interrupting the comic or navigation.
@@ -28,7 +28,7 @@ A local media sync ZIP and PowerShell script have been prepared. The ZIP integri
 HOSTED CHROMIUM REGRESSION
 Run 43722577735 on commit a648de4254cd4846566f782639c2195174b3565e completed with 41 passed, 5 failed, and 1 skipped. The passing coverage includes fullscreen/page navigation/zoom, bookmarks, reading-progress restore, responsive layout at 1440/768/390/320px, and desktop/mobile screenshot capture. The five failures are dependent on missing remote image/audio binaries: cover image loading on the homepage, Discover and series pages, original comic image loading, and soundtrack playback. No failure was suppressed or marked as passing.
 
-The latest branch contains subsequent soundtrack/test refinements; run the latest PR workflow again after the media sync before making a release decision.
+The single skipped check is the existing Cloudflare beacon network verification, which is intentionally skipped on localhost and executed by the repository's Live GitHub Pages Browser Verification workflow after a main-branch deployment. It is not a skipped reader acceptance test. The current screenshot artifact is a layout-only capture with missing media and is not a creator preview. Run the latest PR workflow again after media sync, then verify the actual page images and audio before any release decision.
 
 RELEASE SAFEGUARDS
 PR #54 remains open and draft. No merge, main-branch update, public Pages deployment, or public Episode 01 release has occurred. Once all 15 media hashes match remotely and the full reader/media suite plus existing LZ Carry regression suite pass, PR #54 may proceed under the creator's latest explicit merge/deploy authorization. No subscriptions, paywalls, or payment processing have been added. Existing LZ Carry tools and Cloudflare Analytics are preserved.

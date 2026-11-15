@@ -129,13 +129,14 @@ test("published GitHub Pages site is live, responsive and serves every primary p
 });
 
 
-test("Cloudflare Web Analytics beacon loads once on every published public page", async ({ page }) => {
+test("Cloudflare Web Analytics beacon loads once on every published public page", async ({ page, baseURL }) => {
+  test.skip(baseURL.startsWith("http://127.0.0.1") || baseURL.startsWith("http://localhost"), "Beacon network verification runs against published Pages only");
   const pages = ["index.html", "guides.html", "beginner.html", "dashboard.html", "research.html", "flowers-count.html", "pilot.html"];
   const token = "97e4ffc3f5e84e6387c02ef53bdf981c";
   const src = "https://static.cloudflareinsights.com/beacon.min.js";
   for (const target of pages) {
     const beaconResponse = page.waitForResponse(response => response.url() === src, { timeout: 45000 });
-    await page.goto(target, { waitUntil: "networkidle", timeout: 60000 });
+    await page.goto(target, { waitUntil: "domcontentloaded", timeout: 60000 });
     const script = page.locator("script[type='module'][src='" + src + "']");
     await expect(script, target + " beacon count").toHaveCount(1);
     await expect(script).toHaveAttribute("data-cf-beacon", '{"token": "' + token + '"}');

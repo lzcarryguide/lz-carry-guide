@@ -1,4 +1,6 @@
 const { test, expect } = require("@playwright/test");
+const fs = require("node:fs");
+fs.mkdirSync("artifacts", { recursive: true });
 
 const veilRoutes = [
   "/stories/",
@@ -19,7 +21,7 @@ test("The Veil Archives routes resolve and identify the correct section", async 
   await page.goto("/stories/");
   await expect(page.locator("h1.title")).toBeVisible();
   await expect(page.getByRole("link", { name: /VIEW SERIES/i })).toHaveAttribute("href", /before-we-lost-each-other/);
-  await expect(page.getByText(/Free to read/i)).toBeVisible();
+  await expect(page.getByText("Free to read · Not yet publicly released", { exact: true })).toBeVisible();
 });
 
 test("Discover search and filters operate on the supplied Series 01 catalogue record", async ({ page }) => {
@@ -65,4 +67,19 @@ test("Episode 01 route clearly remains a creator preview until media synchroniza
   await expect(page.getByRole("heading", { name: /Episode 01.*The Last Argument/i })).toBeVisible();
   await expect(page.getByText(/not yet been synchronized/i)).toBeVisible();
   await expect(page.getByRole("link", { name: /Back to Series/i })).toHaveAttribute("href", "../");
+});
+
+test("Capture real desktop browser screenshots for the four current remote preview routes", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  const captures = [
+    ["/stories/", "artifacts/veil-homepage-desktop.png"],
+    ["/stories/discover/", "artifacts/veil-discover-desktop.png"],
+    ["/stories/series/before-we-lost-each-other/", "artifacts/veil-series-desktop.png"],
+    ["/stories/series/before-we-lost-each-other/episode-01/", "artifacts/veil-episode-01-status-desktop.png"]
+  ];
+  for (const [route, output] of captures) {
+    await page.goto(route);
+    await expect(page.locator("main")).toBeVisible();
+    await page.screenshot({ path: output, fullPage: true });
+  }
 });

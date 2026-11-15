@@ -1,16 +1,33 @@
-The Veil Archives — integration status
+THE VEIL ARCHIVES — INTEGRATION STATUS
 Repository: lzcarryguide/lz-carry-guide
-Branch: the-veil-archives-integration
-Latest source commit: f7265c5b73336cc2d980b479fd3d78cea724f720
+Development branch: the-veil-archives-integration
+Last verified branch head before this status update: a648de4254cd4846566f782639c2195174b3565e
 
-The Veil Archives is integrated into the existing LZ Carry static HTML/CSS/JavaScript site under stories/. Parent navigation remains scoped to the seven LZ Carry pages. The six story routes are present: homepage, Discover, series detail, Episode 01, My Library and Updates.
+PLATFORM IMPLEMENTATION
+The Veil Archives is an integrated section in the existing LZ Carry static HTML/CSS/JavaScript site under stories/. Parent navigation is present on the seven existing LZ Carry public pages. The six routes are implemented: homepage, Discover, series detail, Episode 01 reader, My Library, and Updates.
 
-Episode 01 reader code is now integrated in the branch. It references the approved 12-page JPG sequence and original WAV soundtrack, and includes vertical scrolling, page enlargement, fullscreen dialog, previous/next controls, zoom, browser-local bookmark/progress state, and explicit opt-in sound with audio OFF by default. The episode HTML references the supplied source page filenames in the approved reading order. Reader code does not rewrite any page image or embedded lettering.
+The homepage, Discover page, and series page reference the official cover WebP. The original cover PNG is retained separately. Episode 01 references all twelve approved JPG filenames in the authorized reading order and the original ambient-piano WAV. The reader includes vertical scroll, fullscreen enlargement, previous/next page controls, 100–400% zoom, bookmarks, browser-local reading progress, and a floating soundtrack player.
 
-The homepage, Discover and series detail pages now reference the official cover WebP at stories/assets/before-we-lost-each-other-cover.webp. The original cover PNG is retained at stories/assets/before-we-lost-each-other-original.png. The WebP display derivative was regenerated from the original PNG; the original PNG remains byte-identical.
+SOUNDTRACK BEHAVIOR
+- Sound does not start on initial page load and the audio element has no autoplay attribute.
+- The original loop starts on the first trusted interaction with the reader content (pointer, touch, keyboard, wheel, or scrolling while the reader is in view), subject to browser autoplay policy.
+- The visible music toggle is available throughout the episode. Readers can mute or re-enable playback.
+- A saved mute preference is respected on the next visit. Sound preference and volume are saved in browser localStorage.
+- Default volume is 18%; the volume control can be adjusted by the reader.
+- Audio errors are reported without interrupting the comic or navigation.
 
-MEDIA SYNC IS STILL PENDING. The branch tree must contain 15 binary files: cover PNG, cover WebP, twelve original Episode 01 JPGs and the original WAV soundtrack. They are not yet uploaded. The prepared package and PowerShell script verify all 15 source/copy SHA-256 hashes, refuse to overwrite differing existing files, and push only to this development branch. Until the binary upload completes, image/audio resources will not load in a hosted branch preview and the reader acceptance tests cannot pass.
+CREATOR-CONTENT PRESERVATION
+No supplied artwork has been regenerated or redrawn. The Episode 01 page order, embedded page numbers, dialogue, sound effects and ending remain unchanged in the supplied binaries. The original PNG cover and original soundtrack are included in the binary sync package.
 
-Latest browser regression run before reader integration: run 43715013914 failed (37 passed, 9 failed, 1 skipped). The nine failures were the newly added end-to-end expectations for complete reader and media-backed routes, while the branch still contained placeholder route scaffolding. A new run was triggered for commit f7265c5b73336cc2d980b479fd3d78cea724f720; inspect its result before declaring tests passed. Prior passing run 43701784553 (42 passed, 1 skipped) applied to the earlier scaffolding and did not verify the full comic reader.
+MEDIA SYNCHRONIZATION — BLOCKED
+The branch still lacks the 15 binary media files required for the live preview: original cover PNG, cover WebP derivative, twelve original Episode 01 JPG pages, and original soundtrack WAV. Until these are committed to the branch, public branch preview image/audio paths return missing resources and media-dependent browser tests fail.
 
-No public deployment, merge, or episode release has occurred. PR #54 remains draft. No subscriptions, paywalls, or payment features are present. Existing LZ Carry tools and analytics configuration are preserved.
+A local media sync ZIP and PowerShell script have been prepared. The ZIP integrity check passed, its CSV lists exactly 15 assets, and SHA-256 verification passed for all 15 (14,937,721 bytes total). The script checks that the local Git working tree is clean, updates only the existing development branch, verifies source and copied hashes, refuses to overwrite differing existing files, commits only the listed media, and pushes without merging or deploying. It requires a Git-authenticated local clone of this repository and must be run on the creator's computer because this session cannot transfer binary files directly to the remote Git repository.
+
+HOSTED CHROMIUM REGRESSION
+Run 43722577735 on commit a648de4254cd4846566f782639c2195174b3565e completed with 41 passed, 5 failed, and 1 skipped. The passing coverage includes fullscreen/page navigation/zoom, bookmarks, reading-progress restore, responsive layout at 1440/768/390/320px, and desktop/mobile screenshot capture. The five failures are dependent on missing remote image/audio binaries: cover image loading on the homepage, Discover and series pages, original comic image loading, and soundtrack playback. No failure was suppressed or marked as passing.
+
+The latest branch contains subsequent soundtrack/test refinements; run the latest PR workflow again after the media sync before making a release decision.
+
+RELEASE SAFEGUARDS
+PR #54 remains open and draft. No merge, main-branch update, public Pages deployment, or public Episode 01 release has occurred. Once all 15 media hashes match remotely and the full reader/media suite plus existing LZ Carry regression suite pass, PR #54 may proceed under the creator's latest explicit merge/deploy authorization. No subscriptions, paywalls, or payment processing have been added. Existing LZ Carry tools and Cloudflare Analytics are preserved.

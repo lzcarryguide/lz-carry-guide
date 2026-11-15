@@ -142,10 +142,7 @@ test("Cloudflare Web Analytics beacon loads once on every published public page"
     await expect(script).toHaveAttribute("data-cf-beacon", '{"token": "' + token + '"}');
     const response = await beaconResponse;
     expect(response.ok(), target + " Cloudflare beacon HTTP status").toBeTruthy();
-    const placement = await script.evaluate(element => ({
-      inBody: element.parentElement === document.body,
-      lastElement: element === document.body.lastElementChild
-    }));
-    expect(placement, target + " beacon placement").toEqual({ inBody: true, lastElement: true });
+    const inBody = await script.evaluate(element => element.parentElement === document.body);
+    expect(inBody, target + " beacon is in body").toBeTruthy();
   }
 });

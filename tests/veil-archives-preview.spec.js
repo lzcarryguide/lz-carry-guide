@@ -105,21 +105,36 @@ test("full-screen viewer, page navigation, zoom and close controls work", async 
   await expect(dialog).toBeHidden();
 });
 
-test("sound is off by default and only starts after an explicit user action", async ({ page }) => {
+test("sound starts after the reader's first interaction, is controllable, and remembers the preference and volume", async ({ page }) => {
   await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
   const audio = page.locator("#music");
   const toggle = page.locator("#toggle");
   await expect(toggle).toHaveAttribute("aria-pressed", "false");
   expect(await audio.evaluate(node => node.paused)).toBeTruthy();
   expect(await audio.evaluate(node => node.hasAttribute("autoplay"))).toBeFalsy();
-  await toggle.click();
+
+  await page.locator(".page-open").first().click();
   await expect(toggle).toHaveAttribute("aria-pressed", "true");
   await expect.poll(() => audio.evaluate(node => !node.paused)).toBeTruthy();
+
   await toggle.click();
   await expect(toggle).toHaveAttribute("aria-pressed", "false");
   expect(await audio.evaluate(node => node.paused)).toBeTruthy();
+  expect(await page.evaluate(() => localStorage.getItem("tva-audio-preference-v1"))).toBe('"off"');
+
   await page.locator("#volume").evaluate(node => { node.value = "0.4"; node.dispatchEvent(new Event("input", { bubbles: true })); });
   await expect(page.locator("#volval")).toHaveText("40%");
+  await expect.poll(() => page.evaluate(() => Number(localStorage.getItem("tva-audio-volume-v1")))).toBe(0.4);
+
+  await page.reload();
+  await expect(page.locator("#toggle")).toHaveAttribute("aria-pressed", "false");
+  expect(await page.locator("#music").evaluate(node => node.paused)).toBeTruthy();
+  await page.locator(".page-open").first().click();
+  expect(await page.locator("#music").evaluate(node => node.paused)).toBeTruthy();
+
+  await page.locator("#toggle").click();
+  await expect(page.locator("#toggle")).toHaveAttribute("aria-pressed", "true");
+  await expect.poll(() => page.locator("#music").evaluate(node => !node.paused)).toBeTruthy();
 });
 
 test("page bookmark is saved to My Library and bookmark URL restores the page", async ({ page }) => {

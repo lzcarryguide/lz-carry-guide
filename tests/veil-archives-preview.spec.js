@@ -180,8 +180,14 @@ test("Veil pages remain responsive without horizontal overflow at all required w
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
   await expect(page.locator(".page-open")).toHaveCount(12);
-  await expect(page.locator("#bookmark-page")).toBeVisible();
+  await expect(page.locator(".reader-tools #bookmark-page")).toBeVisible();
   await expect(page.locator("#toggle")).toBeVisible();
+  expect(await page.locator(".reader-tools").evaluate(node => getComputedStyle(node).position)).toBe("sticky");
+  const bookmarkBounds = await page.locator("#bookmark-page").boundingBox();
+  const audioBounds = await page.locator(".audio").boundingBox();
+  expect(bookmarkBounds).not.toBeNull();
+  expect(audioBounds).not.toBeNull();
+  expect(bookmarkBounds.y + bookmarkBounds.height).toBeLessThan(audioBounds.y);
 });
 
 test("capture real desktop and mobile Chromium screenshots for all key story routes", async ({ page }) => {

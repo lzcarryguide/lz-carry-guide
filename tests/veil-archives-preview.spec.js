@@ -2,7 +2,7 @@ const { test, expect } = require("@playwright/test");
 const fs = require("node:fs");
 fs.mkdirSync("artifacts", { recursive: true });
 
-const veilRoutes = [
+const routes = [
   "/stories/",
   "/stories/discover/",
   "/stories/series/before-we-lost-each-other/",
@@ -10,48 +10,150 @@ const veilRoutes = [
   "/stories/library/",
   "/stories/updates/"
 ];
+const pageNames = [
+  "Page_01_Three_Years_Together.jpg",
+  "Page_02_The_Argument.jpg",
+  "Page_03_Walking_Away.jpg",
+  "Page_04_The_Crash.jpg",
+  "Page_05_The_First_Runner.jpg",
+  "Page_06_Someone_She_Knows.jpg",
+  "Page_07_The_Wrong_Impression.jpg",
+  "Page_08_Dont_Let_Me_Go.jpg",
+  "Page_09_Run_For_Your_Life.jpg",
+  "Page_10_No_Signal.jpg",
+  "Page_11_Can_You_Hear_Me.jpg",
+  "Page_12_A_Reason_To_Hope.jpg"
+];
 
-test("The Veil Archives routes resolve and identify the correct section", async ({ page, request }) => {
-  for (const route of veilRoutes) {
+test("all six Veil Archives routes resolve and render inside the LZ Carry project path", async ({ page, request }) => {
+  for (const route of routes) {
     const response = await request.get(route);
     expect(response.status(), route).toBe(200);
     await page.goto(route);
     await expect(page.locator("main")).toBeVisible();
   }
   await page.goto("/stories/");
-  await expect(page.locator("h1.title")).toBeVisible();
-  await expect(page.getByRole("link", { name: /VIEW SERIES/i })).toHaveAttribute("href", /before-we-lost-each-other/);
-  await expect(page.getByText("Free to read · Not yet publicly released", { exact: true })).toBeVisible();
+  await expect(page.locator("h1")).toContainText("BEFORE WE");
+  await expect(page.getByRole("link", { name: /VIEW SERIES/i })).toHaveAttribute("href", "series/before-we-lost-each-other/");
+  await expect(page.getByText(/Free to read · Preview only/i)).toBeVisible();
+  const cover = page.locator(".hero-grid .cover-frame img");
+  await expect(cover).toBeVisible();
+  await expect.poll(() => cover.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
 });
 
-test("Discover search and filters operate on the supplied Series 01 catalogue record", async ({ page }) => {
+test("Discover search, genre/status filtering and A–Z/latest sorting work", async ({ page }) => {
   await page.goto("/stories/discover/");
   const card = page.locator("[data-story-card]");
   await expect(card).toHaveCount(1);
+  const cover = card.locator("img");
+  await expect.poll(() => cover.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
   await page.getByRole("searchbox", { name: /search stories/i }).fill("not-a-real-series");
   await expect(card).toBeHidden();
   await expect(page.locator("[data-empty]")).toBeVisible();
   await page.getByRole("searchbox", { name: /search stories/i }).fill("Before We Lost Each Other");
   await page.locator('select[name="genre"]').selectOption("Drama");
-  await expect(card).toBeVisible();
   await page.locator('select[name="status"]').selectOption("preview");
+  await page.locator('select[name="sort"]').selectOption("az");
   await expect(card).toBeVisible();
 });
 
-test("Series favorite is saved locally and reflected in My Library", async ({ page }) => {
+test("series detail shows approved cover, creator metadata and the only creator-preview episode", async ({ page }) => {
   await page.goto("/stories/series/before-we-lost-each-other/");
-  const favorite = page.locator("[data-favorite]");
-  await expect(favorite).toBeVisible();
-  await favorite.click();
-  await expect(favorite).toHaveAttribute("aria-pressed", "true");
-  await page.goto("/stories/library/");
-  await expect(page.locator("[data-library]")).toContainText("Before We Lost Each Other");
+  await expect(page.getByRole("heading", { name: "BEFORE WE LOST EACH OTHER" })).toBeVisible();
+  await expect(page.getByText("Weeping Angel", { exact: false }).first()).toBeVisible();
+  await expect(page.getByText(/Published episodes: 0/)).toBeVisible();
+  await expect(page.getByRole("link", { name: /EPISODE 01 PREVIEW/i })).toHaveAttribute("href", "episode-01/");
+  const cover = page.locator(".detail-grid .cover-frame img");
+  await expect.poll(() => cover.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
 });
 
-test("Veil routes have no horizontal overflow on desktop and mobile", async ({ page }) => {
+test("all twelve original pages load in order at their natural portrait proportions", async ({ page, request }) => {
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  const images = page.locator("main.episode img.page");
+  await expect(images).toHaveCount(12);
+  const refs = await images.evaluateAll(nodes => nodes.map(img => new URL(img.src).pathname.split("/").pop()));
+  expect(refs).toEqual(pageNames);
+  for (let i = 0; i < 12; i++) {
+    const img = images.nth(i);
+    await img.scrollIntoViewIfNeeded();
+    await expect.poll(() => img.evaluate(node => node.complete && node.naturalWidth > 0)).toBeTruthy();
+    const size = await img.evaluate(node => ({ width: node.naturalWidth, height: node.naturalHeight, rendered: node.getBoundingClientRect().width }));
+    expect(size.width).toBe(768);
+    expect(size.height).toBe(1376);
+    expect(size.rendered).toBeLessThanOrEqual(768);
+    const response = await request.get(new URL(img ? refs[i] : "", "http://127.0.0.1:4173/stories/series/before-we-lost-each-other/episode-01/assets/pages/").href);
+    expect(response.status(), refs[i]).toBe(200);
+  }
+});
+
+test("full-screen viewer, page navigation, zoom and close controls work", async ({ page }) => {
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  await page.locator(".page-open").first().click();
+  const dialog = page.locator("#viewer");
+  await expect(dialog).toBeVisible();
+  await expect(page.locator("#viewer-label")).toHaveText("Page 1 of 12");
+  await expect(page.locator("#previous-page")).toBeDisabled();
+  await page.locator("#next-page").click();
+  await expect(page.locator("#viewer-label")).toHaveText("Page 2 of 12");
+  await page.locator("#zoom-in").click();
+  await expect(page.locator("#zoom-level")).toHaveText("125%");
+  await page.locator("#zoom-reset").click();
+  await expect(page.locator("#zoom-level")).toHaveText("100%");
+  await page.locator("#previous-page").click();
+  await expect(page.locator("#viewer-label")).toHaveText("Page 1 of 12");
+  await page.locator("#close-viewer").click();
+  await expect(dialog).toBeHidden();
+});
+
+test("sound is off by default and only starts after an explicit user action", async ({ page }) => {
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  const audio = page.locator("#music");
+  const toggle = page.locator("#toggle");
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  expect(await audio.evaluate(node => node.paused)).toBeTruthy();
+  expect(await audio.evaluate(node => node.hasAttribute("autoplay"))).toBeFalsy();
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await expect.poll(() => audio.evaluate(node => !node.paused)).toBeTruthy();
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  expect(await audio.evaluate(node => node.paused)).toBeTruthy();
+  await page.locator("#volume").fill("0.4");
+  await expect(page.locator("#volval")).toHaveText("40%");
+});
+
+test("page bookmark is saved to My Library and bookmark URL restores the page", async ({ page }) => {
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  await page.locator("#page-5").scrollIntoViewIfNeeded();
+  await expect.poll(() => page.locator("#current-page").textContent()).toContain("Page 5");
+  await page.locator("#bookmark-page").click();
+  await expect(page.locator("#bookmark-page")).toHaveAttribute("aria-pressed", "true");
+  await page.goto("/stories/library/");
+  await expect(page.locator("[data-library-list]")).toContainText("BOOKMARK");
+  const bookmark = page.locator("[data-library-list] a").filter({ hasText: "Page 5" });
+  await expect(bookmark).toHaveAttribute("href", /#page-5$/);
+  await bookmark.click();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+  await expect(page.locator("#current-page")).toContainText("Page 5");
+});
+
+test("reading progress restores after reloading and Continue Reading appears on the homepage", async ({ page }) => {
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  await page.locator("#page-8").scrollIntoViewIfNeeded();
+  await expect.poll(() => page.locator("#current-page").textContent()).toContain("Page 8");
+  const before = await page.evaluate(() => Number(JSON.parse(localStorage.getItem("tva-reading-progress-v1"))["before-we-lost-each-other-episode-01"].scrollY));
+  expect(before).toBeGreaterThan(0);
+  await page.reload();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+  await page.goto("/stories/");
+  await expect(page.locator("[data-continue-reading]")).toContainText("Continue Reading");
+  await expect(page.locator("[data-continue-reading]")).toContainText("Episode 01");
+});
+
+test("Veil pages remain responsive without horizontal overflow at all required widths", async ({ page }) => {
   for (const width of [1440, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const route of veilRoutes) {
+    for (const route of routes) {
       await page.goto(route);
       const dimensions = await page.evaluate(() => ({
         client: document.documentElement.clientWidth,
@@ -60,26 +162,29 @@ test("Veil routes have no horizontal overflow on desktop and mobile", async ({ p
       expect(dimensions.scroll, route + " at " + width + "px").toBeLessThanOrEqual(dimensions.client + 1);
     }
   }
-});
-
-test("Episode 01 route clearly remains a creator preview until media synchronization", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
-  await expect(page.getByRole("heading", { name: /Episode 01.*The Last Argument/i })).toBeVisible();
-  await expect(page.getByText(/not yet been synchronized/i)).toBeVisible();
-  await expect(page.getByRole("link", { name: /Back to Series/i })).toHaveAttribute("href", "../");
+  await expect(page.locator(".page-open")).toHaveCount(12);
+  await expect(page.locator("#bookmark-page")).toBeVisible();
+  await expect(page.locator("#toggle")).toBeVisible();
 });
 
-test("Capture real desktop browser screenshots for the four current remote preview routes", async ({ page }) => {
+test("capture real desktop and mobile Chromium screenshots for all key story routes", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   const captures = [
     ["/stories/", "artifacts/veil-homepage-desktop.png"],
     ["/stories/discover/", "artifacts/veil-discover-desktop.png"],
     ["/stories/series/before-we-lost-each-other/", "artifacts/veil-series-desktop.png"],
-    ["/stories/series/before-we-lost-each-other/episode-01/", "artifacts/veil-episode-01-status-desktop.png"]
+    ["/stories/series/before-we-lost-each-other/episode-01/", "artifacts/veil-reader-desktop.png"]
   ];
   for (const [route, output] of captures) {
     await page.goto(route);
     await expect(page.locator("main")).toBeVisible();
     await page.screenshot({ path: output, fullPage: true });
   }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/stories/");
+  await page.screenshot({ path: "artifacts/veil-homepage-mobile.png", fullPage: true });
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  await page.screenshot({ path: "artifacts/veil-reader-mobile.png", fullPage: true });
 });

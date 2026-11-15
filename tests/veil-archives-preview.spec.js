@@ -17,7 +17,7 @@ test("The Veil Archives routes resolve and identify the correct section", async 
     await expect(page.locator("main")).toBeVisible();
   }
   await page.goto("/stories/");
-  await expect(page.getByRole("heading", { name: /BEFORE WE.*EACH OTHER/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /BEFORE WE.*EACH OTHER/i, exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: /VIEW SERIES/i })).toHaveAttribute("href", /before-we-lost-each-other/);
   await expect(page.getByText(/Free to read/i)).toBeVisible();
 });
@@ -63,6 +63,6 @@ test("Veil routes have no horizontal overflow on desktop and mobile", async ({ p
 test("Episode 01 route clearly remains a creator preview until media synchronization", async ({ page }) => {
   await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
   await expect(page.getByRole("heading", { name: /Episode 01.*The Last Argument/i })).toBeVisible();
-  await expect(page.getByText(/not yet synchronized/i)).toBeVisible();
+  await expect(page.getByText(/not yet been synchronized/i)).toBeVisible();
   await expect(page.getByRole("link", { name: /Back to Series/i })).toHaveAttribute("href", "../");
 });

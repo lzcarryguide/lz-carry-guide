@@ -118,7 +118,7 @@ test("sound is off by default and only starts after an explicit user action", as
   await toggle.click();
   await expect(toggle).toHaveAttribute("aria-pressed", "false");
   expect(await audio.evaluate(node => node.paused)).toBeTruthy();
-  await page.locator("#volume").fill("0.4");
+  await page.locator("#volume").evaluate(node => { node.value = "0.4"; node.dispatchEvent(new Event("input", { bubbles: true })); });
   await expect(page.locator("#volval")).toHaveText("40%");
 });
 

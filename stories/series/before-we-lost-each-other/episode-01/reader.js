@@ -14,6 +14,8 @@
   const zoomLevel = document.getElementById("zoom-level");
   const currentLabel = document.getElementById("current-page");
   const bookmarkButton = document.getElementById("bookmark-page");
+  const bookmarkHome = bookmarkButton ? bookmarkButton.parentElement : null;
+  const viewerActions = document.querySelector(".viewer-actions");
   const fullscreenButton = document.getElementById("fullscreen-viewer");
   const audioPanel = document.querySelector(".audio");
   const audioHome = audioPanel ? audioPanel.parentElement : null;
@@ -161,6 +163,7 @@
       showPage(page);
       if (typeof viewer.showModal === "function" && !viewer.open) {
         if (audioPanel) viewer.appendChild(audioPanel);
+        if (bookmarkButton && viewerActions) viewerActions.insertBefore(bookmarkButton, fullscreenButton);
         viewer.showModal();
       }
     });
@@ -182,6 +185,7 @@
   viewer.addEventListener("close", () => {
     viewerImage.removeAttribute("src");
     if (audioPanel && audioHome && audioPanel.parentElement === viewer) audioHome.appendChild(audioPanel);
+    if (bookmarkButton && bookmarkHome && bookmarkButton.parentElement !== bookmarkHome) bookmarkHome.appendChild(bookmarkButton);
   });
 
   document.addEventListener("keydown", event => {
@@ -194,8 +198,8 @@
     try {
       if (document.fullscreenElement) {
         await document.exitFullscreen();
-      } else if (viewer.requestFullscreen) {
-        await viewer.requestFullscreen();
+      } else if (document.documentElement.requestFullscreen) {
+        await document.documentElement.requestFullscreen();
       } else {
         status.textContent = "Native fullscreen is not supported by this browser. The enlarged reader remains available.";
       }
@@ -206,7 +210,7 @@
 
   fullscreenButton.addEventListener("click", toggleFullscreen);
   document.addEventListener("fullscreenchange", () => {
-    const isFullscreen = document.fullscreenElement === viewer;
+    const isFullscreen = document.fullscreenElement === document.documentElement;
     fullscreenButton.textContent = isFullscreen ? "Exit fullscreen" : "Fullscreen";
     fullscreenButton.setAttribute("aria-pressed", String(isFullscreen));
   });

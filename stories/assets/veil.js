@@ -25,7 +25,7 @@
   }
 
   function favorites() {
-    return read("tva-favorites-v1", [], Array.isArray).filter(value => typeof value === "string" && value === storyId);
+    return read("tva-favorites-v1", [], Array.isArray).filter(value => typeof value === "string" && value.length > 0 && value.length <= 120);
   }
 
   function bookmarks() {
@@ -75,7 +75,7 @@
     update();
     button.addEventListener("click", () => {
       const current = favorites();
-      write("tva-favorites-v1", current.includes(storyId) ? [] : [storyId]);
+      write("tva-favorites-v1", current.includes(storyId) ? current.filter(value => value !== storyId) : [...current, storyId]);
       update();
     });
   });

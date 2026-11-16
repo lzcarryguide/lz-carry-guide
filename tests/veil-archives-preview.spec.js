@@ -95,12 +95,29 @@ test("full-screen viewer, page navigation, zoom and close controls work", async 
   await expect(page.locator("#previous-page")).toBeDisabled();
   await page.locator("#next-page").click();
   await expect(page.locator("#viewer-label")).toHaveText("Page 2 of 12");
-  await page.locator("#zoom-in").click();
-  await expect(page.locator("#zoom-level")).toHaveText("125%");
+  await expect(page.locator("#current-page")).toHaveText("Page 2 of 12");
+  await expect(page.locator("#bookmark-page")).toHaveAttribute("aria-pressed", "false");
+  await page.locator("#bookmark-page").click();
+  await expect(page.locator("#bookmark-page")).toHaveAttribute("aria-pressed", "true");
+  await page.locator("#previous-page").click();
+  await expect(page.locator("#current-page")).toHaveText("Page 1 of 12");
+  await expect(page.locator("#bookmark-page")).toHaveAttribute("aria-pressed", "false");
+  await page.keyboard.press("ArrowRight");
+  await expect(page.locator("#viewer-label")).toHaveText("Page 2 of 12");
+  await expect(page.locator("#current-page")).toHaveText("Page 2 of 12");
+  await expect(page.locator("#bookmark-page")).toHaveAttribute("aria-pressed", "true");
+  for (let i = 0; i < 12; i++) await page.locator("#zoom-in").click();
+  await expect(page.locator("#zoom-level")).toHaveText("400%");
+  await expect(page.locator("#zoom-in")).toBeDisabled();
+  await page.locator("#zoom-out").click();
+  await expect(page.locator("#zoom-level")).toHaveText("375%");
   await page.locator("#zoom-reset").click();
   await expect(page.locator("#zoom-level")).toHaveText("100%");
-  await page.locator("#previous-page").click();
-  await expect(page.locator("#viewer-label")).toHaveText("Page 1 of 12");
+  await expect(page.locator("#zoom-out")).toBeDisabled();
+  await page.locator("#fullscreen-viewer").click();
+  await expect.poll(() => page.evaluate(() => document.fullscreenElement?.id || "")).toBe("viewer");
+  await page.locator("#fullscreen-viewer").click();
+  await expect.poll(() => page.evaluate(() => document.fullscreenElement)).toBeNull();
   await page.locator("#close-viewer").click();
   await expect(dialog).toBeHidden();
 });
@@ -135,6 +152,52 @@ test("sound starts after the reader's first interaction, is controllable, and re
   await page.locator("#toggle").click();
   await expect(page.locator("#toggle")).toHaveAttribute("aria-pressed", "true");
   await expect.poll(() => page.locator("#music").evaluate(node => !node.paused)).toBeTruthy();
+  await page.locator("#mute-toggle").click();
+  await expect(page.locator("#mute-toggle")).toHaveAttribute("aria-pressed", "true");
+  expect(await audio.evaluate(node => !node.paused && node.muted)).toBeTruthy();
+  await page.locator("#mute-toggle").click();
+  await expect(page.locator("#mute-toggle")).toHaveAttribute("aria-pressed", "false");
+  expect(await audio.evaluate(node => !node.paused && !node.muted)).toBeTruthy();
+});
+
+
+test("invalid local-storage values are rejected without breaking the reader", async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("tva-reading-progress-v1", "{broken");
+    localStorage.setItem("tva-bookmarks-v1", JSON.stringify([{ page: 999 }, { page: -1 }, null, { page: "5" }]));
+    localStorage.setItem("tva-audio-preference-v1", JSON.stringify("sometimes"));
+    localStorage.setItem("tva-audio-volume-v1", JSON.stringify(9));
+    localStorage.setItem("tva-audio-muted-v1", JSON.stringify("yes"));
+  });
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  await expect(page.locator("main")).toBeVisible();
+  await expect(page.locator("#current-page")).toHaveText("Page 1 of 12");
+  await expect(page.locator("#bookmark-page")).toHaveAttribute("aria-pressed", "false");
+  await expect(page.locator("#volval")).toHaveText("18%");
+  await expect(page.locator("#mute-toggle")).toHaveAttribute("aria-pressed", "false");
+  await page.goto("/stories/library/");
+  await expect(page.locator("[data-library-list] .story-card")).toHaveCount(0);
+});
+
+test("audio controls remain reachable and independently usable on a mobile viewport", async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 1024 });
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  let tablet = await page.evaluate(() => ({ width: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
+  expect(tablet.scroll).toBeLessThanOrEqual(tablet.width + 1);
+  await page.setViewportSize({ width: 844, height: 390 });
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  let landscape = await page.evaluate(() => ({ width: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
+  expect(landscape.scroll).toBeLessThanOrEqual(landscape.width + 1);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  await expect(page.locator("#toggle")).toBeVisible();
+  await expect(page.locator("#mute-toggle")).toBeVisible();
+  await page.locator("#toggle").click();
+  await expect.poll(() => page.locator("#music").evaluate(node => !node.paused)).toBeTruthy();
+  await page.locator("#mute-toggle").click();
+  expect(await page.locator("#music").evaluate(node => node.muted)).toBeTruthy();
+  await page.locator("#mute-toggle").click();
+  expect(await page.locator("#music").evaluate(node => !node.muted)).toBeTruthy();
 });
 
 test("page bookmark is saved to My Library and bookmark URL restores the page", async ({ page }) => {
@@ -166,7 +229,7 @@ test("reading progress restores after reloading and Continue Reading appears on 
 });
 
 test("Veil pages remain responsive without horizontal overflow at all required widths", async ({ page }) => {
-  for (const width of [1440, 768, 390, 320]) {
+  for (const width of [1920, 1440, 1024, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
     for (const route of routes) {
       await page.goto(route);

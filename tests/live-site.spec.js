@@ -14,7 +14,7 @@ const pages = [
 const artifacts = path.join(process.cwd(), "artifacts", "live");
 fs.mkdirSync(artifacts, { recursive: true });
 
-test("published GitHub Pages site is live, responsive and serves every primary page", async ({ page, request, baseURL }) => {
+test("LZ Carry page smoke test serves every primary page and remains responsive", async ({ page, request, baseURL }) => {
   if (baseURL.startsWith("http://127.0.0.1") || baseURL.startsWith("http://localhost")) {
     await page.route("https://cloudflareinsights.com/cdn-cgi/rum", route => route.fulfill({ status: 204, body: "" }));
   }

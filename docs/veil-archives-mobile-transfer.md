@@ -15,9 +15,9 @@ The previous WAV from the archive is deliberately not included because the owner
 ## Upload from a phone
 
 1. Download the ZIP linked in the ChatGPT conversation.
-2. Open the development branch: https://github.com/lzcarryguide/lz-carry-guide/tree/the-veil-archives-integration
+2. Open the prepared upload folder: https://github.com/lzcarryguide/lz-carry-guide/tree/the-veil-archives-integration/media-transfer
 3. Choose **Add file → Upload files**.
-4. Upload the ZIP and set its repository path to `media-transfer/veil-media-package.zip`.
+4. Upload the ZIP with the filename `veil-media-package.zip`.
 5. Commit directly to `the-veil-archives-integration`.
 
 A GitHub Actions workflow at `.github/workflows/veil-media-mobile-import.yml` will then:

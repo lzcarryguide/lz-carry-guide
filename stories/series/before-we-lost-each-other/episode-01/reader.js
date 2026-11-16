@@ -15,6 +15,8 @@
   const currentLabel = document.getElementById("current-page");
   const bookmarkButton = document.getElementById("bookmark-page");
   const fullscreenButton = document.getElementById("fullscreen-viewer");
+  const audioPanel = document.querySelector(".audio");
+  const audioHome = audioPanel ? audioPanel.parentElement : null;
   const audio = document.getElementById("music");
   const playButton = document.getElementById("toggle");
   const muteButton = document.getElementById("mute-toggle");
@@ -157,7 +159,10 @@
       const page = Number(button.dataset.page);
       if (!validPage(page)) return;
       showPage(page);
-      if (typeof viewer.showModal === "function" && !viewer.open) viewer.showModal();
+      if (typeof viewer.showModal === "function" && !viewer.open) {
+        if (audioPanel) viewer.appendChild(audioPanel);
+        viewer.showModal();
+      }
     });
   });
 
@@ -174,7 +179,10 @@
     if (viewer.open) viewer.close();
   });
 
-  viewer.addEventListener("close", () => viewerImage.removeAttribute("src"));
+  viewer.addEventListener("close", () => {
+    viewerImage.removeAttribute("src");
+    if (audioPanel && audioHome && audioPanel.parentElement === viewer) audioHome.appendChild(audioPanel);
+  });
 
   document.addEventListener("keydown", event => {
     if (!viewer.open) return;

@@ -73,6 +73,7 @@ jobs:
                   print(f"VERIFIED {actual}  {path}")
           pathlib.Path("docs/veil-archives-assets.sha256").write_text(manifest, encoding="utf-8")
           archive.unlink()
+          pathlib.Path("media-transfer/.gitkeep").unlink(missing_ok=True)
           pathlib.Path("media-transfer").rmdir()
           print("All 15 media assets verified and installed.")
           PY
@@ -82,6 +83,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/veil-archives-assets.sha256 stories/assets/before-we-lost-each-other-cover.webp stories/assets/before-we-lost-each-other-original.png stories/series/before-we-lost-each-other/episode-01/assets/
-          git add -u media-transfer/veil-media-package.zip
+          git add -u media-transfer
           git commit -m "Import verified Veil Archives Episode 01 media"
           git push origin HEAD:the-veil-archives-integration

@@ -114,12 +114,24 @@ test("full-screen viewer, page navigation, zoom and close controls work", async 
   await page.locator("#zoom-reset").click();
   await expect(page.locator("#zoom-level")).toHaveText("100%");
   await expect(page.locator("#zoom-out")).toBeDisabled();
-  await page.locator("#fullscreen-viewer").click();
-  await expect.poll(() => page.evaluate(() => document.fullscreenElement?.id || "")).toBe("viewer");
-  await page.locator("#fullscreen-viewer").click();
-  await expect.poll(() => page.evaluate(() => document.fullscreenElement)).toBeNull();
   await page.locator("#close-viewer").click();
   await expect(dialog).toBeHidden();
+});
+
+
+test("native browser fullscreen can be entered and exited from the reader control", async ({ page }) => {
+  test.setTimeout(15000);
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  await page.locator(".page-open").first().click();
+  expect(await page.evaluate(() => document.fullscreenEnabled)).toBeTruthy();
+  const control = page.locator("#fullscreen-viewer");
+  await expect(control).toBeVisible();
+  await control.click({ timeout: 5000 });
+  await expect.poll(() => page.evaluate(() => document.fullscreenElement?.id || ""), { timeout: 5000 }).toBe("viewer");
+  await expect(control).toHaveText("Exit fullscreen");
+  await control.click({ timeout: 5000 });
+  await expect.poll(() => page.evaluate(() => document.fullscreenElement), { timeout: 5000 }).toBeNull();
+  await expect(control).toHaveText("Fullscreen");
 });
 
 test("sound starts after the reader's first interaction, is controllable, and remembers the preference and volume", async ({ page }) => {
@@ -208,7 +220,7 @@ test("page bookmark is saved to My Library and bookmark URL restores the page", 
   await expect(page.locator("#bookmark-page")).toHaveAttribute("aria-pressed", "true");
   await page.goto("/stories/library/");
   await expect(page.locator("[data-library-list]")).toContainText("BOOKMARK");
-  const bookmark = page.locator("[data-library-list] a").filter({ hasText: "Page 5" });
+  const bookmark = page.locator("[data-library-list] a").filter({ hasText: "BOOKMARK" });
   await expect(bookmark).toHaveAttribute("href", /#page-5$/);
   await bookmark.click();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);

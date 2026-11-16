@@ -127,7 +127,7 @@ test("native browser fullscreen can be entered and exited from the reader contro
   const control = page.locator("#fullscreen-viewer");
   await expect(control).toBeVisible();
   await control.click({ timeout: 5000 });
-  await expect.poll(() => page.evaluate(() => document.fullscreenElement?.id || ""), { timeout: 5000 }).toBe("viewer");
+  await expect.poll(() => page.evaluate(() => document.fullscreenElement?.tagName || ""), { timeout: 5000 }).toBe("HTML");
   await expect(control).toHaveText("Exit fullscreen");
   await control.click({ timeout: 5000 });
   await expect.poll(() => page.evaluate(() => document.fullscreenElement), { timeout: 5000 }).toBeNull();

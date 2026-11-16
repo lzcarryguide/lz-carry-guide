@@ -3,8 +3,7 @@ on:
   push:
     branches: [the-veil-archives-integration]
     paths:
-      - media-transfer/veil-media-package.zip
-      - media-transfer/individual/**
+      - media-transfer/**
 permissions:
   contents: write
 concurrency:

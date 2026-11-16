@@ -134,3 +134,23 @@ test("older backups skip retired Troops progress and migrate old goals to Other"
   await expect(page.locator("#dashboard-goal-list")).toContainText("Other");
   await expect(page.locator("#dashboard-goal-list")).toContainText("Old event goal");
 });
+
+
+test("Universal Search returns the Veil Archives homepage, Discover, series and Episode 01 routes", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: /Search the entire LZ Carry website/i }).click();
+  const input = page.getByRole("searchbox", { name: /Search all LZ Carry content/i });
+  const results = page.locator(".universal-search-results");
+
+  await input.fill("The Veil Archives");
+  await expect(results.locator('a[href$="/stories/index.html"]')).toBeVisible();
+
+  await input.fill("Discover");
+  await expect(results.locator('a[href$="/stories/discover/index.html"]')).toBeVisible();
+
+  await input.fill("Before We Lost Each Other");
+  await expect(results.locator('a[href$="/stories/series/before-we-lost-each-other/index.html"]')).toBeVisible();
+
+  await input.fill("Episode 01");
+  await expect(results.locator('a[href$="/stories/series/before-we-lost-each-other/episode-01/index.html"]')).toBeVisible();
+});

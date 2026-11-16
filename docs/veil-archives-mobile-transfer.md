@@ -28,11 +28,11 @@ The workflow recognizes the ZIP by its supported package name and extracts only 
 Use this method if the device or GitHub upload interface cannot upload a ZIP.
 
 1. Open the same `media-transfer` folder on the development branch.
-2. Upload all 15 media files while preserving their relative directory structure from the package manifest.
+2. Create an `individual` subfolder inside `media-transfer/` and upload all 15 media files plus the manifest into that folder. Keep the exact original filenames; do not recreate the asset subfolders in individual-file mode.
 3. Include the SHA-256 manifest file exactly as supplied.
 4. Commit the complete set to `the-veil-archives-integration`.
 
-The importer supports the documented nested directory structure and the flat individual-file transfer layout. Do not rename assets or omit the manifest. A partial or mixed upload is rejected; the import must match the exact 15 expected relative paths and hashes.
+For individual-file mode, the importer expects a flat set of 15 files plus the manifest either in `media-transfer/individual/` or directly in `media-transfer/`. The manifest maps each filename to its canonical repository path. Do not rename assets or omit the manifest. A partial or mixed upload is rejected; the import must match the exact 15 expected assets and hashes.
 
 ## What the import workflow does
 

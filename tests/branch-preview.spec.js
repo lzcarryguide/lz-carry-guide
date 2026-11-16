@@ -154,3 +154,38 @@ test("Universal Search returns the Veil Archives homepage, Discover, series and 
   await input.fill("Episode 01");
   await expect(results.locator('a[href$="/stories/series/before-we-lost-each-other/episode-01/index.html"]')).toBeVisible();
 });
+
+
+test("SEO metadata, robots policy and sitemap cover all published LZ Carry and Veil routes", async ({ page, request }) => {
+  const robots = await request.get("/robots.txt");
+  expect(robots.status()).toBe(200);
+  expect(await robots.text()).toContain("Sitemap: https://lzcarryguide.github.io/lz-carry-guide/sitemap.xml");
+
+  const sitemapResponse = await request.get("/sitemap.xml");
+  expect(sitemapResponse.status()).toBe(200);
+  const sitemap = await sitemapResponse.text();
+  const routes = [
+    ["/", "https://lzcarryguide.github.io/lz-carry-guide/"],
+    ["/guides.html", "https://lzcarryguide.github.io/lz-carry-guide/guides.html"],
+    ["/beginner.html", "https://lzcarryguide.github.io/lz-carry-guide/beginner.html"],
+    ["/dashboard.html", "https://lzcarryguide.github.io/lz-carry-guide/dashboard.html"],
+    ["/research.html", "https://lzcarryguide.github.io/lz-carry-guide/research.html"],
+    ["/flowers-count.html", "https://lzcarryguide.github.io/lz-carry-guide/flowers-count.html"],
+    ["/pilot.html", "https://lzcarryguide.github.io/lz-carry-guide/pilot.html"],
+    ["/stories/", "https://lzcarryguide.github.io/lz-carry-guide/stories/"],
+    ["/stories/discover/", "https://lzcarryguide.github.io/lz-carry-guide/stories/discover/"],
+    ["/stories/series/before-we-lost-each-other/", "https://lzcarryguide.github.io/lz-carry-guide/stories/series/before-we-lost-each-other/"],
+    ["/stories/series/before-we-lost-each-other/episode-01/", "https://lzcarryguide.github.io/lz-carry-guide/stories/series/before-we-lost-each-other/episode-01/"],
+    ["/stories/library/", "https://lzcarryguide.github.io/lz-carry-guide/stories/library/"],
+    ["/stories/updates/", "https://lzcarryguide.github.io/lz-carry-guide/stories/updates/"]
+  ];
+  expect((sitemap.match(/<loc>/g) || []).length).toBe(routes.length);
+  for (const [route, canonical] of routes) {
+    expect(sitemap).toContain("<loc>" + canonical + "</loc>");
+    await page.goto(route);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", canonical);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /.+/);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", /.+/);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /https:\/\/.+/);
+  }
+});

@@ -1,83 +1,26 @@
-name: Import Veil Archives media package
-
+name: Import Veil Archives media (ZIP or individual files)
 on:
   push:
-    branches:
-      - the-veil-archives-integration
+    branches: [the-veil-archives-integration]
     paths:
       - media-transfer/veil-media-package.zip
-
+      - media-transfer/individual/**
 permissions:
   contents: write
-
 concurrency:
   group: veil-media-import
   cancel-in-progress: false
-
 jobs:
   validate-and-install:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out development branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: the-veil-archives-integration
           fetch-depth: 0
-
-      - name: Validate archive and install exact media files
+      - name: Validate and install media without modifying source assets
         shell: bash
-        run: |
-          python - <<'PY'
-          import hashlib, pathlib, shutil, zipfile
-
-          archive = pathlib.Path("media-transfer/veil-media-package.zip")
-          expected = {
-              "stories/assets/before-we-lost-each-other-cover.webp",
-              "stories/assets/before-we-lost-each-other-original.png",
-              "stories/series/before-we-lost-each-other/episode-01/assets/audio/where-the-silence-stays-episode01.wav",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_01_Three_Years_Together.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_02_The_Argument.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_03_Walking_Away.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_04_The_Crash.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_05_The_First_Runner.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_06_Someone_She_Knows.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_07_The_Wrong_Impression.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_08_Dont_Let_Me_Go.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_09_Run_For_Your_Life.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_10_No_Signal.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_11_Can_You_Hear_Me.jpg",
-              "stories/series/before-we-lost-each-other/episode-01/assets/pages/Page_12_A_Reason_To_Hope.jpg",
-          }
-          with zipfile.ZipFile(archive) as z:
-              names = set(z.namelist())
-              manifest_name = "MEDIA_SHA256_MANIFEST.txt"
-              if manifest_name not in names:
-                  raise SystemExit("Missing MEDIA_SHA256_MANIFEST.txt")
-              manifest = z.read(manifest_name).decode("utf-8")
-              rows = {}
-              for line in manifest.splitlines():
-                  digest, path = line.split("  ", 1)
-                  if path in rows:
-                      raise SystemExit(f"Duplicate manifest path: {path}")
-                  rows[path] = digest
-              if set(rows) != expected:
-                  raise SystemExit(f"Manifest path mismatch; missing={sorted(expected-set(rows))}; extra={sorted(set(rows)-expected)}")
-              for path in sorted(expected):
-                  data = z.read(path)
-                  actual = hashlib.sha256(data).hexdigest()
-                  if actual != rows[path]:
-                      raise SystemExit(f"SHA-256 mismatch: {path}")
-                  target = pathlib.Path(path)
-                  target.parent.mkdir(parents=True, exist_ok=True)
-                  target.write_bytes(data)
-                  print(f"VERIFIED {actual}  {path}")
-          pathlib.Path("docs/veil-archives-assets.sha256").write_text(manifest, encoding="utf-8")
-          archive.unlink()
-          pathlib.Path("media-transfer/.gitkeep").unlink(missing_ok=True)
-          pathlib.Path("media-transfer").rmdir()
-          print("All 15 media assets verified and installed.")
-          PY
-
+        run: python .github/scripts/import-veil-media.py
       - name: Commit verified media
         run: |
           git config user.name "github-actions[bot]"

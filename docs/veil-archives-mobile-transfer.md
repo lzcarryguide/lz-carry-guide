@@ -1,35 +1,57 @@
 # The Veil Archives — mobile media import
 
-PR #54 now has a mobile-friendly import path for the original Episode 01 artwork and the newly composed soundtrack.
+PR #54 includes a validated media import workflow for the approved Episode 01 assets. The workflow accepts either one ZIP archive or the expected individual media files. Both methods install the same fixed 15-path media set and verify every SHA-256 digest against the manifest.
 
-## Package contents
+## Approved package contents
 
-Upload `Veil_Archives_Episode01_Mobile_Transfer.zip` as one file. It contains exactly 15 media assets:
-- 12 creator-supplied Episode 01 JPG pages, copied byte-for-byte from the recovered integration media archive.
+Exactly 15 media assets are expected:
+
+- 12 creator-supplied Episode 01 JPG pages, copied byte-for-byte.
 - The approved original cover PNG and approved WebP derivative, copied byte-for-byte.
-- A new original 48-second ambient piano composition, `where-the-silence-stays-episode01.wav` (stereo, 16-bit PCM, 22,050 Hz).
+- The newly composed original ambient piano soundtrack, `where-the-silence-stays-episode01.wav` (48 seconds, stereo, 16-bit PCM, 22,050 Hz).
 - A SHA-256 manifest covering all 15 assets.
 
-The previous WAV from the archive is deliberately not included because the owner clarified that no soundtrack had been supplied or approved. The comic artwork is not regenerated, retouched, or otherwise altered.
+The earlier archive WAV is deliberately excluded. The comic artwork and approved covers must not be regenerated, retouched, recompressed, cropped, or replaced.
 
-## Upload from a phone
+## Method A — upload one ZIP (recommended for phones)
 
-1. Download the ZIP linked in the ChatGPT conversation.
-2. Open the prepared upload folder: https://github.com/lzcarryguide/lz-carry-guide/tree/the-veil-archives-integration/media-transfer
+1. Download the current `veil-media-package.zip` transfer package.
+2. Open the branch upload folder: https://github.com/lzcarryguide/lz-carry-guide/tree/the-veil-archives-integration/media-transfer
 3. Choose **Add file → Upload files**.
-4. Upload the ZIP with the filename `veil-media-package.zip`.
+4. Upload the ZIP using the exact filename `veil-media-package.zip`.
 5. Commit directly to `the-veil-archives-integration`.
 
-A GitHub Actions workflow at `.github/workflows/veil-media-mobile-import.yml` will then:
-- verify the exact 15-file manifest and every SHA-256 hash;
-- reject unexpected or missing media paths;
-- install only the expected media assets;
-- replace the repository media manifest;
-- remove the uploaded transfer ZIP; and
-- commit the verified media to the development branch.
+The workflow recognizes the ZIP by its supported package name and extracts only the expected paths.
 
-The workflow has no secrets in the package and does not merge PR #54 or deploy the website. It uses the repository's scoped GitHub Actions token to commit only after successful validation.
+## Method B — upload individual files
+
+Use this method if the device or GitHub upload interface cannot upload a ZIP.
+
+1. Open the same `media-transfer` folder on the development branch.
+2. Upload all 15 media files while preserving their relative directory structure from the package manifest.
+3. Include the SHA-256 manifest file exactly as supplied.
+4. Commit the complete set to `the-veil-archives-integration`.
+
+The importer supports the documented nested directory structure and the flat individual-file transfer layout. Do not rename assets or omit the manifest. A partial or mixed upload is rejected; the import must match the exact 15 expected relative paths and hashes.
+
+## What the import workflow does
+
+The workflow at `.github/workflows/veil-media-mobile-import.yml`:
+
+- accepts the supported ZIP or individual-file transfer layout;
+- validates the manifest, expected paths, and every SHA-256 digest;
+- rejects missing, duplicate, unexpected, or mismatched media;
+- installs only the approved expected assets without recompressing them;
+- updates `docs/veil-archives-assets.sha256`;
+- removes temporary transfer files; and
+- commits the validated media to the development branch.
+
+It does not merge PR #54 or deploy the website. The package contains no repository secrets.
+
+## Current synchronization status
+
+As of 16 November 2026, the 15 approved media files have been imported into `the-veil-archives-integration`. The import workflow run [#43876092900](https://github.com/lzcarryguide/lz-carry-guide/actions/runs/43876092900) completed successfully. This confirms import and hash validation, not browser acceptance.
 
 ## Release gate
 
-After the import workflow succeeds, rerun and inspect the full browser suite. Do not merge or deploy until all 12 comic images, the new soundtrack, reader controls, progress/bookmarks, desktop/mobile layouts, parent-site regression checks, and Cloudflare Analytics are verified.
+Run and inspect the complete browser suite against the latest media-complete commit. Do not merge PR #54 or deploy until all twelve original page images, both covers, the new soundtrack, reader controls, bookmarks/progress, responsive layouts, and existing LZ Carry regression checks have passed. Live Cloudflare Analytics event collection must be verified separately from static beacon presence.

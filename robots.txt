@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lzcarryguide.github.io/lz-carry-guide/sitemap.xml

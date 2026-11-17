@@ -11,7 +11,11 @@
     { file: "dashboard.html", title: "Player Dashboard", category: "Page" },
     { file: "research.html", title: "Research Center", category: "Page" },
     { file: "flowers-count.html", title: "Flowers Count · Lucky Rose", category: "Tool" },
-    { file: "pilot.html", title: "LZ Carry Service", category: "Page" }
+    { file: "pilot.html", title: "LZ Carry Service", category: "Page" },
+    { file: "stories/index.html", title: "The Veil Archives", category: "Story" },
+    { file: "stories/discover/index.html", title: "The Veil Archives · Discover", category: "Story" },
+    { file: "stories/series/before-we-lost-each-other/index.html", title: "Before We Lost Each Other", category: "Story" },
+    { file: "stories/series/before-we-lost-each-other/episode-01/index.html", title: "Episode 01 · The Last Argument", category: "Story" }
   ];
   var datasets = [
     { file: "data/guides.json", page: "guides.html", title: "Guide", key: ["title", "name"] },
@@ -44,7 +48,7 @@
   var heading = make("div", "universal-search-heading");
   var titleWrap = make("div", "");
   titleWrap.appendChild(make("p", "eyebrow", "LZ CARRY KNOWLEDGE HUB"));
-  titleWrap.appendChild(make("h2", "", "Search everything"));
+  titleWrap.appendChild(make("h2", "", "Search LZ Carry"));
   titleWrap.lastChild.id = "universal-search-title";
   heading.appendChild(titleWrap);
   var close = make("button", "universal-search-close", "Close");
@@ -53,10 +57,10 @@
   heading.appendChild(close);
   var input = make("input", "universal-search-input");
   input.type = "search";
-  input.placeholder = "Search research, HQ levels, Flowers Count, Lucky Rose…";
+  input.placeholder = "Search guides, HQ levels, research, stories…";
   input.setAttribute("aria-label", "Search all LZ Carry content");
   input.autocomplete = "off";
-  var hint = make("p", "universal-search-hint", "Search across guides, planners, research and Flowers Count. Press Escape to close.");
+  var hint = make("p", "universal-search-hint", "Search indexed LZ Carry pages, guide and planner data, Flowers Count, and The Veil Archives. Some interactive content and media are not indexed. Press Escape to close.");
   var results = make("div", "universal-search-results");
   results.setAttribute("aria-live", "polite");
   results.setAttribute("aria-label", "Search results");
@@ -153,7 +157,7 @@
       return { item: item, score: score };
     }).filter(Boolean).sort(function (a, b) { return b.score - a.score; }).slice(0, 40);
     if (!matches.length) {
-      results.appendChild(make("p", "universal-search-empty", "No matches found. Try a guide, research tree, HQ level or Flowers Count keyword."));
+      results.appendChild(make("p", "universal-search-empty", "No matches found in the indexed pages and data. Try a guide, research tree, HQ level, story title or Flowers Count keyword."));
       return;
     }
     matches.forEach(function (match) {

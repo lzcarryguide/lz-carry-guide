@@ -8,7 +8,7 @@ fs.mkdirSync(artifacts, { recursive: true });
 test("primary navigation and internal links resolve without retired Troops or Event Center pages", async ({ page, request }) => {
   await page.goto("/");
   const links = await page.locator("header nav a").evaluateAll(as => as.map(a => a.getAttribute("href")));
-  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "flowers-count.html", "pilot.html"]));
+  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "flowers-count.html", "pilot.html", "stories/index.html"]));
   expect(links.some(href => /troops\.html|events?\.html/i.test(href))).toBeFalsy();
   for (const target of pages) {
     expect((await request.get(target)).status(), target).toBe(200);
@@ -55,8 +55,9 @@ test("mobile layouts and navigation work at 390px and 320px", async ({ page }) =
   await expect(nav).toBeHidden();
   await toggle.click();
   await expect(nav).toBeVisible();
-  await expect(nav.locator("a")).toHaveCount(8);
+  await expect(nav.locator("a")).toHaveCount(9);
   await expect(nav.getByRole("link", { name: "Troops" })).toHaveCount(0);
+  await expect(nav.getByRole("link", { name: "The Veil Archives" })).toHaveAttribute("href", "stories/index.html");
   await page.screenshot({ path: path.join(artifacts, "home-mobile.png"), fullPage: true });
 });
 
@@ -132,4 +133,59 @@ test("older backups skip retired Troops progress and migrate old goals to Other"
   await expect(page.locator("#dashboard-goal-list")).toContainText("Old troop target");
   await expect(page.locator("#dashboard-goal-list")).toContainText("Other");
   await expect(page.locator("#dashboard-goal-list")).toContainText("Old event goal");
+});
+
+
+test("Universal Search returns the Veil Archives homepage, Discover, series and Episode 01 routes", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: /Search the entire LZ Carry website/i }).click();
+  const input = page.getByRole("searchbox", { name: /Search all LZ Carry content/i });
+  const results = page.locator(".universal-search-results");
+
+  await input.fill("The Veil Archives");
+  await expect(results.locator('a[href$="/stories/index.html"]')).toBeVisible();
+
+  await input.fill("Discover");
+  await expect(results.locator('a[href$="/stories/discover/index.html"]')).toBeVisible();
+
+  await input.fill("Before We Lost Each Other");
+  await expect(results.locator('a[href$="/stories/series/before-we-lost-each-other/index.html"]')).toBeVisible();
+
+  await input.fill("Episode 01");
+  await expect(results.locator('a[href$="/stories/series/before-we-lost-each-other/episode-01/index.html"]')).toBeVisible();
+});
+
+
+test("SEO metadata, robots policy and sitemap cover all published LZ Carry and Veil routes", async ({ page, request }) => {
+  const robots = await request.get("/robots.txt");
+  expect(robots.status()).toBe(200);
+  expect(await robots.text()).toContain("Sitemap: https://lzcarryguide.github.io/lz-carry-guide/sitemap.xml");
+
+  const sitemapResponse = await request.get("/sitemap.xml");
+  expect(sitemapResponse.status()).toBe(200);
+  const sitemap = await sitemapResponse.text();
+  const routes = [
+    ["/", "https://lzcarryguide.github.io/lz-carry-guide/"],
+    ["/guides.html", "https://lzcarryguide.github.io/lz-carry-guide/guides.html"],
+    ["/beginner.html", "https://lzcarryguide.github.io/lz-carry-guide/beginner.html"],
+    ["/dashboard.html", "https://lzcarryguide.github.io/lz-carry-guide/dashboard.html"],
+    ["/research.html", "https://lzcarryguide.github.io/lz-carry-guide/research.html"],
+    ["/flowers-count.html", "https://lzcarryguide.github.io/lz-carry-guide/flowers-count.html"],
+    ["/pilot.html", "https://lzcarryguide.github.io/lz-carry-guide/pilot.html"],
+    ["/stories/", "https://lzcarryguide.github.io/lz-carry-guide/stories/"],
+    ["/stories/discover/", "https://lzcarryguide.github.io/lz-carry-guide/stories/discover/"],
+    ["/stories/series/before-we-lost-each-other/", "https://lzcarryguide.github.io/lz-carry-guide/stories/series/before-we-lost-each-other/"],
+    ["/stories/series/before-we-lost-each-other/episode-01/", "https://lzcarryguide.github.io/lz-carry-guide/stories/series/before-we-lost-each-other/episode-01/"],
+    ["/stories/library/", "https://lzcarryguide.github.io/lz-carry-guide/stories/library/"],
+    ["/stories/updates/", "https://lzcarryguide.github.io/lz-carry-guide/stories/updates/"]
+  ];
+  expect((sitemap.match(/<loc>/g) || []).length).toBe(routes.length);
+  for (const [route, canonical] of routes) {
+    expect(sitemap).toContain("<loc>" + canonical + "</loc>");
+    await page.goto(route);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", canonical);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /.+/);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", /.+/);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /https:\/\/.+/);
+  }
 });

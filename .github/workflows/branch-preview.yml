@@ -1,13 +1,26 @@
 name: Isolated branch preview
 on:
   push:
-    branches: [lz-carry-knowledge-hub]
+    branches: [lz-carry-knowledge-hub, the-veil-archives-integration]
   pull_request:
-    branches: [main, interactive-knowledge-hub-ux, player-tools-foundation, troop-planner-and-dashboard-phase]
+    branches: [main, interactive-knowledge-hub-ux, player-tools-foundation, troop-planner-and-dashboard-phase, the-veil-archives-integration]
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
+  veil-media-integrity:
+    name: Verify Veil Archives original media
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - name: Require all 15 approved media files and verify SHA-256
+        run: |
+          test -f docs/veil-archives-assets.sha256
+          test "$(wc -l < docs/veil-archives-assets.sha256)" -eq 15
+          sha256sum --check docs/veil-archives-assets.sha256
+
   preview-test:
     runs-on: ubuntu-latest
     steps:
@@ -17,13 +30,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install browser test runner
+      - name: Install browser test runner and accessibility scanner
         run: |
           npm init -y
-          npm install --save-dev @playwright/test
-          npx playwright install --with-deps chromium
-      - name: Run responsive and functionality checks
+          npm install --save-dev @playwright/test @axe-core/playwright
+          npx playwright install --with-deps chromium firefox webkit
+      - name: Run complete Chromium acceptance suite
         run: npx playwright test
+      - name: Run Firefox, WebKit and accessibility acceptance checks
+        run: npx playwright test --config playwright.cross-browser.config.js
       - name: Upload screenshots and test report
         if: always()
         uses: actions/upload-artifact@v4
@@ -31,6 +46,34 @@ jobs:
           name: lz-carry-knowledge-hub-preview
           path: |
             artifacts/
+            test-results/
+          if-no-files-found: warn
+          retention-days: 14
+
+  live-cloudflare-delivery:
+    name: Read-only live Cloudflare beacon delivery check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright Chromium
+        run: |
+          npm init -y
+          npm install --save-dev @playwright/test
+          npx playwright install --with-deps chromium
+      - name: Verify published beacon script and live RUM response (no deployment)
+        run: npx playwright test --config playwright.live-analytics.config.js
+      - name: Upload live analytics diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lz-carry-live-analytics-check
+          path: |
+            artifacts/live-analytics-report/
             test-results/
           if-no-files-found: warn
           retention-days: 14

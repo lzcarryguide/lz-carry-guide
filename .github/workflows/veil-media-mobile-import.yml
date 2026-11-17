@@ -1,0 +1,30 @@
+name: Import Veil Archives media (ZIP or individual files)
+on:
+  push:
+    branches: [the-veil-archives-integration]
+    paths:
+      - media-transfer/**
+permissions:
+  contents: write
+concurrency:
+  group: veil-media-import
+  cancel-in-progress: false
+jobs:
+  validate-and-install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: the-veil-archives-integration
+          fetch-depth: 0
+      - name: Validate and install media without modifying source assets
+        shell: bash
+        run: python .github/scripts/import-veil-media.py
+      - name: Commit verified media
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/veil-archives-assets.sha256 stories/assets/before-we-lost-each-other-cover.webp stories/assets/before-we-lost-each-other-original.png stories/series/before-we-lost-each-other/episode-01/assets/
+          git add -u media-transfer
+          git commit -m "Import verified Veil Archives Episode 01 media"
+          git push origin HEAD:the-veil-archives-integration

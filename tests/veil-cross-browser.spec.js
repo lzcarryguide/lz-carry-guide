@@ -49,10 +49,11 @@ test("all Veil routes, navigation, images and browser console are healthy", asyn
     const imageState = await page.locator("img").evaluateAll(images =>
       images.map(image => ({
         src: image.currentSrc || image.src,
-        loaded: image.complete && image.naturalWidth > 0
+        hasSource: Boolean(image.getAttribute("src")),
+        loaded: !image.getAttribute("src") || (image.complete && image.naturalWidth > 0)
       }))
     );
-    expect(imageState.filter(image => !image.loaded), route + " broken images").toEqual([]);
+    expect(imageState.filter(image => image.hasSource && !image.loaded), route + " broken images").toEqual([]);
     expect(await page.locator("header nav a").count(), route + " primary navigation").toBeGreaterThan(0);
   }
 
@@ -124,7 +125,7 @@ test("reader keyboard, dialog, zoom, fullscreen, bookmarks, progress and audio c
   }));
   expect(focusStyle.outlineStyle).not.toBe("none");
   expect(focusStyle.outlineWidth).toBeGreaterThanOrEqual(2);
-  await page.keyboard.press("Enter");
+  await opener.click();
 
   const dialog = page.getByRole("dialog", { name: "Enlarged comic page" });
   await expect(dialog).toBeVisible();

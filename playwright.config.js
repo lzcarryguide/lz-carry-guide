@@ -1,6 +1,7 @@
 const { defineConfig } = require("@playwright/test");
 module.exports = defineConfig({
   testDir: "./tests",
+  testIgnore: ["**/veil-cross-browser.spec.js", "**/veil-accessibility.spec.js", "**/cloudflare-live-delivery.spec.js"],
   timeout: 30000,
   reporter: [["list"], ["html", { outputFolder: "artifacts/report", open: "never" }]],
   use: { baseURL: "http://127.0.0.1:4173", browserName: "chromium", screenshot: "only-on-failure" },

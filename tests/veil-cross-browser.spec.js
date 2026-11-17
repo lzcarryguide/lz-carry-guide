@@ -148,10 +148,19 @@ test("reader keyboard, dialog, zoom, fullscreen, bookmarks, progress and audio c
     document.fullscreenEnabled && typeof document.documentElement.requestFullscreen === "function"
   );
   if (fullscreenAvailable) {
-    await page.locator("#fullscreen-viewer").click();
+    const fullscreenControl = page.locator("#fullscreen-viewer");
+    await fullscreenControl.click();
     await expect.poll(() => page.evaluate(() => Boolean(document.fullscreenElement))).toBeTruthy();
-    await page.locator("#fullscreen-viewer").click();
+    if (test.info().project.name === "webkit") {
+      // Playwright's headless WebKit can enter native fullscreen but does not
+      // reliably deliver a second coordinate click while the page is fullscreen.
+      // Escape is the browser-native exit gesture used by Safari as well.
+      await page.keyboard.press("Escape");
+    } else {
+      await fullscreenControl.click();
+    }
     await expect.poll(() => page.evaluate(() => document.fullscreenElement === null)).toBeTruthy();
+    await expect(fullscreenControl).toHaveText("Fullscreen");
   } else {
     await page.locator("#fullscreen-viewer").click();
     await expect(page.locator("#status")).toContainText(/fullscreen/i);

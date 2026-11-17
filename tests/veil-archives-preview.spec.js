@@ -26,6 +26,10 @@ const pageNames = [
 ];
 
 test("all six Veil Archives routes resolve and render inside the LZ Carry project path", async ({ page, request }) => {
+  const unexpected404s = [];
+  page.on("response", response => {
+    if (response.status() === 404) unexpected404s.push(response.url());
+  });
   for (const route of routes) {
     const response = await request.get(route);
     expect(response.status(), route).toBe(200);
@@ -39,6 +43,7 @@ test("all six Veil Archives routes resolve and render inside the LZ Carry projec
   const cover = page.locator(".hero-grid .cover-frame img");
   await expect(cover).toBeVisible();
   await expect.poll(() => cover.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
+  expect(unexpected404s, "unexpected 404 responses across Veil routes").toEqual([]);
 });
 
 test("Discover search, genre/status filtering and A–Z/latest sorting work", async ({ page }) => {
@@ -263,6 +268,76 @@ test("Veil pages remain responsive without horizontal overflow at all required w
   expect(bookmarkBounds).not.toBeNull();
   expect(audioBounds).not.toBeNull();
   expect(bookmarkBounds.y + bookmarkBounds.height).toBeLessThan(audioBounds.y);
+});
+
+test("Library and homepage Continue Reading cards load every cover without 404s", async ({ page }) => {
+  const unexpected404s = [];
+  page.on("response", response => {
+    if (response.status() === 404) unexpected404s.push(response.url());
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem("tva-favorites-v1", JSON.stringify(["before-we-lost-each-other"]));
+    localStorage.setItem("tva-bookmarks-v1", JSON.stringify([{ page: 5 }]));
+    localStorage.setItem("tva-reading-progress-v1", JSON.stringify({
+      "before-we-lost-each-other-episode-01": { page: 8, scrollY: 3500 }
+    }));
+  });
+
+  await page.goto("/stories/library/");
+  const libraryImages = page.locator("[data-library-list] .story-card img");
+  await expect(libraryImages).toHaveCount(3);
+  for (let i = 0; i < await libraryImages.count(); i++) {
+    const image = libraryImages.nth(i);
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0)).toBeTruthy();
+    const source = await image.evaluate(node => new URL(node.src).pathname);
+    expect(source).toBe("/stories/assets/before-we-lost-each-other-cover.webp");
+  }
+
+  await page.goto("/stories/");
+  const continueImages = page.locator("[data-continue-reading] .story-card img");
+  await expect(continueImages).toHaveCount(1);
+  const continueImage = continueImages.first();
+  await continueImage.scrollIntoViewIfNeeded();
+  await expect.poll(() => continueImage.evaluate(node => node.complete && node.naturalWidth > 0)).toBeTruthy();
+  expect(await continueImage.evaluate(node => new URL(node.src).pathname))
+    .toBe("/stories/assets/before-we-lost-each-other-cover.webp");
+
+  expect(unexpected404s, "unexpected 404 image or page responses").toEqual([]);
+});
+
+test("full comic-reader screenshot captures all twelve pages after scrolling through the complete episode", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  const unexpected404s = [];
+  page.on("response", response => {
+    if (response.status() === 404) unexpected404s.push(response.url());
+  });
+  await page.goto("/stories/series/before-we-lost-each-other/episode-01/");
+  const images = page.locator("main.episode img.page");
+  await expect(images).toHaveCount(12);
+
+  for (let i = 0; i < 12; i++) {
+    const image = images.nth(i);
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0))
+      .toBeTruthy();
+    expect(await image.evaluate(node => new URL(node.src).pathname.split("/").pop()))
+      .toBe(pageNames[i]);
+  }
+
+  const loadedPages = await images.evaluateAll(nodes =>
+    nodes.map(node => ({ loaded: node.complete && node.naturalWidth > 0, width: node.naturalWidth }))
+  );
+  expect(loadedPages).toHaveLength(12);
+  expect(loadedPages.every(item => item.loaded && item.width === 768)).toBeTruthy();
+  expect(unexpected404s, "unexpected 404 responses while loading all twelve comic pages").toEqual([]);
+
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await page.screenshot({
+    path: "artifacts/veil-reader-all-12-pages-after-scroll-desktop.png",
+    fullPage: true,
+    animations: "disabled"
+  });
 });
 
 test("capture real desktop and mobile Chromium screenshots for all key story routes", async ({ page }) => {

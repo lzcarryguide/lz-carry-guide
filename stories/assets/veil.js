@@ -3,7 +3,8 @@
 
   const storyId = "before-we-lost-each-other";
   const episodeId = storyId + "-episode-01";
-  const coverPath = "../assets/before-we-lost-each-other-cover.webp";
+  const libraryCoverPath = "../assets/before-we-lost-each-other-cover.webp";
+  const homepageCoverPath = "assets/before-we-lost-each-other-cover.webp";
 
   function read(key, fallback, validate) {
     try {
@@ -42,12 +43,12 @@
     return { page: item.page, scrollY };
   }
 
-  function makeCard(href, label, description) {
+  function makeCard(href, label, description, coverSrc = libraryCoverPath) {
     const link = document.createElement("a");
     link.className = "story-card";
     link.href = href;
     const image = document.createElement("img");
-    image.src = coverPath;
+    image.src = coverSrc;
     image.alt = "";
     image.loading = "lazy";
     image.decoding = "async";
@@ -108,7 +109,8 @@
     if (savedProgress) {
       const link = makeCard("series/before-we-lost-each-other/episode-01/#page-" + savedProgress.page,
         "CONTINUE READING · BEFORE WE LOST EACH OTHER",
-        "Episode 01 · Continue from page " + savedProgress.page);
+        "Episode 01 · Continue from page " + savedProgress.page,
+        homepageCoverPath);
       continueSlot.replaceChildren(link);
     }
   }

@@ -67,7 +67,8 @@ function render(){
  });
  var order=focus.map(function(n){return catalog.find(function(x){return x[0]===n;});}).filter(Boolean);
  var candidate=order.find(function(x){return status(x[0])!=="Done"&&eligible(x);});
- next.textContent=candidate?candidate[0]+" — "+candidate[4]+" Check the required prior-tree percentage and live unlock panel before starting.":"No mapped next route focus is within the selected level gates. Check the live Laboratory panel and prerequisites.";
+ var candidateStatus=candidate?status(candidate[0]):"Not started";
+ next.textContent=candidate?(candidateStatus==="In progress"?"Continue ":"Start with ")+candidate[0]+" — "+candidate[4]+" Check the required prior-tree percentage and live unlock panel before starting.":"No mapped next route focus is within the selected level gates. Check the live Laboratory panel and prerequisites.";
  summary.textContent=done+" marked done · "+active+" in progress · "+catalog.length+" indexed entries. This is a personal checklist, not a live unlock calculator.";
  route.textContent=chosen[1];
 }

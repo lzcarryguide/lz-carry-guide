@@ -36,6 +36,21 @@ test("Laboratory route planner filters routes and saves progress locally", async
   expect(errors).toEqual([]);
 });
 
+test("route focus says Continue for an in-progress tree and announces updates", async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem("lzcarry-research-plan-v1", JSON.stringify({
+    "New Home": "Done",
+    "Shelter Building": "Done",
+    "Alliance Recognition": "In progress"
+  })));
+  await page.goto("/research.html");
+  await page.locator("#lab-hq").selectOption("30");
+  await page.locator("#lab-level").selectOption("30");
+  await page.locator("#lab-path").selectOption("early-low");
+  await expect(page.locator("#lab-next")).toHaveAttribute("aria-live", "polite");
+  await expect(page.locator("#lab-next")).toContainText(/^Continue Alliance Recognition/);
+  await expect(page.locator("#lab-plan-summary")).toHaveAttribute("aria-live", "polite");
+});
+
 test("new planning tools remain within narrow mobile viewports", async ({ page }) => {
   for (const width of [390,320]) {
     await page.setViewportSize({width,height:844});

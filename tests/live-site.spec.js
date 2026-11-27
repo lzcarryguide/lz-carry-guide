@@ -144,7 +144,7 @@ test("LZ Carry page smoke test serves every primary page and remains responsive"
 
 test("Cloudflare Web Analytics beacon loads once on every published public page", async ({ page, baseURL }) => {
   test.skip(baseURL.startsWith("http://127.0.0.1") || baseURL.startsWith("http://localhost"), "Beacon network verification runs against published Pages only");
-  const pages = ["index.html", "guides.html", "beginner.html", "dashboard.html", "research.html", "flowers-count.html", "pilot.html"];
+  const pages = ["index.html", "guides.html", "beginner.html", "dashboard.html", "research.html", "heroes.html", "events.html", "flowers-count.html", "pilot.html"];
   const token = "97e4ffc3f5e84e6387c02ef53bdf981c";
   const src = "https://static.cloudflareinsights.com/beacon.min.js";
   for (const target of pages) {

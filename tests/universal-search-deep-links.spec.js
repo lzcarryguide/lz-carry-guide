@@ -25,3 +25,28 @@ test("universal search opens the matching research tree", async ({ page }) => {
 test("universal search opens standalone Flowers Count", async ({ page }) => {
   await searchAndOpen(page, "This week's number", /flowers-count\.html#lucky-rose-tracker/, "lucky-rose-tracker", false);
 });
+
+
+test("universal search indexes community hero records and opens the Hero Encyclopedia", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
+  const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
+  await search.fill("Bella");
+  const result = page.locator(".universal-search-result").filter({ hasText: "Bella" }).first();
+  await expect(result).toHaveAttribute("href", /heroes\\.html/);
+  await result.click();
+  await expect(page).toHaveURL(/heroes\\.html/);
+  await expect(page.locator("#builder-results")).toContainText("Bella");
+});
+
+test("universal search indexes event records and opens the Events Center", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Search the entire LZ Carry website" }).click();
+  const search = page.getByRole("searchbox", { name: "Search all LZ Carry content" });
+  await search.fill("Canyon Clash");
+  const result = page.locator(".universal-search-result").filter({ hasText: "Canyon Clash" }).first();
+  await expect(result).toHaveAttribute("href", /events\\.html/);
+  await result.click();
+  await expect(page).toHaveURL(/events\\.html/);
+  await expect(page.locator("#event-results")).toContainText("Canyon Clash");
+});

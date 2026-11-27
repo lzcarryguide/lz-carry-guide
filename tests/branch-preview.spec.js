@@ -1,15 +1,15 @@
 const { test, expect } = require("@playwright/test");
 const fs = require("node:fs");
 const path = require("node:path");
-const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/flowers-count.html", "/pilot.html"];
+const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/heroes.html", "/events.html", "/flowers-count.html", "/pilot.html"];
 const artifacts = path.join(process.cwd(), "artifacts");
 fs.mkdirSync(artifacts, { recursive: true });
 
-test("primary navigation and internal links resolve without retired Troops or Event Center pages", async ({ page, request }) => {
+test("primary navigation restores Hero and Events while keeping the standalone Troops feature retired", async ({ page, request }) => {
   await page.goto("/");
   const links = await page.locator("header nav a").evaluateAll(as => as.map(a => a.getAttribute("href")));
-  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "flowers-count.html", "pilot.html", "stories/index.html"]));
-  expect(links.some(href => /troops\.html|events?\.html/i.test(href))).toBeFalsy();
+  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "heroes.html", "events.html", "flowers-count.html", "pilot.html", "stories/index.html"]));
+  expect(links.some(href => /troops\.html/i.test(href))).toBeFalsy();
   for (const target of pages) {
     expect((await request.get(target)).status(), target).toBe(200);
     await page.goto(target);
@@ -18,8 +18,10 @@ test("primary navigation and internal links resolve without retired Troops or Ev
   }
   expect((await request.get("/troops.html")).status()).toBe(404);
   expect((await request.get("/data/troops.json")).status()).toBe(404);
-  expect((await request.get("/events.html")).status()).toBe(404);
-  expect((await request.get("/data/events.json")).status()).toBe(404);
+  expect((await request.get("/heroes.html")).status()).toBe(200);
+  expect((await request.get("/data/heroes.json")).status()).toBe(200);
+  expect((await request.get("/events.html")).status()).toBe(200);
+  expect((await request.get("/data/events.json")).status()).toBe(200);
 });
 
 test("desktop pages load without runtime errors or horizontal overflow", async ({ page }) => {
@@ -55,8 +57,10 @@ test("mobile layouts and navigation work at 390px and 320px", async ({ page }) =
   await expect(nav).toBeHidden();
   await toggle.click();
   await expect(nav).toBeVisible();
-  await expect(nav.locator("a")).toHaveCount(9);
+  await expect(nav.locator("a")).toHaveCount(11);
   await expect(nav.getByRole("link", { name: "Troops" })).toHaveCount(0);
+  await expect(nav.getByRole("link", { name: "Hero Encyclopedia" })).toBeVisible();
+  await expect(nav.getByRole("link", { name: "Events Center" })).toBeVisible();
   await expect(nav.getByRole("link", { name: "The Veil Archives" })).toHaveAttribute("href", "stories/index.html");
   await page.screenshot({ path: path.join(artifacts, "home-mobile.png"), fullPage: true });
 });

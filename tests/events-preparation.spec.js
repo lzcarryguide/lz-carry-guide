@@ -33,7 +33,8 @@ test("Full Preparedness theme is manual and checklist progress persists locally"
   await expect(page.locator("#event-prep-checks input").first()).toBeChecked();
   await page.locator("#event-prep-reset").click();
   await expect(page.locator("#event-prep-checks input").first()).not.toBeChecked();
-  await expect(page.evaluate(() => localStorage.getItem("lzcarry-event-prep-v2"))).resolves.toBeNull();
+  const cleared = await page.evaluate(() => localStorage.getItem("lzcarry-event-prep-v2"));
+  expect(cleared).toBeNull();
 });
 
 test("Progress backup preserves current event preparation and saved formation data", async ({ page }) => {

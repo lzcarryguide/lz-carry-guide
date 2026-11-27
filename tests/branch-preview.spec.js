@@ -174,6 +174,8 @@ test("SEO metadata, robots policy and sitemap cover all published LZ Carry and V
     ["/beginner.html", "https://lzcarryguide.github.io/lz-carry-guide/beginner.html"],
     ["/dashboard.html", "https://lzcarryguide.github.io/lz-carry-guide/dashboard.html"],
     ["/research.html", "https://lzcarryguide.github.io/lz-carry-guide/research.html"],
+    ["/heroes.html", "https://lzcarryguide.github.io/lz-carry-guide/heroes.html"],
+    ["/events.html", "https://lzcarryguide.github.io/lz-carry-guide/events.html"],
     ["/flowers-count.html", "https://lzcarryguide.github.io/lz-carry-guide/flowers-count.html"],
     ["/pilot.html", "https://lzcarryguide.github.io/lz-carry-guide/pilot.html"],
     ["/stories/", "https://lzcarryguide.github.io/lz-carry-guide/stories/"],

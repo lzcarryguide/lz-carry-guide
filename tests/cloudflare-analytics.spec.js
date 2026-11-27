@@ -8,6 +8,8 @@ const pages = [
   "beginner.html",
   "dashboard.html",
   "research.html",
+  "heroes.html",
+  "events.html",
   "flowers-count.html",
   "pilot.html"
 ];

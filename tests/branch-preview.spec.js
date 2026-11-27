@@ -41,7 +41,7 @@ test("desktop pages load without runtime errors or horizontal overflow", async (
 });
 
 test("mobile layouts and navigation work at 390px and 320px", async ({ page }) => {
-  for (const width of [390, 320]) {
+  for (const width of [520, 390, 375, 320]) {
     for (const target of pages) {
       await page.setViewportSize({ width, height: 844 });
       await page.goto(target);

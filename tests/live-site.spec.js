@@ -8,6 +8,8 @@ const pages = [
   ["beginner.html", "beginner"],
   ["dashboard.html", "dashboard"],
   ["research.html", "research"],
+  ["heroes.html", "heroes"],
+  ["events.html", "events"],
   ["flowers-count.html", "flowers"],
   ["pilot.html", "pilot"]
 ];
@@ -41,8 +43,10 @@ test("LZ Carry page smoke test serves every primary page and remains responsive"
   }
   expect(deployed, "Pages deployment was not updated at " + baseURL + ": " + observation).toBeTruthy();
   expect((await request.get("troops.html")).status()).toBe(404);
-  expect((await request.get("events.html?retired-feature-check=1")).status()).toBe(404);
-  expect((await request.get("data/events.json?retired-feature-check=1")).status()).toBe(404);
+  expect((await request.get("heroes.html?restoration-check=1")).status()).toBe(200);
+  expect((await request.get("data/heroes.json?restoration-check=1")).status()).toBe(200);
+  expect((await request.get("events.html?restoration-check=1")).status()).toBe(200);
+  expect((await request.get("data/events.json?restoration-check=1")).status()).toBe(200);
 
   for (const width of [1440, 390]) {
     for (const [target, name] of pages) {
@@ -85,7 +89,7 @@ test("LZ Carry page smoke test serves every primary page and remains responsive"
         await toggle.click();
         await expect(nav).toBeVisible();
         await expect(nav.locator('a[aria-current="page"]')).toHaveCount(1);
-        await expect(nav.getByRole("link", { name: /Event Center|Events/ })).toHaveCount(0);
+        await expect(nav.getByRole("link", { name: "Events Center" })).toHaveCount(1);
         if (name === "home") await page.screenshot({ path: path.join(artifacts, "mobile-navigation-open.png") });
         await toggle.click();
         await expect(nav).toBeHidden();
@@ -93,10 +97,19 @@ test("LZ Carry page smoke test serves every primary page and remains responsive"
       } else {
         await expect(page.locator('header nav[aria-label="Main navigation"]')).toBeVisible();
         await expect(page.locator('header nav a[aria-current="page"]')).toHaveCount(1);
-        await expect(page.locator('header nav').getByRole("link", { name: /Event Center|Events/ })).toHaveCount(0);
+        await expect(page.locator('header nav').getByRole("link", { name: "Events Center" })).toHaveCount(1);
       }
 
       if (name === "research") await expect(page.locator(".research-tree-card")).toHaveCount(22);
+      if (name === "heroes") {
+        await expect(page.locator("#builder-results .hero-directory-item")).toHaveCount(36);
+        await expect(page.locator("#builder-results .builder-hero:not(:disabled)")).toHaveCount(33);
+        await expect(page.locator("#builder-results .builder-hero:disabled")).toHaveCount(3);
+      }
+      if (name === "events") {
+        await expect(page.locator("#event-results .event-profile")).toHaveCount(16);
+        await expect(page.locator("#event-prep-theme")).toBeVisible();
+      }
       if (name === "flowers") {
         await expect(page.getByRole("heading", { name: "Flowers Count" })).toBeVisible();
         await expect(page.locator("#lucky-rose-current")).toBeVisible();

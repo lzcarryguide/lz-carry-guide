@@ -142,7 +142,7 @@ test("older backups skip retired Troops progress and migrate old goals to Other"
 
 test("Universal Search returns the Veil Archives homepage, Discover, series and Episode 01 routes", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: /Search the entire LZ Carry website/i }).click();
+  await page.getByRole("button", { name: /Search LZ Carry/i }).click();
   const input = page.getByRole("searchbox", { name: /Search all LZ Carry content/i });
   const results = page.locator(".universal-search-results");
 

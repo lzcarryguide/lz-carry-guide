@@ -43,7 +43,7 @@
   var trigger = make("button", "universal-search-trigger", "⌕  Search LZ Carry");
   trigger.type = "button";
   trigger.setAttribute("aria-haspopup", "dialog");
-  trigger.setAttribute("aria-label", "Search the entire LZ Carry website");
+  trigger.setAttribute("aria-label", "Search LZ Carry");
   nav.appendChild(trigger);
 
   var dialog = make("dialog", "universal-search-dialog");

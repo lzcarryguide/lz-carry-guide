@@ -1,5 +1,5 @@
 /* LZ Carry Full Preparedness planner.
-   AT is fixed UTC-2. Theme selection is manual because the server's active
+   AT uses a community-reported UTC-2 reference. Theme selection is manual because the server's active
    event task list is authoritative and the rotation sequence can vary. */
 (function(){
 "use strict";

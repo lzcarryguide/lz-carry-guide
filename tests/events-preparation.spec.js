@@ -47,7 +47,7 @@ test("Progress backup preserves current event preparation and saved formation da
     app: "LZ Carry",
     data: {
       "lzcarry-event-prep-v2": { "20261127-Research-0": true },
-      "lzcarry-formation-library-v1": { saved: [{ id: "main", name: "Main", heroes: ["Audrey", "Ava", null, null, null] }] }
+      "lzcarry-formation-library-v1": [{ id: "main", name: "Main", heroes: ["Audrey", "Ava", null, null, null], updatedAt: "2026-11-27T09:00:00.000Z" }]
     }
   };
   await page.locator(".player-data-file").setInputFiles({
@@ -61,5 +61,5 @@ test("Progress backup preserves current event preparation and saved formation da
     formation: JSON.parse(localStorage.getItem("lzcarry-formation-library-v1") || "null")
   }));
   expect(restored.event["20261127-Research-0"]).toBe(true);
-  expect(restored.formation.saved[0].name).toBe("Main");
+  expect(restored.formation[0].name).toBe("Main");
 });

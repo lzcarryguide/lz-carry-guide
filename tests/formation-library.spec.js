@@ -53,8 +53,8 @@ test("formation share link restores a five-slot lineup", async ({ page, baseURL 
   await expect(page.locator("#formation-slots .formation-slot").nth(1)).toContainText("Alma");
 });
 
-test("Hero and Events pages remain within narrow mobile viewports", async ({ page }) => {
-  for (const width of [320, 375, 390, 520]) {
+test("Hero and Events pages remain responsive across mobile and tablet viewports", async ({ page }) => {
+  for (const width of [320, 375, 390, 520, 768, 1024]) {
     await page.setViewportSize({ width, height: 844 });
     for (const route of ["/heroes.html", "/events.html"]) {
       await page.goto(route);

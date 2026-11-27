@@ -10,6 +10,8 @@
     { file: "beginner.html", title: "Beginner's Guide", category: "Page" },
     { file: "dashboard.html", title: "Player Dashboard", category: "Page" },
     { file: "research.html", title: "Research Center", category: "Page" },
+    { file: "heroes.html", title: "Hero Encyclopedia & Formation Lab", category: "Tool" },
+    { file: "events.html", title: "Events Center & Preparation", category: "Tool" },
     { file: "flowers-count.html", title: "Flowers Count · Lucky Rose", category: "Tool" },
     { file: "pilot.html", title: "LZ Carry Service", category: "Page" },
     { file: "stories/index.html", title: "The Veil Archives", category: "Story" },
@@ -19,6 +21,8 @@
   ];
   var datasets = [
     { file: "data/guides.json", page: "guides.html", title: "Guide", key: ["title", "name"] },
+    { file: "data/heroes.json", page: "heroes.html", title: "Hero", key: ["name"] },
+    { file: "data/events.json", page: "events.html", title: "Event", key: ["name"] },
     { file: "data/hq-requirements.json", page: "beginner.html#hq-planner-section", title: "HQ requirement", key: ["targetHq", "hqLevel", "level", "title", "name"] },
     { file: "data/lucky-rose-history.json", page: "flowers-count.html#lucky-rose-tracker", title: "Flowers Count · Lucky Rose", key: ["weekOf", "number", "buff", "durationHours", "notes"] }
   ];
@@ -39,7 +43,7 @@
   var trigger = make("button", "universal-search-trigger", "⌕  Search LZ Carry");
   trigger.type = "button";
   trigger.setAttribute("aria-haspopup", "dialog");
-  trigger.setAttribute("aria-label", "Search the entire LZ Carry website");
+  trigger.setAttribute("aria-label", "Search LZ Carry");
   nav.appendChild(trigger);
 
   var dialog = make("dialog", "universal-search-dialog");
@@ -60,7 +64,7 @@
   input.placeholder = "Search guides, HQ levels, research, stories…";
   input.setAttribute("aria-label", "Search all LZ Carry content");
   input.autocomplete = "off";
-  var hint = make("p", "universal-search-hint", "Search indexed LZ Carry pages, guide and planner data, Flowers Count, and The Veil Archives. Some interactive content and media are not indexed. Press Escape to close.");
+  var hint = make("p", "universal-search-hint", "Search indexed pages, guides, HQ levels, research, hero profiles, events, Flowers Count and The Veil Archives. Some interactive content and media are not indexed. Press Escape to close.");
   var results = make("div", "universal-search-results");
   results.setAttribute("aria-live", "polite");
   results.setAttribute("aria-label", "Search results");
@@ -157,7 +161,7 @@
       return { item: item, score: score };
     }).filter(Boolean).sort(function (a, b) { return b.score - a.score; }).slice(0, 40);
     if (!matches.length) {
-      results.appendChild(make("p", "universal-search-empty", "No matches found in the indexed pages and data. Try a guide, research tree, HQ level, story title or Flowers Count keyword."));
+      results.appendChild(make("p", "universal-search-empty", "No matches found in the indexed pages and data. Try a guide, research tree, hero name, event name, HQ level, story title or Flowers Count keyword."));
       return;
     }
     matches.forEach(function (match) {

@@ -18,7 +18,7 @@ test("dashboard retains personal goals without retired Troops controls", async (
   await expect(page.locator("#dashboard-goal-category option")).toHaveCount(4);
   await expect(page.locator("#dashboard-goal-category")).not.toContainText("Troops");
   await expect(page.locator("#dashboard-goal-category")).not.toContainText("Events");
-  await expect(page.locator('a[href*="events.html"]')).toHaveCount(0);
+  await expect(page.locator('a[href*="events.html"]')).toHaveCount(1);
   await expect(page.locator("#dashboard-troop-value")).toHaveCount(0);
   await expect(page.locator('a[href*="troops.html"]')).toHaveCount(0);
 });
@@ -42,11 +42,12 @@ test("mobile navigation exposes every retained primary destination", async ({ pa
   await expect(nav).toBeHidden();
   await toggle.click();
   await expect(nav).toBeVisible();
-  await expect(nav.locator("a")).toHaveCount(9);
+  await expect(nav.locator("a")).toHaveCount(11);
   await expect(nav.getByRole("link", { name: "Troops" })).toHaveCount(0);
   await expect(nav.getByRole("link", { name: "Flowers Count" })).toBeVisible();
   await expect(nav.getByRole("link", { name: "The Veil Archives" })).toHaveAttribute("href", "stories/index.html");
-  await expect(nav.getByRole("link", { name: "Events Center" })).toHaveCount(0);
+  await expect(nav.getByRole("link", { name: "Hero Encyclopedia" })).toBeVisible();
+  await expect(nav.getByRole("link", { name: "Events Center" })).toBeVisible();
   const dims = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
   expect(dims.page).toBeLessThanOrEqual(dims.viewport + 1);
 });

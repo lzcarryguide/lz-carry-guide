@@ -1,15 +1,15 @@
 const { test, expect } = require("@playwright/test");
 const fs = require("node:fs");
 const path = require("node:path");
-const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/flowers-count.html", "/pilot.html"];
+const pages = ["/", "/guides.html", "/beginner.html", "/dashboard.html", "/research.html", "/heroes.html", "/events.html", "/flowers-count.html", "/pilot.html"];
 const artifacts = path.join(process.cwd(), "artifacts");
 fs.mkdirSync(artifacts, { recursive: true });
 
-test("primary navigation and internal links resolve without retired Troops or Event Center pages", async ({ page, request }) => {
+test("primary navigation restores Hero and Events while keeping the standalone Troops feature retired", async ({ page, request }) => {
   await page.goto("/");
   const links = await page.locator("header nav a").evaluateAll(as => as.map(a => a.getAttribute("href")));
-  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "flowers-count.html", "pilot.html", "stories/index.html"]));
-  expect(links.some(href => /troops\.html|events?\.html/i.test(href))).toBeFalsy();
+  expect(links).toEqual(expect.arrayContaining(["index.html", "guides.html", "dashboard.html", "beginner.html", "beginner.html#hq-planner-section", "research.html", "heroes.html", "events.html", "flowers-count.html", "pilot.html", "stories/index.html"]));
+  expect(links.some(href => /troops\.html/i.test(href))).toBeFalsy();
   for (const target of pages) {
     expect((await request.get(target)).status(), target).toBe(200);
     await page.goto(target);
@@ -18,8 +18,10 @@ test("primary navigation and internal links resolve without retired Troops or Ev
   }
   expect((await request.get("/troops.html")).status()).toBe(404);
   expect((await request.get("/data/troops.json")).status()).toBe(404);
-  expect((await request.get("/events.html")).status()).toBe(404);
-  expect((await request.get("/data/events.json")).status()).toBe(404);
+  expect((await request.get("/heroes.html")).status()).toBe(200);
+  expect((await request.get("/data/heroes.json")).status()).toBe(200);
+  expect((await request.get("/events.html")).status()).toBe(200);
+  expect((await request.get("/data/events.json")).status()).toBe(200);
 });
 
 test("desktop pages load without runtime errors or horizontal overflow", async ({ page }) => {
@@ -39,7 +41,7 @@ test("desktop pages load without runtime errors or horizontal overflow", async (
 });
 
 test("mobile layouts and navigation work at 390px and 320px", async ({ page }) => {
-  for (const width of [390, 320]) {
+  for (const width of [520, 390, 375, 320]) {
     for (const target of pages) {
       await page.setViewportSize({ width, height: 844 });
       await page.goto(target);
@@ -55,8 +57,10 @@ test("mobile layouts and navigation work at 390px and 320px", async ({ page }) =
   await expect(nav).toBeHidden();
   await toggle.click();
   await expect(nav).toBeVisible();
-  await expect(nav.locator("a")).toHaveCount(9);
+  await expect(nav.locator("a")).toHaveCount(11);
   await expect(nav.getByRole("link", { name: "Troops" })).toHaveCount(0);
+  await expect(nav.getByRole("link", { name: "Hero Encyclopedia" })).toBeVisible();
+  await expect(nav.getByRole("link", { name: "Events Center" })).toBeVisible();
   await expect(nav.getByRole("link", { name: "The Veil Archives" })).toHaveAttribute("href", "stories/index.html");
   await page.screenshot({ path: path.join(artifacts, "home-mobile.png"), fullPage: true });
 });
@@ -138,7 +142,7 @@ test("older backups skip retired Troops progress and migrate old goals to Other"
 
 test("Universal Search returns the Veil Archives homepage, Discover, series and Episode 01 routes", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: /Search the entire LZ Carry website/i }).click();
+  await page.getByRole("button", { name: /Search LZ Carry/i }).click();
   const input = page.getByRole("searchbox", { name: /Search all LZ Carry content/i });
   const results = page.locator(".universal-search-results");
 
@@ -170,6 +174,8 @@ test("SEO metadata, robots policy and sitemap cover all published LZ Carry and V
     ["/beginner.html", "https://lzcarryguide.github.io/lz-carry-guide/beginner.html"],
     ["/dashboard.html", "https://lzcarryguide.github.io/lz-carry-guide/dashboard.html"],
     ["/research.html", "https://lzcarryguide.github.io/lz-carry-guide/research.html"],
+    ["/heroes.html", "https://lzcarryguide.github.io/lz-carry-guide/heroes.html"],
+    ["/events.html", "https://lzcarryguide.github.io/lz-carry-guide/events.html"],
     ["/flowers-count.html", "https://lzcarryguide.github.io/lz-carry-guide/flowers-count.html"],
     ["/pilot.html", "https://lzcarryguide.github.io/lz-carry-guide/pilot.html"],
     ["/stories/", "https://lzcarryguide.github.io/lz-carry-guide/stories/"],

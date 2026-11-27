@@ -47,3 +47,15 @@ test("new planning tools remain within narrow mobile viewports", async ({ page }
   }
 });
 
+test("Research directory search includes expanded prerequisites and source notes", async ({ page }) => {
+  await page.goto("/research.html");
+  const search = page.getByLabel("Search research");
+  await search.fill("SIN Command adds Lab 14");
+  await expect(page.locator("#research-hq-management > summary > h3")).toBeVisible();
+  await expect(page.locator("#research-new-home > summary > h3")).toBeHidden();
+  await expect(page.locator("#research-count")).toHaveText("1 matching technologies");
+
+  await search.fill("no matching research entry");
+  await expect(page.locator("#research-count")).toHaveText("0 matching technologies");
+  await expect(page.locator("#research-hq-management > summary > h3")).toBeHidden();
+});
